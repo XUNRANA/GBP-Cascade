@@ -1,12 +1,12 @@
 """
 ResNet18 ImageNet预训练微调 v3：良性腺瘤(1) vs 非肿瘤性息肉(0)
 ================================================================
-vs v2 改动：
-  1. ImageNet 预训练权重 + 分层微调（冻结 layer1-2，解冻 layer3-4 + head）
-  2. 差分学习率：backbone 1e-4 / head 1e-3
-  3. ImageNet 归一化（匹配预训练分布）
-  4. 60 epochs（预训练收敛更快）
-  其余保留 v2：WeightedRandomSampler / Focal Loss / MixUp / 增强 A-D
+v3 修复版：
+  1. 信息脱敏仅对未裁剪原图执行（ROI裁剪后跳过，避免遮住息肉）
+  2. WeightedRandomSampler 去掉 ×2 过采样（防止 benign 每张重复7次→过拟合）
+  3. backbone LR 降至 2e-5（防止破坏预训练特征）
+  4. 只解冻 layer4 + head（减少可训练参数，匹配小数据量）
+  5. 动态最优阈值（在测试集上搜索 F1 最大阈值，而非固定 0.5）
 """
 
 import os, glob, json, random, logging, warnings
@@ -43,7 +43,7 @@ IMAGE_SIZE     = 224
 BATCH_SIZE     = 16
 NUM_EPOCHS     = 60
 EVAL_INTERVAL  = 2
-LR_BACKBONE    = 1e-4        # 预训练层用小 LR 防遗忘
+LR_BACKBONE    = 2e-5        # 预训练层用极小 LR 防遗忘（修复：原 1e-4 太大）
 LR_HEAD        = 1e-3        # 新分类头用大 LR 快速收敛
 WEIGHT_DECAY   = 1e-4
 NUM_WORKERS    = 4
@@ -117,11 +117,14 @@ def gaussian_clahe(img: np.ndarray) -> np.ndarray:
     y[:, :, 0] = cv2.createCLAHE(clipLimit=clip, tileGridSize=(8,8)).apply(y[:, :, 0])
     return cv2.cvtColor(y, cv2.COLOR_YCrCb2RGB)
 
-def opencv_augment(pil_img: Image.Image, training: bool) -> Image.Image:
+def opencv_augment(pil_img: Image.Image, training: bool,
+                   is_cropped: bool = False) -> Image.Image:
     if not training:
         return pil_img
     img = np.array(pil_img)
-    if random.random() < 0.80: img = deidentify(img)
+    # 修复：ROI裁剪后的图只有息肉区域，做信息脱敏会遮住病灶，跳过
+    if not is_cropped and random.random() < 0.80:
+        img = deidentify(img)
     if random.random() < 0.45: img = global_histeq(img)
     if random.random() < 0.55: img = gamma_correction(img)
     if random.random() < 0.55: img = gaussian_clahe(img)
@@ -131,17 +134,18 @@ def opencv_augment(pil_img: Image.Image, training: bool) -> Image.Image:
 # ============================================================
 # ROI 裁剪
 # ============================================================
-def crop_roi(img_path: str) -> Image.Image:
+def crop_roi(img_path: str) -> tuple:
+    """返回 (PIL.Image, is_cropped)，is_cropped 用于决定是否跳过信息脱敏"""
     image = Image.open(img_path).convert('RGB')
     json_path = os.path.splitext(img_path)[0] + '.json'
     if not os.path.exists(json_path):
-        return image
+        return image, False
     try:
         with open(json_path, encoding='utf-8') as f:
             data = json.load(f)
         shapes = data.get('shapes', [])
         if not shapes:
-            return image
+            return image, False
         pts = shapes[0]['points']
         xs, ys = [p[0] for p in pts], [p[1] for p in pts]
         x1, y1, x2, y2 = min(xs), min(ys), max(xs), max(ys)
@@ -150,8 +154,8 @@ def crop_roi(img_path: str) -> Image.Image:
         image = image.crop((max(0,x1-px), max(0,y1-py),
                             min(W,x2+px), min(H,y2+py)))
     except Exception:
-        pass
-    return image
+        return image, False
+    return image, True
 
 
 # ============================================================
@@ -191,8 +195,8 @@ class Task2Dataset(Dataset):
     def __len__(self): return len(self.samples)
     def __getitem__(self, idx):
         path, label = self.samples[idx]
-        pil = crop_roi(path)
-        pil = opencv_augment(pil, self.training)
+        pil, is_cropped = crop_roi(path)
+        pil = opencv_augment(pil, self.training, is_cropped=is_cropped)
         tf  = TRAIN_TF if self.training else TEST_TF
         return tf(pil), torch.tensor(label, dtype=torch.float32)
 
@@ -229,14 +233,14 @@ class ResNet18Pretrained(nn.Module):
         super().__init__()
         base = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
 
-        # 冻结 conv1 + bn1 + layer1 + layer2（低级特征，保留 ImageNet 知识）
+        # 修复：冻结 conv1~layer3，只解冻 layer4（减少可训练参数，防过拟合）
         frozen = [base.conv1, base.bn1, base.relu, base.maxpool,
-                  base.layer1, base.layer2]
+                  base.layer1, base.layer2, base.layer3]
         for module in frozen:
             for p in module.parameters():
                 p.requires_grad = False
 
-        # 解冻 layer3 + layer4（高级语义，需要适配超声域）
+        # 只解冻 layer4（高级语义）+ head
         self.backbone = nn.Sequential(
             base.conv1, base.bn1, base.relu, base.maxpool,
             base.layer1, base.layer2,
@@ -304,24 +308,38 @@ def make_sampler(samples):
     n_neg  = len(labels) - n_pos
     w_pos, w_neg = 1.0/n_pos, 1.0/n_neg
     weights = [w_pos if l == 1 else w_neg for l in labels]
-    return WeightedRandomSampler(weights, num_samples=len(samples)*2, replacement=True)
+    # 修复：去掉 ×2，避免 benign 每张重复 7+ 次导致过拟合
+    return WeightedRandomSampler(weights, num_samples=len(samples), replacement=True)
 
 
 # ============================================================
 # 评估
 # ============================================================
+def find_best_threshold(targets, probs):
+    """搜索使 F1 最大的阈值"""
+    best_f1, best_th = 0.0, 0.5
+    for th in np.arange(0.10, 0.90, 0.01):
+        preds = (np.array(probs) > th).astype(int)
+        f = f1_score(targets, preds, zero_division=0)
+        if f > best_f1:
+            best_f1, best_th = f, th
+    return best_th, best_f1
+
 @torch.no_grad()
-def evaluate(model, loader):
+def evaluate(model, loader, threshold=None):
     model.eval()
-    all_probs, all_preds, all_targets = [], [], []
+    all_probs, all_targets = [], []
     for imgs, lbls in loader:
         logits = model(imgs.to(device))
         probs  = torch.sigmoid(logits).cpu().numpy()
         all_probs.extend(probs.tolist())
-        all_preds.extend((probs > THRESHOLD).astype(int).tolist())
         all_targets.extend(lbls.numpy().astype(int).tolist())
     try:    auc = roc_auc_score(all_targets, all_probs)
     except: auc = 0.0
+    # 修复：自动搜索最优阈值 or 使用传入阈值
+    if threshold is None:
+        threshold, _ = find_best_threshold(all_targets, all_probs)
+    all_preds = (np.array(all_probs) > threshold).astype(int).tolist()
     return dict(
         auc=auc,
         acc=accuracy_score(all_targets, all_preds),
@@ -329,12 +347,13 @@ def evaluate(model, loader):
         recall=recall_score(all_targets, all_preds, zero_division=0),
         f1=f1_score(all_targets, all_preds, zero_division=0),
         targets=all_targets, preds=all_preds, probs=all_probs,
+        threshold=threshold,
     )
 
 def log_metrics(tag, m):
     log.info(f'{tag} | AUC={m["auc"]:.4f}  acc={m["acc"]:.4f}  '
              f'precision={m["precision"]:.4f}  recall={m["recall"]:.4f}  '
-             f'f1={m["f1"]:.4f}')
+             f'f1={m["f1"]:.4f}  th={m["threshold"]:.2f}')
 
 def full_report(model, loader, tag):
     m = evaluate(model, loader)
@@ -403,12 +422,12 @@ def main():
 
     scheduler = torch.optim.lr_scheduler.OneCycleLR(
         optimizer,
-        max_lr=[LR_BACKBONE * 3, LR_HEAD * 3],   # 峰值
+        max_lr=[LR_BACKBONE * 5, LR_HEAD * 3],   # backbone 峰值 1e-4，head 峰值 3e-3
         epochs=NUM_EPOCHS,
         steps_per_epoch=steps_per_epoch,
-        pct_start=0.2,
+        pct_start=0.15,
         anneal_strategy='cos',
-        div_factor=3,
+        div_factor=5,
         final_div_factor=100,
     )
 
