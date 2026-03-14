@@ -1,0 +1,11 @@
+1、每次训练记录的log文件包含一个文件夹，文件夹下面包含一个.log文件格式的记录文件和一个.py文件的python文件，并且保存最优的权重文件。
+2、文件夹的命名和py文件以及log文件的命名规则统一按照下面的要求：
+日期+任务（task1或者task2）+使用的模型+做了哪些修改+第几次。示例：
+（1）文件夹：20260313_task1_Resnet18_freezepram_1
+（2）log文件：20260313_task1_Resnet18_freezepram_1.log
+（3）python文件：20260313_task1_Resnet18_freezepram_1.py
+python文件就是你现在用于跑的那个文件，因为现在一般只用一个文件就可以处理，所以就把每次改之后跑的模型保存下来。
+3、log文件记录要求：
+（1）记录每个epoch的学习率、损失值和训练准确率。
+（2）每隔三个eopch记录一下测试集的acc、precision、recall、f1，以及二分类不同标签的acc、precision、recall、f1，并且保存最优的权重文件。
+（3）训练结束后加载最优的权重文件进行测试，记录测试集的acc、precision、recall、f1，以及二分类不同标签的acc、precision、recall、f1。
