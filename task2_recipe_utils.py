@@ -13,7 +13,7 @@ from PIL import Image
 
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
 from sklearn.metrics import accuracy_score, classification_report, f1_score, precision_score, recall_score
 
 
@@ -162,6 +162,45 @@ def build_class_weights(train_df, class_names, device):
     return torch.tensor(weights, dtype=torch.float32, device=device)
 
 
+def build_weighted_random_sampler(train_df):
+    label_counts = train_df["label"].value_counts().sort_index().to_dict()
+    sample_weights = train_df["label"].map(lambda x: 1.0 / label_counts[int(x)]).to_numpy(dtype=np.float64)
+    sample_weights = torch.as_tensor(sample_weights, dtype=torch.double)
+    sampler = WeightedRandomSampler(
+        weights=sample_weights,
+        num_samples=len(sample_weights),
+        replacement=True,
+    )
+    return sampler
+
+
+class FocalLoss(nn.Module):
+    def __init__(self, alpha=None, gamma=2.0, reduction="mean"):
+        super().__init__()
+        self.alpha = alpha
+        self.gamma = gamma
+        self.reduction = reduction
+
+    def forward(self, logits, targets):
+        ce_loss = nn.functional.cross_entropy(
+            logits,
+            targets,
+            reduction="none",
+        )
+        pt = torch.exp(-ce_loss)
+        focal_loss = ((1.0 - pt) ** self.gamma) * ce_loss
+
+        if self.alpha is not None:
+            alpha_factor = self.alpha.gather(0, targets)
+            focal_loss = alpha_factor * focal_loss
+
+        if self.reduction == "sum":
+            return focal_loss.sum()
+        if self.reduction == "none":
+            return focal_loss
+        return focal_loss.mean()
+
+
 def split_backbone_and_head(model, head_module):
     head_params = [p for p in head_module.parameters() if p.requires_grad]
     head_param_ids = {id(p) for p in head_params}
@@ -245,10 +284,17 @@ def build_dataloaders(cfg, train_transform, test_transform):
     train_dataset = GBPDataset(cfg.train_excel, cfg.data_root, transform=train_transform)
     test_dataset = GBPDataset(cfg.test_excel, cfg.data_root, transform=test_transform)
 
+    train_sampler = None
+    train_shuffle = True
+    if getattr(cfg, "use_weighted_sampler", False):
+        train_sampler = build_weighted_random_sampler(train_dataset.df)
+        train_shuffle = False
+
     train_loader = DataLoader(
         train_dataset,
         batch_size=cfg.batch_size,
-        shuffle=True,
+        shuffle=train_shuffle,
+        sampler=train_sampler,
         num_workers=cfg.num_workers,
         pin_memory=(cfg.device.type == "cuda"),
     )
@@ -269,6 +315,7 @@ def run_experiment(
     build_test_transform_fn,
     build_optimizer_fn,
     script_path,
+    build_criterion_fn=None,
 ):
     os.makedirs(cfg.log_dir, exist_ok=True)
     lock_path = getattr(cfg, "lock_path", os.path.join(cfg.log_dir, f"{cfg.exp_name}.lock"))
@@ -297,6 +344,8 @@ def run_experiment(
     logger.info(f"Warmup Epochs: {cfg.warmup_epochs}")
     logger.info(f"Min LR Ratio: {cfg.min_lr_ratio}")
     logger.info(f"Label Smoothing: {cfg.label_smoothing}")
+    logger.info(f"Weighted Sampler: {getattr(cfg, 'use_weighted_sampler', False)}")
+    logger.info(f"Seed: {cfg.seed}")
     logger.info(f"Epochs: {cfg.num_epochs}")
     logger.info(f"Grad Clip: {cfg.grad_clip}")
     logger.info(f"设备: {cfg.device}")
@@ -331,7 +380,12 @@ def run_experiment(
         f"no_tumor={class_weights[1].item():.4f}"
     )
 
-    criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=cfg.label_smoothing)
+    if build_criterion_fn is not None:
+        criterion = build_criterion_fn(cfg, class_weights)
+    else:
+        criterion = nn.CrossEntropyLoss(weight=class_weights, label_smoothing=cfg.label_smoothing)
+
+    logger.info(f"损失函数: {getattr(cfg, 'loss_name', criterion.__class__.__name__)}")
     optimizer = build_optimizer_fn(model, cfg)
 
     scaler = torch.amp.GradScaler(
