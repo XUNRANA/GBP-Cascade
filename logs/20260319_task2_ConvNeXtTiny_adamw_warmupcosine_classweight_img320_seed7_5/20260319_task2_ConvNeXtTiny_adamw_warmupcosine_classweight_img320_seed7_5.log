@@ -1,0 +1,375 @@
+2026-03-19 11:08:39 - ============================================================
+2026-03-19 11:08:39 - 实验名称: 20260319_task2_ConvNeXtTiny_adamw_warmupcosine_classweight_img320_seed7_5
+2026-03-19 11:08:39 - 任务: Task 2 - 良性肿瘤(0) vs 非肿瘤性息肉(1)
+2026-03-19 11:08:39 - 模型: ConvNeXt-Tiny (ImageNet预训练)
+2026-03-19 11:08:39 - 修改: AdamW + diff lr + warmup cosine + weakaug + class weight + label smoothing + img320 + seed7
+2026-03-19 11:08:39 - 图像尺寸: train Resize320 + HFlip + RandomAffine + LightColorJitter, test Resize320
+2026-03-19 11:08:39 - Batch Size: 8
+2026-03-19 11:08:39 - Backbone LR: 5e-05
+2026-03-19 11:08:39 - Head LR: 0.0005
+2026-03-19 11:08:39 - Weight Decay: 0.05
+2026-03-19 11:08:39 - Warmup Epochs: 5
+2026-03-19 11:08:39 - Min LR Ratio: 0.05
+2026-03-19 11:08:39 - Label Smoothing: 0.1
+2026-03-19 11:08:39 - Weighted Sampler: False
+2026-03-19 11:08:39 - Seed: 7
+2026-03-19 11:08:39 - Epochs: 60
+2026-03-19 11:08:39 - Grad Clip: 1.0
+2026-03-19 11:08:39 - 设备: cuda
+2026-03-19 11:08:39 - ============================================================
+2026-03-19 11:08:39 - 训练集: 1303 张 (benign=309, no_tumor=994)
+2026-03-19 11:08:39 - 测试集: 564 张 (benign=129, no_tumor=435)
+2026-03-19 11:08:40 - 模型参数量: 27,821,666
+2026-03-19 11:08:40 - 可训练参数量: 27,821,666
+2026-03-19 11:08:40 - 类别权重: benign=2.1084, no_tumor=0.6554
+2026-03-19 11:08:40 - 损失函数: CrossEntropyLoss(class_weight + label_smoothing=0.1)
+2026-03-19 11:08:40 - 
+============================================================
+2026-03-19 11:08:40 - 开始训练
+2026-03-19 11:08:40 - ============================================================
+2026-03-19 11:08:47 - Epoch [1/60] LR(backbone/head): 1.000000e-05/1.000000e-04 | WarmupCosineFactor: 0.2000 | Loss: 0.7177 | Train Acc: 0.5403 | Time: 7.6s
+2026-03-19 11:08:54 - Epoch [2/60] LR(backbone/head): 2.000000e-05/2.000000e-04 | WarmupCosineFactor: 0.4000 | Loss: 0.6876 | Train Acc: 0.6347 | Time: 6.3s
+2026-03-19 11:09:00 - Epoch [3/60] LR(backbone/head): 3.000000e-05/3.000000e-04 | WarmupCosineFactor: 0.6000 | Loss: 0.6406 | Train Acc: 0.7084 | Time: 6.4s
+2026-03-19 11:09:00 - ----------------------------------------
+2026-03-19 11:09:01 - [Test] Acc: 0.6986 | Precision(macro): 0.5748 | Recall(macro): 0.5756 | F1(macro): 0.5752
+2026-03-19 11:09:02 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3435    0.3488    0.3462       129
+    no_tumor     0.8060    0.8023    0.8041       435
+
+    accuracy                         0.6986       564
+   macro avg     0.5748    0.5756    0.5752       564
+weighted avg     0.7002    0.6986    0.6994       564
+
+2026-03-19 11:09:02 - *** 保存最优模型 (F1: 0.5752, Epoch: 3) ***
+2026-03-19 11:09:02 - ----------------------------------------
+2026-03-19 11:09:08 - Epoch [4/60] LR(backbone/head): 4.000000e-05/4.000000e-04 | WarmupCosineFactor: 0.8000 | Loss: 0.5883 | Train Acc: 0.7751 | Time: 6.3s
+2026-03-19 11:09:14 - Epoch [5/60] LR(backbone/head): 5.000000e-05/5.000000e-04 | WarmupCosineFactor: 1.0000 | Loss: 0.5196 | Train Acc: 0.8473 | Time: 6.3s
+2026-03-19 11:09:21 - Epoch [6/60] LR(backbone/head): 4.996127e-05/4.996127e-04 | WarmupCosineFactor: 0.9992 | Loss: 0.4691 | Train Acc: 0.8864 | Time: 6.5s
+2026-03-19 11:09:21 - ----------------------------------------
+2026-03-19 11:09:22 - [Test] Acc: 0.6596 | Precision(macro): 0.5680 | Recall(macro): 0.5830 | F1(macro): 0.5695
+2026-03-19 11:09:22 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3220    0.4419    0.3725       129
+    no_tumor     0.8140    0.7241    0.7664       435
+
+    accuracy                         0.6596       564
+   macro avg     0.5680    0.5830    0.5695       564
+weighted avg     0.7014    0.6596    0.6763       564
+
+2026-03-19 11:09:22 - ----------------------------------------
+2026-03-19 11:09:29 - Epoch [7/60] LR(backbone/head): 4.984519e-05/4.984519e-04 | WarmupCosineFactor: 0.9969 | Loss: 0.4159 | Train Acc: 0.9271 | Time: 6.4s
+2026-03-19 11:09:35 - Epoch [8/60] LR(backbone/head): 4.965215e-05/4.965215e-04 | WarmupCosineFactor: 0.9930 | Loss: 0.3904 | Train Acc: 0.9340 | Time: 6.3s
+2026-03-19 11:09:42 - Epoch [9/60] LR(backbone/head): 4.938278e-05/4.938278e-04 | WarmupCosineFactor: 0.9877 | Loss: 0.3717 | Train Acc: 0.9624 | Time: 6.6s
+2026-03-19 11:09:42 - ----------------------------------------
+2026-03-19 11:09:43 - [Test] Acc: 0.7128 | Precision(macro): 0.5963 | Recall(macro): 0.5984 | F1(macro): 0.5973
+2026-03-19 11:09:43 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3759    0.3876    0.3817       129
+    no_tumor     0.8167    0.8092    0.8129       435
+
+    accuracy                         0.7128       564
+   macro avg     0.5963    0.5984    0.5973       564
+weighted avg     0.7159    0.7128    0.7143       564
+
+2026-03-19 11:09:43 - *** 保存最优模型 (F1: 0.5973, Epoch: 9) ***
+2026-03-19 11:09:43 - ----------------------------------------
+2026-03-19 11:09:50 - Epoch [10/60] LR(backbone/head): 4.903796e-05/4.903796e-04 | WarmupCosineFactor: 0.9808 | Loss: 0.3674 | Train Acc: 0.9632 | Time: 6.7s
+2026-03-19 11:09:56 - Epoch [11/60] LR(backbone/head): 4.861880e-05/4.861880e-04 | WarmupCosineFactor: 0.9724 | Loss: 0.3404 | Train Acc: 0.9708 | Time: 6.2s
+2026-03-19 11:10:03 - Epoch [12/60] LR(backbone/head): 4.812669e-05/4.812669e-04 | WarmupCosineFactor: 0.9625 | Loss: 0.3350 | Train Acc: 0.9785 | Time: 6.2s
+2026-03-19 11:10:03 - ----------------------------------------
+2026-03-19 11:10:04 - [Test] Acc: 0.7181 | Precision(macro): 0.6061 | Recall(macro): 0.6100 | F1(macro): 0.6079
+2026-03-19 11:10:04 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3897    0.4109    0.4000       129
+    no_tumor     0.8224    0.8092    0.8158       435
+
+    accuracy                         0.7181       564
+   macro avg     0.6061    0.6100    0.6079       564
+weighted avg     0.7235    0.7181    0.7207       564
+
+2026-03-19 11:10:05 - *** 保存最优模型 (F1: 0.6079, Epoch: 12) ***
+2026-03-19 11:10:05 - ----------------------------------------
+2026-03-19 11:10:11 - Epoch [13/60] LR(backbone/head): 4.756321e-05/4.756321e-04 | WarmupCosineFactor: 0.9513 | Loss: 0.3141 | Train Acc: 0.9854 | Time: 6.2s
+2026-03-19 11:10:18 - Epoch [14/60] LR(backbone/head): 4.693022e-05/4.693022e-04 | WarmupCosineFactor: 0.9386 | Loss: 0.3216 | Train Acc: 0.9816 | Time: 6.5s
+2026-03-19 11:10:24 - Epoch [15/60] LR(backbone/head): 4.622977e-05/4.622977e-04 | WarmupCosineFactor: 0.9246 | Loss: 0.3195 | Train Acc: 0.9839 | Time: 6.4s
+2026-03-19 11:10:24 - ----------------------------------------
+2026-03-19 11:10:26 - [Test] Acc: 0.7216 | Precision(macro): 0.6139 | Recall(macro): 0.6205 | F1(macro): 0.6168
+2026-03-19 11:10:26 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4000    0.4341    0.4164       129
+    no_tumor     0.8278    0.8069    0.8172       435
+
+    accuracy                         0.7216       564
+   macro avg     0.6139    0.6205    0.6168       564
+weighted avg     0.7300    0.7216    0.7255       564
+
+2026-03-19 11:10:26 - *** 保存最优模型 (F1: 0.6168, Epoch: 15) ***
+2026-03-19 11:10:26 - ----------------------------------------
+2026-03-19 11:10:32 - Epoch [16/60] LR(backbone/head): 4.546415e-05/4.546415e-04 | WarmupCosineFactor: 0.9093 | Loss: 0.3051 | Train Acc: 0.9939 | Time: 6.3s
+2026-03-19 11:10:39 - Epoch [17/60] LR(backbone/head): 4.463586e-05/4.463586e-04 | WarmupCosineFactor: 0.8927 | Loss: 0.3177 | Train Acc: 0.9854 | Time: 6.3s
+2026-03-19 11:10:45 - Epoch [18/60] LR(backbone/head): 4.374760e-05/4.374760e-04 | WarmupCosineFactor: 0.8750 | Loss: 0.3191 | Train Acc: 0.9847 | Time: 6.7s
+2026-03-19 11:10:45 - ----------------------------------------
+2026-03-19 11:10:47 - [Test] Acc: 0.7677 | Precision(macro): 0.6492 | Recall(macro): 0.5986 | F1(macro): 0.6095
+2026-03-19 11:10:47 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4868    0.2868    0.3610       129
+    no_tumor     0.8115    0.9103    0.8581       435
+
+    accuracy                         0.7677       564
+   macro avg     0.6492    0.5986    0.6095       564
+weighted avg     0.7372    0.7677    0.7444       564
+
+2026-03-19 11:10:47 - ----------------------------------------
+2026-03-19 11:10:53 - Epoch [19/60] LR(backbone/head): 4.280227e-05/4.280227e-04 | WarmupCosineFactor: 0.8560 | Loss: 0.3078 | Train Acc: 0.9893 | Time: 6.2s
+2026-03-19 11:10:59 - Epoch [20/60] LR(backbone/head): 4.180294e-05/4.180294e-04 | WarmupCosineFactor: 0.8361 | Loss: 0.3091 | Train Acc: 0.9885 | Time: 6.2s
+2026-03-19 11:11:05 - Epoch [21/60] LR(backbone/head): 4.075289e-05/4.075289e-04 | WarmupCosineFactor: 0.8151 | Loss: 0.3125 | Train Acc: 0.9908 | Time: 6.4s
+2026-03-19 11:11:05 - ----------------------------------------
+2026-03-19 11:11:07 - [Test] Acc: 0.7642 | Precision(macro): 0.6385 | Recall(macro): 0.5854 | F1(macro): 0.5942
+2026-03-19 11:11:07 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4714    0.2558    0.3317       129
+    no_tumor     0.8057    0.9149    0.8568       435
+
+    accuracy                         0.7642       564
+   macro avg     0.6385    0.5854    0.5942       564
+weighted avg     0.7292    0.7642    0.7367       564
+
+2026-03-19 11:11:07 - ----------------------------------------
+2026-03-19 11:11:13 - Epoch [22/60] LR(backbone/head): 3.965553e-05/3.965553e-04 | WarmupCosineFactor: 0.7931 | Loss: 0.2971 | Train Acc: 0.9954 | Time: 6.3s
+2026-03-19 11:11:20 - Epoch [23/60] LR(backbone/head): 3.851444e-05/3.851444e-04 | WarmupCosineFactor: 0.7703 | Loss: 0.3077 | Train Acc: 0.9923 | Time: 6.6s
+2026-03-19 11:11:27 - Epoch [24/60] LR(backbone/head): 3.733335e-05/3.733335e-04 | WarmupCosineFactor: 0.7467 | Loss: 0.3013 | Train Acc: 0.9923 | Time: 6.8s
+2026-03-19 11:11:27 - ----------------------------------------
+2026-03-19 11:11:28 - [Test] Acc: 0.7305 | Precision(macro): 0.6107 | Recall(macro): 0.6044 | F1(macro): 0.6072
+2026-03-19 11:11:28 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4034    0.3721    0.3871       129
+    no_tumor     0.8180    0.8368    0.8273       435
+
+    accuracy                         0.7305       564
+   macro avg     0.6107    0.6044    0.6072       564
+weighted avg     0.7231    0.7305    0.7266       564
+
+2026-03-19 11:11:28 - ----------------------------------------
+2026-03-19 11:11:34 - Epoch [25/60] LR(backbone/head): 3.611611e-05/3.611611e-04 | WarmupCosineFactor: 0.7223 | Loss: 0.3038 | Train Acc: 0.9939 | Time: 6.3s
+2026-03-19 11:11:40 - Epoch [26/60] LR(backbone/head): 3.486668e-05/3.486668e-04 | WarmupCosineFactor: 0.6973 | Loss: 0.2985 | Train Acc: 0.9954 | Time: 6.3s
+2026-03-19 11:11:47 - Epoch [27/60] LR(backbone/head): 3.358915e-05/3.358915e-04 | WarmupCosineFactor: 0.6718 | Loss: 0.3046 | Train Acc: 0.9923 | Time: 6.2s
+2026-03-19 11:11:47 - ----------------------------------------
+2026-03-19 11:11:48 - [Test] Acc: 0.7411 | Precision(macro): 0.6212 | Recall(macro): 0.6086 | F1(macro): 0.6136
+2026-03-19 11:11:48 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4234    0.3643    0.3917       129
+    no_tumor     0.8190    0.8529    0.8356       435
+
+    accuracy                         0.7411       564
+   macro avg     0.6212    0.6086    0.6136       564
+weighted avg     0.7285    0.7411    0.7341       564
+
+2026-03-19 11:11:48 - ----------------------------------------
+2026-03-19 11:11:54 - Epoch [28/60] LR(backbone/head): 3.228769e-05/3.228769e-04 | WarmupCosineFactor: 0.6458 | Loss: 0.2984 | Train Acc: 0.9946 | Time: 6.2s
+2026-03-19 11:12:01 - Epoch [29/60] LR(backbone/head): 3.096652e-05/3.096652e-04 | WarmupCosineFactor: 0.6193 | Loss: 0.3020 | Train Acc: 0.9954 | Time: 6.3s
+2026-03-19 11:12:07 - Epoch [30/60] LR(backbone/head): 2.962998e-05/2.962998e-04 | WarmupCosineFactor: 0.5926 | Loss: 0.2977 | Train Acc: 0.9962 | Time: 6.2s
+2026-03-19 11:12:07 - ----------------------------------------
+2026-03-19 11:12:09 - [Test] Acc: 0.7216 | Precision(macro): 0.6015 | Recall(macro): 0.5987 | F1(macro): 0.6000
+2026-03-19 11:12:09 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3871    0.3721    0.3794       129
+    no_tumor     0.8159    0.8253    0.8206       435
+
+    accuracy                         0.7216       564
+   macro avg     0.6015    0.5987    0.6000       564
+weighted avg     0.7178    0.7216    0.7197       564
+
+2026-03-19 11:12:09 - ----------------------------------------
+2026-03-19 11:12:15 - Epoch [31/60] LR(backbone/head): 2.828241e-05/2.828241e-04 | WarmupCosineFactor: 0.5656 | Loss: 0.3012 | Train Acc: 0.9954 | Time: 6.5s
+2026-03-19 11:12:21 - Epoch [32/60] LR(backbone/head): 2.692821e-05/2.692821e-04 | WarmupCosineFactor: 0.5386 | Loss: 0.3005 | Train Acc: 0.9954 | Time: 6.3s
+2026-03-19 11:12:28 - Epoch [33/60] LR(backbone/head): 2.557179e-05/2.557179e-04 | WarmupCosineFactor: 0.5114 | Loss: 0.2954 | Train Acc: 0.9962 | Time: 6.3s
+2026-03-19 11:12:28 - ----------------------------------------
+2026-03-19 11:12:29 - [Test] Acc: 0.7394 | Precision(macro): 0.6133 | Recall(macro): 0.5966 | F1(macro): 0.6024
+2026-03-19 11:12:29 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4135    0.3333    0.3691       129
+    no_tumor     0.8130    0.8598    0.8358       435
+
+    accuracy                         0.7394       564
+   macro avg     0.6133    0.5966    0.6024       564
+weighted avg     0.7216    0.7394    0.7290       564
+
+2026-03-19 11:12:29 - ----------------------------------------
+2026-03-19 11:12:36 - Epoch [34/60] LR(backbone/head): 2.421759e-05/2.421759e-04 | WarmupCosineFactor: 0.4844 | Loss: 0.2914 | Train Acc: 0.9977 | Time: 6.5s
+2026-03-19 11:12:43 - Epoch [35/60] LR(backbone/head): 2.287002e-05/2.287002e-04 | WarmupCosineFactor: 0.4574 | Loss: 0.2939 | Train Acc: 0.9977 | Time: 6.9s
+2026-03-19 11:12:50 - Epoch [36/60] LR(backbone/head): 2.153348e-05/2.153348e-04 | WarmupCosineFactor: 0.4307 | Loss: 0.2934 | Train Acc: 0.9977 | Time: 6.9s
+2026-03-19 11:12:50 - ----------------------------------------
+2026-03-19 11:12:51 - [Test] Acc: 0.7730 | Precision(macro): 0.6597 | Recall(macro): 0.6020 | F1(macro): 0.6141
+2026-03-19 11:12:51 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5068    0.2868    0.3663       129
+    no_tumor     0.8126    0.9172    0.8618       435
+
+    accuracy                         0.7730       564
+   macro avg     0.6597    0.6020    0.6141       564
+weighted avg     0.7427    0.7730    0.7485       564
+
+2026-03-19 11:12:51 - ----------------------------------------
+2026-03-19 11:12:58 - Epoch [37/60] LR(backbone/head): 2.021231e-05/2.021231e-04 | WarmupCosineFactor: 0.4042 | Loss: 0.3046 | Train Acc: 0.9939 | Time: 6.6s
+2026-03-19 11:13:04 - Epoch [38/60] LR(backbone/head): 1.891085e-05/1.891085e-04 | WarmupCosineFactor: 0.3782 | Loss: 0.2916 | Train Acc: 0.9977 | Time: 6.5s
+2026-03-19 11:13:11 - Epoch [39/60] LR(backbone/head): 1.763332e-05/1.763332e-04 | WarmupCosineFactor: 0.3527 | Loss: 0.2896 | Train Acc: 0.9992 | Time: 6.8s
+2026-03-19 11:13:11 - ----------------------------------------
+2026-03-19 11:13:13 - [Test] Acc: 0.7624 | Precision(macro): 0.6482 | Recall(macro): 0.6197 | F1(macro): 0.6293
+2026-03-19 11:13:13 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4742    0.3566    0.4071       129
+    no_tumor     0.8223    0.8828    0.8514       435
+
+    accuracy                         0.7624       564
+   macro avg     0.6482    0.6197    0.6293       564
+weighted avg     0.7427    0.7624    0.7498       564
+
+2026-03-19 11:13:13 - *** 保存最优模型 (F1: 0.6293, Epoch: 39) ***
+2026-03-19 11:13:13 - ----------------------------------------
+2026-03-19 11:13:20 - Epoch [40/60] LR(backbone/head): 1.638389e-05/1.638389e-04 | WarmupCosineFactor: 0.3277 | Loss: 0.2865 | Train Acc: 1.0000 | Time: 6.9s
+2026-03-19 11:13:27 - Epoch [41/60] LR(backbone/head): 1.516665e-05/1.516665e-04 | WarmupCosineFactor: 0.3033 | Loss: 0.2866 | Train Acc: 0.9992 | Time: 6.6s
+2026-03-19 11:13:33 - Epoch [42/60] LR(backbone/head): 1.398556e-05/1.398556e-04 | WarmupCosineFactor: 0.2797 | Loss: 0.2926 | Train Acc: 0.9977 | Time: 6.2s
+2026-03-19 11:13:33 - ----------------------------------------
+2026-03-19 11:13:34 - [Test] Acc: 0.7216 | Precision(macro): 0.6109 | Recall(macro): 0.6150 | F1(macro): 0.6128
+2026-03-19 11:13:34 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3971    0.4186    0.4075       129
+    no_tumor     0.8248    0.8115    0.8181       435
+
+    accuracy                         0.7216       564
+   macro avg     0.6109    0.6150    0.6128       564
+weighted avg     0.7269    0.7216    0.7242       564
+
+2026-03-19 11:13:34 - ----------------------------------------
+2026-03-19 11:13:41 - Epoch [43/60] LR(backbone/head): 1.284447e-05/1.284447e-04 | WarmupCosineFactor: 0.2569 | Loss: 0.2899 | Train Acc: 0.9977 | Time: 6.4s
+2026-03-19 11:13:48 - Epoch [44/60] LR(backbone/head): 1.174711e-05/1.174711e-04 | WarmupCosineFactor: 0.2349 | Loss: 0.2853 | Train Acc: 0.9992 | Time: 6.8s
+2026-03-19 11:13:54 - Epoch [45/60] LR(backbone/head): 1.069706e-05/1.069706e-04 | WarmupCosineFactor: 0.2139 | Loss: 0.2921 | Train Acc: 0.9992 | Time: 6.7s
+2026-03-19 11:13:54 - ----------------------------------------
+2026-03-19 11:13:56 - [Test] Acc: 0.7021 | Precision(macro): 0.6019 | Recall(macro): 0.6160 | F1(macro): 0.6065
+2026-03-19 11:13:56 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3758    0.4574    0.4126       129
+    no_tumor     0.8280    0.7747    0.8005       435
+
+    accuracy                         0.7021       564
+   macro avg     0.6019    0.6160    0.6065       564
+weighted avg     0.7246    0.7021    0.7118       564
+
+2026-03-19 11:13:56 - ----------------------------------------
+2026-03-19 11:14:02 - Epoch [46/60] LR(backbone/head): 9.697733e-06/9.697733e-05 | WarmupCosineFactor: 0.1940 | Loss: 0.2896 | Train Acc: 0.9985 | Time: 6.5s
+2026-03-19 11:14:08 - Epoch [47/60] LR(backbone/head): 8.752398e-06/8.752398e-05 | WarmupCosineFactor: 0.1750 | Loss: 0.2897 | Train Acc: 0.9969 | Time: 6.3s
+2026-03-19 11:14:15 - Epoch [48/60] LR(backbone/head): 7.864137e-06/7.864137e-05 | WarmupCosineFactor: 0.1573 | Loss: 0.2964 | Train Acc: 0.9969 | Time: 6.7s
+2026-03-19 11:14:15 - ----------------------------------------
+2026-03-19 11:14:16 - [Test] Acc: 0.7305 | Precision(macro): 0.6060 | Recall(macro): 0.5963 | F1(macro): 0.6002
+2026-03-19 11:14:16 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3982    0.3488    0.3719       129
+    no_tumor     0.8137    0.8437    0.8284       435
+
+    accuracy                         0.7305       564
+   macro avg     0.6060    0.5963    0.6002       564
+weighted avg     0.7187    0.7305    0.7240       564
+
+2026-03-19 11:14:16 - ----------------------------------------
+2026-03-19 11:14:23 - Epoch [49/60] LR(backbone/head): 7.035846e-06/7.035846e-05 | WarmupCosineFactor: 0.1407 | Loss: 0.2886 | Train Acc: 1.0000 | Time: 6.5s
+2026-03-19 11:14:29 - Epoch [50/60] LR(backbone/head): 6.270229e-06/6.270229e-05 | WarmupCosineFactor: 0.1254 | Loss: 0.2872 | Train Acc: 1.0000 | Time: 6.5s
+2026-03-19 11:14:36 - Epoch [51/60] LR(backbone/head): 5.569781e-06/5.569781e-05 | WarmupCosineFactor: 0.1114 | Loss: 0.2865 | Train Acc: 1.0000 | Time: 6.4s
+2026-03-19 11:14:36 - ----------------------------------------
+2026-03-19 11:14:37 - [Test] Acc: 0.7535 | Precision(macro): 0.6296 | Recall(macro): 0.6003 | F1(macro): 0.6089
+2026-03-19 11:14:37 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4457    0.3178    0.3710       129
+    no_tumor     0.8136    0.8828    0.8467       435
+
+    accuracy                         0.7535       564
+   macro avg     0.6296    0.6003    0.6089       564
+weighted avg     0.7294    0.7535    0.7379       564
+
+2026-03-19 11:14:37 - ----------------------------------------
+2026-03-19 11:14:43 - Epoch [52/60] LR(backbone/head): 4.936787e-06/4.936787e-05 | WarmupCosineFactor: 0.0987 | Loss: 0.2883 | Train Acc: 0.9992 | Time: 6.3s
+2026-03-19 11:14:50 - Epoch [53/60] LR(backbone/head): 4.373313e-06/4.373313e-05 | WarmupCosineFactor: 0.0875 | Loss: 0.2857 | Train Acc: 1.0000 | Time: 6.3s
+2026-03-19 11:14:56 - Epoch [54/60] LR(backbone/head): 3.881196e-06/3.881196e-05 | WarmupCosineFactor: 0.0776 | Loss: 0.2829 | Train Acc: 1.0000 | Time: 6.7s
+2026-03-19 11:14:56 - ----------------------------------------
+2026-03-19 11:14:58 - [Test] Acc: 0.7589 | Precision(macro): 0.6366 | Recall(macro): 0.6010 | F1(macro): 0.6106
+2026-03-19 11:14:58 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4598    0.3101    0.3704       129
+    no_tumor     0.8134    0.8920    0.8509       435
+
+    accuracy                         0.7589       564
+   macro avg     0.6366    0.6010    0.6106       564
+weighted avg     0.7325    0.7589    0.7410       564
+
+2026-03-19 11:14:58 - ----------------------------------------
+2026-03-19 11:15:04 - Epoch [55/60] LR(backbone/head): 3.462042e-06/3.462042e-05 | WarmupCosineFactor: 0.0692 | Loss: 0.2877 | Train Acc: 1.0000 | Time: 6.4s
+2026-03-19 11:15:10 - Epoch [56/60] LR(backbone/head): 3.117217e-06/3.117217e-05 | WarmupCosineFactor: 0.0623 | Loss: 0.2882 | Train Acc: 0.9992 | Time: 6.2s
+2026-03-19 11:15:17 - Epoch [57/60] LR(backbone/head): 2.847846e-06/2.847846e-05 | WarmupCosineFactor: 0.0570 | Loss: 0.2884 | Train Acc: 0.9985 | Time: 6.8s
+2026-03-19 11:15:17 - ----------------------------------------
+2026-03-19 11:15:19 - [Test] Acc: 0.7571 | Precision(macro): 0.6372 | Recall(macro): 0.6080 | F1(macro): 0.6171
+2026-03-19 11:15:19 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4574    0.3333    0.3857       129
+    no_tumor     0.8170    0.8828    0.8486       435
+
+    accuracy                         0.7571       564
+   macro avg     0.6372    0.6080    0.6171       564
+weighted avg     0.7348    0.7571    0.7427       564
+
+2026-03-19 11:15:19 - ----------------------------------------
+2026-03-19 11:15:25 - Epoch [58/60] LR(backbone/head): 2.654809e-06/2.654809e-05 | WarmupCosineFactor: 0.0531 | Loss: 0.2893 | Train Acc: 1.0000 | Time: 6.4s
+2026-03-19 11:15:31 - Epoch [59/60] LR(backbone/head): 2.538734e-06/2.538734e-05 | WarmupCosineFactor: 0.0508 | Loss: 0.2850 | Train Acc: 1.0000 | Time: 6.3s
+2026-03-19 11:15:38 - Epoch [60/60] LR(backbone/head): 2.500000e-06/2.500000e-05 | WarmupCosineFactor: 0.0500 | Loss: 0.2880 | Train Acc: 0.9992 | Time: 6.7s
+2026-03-19 11:15:38 - ----------------------------------------
+2026-03-19 11:15:40 - [Test] Acc: 0.7535 | Precision(macro): 0.6271 | Recall(macro): 0.5948 | F1(macro): 0.6034
+2026-03-19 11:15:40 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4432    0.3023    0.3594       129
+    no_tumor     0.8109    0.8874    0.8474       435
+
+    accuracy                         0.7535       564
+   macro avg     0.6271    0.5948    0.6034       564
+weighted avg     0.7268    0.7535    0.7358       564
+
+2026-03-19 11:15:40 - ----------------------------------------
+2026-03-19 11:15:40 - 
+============================================================
+2026-03-19 11:15:40 - 训练完成! 最优模型: Epoch 39, F1: 0.6293
+2026-03-19 11:15:40 - ============================================================
+2026-03-19 11:15:40 - 
+加载最优权重进行最终测试...
+2026-03-19 11:15:40 - ============================================================
+2026-03-19 11:15:40 - 最终测试结果 (最优权重)
+2026-03-19 11:15:40 - ============================================================
+2026-03-19 11:15:42 - [Final Test] Acc: 0.7624 | Precision(macro): 0.6482 | Recall(macro): 0.6197 | F1(macro): 0.6293
+2026-03-19 11:15:42 - [Final Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4742    0.3566    0.4071       129
+    no_tumor     0.8223    0.8828    0.8514       435
+
+    accuracy                         0.7624       564
+   macro avg     0.6482    0.6197    0.6293       564
+weighted avg     0.7427    0.7624    0.7498       564
+
+2026-03-19 11:15:42 - 训练脚本已复制到: /data1/ouyangxinglong/GBP-Cascade/logs/20260319_task2_ConvNeXtTiny_adamw_warmupcosine_classweight_img320_seed7_5/20260319_task2_ConvNeXtTiny_adamw_warmupcosine_classweight_img320_seed7_5.py
