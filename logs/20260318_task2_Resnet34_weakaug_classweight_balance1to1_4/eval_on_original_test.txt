@@ -1,0 +1,23 @@
+Balanced-train best checkpoint evaluated on original task_2_test.xlsx
+
+Checkpoint:
+/data1/ouyangxinglong/GBP-Cascade/logs/20260318_task2_Resnet34_weakaug_classweight_balance1to1_4/20260318_task2_Resnet34_weakaug_classweight_balance1to1_4_best.pth
+
+Test set:
+/data1/ouyangxinglong/GBP-Cascade/dataset/Processed/task_2_test.xlsx
+
+Samples: 564
+Acc: 0.5443
+Precision(macro): 0.5761
+Recall(macro): 0.6064
+F1(macro): 0.5223
+
+Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.2962    0.7209    0.4199       129
+    no_tumor     0.8560    0.4920    0.6248       435
+
+    accuracy                         0.5443       564
+   macro avg     0.5761    0.6064    0.5223       564
+weighted avg     0.7280    0.5443    0.5779       564
