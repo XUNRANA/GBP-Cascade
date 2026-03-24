@@ -1,0 +1,33 @@
+2026-03-24 05:25:44 - ============================================================
+2026-03-24 05:25:44 - 实验名称: 20260324_task2_SwinV2Tiny_fullroi4ch_auxannot_12
+2026-03-24 05:25:44 - 任务: Task 2 - 良性肿瘤(0) vs 非肿瘤性息肉(1)
+2026-03-24 05:25:44 - 模型: Dual-view SwinV2-Tiny (shared 4ch backbone + annotation-aware aux loss)
+2026-03-24 05:25:44 - 修改: full4ch strong branch + roi4ch detail branch + shared SwinV2 + balanced sampler + class weight + aux annotation supervision
+2026-03-24 05:25:44 - 图像尺寸: train Full: StrongSync256 | ROI: Sync256 | 4ch RGB+mask, test Full: Sync256 | ROI: Sync256 | 4ch RGB+mask
+2026-03-24 05:25:44 - Batch Size: 4
+2026-03-24 05:25:44 - Backbone LR: 1.5e-05
+2026-03-24 05:25:44 - Head LR: 0.0002
+2026-03-24 05:25:44 - Weight Decay: 0.05
+2026-03-24 05:25:44 - Warmup Epochs: 8
+2026-03-24 05:25:44 - Min LR Ratio: 0.02
+2026-03-24 05:25:44 - Label Smoothing: 0.05
+2026-03-24 05:25:44 - Aux Bin Weight: 0.15
+2026-03-24 05:25:44 - Aux Reg Weight: 0.05
+2026-03-24 05:25:44 - Seed: 42
+2026-03-24 05:25:44 - Epochs: 80
+2026-03-24 05:25:44 - Grad Clip: 1.0
+2026-03-24 05:25:44 - 设备: cuda
+2026-03-24 05:25:44 - ============================================================
+2026-03-24 05:25:44 - 训练集: 1229 张 (benign=309, no_tumor=920)
+2026-03-24 05:25:44 - 测试集: 523 张 (benign=129, no_tumor=394)
+2026-03-24 05:25:46 - 模型参数量: 30,996,528
+2026-03-24 05:25:46 - 可训练参数量: 30,996,528
+2026-03-24 05:25:46 - 类别权重: benign=1.9887, no_tumor=0.6679
+2026-03-24 05:25:46 - 损失函数: CE(class_weight+LS=0.05) + 0.15*BCE(aux_bin) + 0.05*SmoothL1(aux_reg)
+2026-03-24 05:25:46 - 
+============================================================
+2026-03-24 05:25:46 - 开始训练
+2026-03-24 05:25:46 - ============================================================
+2026-03-24 05:26:31 - Epoch [1/80] LR(backbone/head): 1.875000e-06/2.500000e-05 | WarmupCosineFactor: 0.1250 | Loss: 0.7017 | CE: 0.6083 | AuxBin: 0.6205 | AuxReg: 0.0065 | Train Acc: 0.4910 | Time: 44.9s
+2026-03-24 05:27:15 - Epoch [2/80] LR(backbone/head): 3.750000e-06/5.000000e-05 | WarmupCosineFactor: 0.2500 | Loss: 0.6391 | CE: 0.5548 | AuxBin: 0.5583 | AuxReg: 0.0115 | Train Acc: 0.5896 | Time: 43.7s
+2026-03-24 05:27:59 - Epoch [3/80] LR(backbone/head): 5.625000e-06/7.500000e-05 | WarmupCosineFactor: 0.3750 | Loss: 0.6173 | CE: 0.5361 | AuxBin: 0.5367 | AuxReg: 0.0138 | Train Acc: 0.6637 | Time: 43.8s
