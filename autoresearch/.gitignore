@@ -1,0 +1,9 @@
+_best_model.pth
+run.log
+results.tsv
+progress.png
+__pycache__/
+*.pyc
+.venv/
+CLAUDE.md
+AGENTS.md
