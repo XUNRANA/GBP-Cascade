@@ -1,0 +1,695 @@
+2026-04-03 09:52:16 - ======================================================================
+2026-04-03 09:52:16 - 实验: 20260402_task2_SwinV2Tiny_segcls_10
+2026-04-03 09:52:16 - 策略: 3-Seed Ensemble (seeds=[42, 123, 456])
+2026-04-03 09:52:16 - 每 seed: 30 epochs
+2026-04-03 09:52:16 - ======================================================================
+2026-04-03 09:52:17 - 训练集: 1229 | 测试集: 523
+2026-04-03 09:52:47 - 
+--- Seed 42: 开始训练 (30 epochs) ---
+2026-04-03 09:53:06 - [Seed 42] Epoch [1/30] Loss: 1.9691 | Acc: 0.5596 | Dice: 0.8177 | 18.6s
+2026-04-03 09:53:21 - [Seed 42] Epoch [2/30] Loss: 1.6202 | Acc: 0.6560 | Dice: 0.9542 | 15.3s
+2026-04-03 09:53:23 - [Test(seed42)] Cls — Acc: 0.6654 | P(macro): 0.5990 | R(macro): 0.6215 | F1(macro): 0.6011
+2026-04-03 09:53:23 - [Test(seed42)] Seg — Lesion IoU: 0.8938 | Lesion Dice: 0.9439
+2026-04-03 09:53:23 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3750    0.5349    0.4409       129
+    no_tumor     0.8230    0.7081    0.7613       394
+
+    accuracy                         0.6654       523
+   macro avg     0.5990    0.6215    0.6011       523
+weighted avg     0.7125    0.6654    0.6822       523
+
+2026-04-03 09:53:24 - *** Seed 42 最优: F1=0.6011 @ Epoch 2 ***
+2026-04-03 09:53:39 - [Seed 42] Epoch [3/30] Loss: 1.5001 | Acc: 0.6904 | Dice: 0.9669 | 15.5s
+2026-04-03 09:53:55 - [Seed 42] Epoch [4/30] Loss: 1.4163 | Acc: 0.7059 | Dice: 0.9694 | 15.8s
+2026-04-03 09:53:57 - [Test(seed42)] Cls — Acc: 0.7170 | P(macro): 0.6206 | R(macro): 0.6219 | F1(macro): 0.6212
+2026-04-03 09:53:57 - [Test(seed42)] Seg — Lesion IoU: 0.9494 | Lesion Dice: 0.9740
+2026-04-03 09:53:57 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4275    0.4341    0.4308       129
+    no_tumor     0.8138    0.8096    0.8117       394
+
+    accuracy                         0.7170       523
+   macro avg     0.6206    0.6219    0.6212       523
+weighted avg     0.7185    0.7170    0.7177       523
+
+2026-04-03 09:53:58 - *** Seed 42 最优: F1=0.6212 @ Epoch 4 ***
+2026-04-03 09:54:13 - [Seed 42] Epoch [5/30] Loss: 1.4032 | Acc: 0.6912 | Dice: 0.9740 | 15.5s
+2026-04-03 09:54:29 - [Seed 42] Epoch [6/30] Loss: 1.3290 | Acc: 0.7361 | Dice: 0.9763 | 15.7s
+2026-04-03 09:54:31 - [Test(seed42)] Cls — Acc: 0.6864 | P(macro): 0.6152 | R(macro): 0.6381 | F1(macro): 0.6198
+2026-04-03 09:54:31 - [Test(seed42)] Seg — Lesion IoU: 0.9409 | Lesion Dice: 0.9695
+2026-04-03 09:54:31 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4000    0.5426    0.4605       129
+    no_tumor     0.8305    0.7335    0.7790       394
+
+    accuracy                         0.6864       523
+   macro avg     0.6152    0.6381    0.6198       523
+weighted avg     0.7243    0.6864    0.7004       523
+
+2026-04-03 09:54:46 - [Seed 42] Epoch [7/30] Loss: 1.2736 | Acc: 0.7451 | Dice: 0.9806 | 15.3s
+2026-04-03 09:55:02 - [Seed 42] Epoch [8/30] Loss: 1.2422 | Acc: 0.7761 | Dice: 0.9832 | 16.0s
+2026-04-03 09:55:04 - [Test(seed42)] Cls — Acc: 0.6233 | P(macro): 0.6014 | R(macro): 0.6353 | F1(macro): 0.5865
+2026-04-03 09:55:04 - [Test(seed42)] Seg — Lesion IoU: 0.9684 | Lesion Dice: 0.9839
+2026-04-03 09:55:04 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3571    0.6589    0.4632       129
+    no_tumor     0.8456    0.6117    0.7099       394
+
+    accuracy                         0.6233       523
+   macro avg     0.6014    0.6353    0.5865       523
+weighted avg     0.7251    0.6233    0.6490       523
+
+2026-04-03 09:55:20 - [Seed 42] Epoch [9/30] Loss: 1.2375 | Acc: 0.7721 | Dice: 0.9832 | 15.5s
+2026-04-03 09:55:36 - [Seed 42] Epoch [10/30] Loss: 1.1603 | Acc: 0.8096 | Dice: 0.9850 | 16.3s
+2026-04-03 09:55:38 - [Test(seed42)] Cls — Acc: 0.7457 | P(macro): 0.6489 | R(macro): 0.6331 | F1(macro): 0.6394
+2026-04-03 09:55:38 - [Test(seed42)] Seg — Lesion IoU: 0.9712 | Lesion Dice: 0.9854
+2026-04-03 09:55:38 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4818    0.4109    0.4435       129
+    no_tumor     0.8160    0.8553    0.8352       394
+
+    accuracy                         0.7457       523
+   macro avg     0.6489    0.6331    0.6394       523
+weighted avg     0.7336    0.7457    0.7386       523
+
+2026-04-03 09:55:39 - *** Seed 42 最优: F1=0.6394 @ Epoch 10 ***
+2026-04-03 09:55:54 - [Seed 42] Epoch [11/30] Loss: 1.1205 | Acc: 0.8137 | Dice: 0.9853 | 15.2s
+2026-04-03 09:56:10 - [Seed 42] Epoch [12/30] Loss: 1.1031 | Acc: 0.8162 | Dice: 0.9859 | 16.0s
+2026-04-03 09:56:12 - [Test(seed42)] Cls — Acc: 0.7017 | P(macro): 0.6353 | R(macro): 0.6639 | F1(macro): 0.6411
+2026-04-03 09:56:12 - [Test(seed42)] Seg — Lesion IoU: 0.9672 | Lesion Dice: 0.9833
+2026-04-03 09:56:12 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4246    0.5891    0.4935       129
+    no_tumor     0.8459    0.7386    0.7886       394
+
+    accuracy                         0.7017       523
+   macro avg     0.6353    0.6639    0.6411       523
+weighted avg     0.7420    0.7017    0.7158       523
+
+2026-04-03 09:56:13 - *** Seed 42 最优: F1=0.6411 @ Epoch 12 ***
+2026-04-03 09:56:29 - [Seed 42] Epoch [13/30] Loss: 1.0433 | Acc: 0.8505 | Dice: 0.9867 | 16.1s
+2026-04-03 09:56:44 - [Seed 42] Epoch [14/30] Loss: 1.0355 | Acc: 0.8423 | Dice: 0.9883 | 15.4s
+2026-04-03 09:56:46 - [Test(seed42)] Cls — Acc: 0.6730 | P(macro): 0.5913 | R(macro): 0.6057 | F1(macro): 0.5946
+2026-04-03 09:56:46 - [Test(seed42)] Seg — Lesion IoU: 0.9699 | Lesion Dice: 0.9847
+2026-04-03 09:56:46 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3720    0.4729    0.4164       129
+    no_tumor     0.8106    0.7386    0.7729       394
+
+    accuracy                         0.6730       523
+   macro avg     0.5913    0.6057    0.5946       523
+weighted avg     0.7024    0.6730    0.6850       523
+
+2026-04-03 09:57:02 - [Seed 42] Epoch [15/30] Loss: 1.0122 | Acc: 0.8676 | Dice: 0.9885 | 15.7s
+2026-04-03 09:57:18 - [Seed 42] Epoch [16/30] Loss: 1.0102 | Acc: 0.8627 | Dice: 0.9881 | 16.0s
+2026-04-03 09:57:20 - [Test(seed42)] Cls — Acc: 0.7304 | P(macro): 0.6271 | R(macro): 0.6151 | F1(macro): 0.6199
+2026-04-03 09:57:20 - [Test(seed42)] Seg — Lesion IoU: 0.9680 | Lesion Dice: 0.9837
+2026-04-03 09:57:20 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4464    0.3876    0.4149       129
+    no_tumor     0.8078    0.8426    0.8248       394
+
+    accuracy                         0.7304       523
+   macro avg     0.6271    0.6151    0.6199       523
+weighted avg     0.7187    0.7304    0.7237       523
+
+2026-04-03 09:57:36 - [Seed 42] Epoch [17/30] Loss: 0.9341 | Acc: 0.8815 | Dice: 0.9894 | 16.2s
+2026-04-03 09:57:51 - [Seed 42] Epoch [18/30] Loss: 0.9177 | Acc: 0.8946 | Dice: 0.9895 | 15.0s
+2026-04-03 09:57:53 - [Test(seed42)] Cls — Acc: 0.7266 | P(macro): 0.6147 | R(macro): 0.5969 | F1(macro): 0.6027
+2026-04-03 09:57:53 - [Test(seed42)] Seg — Lesion IoU: 0.9799 | Lesion Dice: 0.9898
+2026-04-03 09:57:53 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4314    0.3411    0.3810       129
+    no_tumor     0.7981    0.8528    0.8245       394
+
+    accuracy                         0.7266       523
+   macro avg     0.6147    0.5969    0.6027       523
+weighted avg     0.7076    0.7266    0.7151       523
+
+2026-04-03 09:58:08 - [Seed 42] Epoch [19/30] Loss: 0.9230 | Acc: 0.8848 | Dice: 0.9896 | 15.4s
+2026-04-03 09:58:23 - [Seed 42] Epoch [20/30] Loss: 0.8954 | Acc: 0.9052 | Dice: 0.9906 | 14.7s
+2026-04-03 09:58:26 - [Test(seed42)] Cls — Acc: 0.7055 | P(macro): 0.6008 | R(macro): 0.5986 | F1(macro): 0.5996
+2026-04-03 09:58:26 - [Test(seed42)] Seg — Lesion IoU: 0.9801 | Lesion Dice: 0.9900
+2026-04-03 09:58:26 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4000    0.3876    0.3937       129
+    no_tumor     0.8015    0.8096    0.8056       394
+
+    accuracy                         0.7055       523
+   macro avg     0.6008    0.5986    0.5996       523
+weighted avg     0.7025    0.7055    0.7040       523
+
+2026-04-03 09:58:42 - [Seed 42] Epoch [21/30] Loss: 0.8636 | Acc: 0.9257 | Dice: 0.9909 | 16.5s
+2026-04-03 09:58:58 - [Seed 42] Epoch [22/30] Loss: 0.8552 | Acc: 0.9183 | Dice: 0.9912 | 15.4s
+2026-04-03 09:59:00 - [Test(seed42)] Cls — Acc: 0.7228 | P(macro): 0.6185 | R(macro): 0.6100 | F1(macro): 0.6136
+2026-04-03 09:59:00 - [Test(seed42)] Seg — Lesion IoU: 0.9825 | Lesion Dice: 0.9912
+2026-04-03 09:59:00 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4310    0.3876    0.4082       129
+    no_tumor     0.8059    0.8325    0.8190       394
+
+    accuracy                         0.7228       523
+   macro avg     0.6185    0.6100    0.6136       523
+weighted avg     0.7134    0.7228    0.7176       523
+
+2026-04-03 09:59:16 - [Seed 42] Epoch [23/30] Loss: 0.8501 | Acc: 0.9248 | Dice: 0.9916 | 15.3s
+2026-04-03 09:59:31 - [Seed 42] Epoch [24/30] Loss: 0.8245 | Acc: 0.9314 | Dice: 0.9919 | 15.3s
+2026-04-03 09:59:34 - [Test(seed42)] Cls — Acc: 0.7151 | P(macro): 0.6044 | R(macro): 0.5945 | F1(macro): 0.5983
+2026-04-03 09:59:34 - [Test(seed42)] Seg — Lesion IoU: 0.9843 | Lesion Dice: 0.9921
+2026-04-03 09:59:34 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4107    0.3566    0.3817       129
+    no_tumor     0.7981    0.8325    0.8149       394
+
+    accuracy                         0.7151       523
+   macro avg     0.6044    0.5945    0.5983       523
+weighted avg     0.7025    0.7151    0.7081       523
+
+2026-04-03 09:59:49 - [Seed 42] Epoch [25/30] Loss: 0.8186 | Acc: 0.9289 | Dice: 0.9916 | 15.5s
+2026-04-03 10:00:05 - [Seed 42] Epoch [26/30] Loss: 0.8207 | Acc: 0.9338 | Dice: 0.9921 | 15.3s
+2026-04-03 10:00:07 - [Test(seed42)] Cls — Acc: 0.7208 | P(macro): 0.6064 | R(macro): 0.5905 | F1(macro): 0.5957
+2026-04-03 10:00:07 - [Test(seed42)] Seg — Lesion IoU: 0.9845 | Lesion Dice: 0.9922
+2026-04-03 10:00:07 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4175    0.3333    0.3707       129
+    no_tumor     0.7952    0.8477    0.8206       394
+
+    accuracy                         0.7208       523
+   macro avg     0.6064    0.5905    0.5957       523
+weighted avg     0.7021    0.7208    0.7097       523
+
+2026-04-03 10:00:22 - [Seed 42] Epoch [27/30] Loss: 0.7950 | Acc: 0.9477 | Dice: 0.9924 | 15.1s
+2026-04-03 10:00:37 - [Seed 42] Epoch [28/30] Loss: 0.7886 | Acc: 0.9461 | Dice: 0.9921 | 15.6s
+2026-04-03 10:00:40 - [Test(seed42)] Cls — Acc: 0.7189 | P(macro): 0.6086 | R(macro): 0.5971 | F1(macro): 0.6014
+2026-04-03 10:00:40 - [Test(seed42)] Seg — Lesion IoU: 0.9844 | Lesion Dice: 0.9921
+2026-04-03 10:00:40 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4182    0.3566    0.3849       129
+    no_tumor     0.7990    0.8376    0.8178       394
+
+    accuracy                         0.7189       523
+   macro avg     0.6086    0.5971    0.6014       523
+weighted avg     0.7051    0.7189    0.7111       523
+
+2026-04-03 10:00:55 - [Seed 42] Epoch [29/30] Loss: 0.8032 | Acc: 0.9306 | Dice: 0.9920 | 15.8s
+2026-04-03 10:01:11 - [Seed 42] Epoch [30/30] Loss: 0.8083 | Acc: 0.9363 | Dice: 0.9924 | 15.5s
+2026-04-03 10:01:13 - [Test(seed42)] Cls — Acc: 0.7208 | P(macro): 0.6078 | R(macro): 0.5931 | F1(macro): 0.5981
+2026-04-03 10:01:13 - [Test(seed42)] Seg — Lesion IoU: 0.9851 | Lesion Dice: 0.9925
+2026-04-03 10:01:13 - [Test(seed42)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4190    0.3411    0.3761       129
+    no_tumor     0.7967    0.8452    0.8202       394
+
+    accuracy                         0.7208       523
+   macro avg     0.6078    0.5931    0.5981       523
+weighted avg     0.7035    0.7208    0.7107       523
+
+2026-04-03 10:01:13 - --- Seed 42: 完成, 最优 F1=0.6411 @ Epoch 12 ---
+
+2026-04-03 10:01:30 - 
+--- Seed 123: 开始训练 (30 epochs) ---
+2026-04-03 10:01:46 - [Seed 123] Epoch [1/30] Loss: 2.0667 | Acc: 0.5008 | Dice: 0.7390 | 15.6s
+2026-04-03 10:02:02 - [Seed 123] Epoch [2/30] Loss: 1.7051 | Acc: 0.6046 | Dice: 0.9498 | 16.8s
+2026-04-03 10:02:04 - [Test(seed123)] Cls — Acc: 0.6635 | P(macro): 0.5911 | R(macro): 0.6098 | F1(macro): 0.5935
+2026-04-03 10:02:04 - [Test(seed123)] Seg — Lesion IoU: 0.9052 | Lesion Dice: 0.9502
+2026-04-03 10:02:04 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3672    0.5039    0.4248       129
+    no_tumor     0.8150    0.7157    0.7622       394
+
+    accuracy                         0.6635       523
+   macro avg     0.5911    0.6098    0.5935       523
+weighted avg     0.7046    0.6635    0.6790       523
+
+2026-04-03 10:02:05 - *** Seed 123 最优: F1=0.5935 @ Epoch 2 ***
+2026-04-03 10:02:20 - [Seed 123] Epoch [3/30] Loss: 1.5660 | Acc: 0.6765 | Dice: 0.9642 | 15.5s
+2026-04-03 10:02:36 - [Seed 123] Epoch [4/30] Loss: 1.4682 | Acc: 0.6838 | Dice: 0.9720 | 16.2s
+2026-04-03 10:02:39 - [Test(seed123)] Cls — Acc: 0.5315 | P(macro): 0.5953 | R(macro): 0.6213 | F1(macro): 0.5225
+2026-04-03 10:02:39 - [Test(seed123)] Seg — Lesion IoU: 0.9550 | Lesion Dice: 0.9769
+2026-04-03 10:02:39 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3199    0.7984    0.4568       129
+    no_tumor     0.8706    0.4442    0.5882       394
+
+    accuracy                         0.5315       523
+   macro avg     0.5953    0.6213    0.5225       523
+weighted avg     0.7348    0.5315    0.5558       523
+
+2026-04-03 10:02:54 - [Seed 123] Epoch [5/30] Loss: 1.3906 | Acc: 0.6748 | Dice: 0.9770 | 15.5s
+2026-04-03 10:03:10 - [Seed 123] Epoch [6/30] Loss: 1.3333 | Acc: 0.7320 | Dice: 0.9803 | 16.4s
+2026-04-03 10:03:12 - [Test(seed123)] Cls — Acc: 0.7476 | P(macro): 0.6513 | R(macro): 0.6344 | F1(macro): 0.6410
+2026-04-03 10:03:12 - [Test(seed123)] Seg — Lesion IoU: 0.9581 | Lesion Dice: 0.9786
+2026-04-03 10:03:12 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4862    0.4109    0.4454       129
+    no_tumor     0.8164    0.8579    0.8366       394
+
+    accuracy                         0.7476       523
+   macro avg     0.6513    0.6344    0.6410       523
+weighted avg     0.7350    0.7476    0.7401       523
+
+2026-04-03 10:03:13 - *** Seed 123 最优: F1=0.6410 @ Epoch 6 ***
+2026-04-03 10:03:29 - [Seed 123] Epoch [7/30] Loss: 1.2831 | Acc: 0.7418 | Dice: 0.9815 | 15.9s
+2026-04-03 10:03:45 - [Seed 123] Epoch [8/30] Loss: 1.2845 | Acc: 0.7304 | Dice: 0.9826 | 15.8s
+2026-04-03 10:03:47 - [Test(seed123)] Cls — Acc: 0.7247 | P(macro): 0.6219 | R(macro): 0.6139 | F1(macro): 0.6173
+2026-04-03 10:03:47 - [Test(seed123)] Seg — Lesion IoU: 0.9681 | Lesion Dice: 0.9838
+2026-04-03 10:03:47 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4359    0.3953    0.4146       129
+    no_tumor     0.8079    0.8325    0.8200       394
+
+    accuracy                         0.7247       523
+   macro avg     0.6219    0.6139    0.6173       523
+weighted avg     0.7161    0.7247    0.7200       523
+
+2026-04-03 10:04:03 - [Seed 123] Epoch [9/30] Loss: 1.2614 | Acc: 0.7410 | Dice: 0.9838 | 15.4s
+2026-04-03 10:04:18 - [Seed 123] Epoch [10/30] Loss: 1.1642 | Acc: 0.7868 | Dice: 0.9857 | 15.2s
+2026-04-03 10:04:21 - [Test(seed123)] Cls — Acc: 0.6673 | P(macro): 0.5821 | R(macro): 0.5941 | F1(macro): 0.5849
+2026-04-03 10:04:21 - [Test(seed123)] Seg — Lesion IoU: 0.9722 | Lesion Dice: 0.9859
+2026-04-03 10:04:21 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3602    0.4496    0.4000       129
+    no_tumor     0.8039    0.7386    0.7698       394
+
+    accuracy                         0.6673       523
+   macro avg     0.5821    0.5941    0.5849       523
+weighted avg     0.6944    0.6673    0.6786       523
+
+2026-04-03 10:04:37 - [Seed 123] Epoch [11/30] Loss: 1.1644 | Acc: 0.7925 | Dice: 0.9867 | 15.7s
+2026-04-03 10:04:52 - [Seed 123] Epoch [12/30] Loss: 1.1376 | Acc: 0.8007 | Dice: 0.9875 | 15.0s
+2026-04-03 10:04:54 - [Test(seed123)] Cls — Acc: 0.6654 | P(macro): 0.6104 | R(macro): 0.6398 | F1(macro): 0.6107
+2026-04-03 10:04:54 - [Test(seed123)] Seg — Lesion IoU: 0.9712 | Lesion Dice: 0.9854
+2026-04-03 10:04:54 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3838    0.5891    0.4648       129
+    no_tumor     0.8369    0.6904    0.7566       394
+
+    accuracy                         0.6654       523
+   macro avg     0.6104    0.6398    0.6107       523
+weighted avg     0.7252    0.6654    0.6846       523
+
+2026-04-03 10:05:08 - [Seed 123] Epoch [13/30] Loss: 1.1043 | Acc: 0.8056 | Dice: 0.9874 | 14.7s
+2026-04-03 10:05:23 - [Seed 123] Epoch [14/30] Loss: 1.0682 | Acc: 0.8243 | Dice: 0.9879 | 15.0s
+2026-04-03 10:05:26 - [Test(seed123)] Cls — Acc: 0.6941 | P(macro): 0.6179 | R(macro): 0.6379 | F1(macro): 0.6231
+2026-04-03 10:05:26 - [Test(seed123)] Seg — Lesion IoU: 0.9711 | Lesion Dice: 0.9854
+2026-04-03 10:05:26 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4072    0.5271    0.4595       129
+    no_tumor     0.8287    0.7487    0.7867       394
+
+    accuracy                         0.6941       523
+   macro avg     0.6179    0.6379    0.6231       523
+weighted avg     0.7247    0.6941    0.7060       523
+
+2026-04-03 10:05:40 - [Seed 123] Epoch [15/30] Loss: 1.0459 | Acc: 0.8448 | Dice: 0.9885 | 14.9s
+2026-04-03 10:05:57 - [Seed 123] Epoch [16/30] Loss: 0.9874 | Acc: 0.8570 | Dice: 0.9889 | 16.1s
+2026-04-03 10:05:59 - [Test(seed123)] Cls — Acc: 0.6826 | P(macro): 0.5936 | R(macro): 0.6042 | F1(macro): 0.5970
+2026-04-03 10:05:59 - [Test(seed123)] Seg — Lesion IoU: 0.9713 | Lesion Dice: 0.9854
+2026-04-03 10:05:59 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3791    0.4496    0.4113       129
+    no_tumor     0.8081    0.7589    0.7827       394
+
+    accuracy                         0.6826       523
+   macro avg     0.5936    0.6042    0.5970       523
+weighted avg     0.7023    0.6826    0.6911       523
+
+2026-04-03 10:06:14 - [Seed 123] Epoch [17/30] Loss: 0.9593 | Acc: 0.8783 | Dice: 0.9892 | 14.9s
+2026-04-03 10:06:29 - [Seed 123] Epoch [18/30] Loss: 1.0033 | Acc: 0.8627 | Dice: 0.9903 | 15.3s
+2026-04-03 10:06:32 - [Test(seed123)] Cls — Acc: 0.6730 | P(macro): 0.5994 | R(macro): 0.6188 | F1(macro): 0.6027
+2026-04-03 10:06:32 - [Test(seed123)] Seg — Lesion IoU: 0.9785 | Lesion Dice: 0.9891
+2026-04-03 10:06:32 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3793    0.5116    0.4356       129
+    no_tumor     0.8195    0.7259    0.7699       394
+
+    accuracy                         0.6730       523
+   macro avg     0.5994    0.6188    0.6027       523
+weighted avg     0.7109    0.6730    0.6874       523
+
+2026-04-03 10:06:47 - [Seed 123] Epoch [19/30] Loss: 0.9283 | Acc: 0.8824 | Dice: 0.9906 | 15.7s
+2026-04-03 10:07:03 - [Seed 123] Epoch [20/30] Loss: 0.9200 | Acc: 0.8824 | Dice: 0.9907 | 15.5s
+2026-04-03 10:07:05 - [Test(seed123)] Cls — Acc: 0.7170 | P(macro): 0.6137 | R(macro): 0.6088 | F1(macro): 0.6110
+2026-04-03 10:07:05 - [Test(seed123)] Seg — Lesion IoU: 0.9817 | Lesion Dice: 0.9908
+2026-04-03 10:07:05 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4215    0.3953    0.4080       129
+    no_tumor     0.8060    0.8223    0.8141       394
+
+    accuracy                         0.7170       523
+   macro avg     0.6137    0.6088    0.6110       523
+weighted avg     0.7111    0.7170    0.7139       523
+
+2026-04-03 10:07:20 - [Seed 123] Epoch [21/30] Loss: 0.9091 | Acc: 0.9036 | Dice: 0.9910 | 15.0s
+2026-04-03 10:07:35 - [Seed 123] Epoch [22/30] Loss: 0.9170 | Acc: 0.8962 | Dice: 0.9912 | 14.6s
+2026-04-03 10:07:38 - [Test(seed123)] Cls — Acc: 0.6826 | P(macro): 0.5984 | R(macro): 0.6121 | F1(macro): 0.6023
+2026-04-03 10:07:38 - [Test(seed123)] Seg — Lesion IoU: 0.9820 | Lesion Dice: 0.9909
+2026-04-03 10:07:38 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3836    0.4729    0.4236       129
+    no_tumor     0.8132    0.7513    0.7810       394
+
+    accuracy                         0.6826       523
+   macro avg     0.5984    0.6121    0.6023       523
+weighted avg     0.7072    0.6826    0.6929       523
+
+2026-04-03 10:07:52 - [Seed 123] Epoch [23/30] Loss: 0.8637 | Acc: 0.9118 | Dice: 0.9913 | 14.9s
+2026-04-03 10:08:08 - [Seed 123] Epoch [24/30] Loss: 0.8403 | Acc: 0.9191 | Dice: 0.9919 | 15.5s
+2026-04-03 10:08:10 - [Test(seed123)] Cls — Acc: 0.7055 | P(macro): 0.6083 | R(macro): 0.6117 | F1(macro): 0.6099
+2026-04-03 10:08:10 - [Test(seed123)] Seg — Lesion IoU: 0.9836 | Lesion Dice: 0.9918
+2026-04-03 10:08:10 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4074    0.4264    0.4167       129
+    no_tumor     0.8093    0.7970    0.8031       394
+
+    accuracy                         0.7055       523
+   macro avg     0.6083    0.6117    0.6099       523
+weighted avg     0.7102    0.7055    0.7078       523
+
+2026-04-03 10:08:26 - [Seed 123] Epoch [25/30] Loss: 0.8361 | Acc: 0.9224 | Dice: 0.9922 | 15.1s
+2026-04-03 10:08:41 - [Seed 123] Epoch [26/30] Loss: 0.8466 | Acc: 0.9257 | Dice: 0.9922 | 15.3s
+2026-04-03 10:08:43 - [Test(seed123)] Cls — Acc: 0.7055 | P(macro): 0.5910 | R(macro): 0.5830 | F1(macro): 0.5860
+2026-04-03 10:08:43 - [Test(seed123)] Seg — Lesion IoU: 0.9846 | Lesion Dice: 0.9922
+2026-04-03 10:08:43 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3894    0.3411    0.3636       129
+    no_tumor     0.7927    0.8249    0.8085       394
+
+    accuracy                         0.7055       523
+   macro avg     0.5910    0.5830    0.5860       523
+weighted avg     0.6932    0.7055    0.6987       523
+
+2026-04-03 10:08:58 - [Seed 123] Epoch [27/30] Loss: 0.8182 | Acc: 0.9240 | Dice: 0.9926 | 14.8s
+2026-04-03 10:09:13 - [Seed 123] Epoch [28/30] Loss: 0.8285 | Acc: 0.9281 | Dice: 0.9922 | 15.8s
+2026-04-03 10:09:15 - [Test(seed123)] Cls — Acc: 0.7036 | P(macro): 0.6036 | R(macro): 0.6052 | F1(macro): 0.6043
+2026-04-03 10:09:15 - [Test(seed123)] Seg — Lesion IoU: 0.9840 | Lesion Dice: 0.9919
+2026-04-03 10:09:15 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4015    0.4109    0.4061       129
+    no_tumor     0.8056    0.7995    0.8025       394
+
+    accuracy                         0.7036       523
+   macro avg     0.6036    0.6052    0.6043       523
+weighted avg     0.7060    0.7036    0.7048       523
+
+2026-04-03 10:09:31 - [Seed 123] Epoch [29/30] Loss: 0.8357 | Acc: 0.9183 | Dice: 0.9925 | 15.2s
+2026-04-03 10:09:46 - [Seed 123] Epoch [30/30] Loss: 0.8314 | Acc: 0.9314 | Dice: 0.9924 | 15.3s
+2026-04-03 10:09:48 - [Test(seed123)] Cls — Acc: 0.7036 | P(macro): 0.6005 | R(macro): 0.6000 | F1(macro): 0.6002
+2026-04-03 10:09:48 - [Test(seed123)] Seg — Lesion IoU: 0.9849 | Lesion Dice: 0.9924
+2026-04-03 10:09:48 - [Test(seed123)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3984    0.3953    0.3969       129
+    no_tumor     0.8025    0.8046    0.8035       394
+
+    accuracy                         0.7036       523
+   macro avg     0.6005    0.6000    0.6002       523
+weighted avg     0.7029    0.7036    0.7032       523
+
+2026-04-03 10:09:48 - --- Seed 123: 完成, 最优 F1=0.6410 @ Epoch 6 ---
+
+2026-04-03 10:09:59 - 
+--- Seed 456: 开始训练 (30 epochs) ---
+2026-04-03 10:10:15 - [Seed 456] Epoch [1/30] Loss: 1.9464 | Acc: 0.5645 | Dice: 0.7086 | 15.3s
+2026-04-03 10:10:29 - [Seed 456] Epoch [2/30] Loss: 1.6055 | Acc: 0.5931 | Dice: 0.9611 | 14.9s
+2026-04-03 10:10:32 - [Test(seed456)] Cls — Acc: 0.7610 | P(macro): 0.6636 | R(macro): 0.5650 | F1(macro): 0.5631
+2026-04-03 10:10:32 - [Test(seed456)] Seg — Lesion IoU: 0.9293 | Lesion Dice: 0.9633
+2026-04-03 10:10:32 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5476    0.1783    0.2690       129
+    no_tumor     0.7796    0.9518    0.8571       394
+
+    accuracy                         0.7610       523
+   macro avg     0.6636    0.5650    0.5631       523
+weighted avg     0.7224    0.7610    0.7121       523
+
+2026-04-03 10:10:32 - *** Seed 456 最优: F1=0.5631 @ Epoch 2 ***
+2026-04-03 10:10:47 - [Seed 456] Epoch [3/30] Loss: 1.5014 | Acc: 0.6838 | Dice: 0.9702 | 14.5s
+2026-04-03 10:11:02 - [Seed 456] Epoch [4/30] Loss: 1.4372 | Acc: 0.6797 | Dice: 0.9756 | 15.2s
+2026-04-03 10:11:04 - [Test(seed456)] Cls — Acc: 0.6883 | P(macro): 0.6044 | R(macro): 0.6185 | F1(macro): 0.6086
+2026-04-03 10:11:04 - [Test(seed456)] Seg — Lesion IoU: 0.9344 | Lesion Dice: 0.9660
+2026-04-03 10:11:04 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3924    0.4806    0.4321       129
+    no_tumor     0.8164    0.7563    0.7852       394
+
+    accuracy                         0.6883       523
+   macro avg     0.6044    0.6185    0.6086       523
+weighted avg     0.7118    0.6883    0.6981       523
+
+2026-04-03 10:11:05 - *** Seed 456 最优: F1=0.6086 @ Epoch 4 ***
+2026-04-03 10:11:20 - [Seed 456] Epoch [5/30] Loss: 1.3772 | Acc: 0.6879 | Dice: 0.9802 | 15.2s
+2026-04-03 10:11:34 - [Seed 456] Epoch [6/30] Loss: 1.3385 | Acc: 0.7083 | Dice: 0.9821 | 14.2s
+2026-04-03 10:11:37 - [Test(seed456)] Cls — Acc: 0.6577 | P(macro): 0.6006 | R(macro): 0.6269 | F1(macro): 0.6005
+2026-04-03 10:11:37 - [Test(seed456)] Seg — Lesion IoU: 0.9665 | Lesion Dice: 0.9829
+2026-04-03 10:11:37 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3724    0.5659    0.4492       129
+    no_tumor     0.8287    0.6878    0.7517       394
+
+    accuracy                         0.6577       523
+   macro avg     0.6006    0.6269    0.6005       523
+weighted avg     0.7162    0.6577    0.6771       523
+
+2026-04-03 10:11:52 - [Seed 456] Epoch [7/30] Loss: 1.2687 | Acc: 0.7377 | Dice: 0.9852 | 14.7s
+2026-04-03 10:12:06 - [Seed 456] Epoch [8/30] Loss: 1.2445 | Acc: 0.7533 | Dice: 0.9848 | 14.3s
+2026-04-03 10:12:08 - [Test(seed456)] Cls — Acc: 0.7304 | P(macro): 0.6390 | R(macro): 0.6412 | F1(macro): 0.6401
+2026-04-03 10:12:08 - [Test(seed456)] Seg — Lesion IoU: 0.9690 | Lesion Dice: 0.9843
+2026-04-03 10:12:08 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4545    0.4651    0.4598       129
+    no_tumor     0.8235    0.8173    0.8204       394
+
+    accuracy                         0.7304       523
+   macro avg     0.6390    0.6412    0.6401       523
+weighted avg     0.7325    0.7304    0.7314       523
+
+2026-04-03 10:12:09 - *** Seed 456 最优: F1=0.6401 @ Epoch 8 ***
+2026-04-03 10:12:24 - [Seed 456] Epoch [9/30] Loss: 1.2314 | Acc: 0.7655 | Dice: 0.9866 | 14.8s
+2026-04-03 10:12:39 - [Seed 456] Epoch [10/30] Loss: 1.1893 | Acc: 0.7753 | Dice: 0.9873 | 15.2s
+2026-04-03 10:12:42 - [Test(seed456)] Cls — Acc: 0.6730 | P(macro): 0.6153 | R(macro): 0.6448 | F1(macro): 0.6170
+2026-04-03 10:12:42 - [Test(seed456)] Seg — Lesion IoU: 0.9775 | Lesion Dice: 0.9886
+2026-04-03 10:12:42 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3918    0.5891    0.4706       129
+    no_tumor     0.8389    0.7005    0.7635       394
+
+    accuracy                         0.6730       523
+   macro avg     0.6153    0.6448    0.6170       523
+weighted avg     0.7286    0.6730    0.6912       523
+
+2026-04-03 10:12:57 - [Seed 456] Epoch [11/30] Loss: 1.1536 | Acc: 0.8064 | Dice: 0.9878 | 15.4s
+2026-04-03 10:13:12 - [Seed 456] Epoch [12/30] Loss: 1.0951 | Acc: 0.8088 | Dice: 0.9886 | 14.9s
+2026-04-03 10:13:14 - [Test(seed456)] Cls — Acc: 0.7285 | P(macro): 0.6184 | R(macro): 0.6008 | F1(macro): 0.6067
+2026-04-03 10:13:14 - [Test(seed456)] Seg — Lesion IoU: 0.9709 | Lesion Dice: 0.9852
+2026-04-03 10:13:14 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4369    0.3488    0.3879       129
+    no_tumor     0.8000    0.8528    0.8256       394
+
+    accuracy                         0.7285       523
+   macro avg     0.6184    0.6008    0.6067       523
+weighted avg     0.7104    0.7285    0.7176       523
+
+2026-04-03 10:13:29 - [Seed 456] Epoch [13/30] Loss: 1.1076 | Acc: 0.8129 | Dice: 0.9891 | 14.9s
+2026-04-03 10:13:45 - [Seed 456] Epoch [14/30] Loss: 1.0558 | Acc: 0.8366 | Dice: 0.9894 | 16.0s
+2026-04-03 10:13:47 - [Test(seed456)] Cls — Acc: 0.6826 | P(macro): 0.5819 | R(macro): 0.5860 | F1(macro): 0.5836
+2026-04-03 10:13:47 - [Test(seed456)] Seg — Lesion IoU: 0.9807 | Lesion Dice: 0.9903
+2026-04-03 10:13:47 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3669    0.3953    0.3806       129
+    no_tumor     0.7969    0.7766    0.7866       394
+
+    accuracy                         0.6826       523
+   macro avg     0.5819    0.5860    0.5836       523
+weighted avg     0.6908    0.6826    0.6865       523
+
+2026-04-03 10:14:02 - [Seed 456] Epoch [15/30] Loss: 1.0128 | Acc: 0.8366 | Dice: 0.9897 | 15.1s
+2026-04-03 10:14:18 - [Seed 456] Epoch [16/30] Loss: 0.9977 | Acc: 0.8652 | Dice: 0.9900 | 16.0s
+2026-04-03 10:14:21 - [Test(seed456)] Cls — Acc: 0.6367 | P(macro): 0.5702 | R(macro): 0.5868 | F1(macro): 0.5692
+2026-04-03 10:14:21 - [Test(seed456)] Seg — Lesion IoU: 0.9808 | Lesion Dice: 0.9903
+2026-04-03 10:14:21 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3369    0.4884    0.3987       129
+    no_tumor     0.8036    0.6853    0.7397       394
+
+    accuracy                         0.6367       523
+   macro avg     0.5702    0.5868    0.5692       523
+weighted avg     0.6885    0.6367    0.6556       523
+
+2026-04-03 10:14:36 - [Seed 456] Epoch [17/30] Loss: 0.9917 | Acc: 0.8627 | Dice: 0.9903 | 15.4s
+2026-04-03 10:14:52 - [Seed 456] Epoch [18/30] Loss: 0.9461 | Acc: 0.8856 | Dice: 0.9908 | 15.5s
+2026-04-03 10:14:54 - [Test(seed456)] Cls — Acc: 0.6558 | P(macro): 0.5722 | R(macro): 0.5839 | F1(macro): 0.5742
+2026-04-03 10:14:54 - [Test(seed456)] Seg — Lesion IoU: 0.9812 | Lesion Dice: 0.9905
+2026-04-03 10:14:54 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3455    0.4419    0.3878       129
+    no_tumor     0.7989    0.7259    0.7606       394
+
+    accuracy                         0.6558       523
+   macro avg     0.5722    0.5839    0.5742       523
+weighted avg     0.6870    0.6558    0.6687       523
+
+2026-04-03 10:15:09 - [Seed 456] Epoch [19/30] Loss: 0.9215 | Acc: 0.8881 | Dice: 0.9911 | 14.7s
+2026-04-03 10:15:24 - [Seed 456] Epoch [20/30] Loss: 0.8948 | Acc: 0.9003 | Dice: 0.9919 | 15.2s
+2026-04-03 10:15:26 - [Test(seed456)] Cls — Acc: 0.6367 | P(macro): 0.5667 | R(macro): 0.5816 | F1(macro): 0.5661
+2026-04-03 10:15:26 - [Test(seed456)] Seg — Lesion IoU: 0.9765 | Lesion Dice: 0.9881
+2026-04-03 10:15:26 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3333    0.4729    0.3910       129
+    no_tumor     0.8000    0.6904    0.7411       394
+
+    accuracy                         0.6367       523
+   macro avg     0.5667    0.5816    0.5661       523
+weighted avg     0.6849    0.6367    0.6548       523
+
+2026-04-03 10:15:40 - [Seed 456] Epoch [21/30] Loss: 0.8753 | Acc: 0.9060 | Dice: 0.9919 | 14.3s
+2026-04-03 10:15:56 - [Seed 456] Epoch [22/30] Loss: 0.8707 | Acc: 0.9175 | Dice: 0.9922 | 15.8s
+2026-04-03 10:15:58 - [Test(seed456)] Cls — Acc: 0.6826 | P(macro): 0.5784 | R(macro): 0.5808 | F1(macro): 0.5795
+2026-04-03 10:15:58 - [Test(seed456)] Seg — Lesion IoU: 0.9866 | Lesion Dice: 0.9933
+2026-04-03 10:15:58 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3630    0.3798    0.3712       129
+    no_tumor     0.7938    0.7817    0.7877       394
+
+    accuracy                         0.6826       523
+   macro avg     0.5784    0.5808    0.5795       523
+weighted avg     0.6875    0.6826    0.6850       523
+
+2026-04-03 10:16:12 - [Seed 456] Epoch [23/30] Loss: 0.8655 | Acc: 0.9134 | Dice: 0.9927 | 14.0s
+2026-04-03 10:16:27 - [Seed 456] Epoch [24/30] Loss: 0.8125 | Acc: 0.9306 | Dice: 0.9929 | 14.4s
+2026-04-03 10:16:29 - [Test(seed456)] Cls — Acc: 0.6692 | P(macro): 0.5730 | R(macro): 0.5797 | F1(macro): 0.5752
+2026-04-03 10:16:29 - [Test(seed456)] Seg — Lesion IoU: 0.9858 | Lesion Dice: 0.9928
+2026-04-03 10:16:29 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3514    0.4031    0.3755       129
+    no_tumor     0.7947    0.7563    0.7750       394
+
+    accuracy                         0.6692       523
+   macro avg     0.5730    0.5797    0.5752       523
+weighted avg     0.6853    0.6692    0.6765       523
+
+2026-04-03 10:16:44 - [Seed 456] Epoch [25/30] Loss: 0.8434 | Acc: 0.9273 | Dice: 0.9930 | 14.9s
+2026-04-03 10:16:58 - [Seed 456] Epoch [26/30] Loss: 0.8370 | Acc: 0.9224 | Dice: 0.9931 | 14.9s
+2026-04-03 10:17:00 - [Test(seed456)] Cls — Acc: 0.6769 | P(macro): 0.5772 | R(macro): 0.5822 | F1(macro): 0.5792
+2026-04-03 10:17:00 - [Test(seed456)] Seg — Lesion IoU: 0.9846 | Lesion Dice: 0.9922
+2026-04-03 10:17:00 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3592    0.3953    0.3764       129
+    no_tumor     0.7953    0.7690    0.7819       394
+
+    accuracy                         0.6769       523
+   macro avg     0.5772    0.5822    0.5792       523
+weighted avg     0.6877    0.6769    0.6819       523
+
+2026-04-03 10:17:15 - [Seed 456] Epoch [27/30] Loss: 0.7982 | Acc: 0.9289 | Dice: 0.9932 | 14.9s
+2026-04-03 10:17:30 - [Seed 456] Epoch [28/30] Loss: 0.8090 | Acc: 0.9330 | Dice: 0.9930 | 15.0s
+2026-04-03 10:17:32 - [Test(seed456)] Cls — Acc: 0.6998 | P(macro): 0.5870 | R(macro): 0.5818 | F1(macro): 0.5839
+2026-04-03 10:17:32 - [Test(seed456)] Seg — Lesion IoU: 0.9868 | Lesion Dice: 0.9934
+2026-04-03 10:17:32 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3814    0.3488    0.3644       129
+    no_tumor     0.7926    0.8147    0.8035       394
+
+    accuracy                         0.6998       523
+   macro avg     0.5870    0.5818    0.5839       523
+weighted avg     0.6912    0.6998    0.6952       523
+
+2026-04-03 10:17:47 - [Seed 456] Epoch [29/30] Loss: 0.8105 | Acc: 0.9379 | Dice: 0.9934 | 14.9s
+2026-04-03 10:18:02 - [Seed 456] Epoch [30/30] Loss: 0.7964 | Acc: 0.9404 | Dice: 0.9934 | 14.9s
+2026-04-03 10:18:04 - [Test(seed456)] Cls — Acc: 0.7055 | P(macro): 0.5927 | R(macro): 0.5856 | F1(macro): 0.5884
+2026-04-03 10:18:04 - [Test(seed456)] Seg — Lesion IoU: 0.9871 | Lesion Dice: 0.9935
+2026-04-03 10:18:04 - [Test(seed456)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3913    0.3488    0.3689       129
+    no_tumor     0.7941    0.8223    0.8080       394
+
+    accuracy                         0.7055       523
+   macro avg     0.5927    0.5856    0.5884       523
+weighted avg     0.6948    0.7055    0.6997       523
+
+2026-04-03 10:18:04 - --- Seed 456: 完成, 最优 F1=0.6401 @ Epoch 8 ---
+
+2026-04-03 10:18:04 - 
+======================================================================
+2026-04-03 10:18:04 - 单模型结果汇总:
+2026-04-03 10:18:04 -   Seed 42: F1=0.6411 @ Epoch 12
+2026-04-03 10:18:04 -   Seed 123: F1=0.6410 @ Epoch 6
+2026-04-03 10:18:04 -   Seed 456: F1=0.6401 @ Epoch 8
+2026-04-03 10:18:04 - ======================================================================
+2026-04-03 10:18:04 - 
+======================================================================
+2026-04-03 10:18:04 - Ensemble 评估 (3模型概率平均)
+2026-04-03 10:18:04 - ======================================================================
+2026-04-03 10:18:42 - [Ensemble (3-seed)] Acc: 0.7113 | P(macro): 0.6276 | R(macro): 0.6415 | F1(macro): 0.6326
+2026-04-03 10:18:42 - [Ensemble (3-seed)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4276    0.5039    0.4626       129
+    no_tumor     0.8275    0.7792    0.8026       394
+
+    accuracy                         0.7113       523
+   macro avg     0.6276    0.6415    0.6326       523
+weighted avg     0.7289    0.7113    0.7188       523
+
+2026-04-03 10:18:42 - [Ensemble (3-seed)] 阈值优化: thresh=0.485, F1=0.6454
+2026-04-03 10:18:42 - [Ensemble (3-seed) 最优阈值] Acc: 0.7170 | F1: 0.6454
+              precision    recall  f1-score   support
+
+      benign     0.4403    0.5426    0.4861       129
+    no_tumor     0.8379    0.7741    0.8047       394
+
+    accuracy                         0.7170       523
+   macro avg     0.6391    0.6584    0.6454       523
+weighted avg     0.7398    0.7170    0.7262       523
+
+2026-04-03 10:18:42 - 
+======================================================================
+2026-04-03 10:18:42 - 最终结果: Ensemble F1=0.6326, 阈值优化 F1=0.6454
+2026-04-03 10:18:42 - 单模型平均 F1=0.6407, Ensemble 提升=-0.0081
+2026-04-03 10:18:42 - ======================================================================
