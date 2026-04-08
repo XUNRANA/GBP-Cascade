@@ -1,0 +1,1442 @@
+2026-04-08 09:15:03 - ======================================================================
+2026-04-08 09:15:03 - 实验名称: 20260408_task2_SwinV2Tiny_segcls_19
+2026-04-08 09:15:03 - 模型: SwinV2-Tiny@256 + 4ch + Seg-Guided Attention + 6D Metadata
+2026-04-08 09:15:03 - 修改: Exp#4架构 + 患者级5折CV(StratifiedGroupKFold) + 每epoch评估 + patience=8早停 + 30ep/fold + 无EMA + 测试集仅最终评估一次
+2026-04-08 09:15:03 - 输入通道: 4
+2026-04-08 09:15:03 - 图像尺寸: 256
+2026-04-08 09:15:03 - 分割类别: 2
+2026-04-08 09:15:03 - 分类类别: ['benign', 'no_tumor']
+2026-04-08 09:15:03 - Batch Size: 8
+2026-04-08 09:15:03 - Backbone LR: 2e-05
+2026-04-08 09:15:03 - Head LR: 0.0002
+2026-04-08 09:15:03 - Weight Decay: 0.05
+2026-04-08 09:15:03 - Warmup Epochs: 8
+2026-04-08 09:15:03 - Lambda Cls: 2.0
+2026-04-08 09:15:03 - Label Smoothing: 0.1
+2026-04-08 09:15:03 - Seed: 42
+2026-04-08 09:15:03 - Epochs/Fold: 30
+2026-04-08 09:15:03 - Grad Clip: 1.0
+2026-04-08 09:15:03 - CV Folds: 5
+2026-04-08 09:15:03 - Early Stop Patience: 8
+2026-04-08 09:15:03 - 设备: cuda
+2026-04-08 09:15:03 - ======================================================================
+2026-04-08 09:15:04 - 训练集: 1229 张 (benign=309, no_tumor=920)
+2026-04-08 09:15:05 - 测试集: 523 张 (benign=129, no_tumor=394)
+2026-04-08 09:15:05 - 唯一患者数: 1087 (图像数: 1229)
+2026-04-08 09:15:05 - 
+======================================================================
+2026-04-08 09:15:05 - 开始5折交叉验证训练
+2026-04-08 09:15:05 - ======================================================================
+2026-04-08 09:15:05 -   患者分组验证通过: train 870 patients, val 217 patients, overlap=0
+2026-04-08 09:15:05 - 
+============================================================
+2026-04-08 09:15:05 - Fold 1/5
+2026-04-08 09:15:05 - ============================================================
+2026-04-08 09:15:05 -   Train: 995 (benign=263, no_tumor=732)
+2026-04-08 09:15:05 -   Val:   234 (benign=46, no_tumor=188)
+2026-04-08 09:15:08 -   Fold类别权重: benign=1.8916, no_tumor=0.6796
+2026-04-08 09:15:34 - [Fold1-Val] Cls — Acc: 0.7222 | P(macro): 0.5854 | R(macro): 0.5972 | F1(macro): 0.5897
+2026-04-08 09:15:34 - [Fold1-Val] Seg — Lesion IoU: 0.8373 | Lesion Dice: 0.9113
+2026-04-08 09:15:34 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3273    0.3913    0.3564        46
+    no_tumor     0.8436    0.8032    0.8229       188
+
+    accuracy                         0.7222       234
+   macro avg     0.5854    0.5972    0.5897       234
+weighted avg     0.7421    0.7222    0.7312       234
+
+2026-04-08 09:15:34 -   Epoch [1/30] LR: 2.50e-06/2.50e-05 | Loss: 2.1418 (seg=0.7081, cls=0.7168) | Train Acc: 0.5756 | Val F1: 0.5897 | 22.6s
+2026-04-08 09:15:34 -   *** Fold1 新最优 (Val F1: 0.5897, Epoch: 1) ***
+2026-04-08 09:15:55 - [Fold1-Val] Cls — Acc: 0.6197 | P(macro): 0.5944 | R(macro): 0.6484 | F1(macro): 0.5679
+2026-04-08 09:15:55 - [Fold1-Val] Seg — Lesion IoU: 0.8941 | Lesion Dice: 0.9440
+2026-04-08 09:15:55 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.2991    0.6957    0.4183        46
+    no_tumor     0.8898    0.6011    0.7175       188
+
+    accuracy                         0.6197       234
+   macro avg     0.5944    0.6484    0.5679       234
+weighted avg     0.7736    0.6197    0.6587       234
+
+2026-04-08 09:15:55 -   Epoch [2/30] LR: 5.00e-06/5.00e-05 | Loss: 1.7082 (seg=0.2979, cls=0.7052) | Train Acc: 0.6593 | Val F1: 0.5679 | 17.9s
+2026-04-08 09:16:15 - [Fold1-Val] Cls — Acc: 0.7137 | P(macro): 0.5982 | R(macro): 0.6248 | F1(macro): 0.6044
+2026-04-08 09:16:15 - [Fold1-Val] Seg — Lesion IoU: 0.9259 | Lesion Dice: 0.9615
+2026-04-08 09:16:15 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3385    0.4783    0.3964        46
+    no_tumor     0.8580    0.7713    0.8123       188
+
+    accuracy                         0.7137       234
+   macro avg     0.5982    0.6248    0.6044       234
+weighted avg     0.7559    0.7137    0.7306       234
+
+2026-04-08 09:16:15 -   Epoch [3/30] LR: 7.50e-06/7.50e-05 | Loss: 1.5870 (seg=0.2239, cls=0.6816) | Train Acc: 0.6109 | Val F1: 0.6044 | 17.3s
+2026-04-08 09:16:16 -   *** Fold1 新最优 (Val F1: 0.6044, Epoch: 3) ***
+2026-04-08 09:16:37 - [Fold1-Val] Cls — Acc: 0.6068 | P(macro): 0.5991 | R(macro): 0.6568 | F1(macro): 0.5631
+2026-04-08 09:16:37 - [Fold1-Val] Seg — Lesion IoU: 0.9425 | Lesion Dice: 0.9704
+2026-04-08 09:16:37 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.2982    0.7391    0.4250        46
+    no_tumor     0.9000    0.5745    0.7013       188
+
+    accuracy                         0.6068       234
+   macro avg     0.5991    0.6568    0.5631       234
+weighted avg     0.7817    0.6068    0.6470       234
+
+2026-04-08 09:16:37 -   Epoch [4/30] LR: 1.00e-05/1.00e-04 | Loss: 1.4944 (seg=0.1796, cls=0.6574) | Train Acc: 0.7167 | Val F1: 0.5631 | 17.4s
+2026-04-08 09:16:59 - [Fold1-Val] Cls — Acc: 0.7393 | P(macro): 0.6261 | R(macro): 0.6571 | F1(macro): 0.6352
+2026-04-08 09:16:59 - [Fold1-Val] Seg — Lesion IoU: 0.9353 | Lesion Dice: 0.9665
+2026-04-08 09:16:59 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3810    0.5217    0.4404        46
+    no_tumor     0.8713    0.7926    0.8301       188
+
+    accuracy                         0.7393       234
+   macro avg     0.6261    0.6571    0.6352       234
+weighted avg     0.7749    0.7393    0.7535       234
+
+2026-04-08 09:16:59 -   Epoch [5/30] LR: 1.25e-05/1.25e-04 | Loss: 1.4729 (seg=0.1513, cls=0.6608) | Train Acc: 0.6996 | Val F1: 0.6352 | 18.0s
+2026-04-08 09:16:59 -   *** Fold1 新最优 (Val F1: 0.6352, Epoch: 5) ***
+2026-04-08 09:17:18 - [Fold1-Val] Cls — Acc: 0.7051 | P(macro): 0.6060 | R(macro): 0.6441 | F1(macro): 0.6112
+2026-04-08 09:17:18 - [Fold1-Val] Seg — Lesion IoU: 0.9604 | Lesion Dice: 0.9798
+2026-04-08 09:17:18 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3425    0.5435    0.4202        46
+    no_tumor     0.8696    0.7447    0.8023       188
+
+    accuracy                         0.7051       234
+   macro avg     0.6060    0.6441    0.6112       234
+weighted avg     0.7659    0.7051    0.7272       234
+
+2026-04-08 09:17:18 -   Epoch [6/30] LR: 1.50e-05/1.50e-04 | Loss: 1.3955 (seg=0.1196, cls=0.6380) | Train Acc: 0.7036 | Val F1: 0.6112 | 16.2s
+2026-04-08 09:17:39 - [Fold1-Val] Cls — Acc: 0.7650 | P(macro): 0.6519 | R(macro): 0.6813 | F1(macro): 0.6623
+2026-04-08 09:17:39 - [Fold1-Val] Seg — Lesion IoU: 0.9443 | Lesion Dice: 0.9713
+2026-04-08 09:17:39 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4237    0.5435    0.4762        46
+    no_tumor     0.8800    0.8191    0.8485       188
+
+    accuracy                         0.7650       234
+   macro avg     0.6519    0.6813    0.6623       234
+weighted avg     0.7903    0.7650    0.7753       234
+
+2026-04-08 09:17:39 -   Epoch [7/30] LR: 1.75e-05/1.75e-04 | Loss: 1.3246 (seg=0.0959, cls=0.6143) | Train Acc: 0.7450 | Val F1: 0.6623 | 18.3s
+2026-04-08 09:17:40 -   *** Fold1 新最优 (Val F1: 0.6623, Epoch: 7) ***
+2026-04-08 09:18:02 - [Fold1-Val] Cls — Acc: 0.7692 | P(macro): 0.6421 | R(macro): 0.6511 | F1(macro): 0.6462
+2026-04-08 09:18:02 - [Fold1-Val] Seg — Lesion IoU: 0.9608 | Lesion Dice: 0.9800
+2026-04-08 09:18:02 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4200    0.4565    0.4375        46
+    no_tumor     0.8641    0.8457    0.8548       188
+
+    accuracy                         0.7692       234
+   macro avg     0.6421    0.6511    0.6462       234
+weighted avg     0.7768    0.7692    0.7728       234
+
+2026-04-08 09:18:02 -   Epoch [8/30] LR: 2.00e-05/2.00e-04 | Loss: 1.2685 (seg=0.0764, cls=0.5961) | Train Acc: 0.7651 | Val F1: 0.6462 | 19.0s
+2026-04-08 09:18:24 - [Fold1-Val] Cls — Acc: 0.7949 | P(macro): 0.6629 | R(macro): 0.6343 | F1(macro): 0.6451
+2026-04-08 09:18:24 - [Fold1-Val] Seg — Lesion IoU: 0.9664 | Lesion Dice: 0.9829
+2026-04-08 09:18:24 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4722    0.3696    0.4146        46
+    no_tumor     0.8535    0.8989    0.8756       188
+
+    accuracy                         0.7949       234
+   macro avg     0.6629    0.6343    0.6451       234
+weighted avg     0.7786    0.7949    0.7850       234
+
+2026-04-08 09:18:24 -   Epoch [9/30] LR: 1.99e-05/1.99e-04 | Loss: 1.2751 (seg=0.0639, cls=0.6056) | Train Acc: 0.7510 | Val F1: 0.6451 | 18.1s
+2026-04-08 09:18:44 - [Fold1-Val] Cls — Acc: 0.7949 | P(macro): 0.6520 | R(macro): 0.6014 | F1(macro): 0.6148
+2026-04-08 09:18:44 - [Fold1-Val] Seg — Lesion IoU: 0.9688 | Lesion Dice: 0.9841
+2026-04-08 09:18:44 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4643    0.2826    0.3514        46
+    no_tumor     0.8398    0.9202    0.8782       188
+
+    accuracy                         0.7949       234
+   macro avg     0.6520    0.6014    0.6148       234
+weighted avg     0.7660    0.7949    0.7746       234
+
+2026-04-08 09:18:44 -   Epoch [10/30] LR: 1.96e-05/1.96e-04 | Loss: 1.2509 (seg=0.0549, cls=0.5980) | Train Acc: 0.7601 | Val F1: 0.6148 | 16.8s
+2026-04-08 09:19:05 - [Fold1-Val] Cls — Acc: 0.6453 | P(macro): 0.6058 | R(macro): 0.6643 | F1(macro): 0.5884
+2026-04-08 09:19:05 - [Fold1-Val] Seg — Lesion IoU: 0.9704 | Lesion Dice: 0.9850
+2026-04-08 09:19:05 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3168    0.6957    0.4354        46
+    no_tumor     0.8947    0.6330    0.7414       188
+
+    accuracy                         0.6453       234
+   macro avg     0.6058    0.6643    0.5884       234
+weighted avg     0.7811    0.6453    0.6813       234
+
+2026-04-08 09:19:05 -   Epoch [11/30] LR: 1.91e-05/1.91e-04 | Loss: 1.1790 (seg=0.0465, cls=0.5662) | Train Acc: 0.7903 | Val F1: 0.5884 | 18.6s
+2026-04-08 09:19:28 - [Fold1-Val] Cls — Acc: 0.7094 | P(macro): 0.6044 | R(macro): 0.6385 | F1(macro): 0.6103
+2026-04-08 09:19:28 - [Fold1-Val] Seg — Lesion IoU: 0.9708 | Lesion Dice: 0.9852
+2026-04-08 09:19:28 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3429    0.5217    0.4138        46
+    no_tumor     0.8659    0.7553    0.8068       188
+
+    accuracy                         0.7094       234
+   macro avg     0.6044    0.6385    0.6103       234
+weighted avg     0.7630    0.7094    0.7296       234
+
+2026-04-08 09:19:28 -   Epoch [12/30] LR: 1.84e-05/1.84e-04 | Loss: 1.1194 (seg=0.0398, cls=0.5398) | Train Acc: 0.8044 | Val F1: 0.6103 | 19.5s
+2026-04-08 09:19:47 - [Fold1-Val] Cls — Acc: 0.7179 | P(macro): 0.6058 | R(macro): 0.6356 | F1(macro): 0.6127
+2026-04-08 09:19:47 - [Fold1-Val] Seg — Lesion IoU: 0.9634 | Lesion Dice: 0.9814
+2026-04-08 09:19:47 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3485    0.5000    0.4107        46
+    no_tumor     0.8631    0.7713    0.8146       188
+
+    accuracy                         0.7179       234
+   macro avg     0.6058    0.6356    0.6127       234
+weighted avg     0.7619    0.7179    0.7352       234
+
+2026-04-08 09:19:47 -   Epoch [13/30] LR: 1.76e-05/1.76e-04 | Loss: 1.1212 (seg=0.0350, cls=0.5431) | Train Acc: 0.8185 | Val F1: 0.6127 | 17.2s
+2026-04-08 09:20:08 - [Fold1-Val] Cls — Acc: 0.6453 | P(macro): 0.5867 | R(macro): 0.6315 | F1(macro): 0.5753
+2026-04-08 09:20:08 - [Fold1-Val] Seg — Lesion IoU: 0.9669 | Lesion Dice: 0.9832
+2026-04-08 09:20:08 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3011    0.6087    0.4029        46
+    no_tumor     0.8723    0.6543    0.7477       188
+
+    accuracy                         0.6453       234
+   macro avg     0.5867    0.6315    0.5753       234
+weighted avg     0.7600    0.6453    0.6799       234
+
+2026-04-08 09:20:08 -   Epoch [14/30] LR: 1.66e-05/1.66e-04 | Loss: 1.0825 (seg=0.0323, cls=0.5251) | Train Acc: 0.8286 | Val F1: 0.5753 | 16.8s
+2026-04-08 09:20:29 - [Fold1-Val] Cls — Acc: 0.7393 | P(macro): 0.5900 | R(macro): 0.5915 | F1(macro): 0.5907
+2026-04-08 09:20:29 - [Fold1-Val] Seg — Lesion IoU: 0.9724 | Lesion Dice: 0.9860
+2026-04-08 09:20:29 - [Fold1-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3404    0.3478    0.3441        46
+    no_tumor     0.8396    0.8351    0.8373       188
+
+    accuracy                         0.7393       234
+   macro avg     0.5900    0.5915    0.5907       234
+weighted avg     0.7414    0.7393    0.7404       234
+
+2026-04-08 09:20:29 -   Epoch [15/30] LR: 1.55e-05/1.55e-04 | Loss: 1.0322 (seg=0.0294, cls=0.5014) | Train Acc: 0.8548 | Val F1: 0.5907 | 18.3s
+2026-04-08 09:20:29 -   Early stopping at epoch 15 (patience=8, best_epoch=7)
+2026-04-08 09:20:29 -   Fold1 完成: best_epoch=7, best_val_f1=0.6623
+2026-04-08 09:20:29 -   Fold1 权重已保存: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260408_task2_SwinV2Tiny_segcls_19/20260408_task2_SwinV2Tiny_segcls_19_fold0.pth
+2026-04-08 09:20:29 -   患者分组验证通过: train 870 patients, val 217 patients, overlap=0
+2026-04-08 09:20:29 - 
+============================================================
+2026-04-08 09:20:29 - Fold 2/5
+2026-04-08 09:20:29 - ============================================================
+2026-04-08 09:20:29 -   Train: 993 (benign=258, no_tumor=735)
+2026-04-08 09:20:29 -   Val:   236 (benign=51, no_tumor=185)
+2026-04-08 09:20:32 -   Fold类别权重: benign=1.9244, no_tumor=0.6755
+2026-04-08 09:20:52 - [Fold2-Val] Cls — Acc: 0.7839 | P(macro): 0.3919 | R(macro): 0.5000 | F1(macro): 0.4394
+2026-04-08 09:20:52 - [Fold2-Val] Seg — Lesion IoU: 0.8680 | Lesion Dice: 0.9291
+2026-04-08 09:20:52 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.0000    0.0000    0.0000        51
+    no_tumor     0.7839    1.0000    0.8789       185
+
+    accuracy                         0.7839       236
+   macro avg     0.3919    0.5000    0.4394       236
+weighted avg     0.6145    0.7839    0.6889       236
+
+2026-04-08 09:20:52 -   Epoch [1/30] LR: 2.50e-06/2.50e-05 | Loss: 2.0559 (seg=0.6165, cls=0.7197) | Train Acc: 0.4355 | Val F1: 0.4394 | 17.3s
+2026-04-08 09:20:53 -   *** Fold2 新最优 (Val F1: 0.4394, Epoch: 1) ***
+2026-04-08 09:21:14 - [Fold2-Val] Cls — Acc: 0.7500 | P(macro): 0.5862 | R(macro): 0.5565 | F1(macro): 0.5604
+2026-04-08 09:21:14 - [Fold2-Val] Seg — Lesion IoU: 0.9212 | Lesion Dice: 0.9589
+2026-04-08 09:21:14 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3667    0.2157    0.2716        51
+    no_tumor     0.8058    0.8973    0.8491       185
+
+    accuracy                         0.7500       236
+   macro avg     0.5862    0.5565    0.5604       236
+weighted avg     0.7109    0.7500    0.7243       236
+
+2026-04-08 09:21:14 -   Epoch [2/30] LR: 5.00e-06/5.00e-05 | Loss: 1.6239 (seg=0.1982, cls=0.7129) | Train Acc: 0.5474 | Val F1: 0.5604 | 17.1s
+2026-04-08 09:21:14 -   *** Fold2 新最优 (Val F1: 0.5604, Epoch: 2) ***
+2026-04-08 09:21:34 - [Fold2-Val] Cls — Acc: 0.6483 | P(macro): 0.5988 | R(macro): 0.6408 | F1(macro): 0.5900
+2026-04-08 09:21:34 - [Fold2-Val] Seg — Lesion IoU: 0.9215 | Lesion Dice: 0.9590
+2026-04-08 09:21:34 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3333    0.6275    0.4354        51
+    no_tumor     0.8643    0.6541    0.7446       185
+
+    accuracy                         0.6483       236
+   macro avg     0.5988    0.6408    0.5900       236
+weighted avg     0.7495    0.6483    0.6778       236
+
+2026-04-08 09:21:34 -   Epoch [3/30] LR: 7.50e-06/7.50e-05 | Loss: 1.5216 (seg=0.1325, cls=0.6946) | Train Acc: 0.6190 | Val F1: 0.5900 | 16.4s
+2026-04-08 09:21:35 -   *** Fold2 新最优 (Val F1: 0.5900, Epoch: 3) ***
+2026-04-08 09:21:56 - [Fold2-Val] Cls — Acc: 0.6864 | P(macro): 0.6080 | R(macro): 0.6438 | F1(macro): 0.6109
+2026-04-08 09:21:56 - [Fold2-Val] Seg — Lesion IoU: 0.9473 | Lesion Dice: 0.9729
+2026-04-08 09:21:56 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3580    0.5686    0.4394        51
+    no_tumor     0.8581    0.7189    0.7824       185
+
+    accuracy                         0.6864       236
+   macro avg     0.6080    0.6438    0.6109       236
+weighted avg     0.7500    0.6864    0.7082       236
+
+2026-04-08 09:21:56 -   Epoch [4/30] LR: 1.00e-05/1.00e-04 | Loss: 1.4517 (seg=0.1065, cls=0.6726) | Train Acc: 0.6220 | Val F1: 0.6109 | 17.0s
+2026-04-08 09:21:56 -   *** Fold2 新最优 (Val F1: 0.6109, Epoch: 4) ***
+2026-04-08 09:22:17 - [Fold2-Val] Cls — Acc: 0.7034 | P(macro): 0.6268 | R(macro): 0.6688 | F1(macro): 0.6319
+2026-04-08 09:22:17 - [Fold2-Val] Seg — Lesion IoU: 0.9515 | Lesion Dice: 0.9751
+2026-04-08 09:22:17 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3827    0.6078    0.4697        51
+    no_tumor     0.8710    0.7297    0.7941       185
+
+    accuracy                         0.7034       236
+   macro avg     0.6268    0.6688    0.6319       236
+weighted avg     0.7655    0.7034    0.7240       236
+
+2026-04-08 09:22:17 -   Epoch [5/30] LR: 1.25e-05/1.25e-04 | Loss: 1.4239 (seg=0.0884, cls=0.6678) | Train Acc: 0.6744 | Val F1: 0.6319 | 17.2s
+2026-04-08 09:22:18 -   *** Fold2 新最优 (Val F1: 0.6319, Epoch: 5) ***
+2026-04-08 09:22:38 - [Fold2-Val] Cls — Acc: 0.5932 | P(macro): 0.6105 | R(macro): 0.6624 | F1(macro): 0.5651
+2026-04-08 09:22:38 - [Fold2-Val] Seg — Lesion IoU: 0.9493 | Lesion Dice: 0.9740
+2026-04-08 09:22:38 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3200    0.7843    0.4545        51
+    no_tumor     0.9009    0.5405    0.6757       185
+
+    accuracy                         0.5932       236
+   macro avg     0.6105    0.6624    0.5651       236
+weighted avg     0.7754    0.5932    0.6279       236
+
+2026-04-08 09:22:38 -   Epoch [6/30] LR: 1.50e-05/1.50e-04 | Loss: 1.3735 (seg=0.0729, cls=0.6503) | Train Acc: 0.6663 | Val F1: 0.5651 | 17.0s
+2026-04-08 09:22:58 - [Fold2-Val] Cls — Acc: 0.5297 | P(macro): 0.5912 | R(macro): 0.6290 | F1(macro): 0.5135
+2026-04-08 09:22:58 - [Fold2-Val] Seg — Lesion IoU: 0.9635 | Lesion Dice: 0.9814
+2026-04-08 09:22:58 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.2887    0.8039    0.4249        51
+    no_tumor     0.8936    0.4541    0.6022       185
+
+    accuracy                         0.5297       236
+   macro avg     0.5912    0.6290    0.5135       236
+weighted avg     0.7629    0.5297    0.5638       236
+
+2026-04-08 09:22:58 -   Epoch [7/30] LR: 1.75e-05/1.75e-04 | Loss: 1.3289 (seg=0.0604, cls=0.6343) | Train Acc: 0.7087 | Val F1: 0.5135 | 16.7s
+2026-04-08 09:23:18 - [Fold2-Val] Cls — Acc: 0.7034 | P(macro): 0.6230 | R(macro): 0.6617 | F1(macro): 0.6284
+2026-04-08 09:23:18 - [Fold2-Val] Seg — Lesion IoU: 0.9535 | Lesion Dice: 0.9762
+2026-04-08 09:23:18 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3797    0.5882    0.4615        51
+    no_tumor     0.8662    0.7351    0.7953       185
+
+    accuracy                         0.7034       236
+   macro avg     0.6230    0.6617    0.6284       236
+weighted avg     0.7611    0.7034    0.7232       236
+
+2026-04-08 09:23:18 -   Epoch [8/30] LR: 2.00e-05/2.00e-04 | Loss: 1.3040 (seg=0.0506, cls=0.6267) | Train Acc: 0.7147 | Val F1: 0.6284 | 16.7s
+2026-04-08 09:23:38 - [Fold2-Val] Cls — Acc: 0.6992 | P(macro): 0.6280 | R(macro): 0.6732 | F1(macro): 0.6317
+2026-04-08 09:23:38 - [Fold2-Val] Seg — Lesion IoU: 0.9641 | Lesion Dice: 0.9817
+2026-04-08 09:23:38 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3810    0.6275    0.4741        51
+    no_tumor     0.8750    0.7189    0.7893       185
+
+    accuracy                         0.6992       236
+   macro avg     0.6280    0.6732    0.6317       236
+weighted avg     0.7682    0.6992    0.7212       236
+
+2026-04-08 09:23:38 -   Epoch [9/30] LR: 1.99e-05/1.99e-04 | Loss: 1.2645 (seg=0.0440, cls=0.6103) | Train Acc: 0.7359 | Val F1: 0.6317 | 17.2s
+2026-04-08 09:23:57 - [Fold2-Val] Cls — Acc: 0.7288 | P(macro): 0.6305 | R(macro): 0.6566 | F1(macro): 0.6384
+2026-04-08 09:23:57 - [Fold2-Val] Seg — Lesion IoU: 0.9692 | Lesion Dice: 0.9843
+2026-04-08 09:23:57 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4030    0.5294    0.4576        51
+    no_tumor     0.8580    0.7838    0.8192       185
+
+    accuracy                         0.7288       236
+   macro avg     0.6305    0.6566    0.6384       236
+weighted avg     0.7597    0.7288    0.7411       236
+
+2026-04-08 09:23:57 -   Epoch [10/30] LR: 1.96e-05/1.96e-04 | Loss: 1.1892 (seg=0.0373, cls=0.5760) | Train Acc: 0.7611 | Val F1: 0.6384 | 16.5s
+2026-04-08 09:23:58 -   *** Fold2 新最优 (Val F1: 0.6384, Epoch: 10) ***
+2026-04-08 09:24:17 - [Fold2-Val] Cls — Acc: 0.6780 | P(macro): 0.6028 | R(macro): 0.6384 | F1(macro): 0.6040
+2026-04-08 09:24:17 - [Fold2-Val] Seg — Lesion IoU: 0.9704 | Lesion Dice: 0.9850
+2026-04-08 09:24:17 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3494    0.5686    0.4328        51
+    no_tumor     0.8562    0.7081    0.7751       185
+
+    accuracy                         0.6780       236
+   macro avg     0.6028    0.6384    0.6040       236
+weighted avg     0.7467    0.6780    0.7012       236
+
+2026-04-08 09:24:17 -   Epoch [11/30] LR: 1.91e-05/1.91e-04 | Loss: 1.2356 (seg=0.0337, cls=0.6010) | Train Acc: 0.7611 | Val F1: 0.6040 | 16.9s
+2026-04-08 09:24:38 - [Fold2-Val] Cls — Acc: 0.7585 | P(macro): 0.6390 | R(macro): 0.6329 | F1(macro): 0.6357
+2026-04-08 09:24:38 - [Fold2-Val] Seg — Lesion IoU: 0.9706 | Lesion Dice: 0.9851
+2026-04-08 09:24:38 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4375    0.4118    0.4242        51
+    no_tumor     0.8404    0.8541    0.8472       185
+
+    accuracy                         0.7585       236
+   macro avg     0.6390    0.6329    0.6357       236
+weighted avg     0.7534    0.7585    0.7558       236
+
+2026-04-08 09:24:38 -   Epoch [12/30] LR: 1.84e-05/1.84e-04 | Loss: 1.1436 (seg=0.0302, cls=0.5567) | Train Acc: 0.7954 | Val F1: 0.6357 | 17.4s
+2026-04-08 09:24:57 - [Fold2-Val] Cls — Acc: 0.7161 | P(macro): 0.6009 | R(macro): 0.6130 | F1(macro): 0.6054
+2026-04-08 09:24:57 - [Fold2-Val] Seg — Lesion IoU: 0.9630 | Lesion Dice: 0.9811
+2026-04-08 09:24:57 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3667    0.4314    0.3964        51
+    no_tumor     0.8352    0.7946    0.8144       185
+
+    accuracy                         0.7161       236
+   macro avg     0.6009    0.6130    0.6054       236
+weighted avg     0.7340    0.7161    0.7241       236
+
+2026-04-08 09:24:57 -   Epoch [13/30] LR: 1.76e-05/1.76e-04 | Loss: 1.1054 (seg=0.0276, cls=0.5389) | Train Acc: 0.8216 | Val F1: 0.6054 | 16.8s
+2026-04-08 09:25:18 - [Fold2-Val] Cls — Acc: 0.7627 | P(macro): 0.6498 | R(macro): 0.6498 | F1(macro): 0.6498
+2026-04-08 09:25:18 - [Fold2-Val] Seg — Lesion IoU: 0.9749 | Lesion Dice: 0.9873
+2026-04-08 09:25:18 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4510    0.4510    0.4510        51
+    no_tumor     0.8486    0.8486    0.8486       185
+
+    accuracy                         0.7627       236
+   macro avg     0.6498    0.6498    0.6498       236
+weighted avg     0.7627    0.7627    0.7627       236
+
+2026-04-08 09:25:18 -   Epoch [14/30] LR: 1.66e-05/1.66e-04 | Loss: 1.0679 (seg=0.0261, cls=0.5209) | Train Acc: 0.8357 | Val F1: 0.6498 | 18.1s
+2026-04-08 09:25:19 -   *** Fold2 新最优 (Val F1: 0.6498, Epoch: 14) ***
+2026-04-08 09:25:40 - [Fold2-Val] Cls — Acc: 0.6907 | P(macro): 0.5901 | R(macro): 0.6110 | F1(macro): 0.5944
+2026-04-08 09:25:40 - [Fold2-Val] Seg — Lesion IoU: 0.9773 | Lesion Dice: 0.9885
+2026-04-08 09:25:40 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3429    0.4706    0.3967        51
+    no_tumor     0.8373    0.7514    0.7920       185
+
+    accuracy                         0.6907       236
+   macro avg     0.5901    0.6110    0.5944       236
+weighted avg     0.7305    0.6907    0.7066       236
+
+2026-04-08 09:25:40 -   Epoch [15/30] LR: 1.55e-05/1.55e-04 | Loss: 1.0268 (seg=0.0241, cls=0.5013) | Train Acc: 0.8528 | Val F1: 0.5944 | 18.0s
+2026-04-08 09:26:00 - [Fold2-Val] Cls — Acc: 0.6737 | P(macro): 0.5832 | R(macro): 0.6073 | F1(macro): 0.5853
+2026-04-08 09:26:00 - [Fold2-Val] Seg — Lesion IoU: 0.9778 | Lesion Dice: 0.9888
+2026-04-08 09:26:00 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3289    0.4902    0.3937        51
+    no_tumor     0.8375    0.7243    0.7768       185
+
+    accuracy                         0.6737       236
+   macro avg     0.5832    0.6073    0.5853       236
+weighted avg     0.7276    0.6737    0.6940       236
+
+2026-04-08 09:26:00 -   Epoch [16/30] LR: 1.42e-05/1.42e-04 | Loss: 1.0388 (seg=0.0217, cls=0.5085) | Train Acc: 0.8417 | Val F1: 0.5853 | 17.4s
+2026-04-08 09:26:21 - [Fold2-Val] Cls — Acc: 0.7373 | P(macro): 0.6375 | R(macro): 0.6620 | F1(macro): 0.6457
+2026-04-08 09:26:21 - [Fold2-Val] Seg — Lesion IoU: 0.9771 | Lesion Dice: 0.9884
+2026-04-08 09:26:21 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4154    0.5294    0.4655        51
+    no_tumor     0.8596    0.7946    0.8258       185
+
+    accuracy                         0.7373       236
+   macro avg     0.6375    0.6620    0.6457       236
+weighted avg     0.7636    0.7373    0.7480       236
+
+2026-04-08 09:26:21 -   Epoch [17/30] LR: 1.29e-05/1.29e-04 | Loss: 1.0045 (seg=0.0207, cls=0.4919) | Train Acc: 0.8488 | Val F1: 0.6457 | 17.2s
+2026-04-08 09:26:42 - [Fold2-Val] Cls — Acc: 0.7331 | P(macro): 0.6233 | R(macro): 0.6380 | F1(macro): 0.6290
+2026-04-08 09:26:42 - [Fold2-Val] Seg — Lesion IoU: 0.9749 | Lesion Dice: 0.9873
+2026-04-08 09:26:42 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4000    0.4706    0.4324        51
+    no_tumor     0.8466    0.8054    0.8255       185
+
+    accuracy                         0.7331       236
+   macro avg     0.6233    0.6380    0.6290       236
+weighted avg     0.7501    0.7331    0.7405       236
+
+2026-04-08 09:26:42 -   Epoch [18/30] LR: 1.15e-05/1.15e-04 | Loss: 0.9421 (seg=0.0210, cls=0.4605) | Train Acc: 0.8871 | Val F1: 0.6290 | 17.1s
+2026-04-08 09:27:02 - [Fold2-Val] Cls — Acc: 0.8263 | P(macro): 0.7676 | R(macro): 0.6548 | F1(macro): 0.6819
+2026-04-08 09:27:02 - [Fold2-Val] Seg — Lesion IoU: 0.9626 | Lesion Dice: 0.9809
+2026-04-08 09:27:02 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.6923    0.3529    0.4675        51
+    no_tumor     0.8429    0.9568    0.8962       185
+
+    accuracy                         0.8263       236
+   macro avg     0.7676    0.6548    0.6819       236
+weighted avg     0.8103    0.8263    0.8036       236
+
+2026-04-08 09:27:02 -   Epoch [19/30] LR: 1.01e-05/1.01e-04 | Loss: 0.9780 (seg=0.0195, cls=0.4793) | Train Acc: 0.8750 | Val F1: 0.6819 | 17.2s
+2026-04-08 09:27:02 -   *** Fold2 新最优 (Val F1: 0.6819, Epoch: 19) ***
+2026-04-08 09:27:22 - [Fold2-Val] Cls — Acc: 0.7458 | P(macro): 0.6248 | R(macro): 0.6248 | F1(macro): 0.6248
+2026-04-08 09:27:22 - [Fold2-Val] Seg — Lesion IoU: 0.9766 | Lesion Dice: 0.9881
+2026-04-08 09:27:22 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4118    0.4118    0.4118        51
+    no_tumor     0.8378    0.8378    0.8378       185
+
+    accuracy                         0.7458       236
+   macro avg     0.6248    0.6248    0.6248       236
+weighted avg     0.7458    0.7458    0.7458       236
+
+2026-04-08 09:27:22 -   Epoch [20/30] LR: 8.69e-06/8.69e-05 | Loss: 0.9210 (seg=0.0183, cls=0.4513) | Train Acc: 0.8851 | Val F1: 0.6248 | 17.2s
+2026-04-08 09:27:43 - [Fold2-Val] Cls — Acc: 0.7203 | P(macro): 0.6275 | R(macro): 0.6583 | F1(macro): 0.6352
+2026-04-08 09:27:43 - [Fold2-Val] Seg — Lesion IoU: 0.9707 | Lesion Dice: 0.9851
+2026-04-08 09:27:43 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3944    0.5490    0.4590        51
+    no_tumor     0.8606    0.7676    0.8114       185
+
+    accuracy                         0.7203       236
+   macro avg     0.6275    0.6583    0.6352       236
+weighted avg     0.7599    0.7203    0.7353       236
+
+2026-04-08 09:27:43 -   Epoch [21/30] LR: 7.31e-06/7.31e-05 | Loss: 0.9022 (seg=0.0169, cls=0.4427) | Train Acc: 0.8992 | Val F1: 0.6352 | 17.0s
+2026-04-08 09:28:03 - [Fold2-Val] Cls — Acc: 0.7712 | P(macro): 0.6598 | R(macro): 0.6552 | F1(macro): 0.6574
+2026-04-08 09:28:03 - [Fold2-Val] Seg — Lesion IoU: 0.9769 | Lesion Dice: 0.9883
+2026-04-08 09:28:03 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4694    0.4510    0.4600        51
+    no_tumor     0.8503    0.8595    0.8548       185
+
+    accuracy                         0.7712       236
+   macro avg     0.6598    0.6552    0.6574       236
+weighted avg     0.7680    0.7712    0.7695       236
+
+2026-04-08 09:28:03 -   Epoch [22/30] LR: 5.99e-06/5.99e-05 | Loss: 0.9030 (seg=0.0166, cls=0.4432) | Train Acc: 0.8921 | Val F1: 0.6574 | 17.4s
+2026-04-08 09:28:23 - [Fold2-Val] Cls — Acc: 0.7203 | P(macro): 0.6124 | R(macro): 0.6299 | F1(macro): 0.6183
+2026-04-08 09:28:23 - [Fold2-Val] Seg — Lesion IoU: 0.9725 | Lesion Dice: 0.9860
+2026-04-08 09:28:23 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3810    0.4706    0.4211        51
+    no_tumor     0.8439    0.7892    0.8156       185
+
+    accuracy                         0.7203       236
+   macro avg     0.6124    0.6299    0.6183       236
+weighted avg     0.7439    0.7203    0.7304       236
+
+2026-04-08 09:28:23 -   Epoch [23/30] LR: 4.75e-06/4.75e-05 | Loss: 0.8564 (seg=0.0159, cls=0.4202) | Train Acc: 0.9153 | Val F1: 0.6183 | 17.6s
+2026-04-08 09:28:42 - [Fold2-Val] Cls — Acc: 0.7542 | P(macro): 0.6373 | R(macro): 0.6373 | F1(macro): 0.6373
+2026-04-08 09:28:42 - [Fold2-Val] Seg — Lesion IoU: 0.9794 | Lesion Dice: 0.9896
+2026-04-08 09:28:42 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4314    0.4314    0.4314        51
+    no_tumor     0.8432    0.8432    0.8432       185
+
+    accuracy                         0.7542       236
+   macro avg     0.6373    0.6373    0.6373       236
+weighted avg     0.7542    0.7542    0.7542       236
+
+2026-04-08 09:28:42 -   Epoch [24/30] LR: 3.62e-06/3.62e-05 | Loss: 0.8560 (seg=0.0156, cls=0.4202) | Train Acc: 0.9224 | Val F1: 0.6373 | 16.3s
+2026-04-08 09:29:03 - [Fold2-Val] Cls — Acc: 0.7542 | P(macro): 0.6308 | R(macro): 0.6231 | F1(macro): 0.6265
+2026-04-08 09:29:03 - [Fold2-Val] Seg — Lesion IoU: 0.9805 | Lesion Dice: 0.9901
+2026-04-08 09:29:03 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4255    0.3922    0.4082        51
+    no_tumor     0.8360    0.8541    0.8449       185
+
+    accuracy                         0.7542       236
+   macro avg     0.6308    0.6231    0.6265       236
+weighted avg     0.7473    0.7542    0.7505       236
+
+2026-04-08 09:29:03 -   Epoch [25/30] LR: 2.62e-06/2.62e-05 | Loss: 0.8240 (seg=0.0148, cls=0.4046) | Train Acc: 0.9244 | Val F1: 0.6265 | 17.6s
+2026-04-08 09:29:23 - [Fold2-Val] Cls — Acc: 0.7627 | P(macro): 0.6411 | R(macro): 0.6285 | F1(macro): 0.6339
+2026-04-08 09:29:23 - [Fold2-Val] Seg — Lesion IoU: 0.9811 | Lesion Dice: 0.9904
+2026-04-08 09:29:23 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4444    0.3922    0.4167        51
+    no_tumor     0.8377    0.8649    0.8511       185
+
+    accuracy                         0.7627       236
+   macro avg     0.6411    0.6285    0.6339       236
+weighted avg     0.7527    0.7627    0.7572       236
+
+2026-04-08 09:29:23 -   Epoch [26/30] LR: 1.77e-06/1.77e-05 | Loss: 0.8006 (seg=0.0147, cls=0.3929) | Train Acc: 0.9254 | Val F1: 0.6339 | 17.0s
+2026-04-08 09:29:43 - [Fold2-Val] Cls — Acc: 0.7542 | P(macro): 0.6308 | R(macro): 0.6231 | F1(macro): 0.6265
+2026-04-08 09:29:43 - [Fold2-Val] Seg — Lesion IoU: 0.9809 | Lesion Dice: 0.9903
+2026-04-08 09:29:43 - [Fold2-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4255    0.3922    0.4082        51
+    no_tumor     0.8360    0.8541    0.8449       185
+
+    accuracy                         0.7542       236
+   macro avg     0.6308    0.6231    0.6265       236
+weighted avg     0.7473    0.7542    0.7505       236
+
+2026-04-08 09:29:43 -   Epoch [27/30] LR: 1.09e-06/1.09e-05 | Loss: 0.8354 (seg=0.0146, cls=0.4104) | Train Acc: 0.9214 | Val F1: 0.6265 | 17.0s
+2026-04-08 09:29:43 -   Early stopping at epoch 27 (patience=8, best_epoch=19)
+2026-04-08 09:29:43 -   Fold2 完成: best_epoch=19, best_val_f1=0.6819
+2026-04-08 09:29:44 -   Fold2 权重已保存: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260408_task2_SwinV2Tiny_segcls_19/20260408_task2_SwinV2Tiny_segcls_19_fold1.pth
+2026-04-08 09:29:44 -   患者分组验证通过: train 869 patients, val 218 patients, overlap=0
+2026-04-08 09:29:44 - 
+============================================================
+2026-04-08 09:29:44 - Fold 3/5
+2026-04-08 09:29:44 - ============================================================
+2026-04-08 09:29:44 -   Train: 973 (benign=241, no_tumor=732)
+2026-04-08 09:29:44 -   Val:   256 (benign=68, no_tumor=188)
+2026-04-08 09:29:46 -   Fold类别权重: benign=2.0187, no_tumor=0.6646
+2026-04-08 09:30:05 - [Fold3-Val] Cls — Acc: 0.6719 | P(macro): 0.6006 | R(macro): 0.6123 | F1(macro): 0.6040
+2026-04-08 09:30:05 - [Fold3-Val] Seg — Lesion IoU: 0.8004 | Lesion Dice: 0.8888
+2026-04-08 09:30:05 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4024    0.4853    0.4400        68
+    no_tumor     0.7989    0.7394    0.7680       188
+
+    accuracy                         0.6719       256
+   macro avg     0.6006    0.6123    0.6040       256
+weighted avg     0.6936    0.6719    0.6808       256
+
+2026-04-08 09:30:05 -   Epoch [1/30] LR: 2.50e-06/2.50e-05 | Loss: 2.3074 (seg=0.8647, cls=0.7214) | Train Acc: 0.6105 | Val F1: 0.6040 | 16.1s
+2026-04-08 09:30:05 -   *** Fold3 新最优 (Val F1: 0.6040, Epoch: 1) ***
+2026-04-08 09:30:25 - [Fold3-Val] Cls — Acc: 0.7617 | P(macro): 0.7002 | R(macro): 0.6031 | F1(macro): 0.6121
+2026-04-08 09:30:25 - [Fold3-Val] Seg — Lesion IoU: 0.8545 | Lesion Dice: 0.9213
+2026-04-08 09:30:25 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.6207    0.2647    0.3711        68
+    no_tumor     0.7797    0.9415    0.8530       188
+
+    accuracy                         0.7617       256
+   macro avg     0.7002    0.6031    0.6121       256
+weighted avg     0.7375    0.7617    0.7250       256
+
+2026-04-08 09:30:25 -   Epoch [2/30] LR: 5.00e-06/5.00e-05 | Loss: 1.8473 (seg=0.4148, cls=0.7163) | Train Acc: 0.5103 | Val F1: 0.6121 | 16.3s
+2026-04-08 09:30:25 -   *** Fold3 新最优 (Val F1: 0.6121, Epoch: 2) ***
+2026-04-08 09:30:46 - [Fold3-Val] Cls — Acc: 0.6445 | P(macro): 0.6058 | R(macro): 0.6313 | F1(macro): 0.6028
+2026-04-08 09:30:46 - [Fold3-Val] Seg — Lesion IoU: 0.8998 | Lesion Dice: 0.9471
+2026-04-08 09:30:46 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3905    0.6029    0.4740        68
+    no_tumor     0.8212    0.6596    0.7316       188
+
+    accuracy                         0.6445       256
+   macro avg     0.6058    0.6313    0.6028       256
+weighted avg     0.7068    0.6445    0.6631       256
+
+2026-04-08 09:30:46 -   Epoch [3/30] LR: 7.50e-06/7.50e-05 | Loss: 1.7059 (seg=0.3084, cls=0.6988) | Train Acc: 0.6653 | Val F1: 0.6028 | 16.9s
+2026-04-08 09:31:06 - [Fold3-Val] Cls — Acc: 0.6836 | P(macro): 0.6292 | R(macro): 0.6532 | F1(macro): 0.6331
+2026-04-08 09:31:06 - [Fold3-Val] Seg — Lesion IoU: 0.9305 | Lesion Dice: 0.9640
+2026-04-08 09:31:06 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4301    0.5882    0.4969        68
+    no_tumor     0.8282    0.7181    0.7692       188
+
+    accuracy                         0.6836       256
+   macro avg     0.6292    0.6532    0.6331       256
+weighted avg     0.7225    0.6836    0.6969       256
+
+2026-04-08 09:31:06 -   Epoch [4/30] LR: 1.00e-05/1.00e-04 | Loss: 1.6040 (seg=0.2481, cls=0.6779) | Train Acc: 0.6529 | Val F1: 0.6331 | 16.7s
+2026-04-08 09:31:06 -   *** Fold3 新最优 (Val F1: 0.6331, Epoch: 4) ***
+2026-04-08 09:31:27 - [Fold3-Val] Cls — Acc: 0.7930 | P(macro): 0.7555 | R(macro): 0.6619 | F1(macro): 0.6825
+2026-04-08 09:31:27 - [Fold3-Val] Seg — Lesion IoU: 0.9186 | Lesion Dice: 0.9575
+2026-04-08 09:31:27 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.7027    0.3824    0.4952        68
+    no_tumor     0.8082    0.9415    0.8698       188
+
+    accuracy                         0.7930       256
+   macro avg     0.7555    0.6619    0.6825       256
+weighted avg     0.7802    0.7930    0.7703       256
+
+2026-04-08 09:31:27 -   Epoch [5/30] LR: 1.25e-05/1.25e-04 | Loss: 1.5415 (seg=0.1993, cls=0.6711) | Train Acc: 0.6890 | Val F1: 0.6825 | 17.6s
+2026-04-08 09:31:27 -   *** Fold3 新最优 (Val F1: 0.6825, Epoch: 5) ***
+2026-04-08 09:31:47 - [Fold3-Val] Cls — Acc: 0.5117 | P(macro): 0.6313 | R(macro): 0.6394 | F1(macro): 0.5114
+2026-04-08 09:31:47 - [Fold3-Val] Seg — Lesion IoU: 0.9521 | Lesion Dice: 0.9754
+2026-04-08 09:31:47 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3425    0.9118    0.4980        68
+    no_tumor     0.9200    0.3670    0.5247       188
+
+    accuracy                         0.5117       256
+   macro avg     0.6313    0.6394    0.5114       256
+weighted avg     0.7666    0.5117    0.5176       256
+
+2026-04-08 09:31:47 -   Epoch [6/30] LR: 1.50e-05/1.50e-04 | Loss: 1.4709 (seg=0.1581, cls=0.6564) | Train Acc: 0.7056 | Val F1: 0.5114 | 16.5s
+2026-04-08 09:32:07 - [Fold3-Val] Cls — Acc: 0.7344 | P(macro): 0.6613 | R(macro): 0.6643 | F1(macro): 0.6627
+2026-04-08 09:32:07 - [Fold3-Val] Seg — Lesion IoU: 0.9433 | Lesion Dice: 0.9708
+2026-04-08 09:32:07 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5000    0.5147    0.5072        68
+    no_tumor     0.8226    0.8138    0.8182       188
+
+    accuracy                         0.7344       256
+   macro avg     0.6613    0.6643    0.6627       256
+weighted avg     0.7369    0.7344    0.7356       256
+
+2026-04-08 09:32:07 -   Epoch [7/30] LR: 1.75e-05/1.75e-04 | Loss: 1.4204 (seg=0.1227, cls=0.6488) | Train Acc: 0.6963 | Val F1: 0.6627 | 16.7s
+2026-04-08 09:32:26 - [Fold3-Val] Cls — Acc: 0.6445 | P(macro): 0.6427 | R(macro): 0.6829 | F1(macro): 0.6231
+2026-04-08 09:32:26 - [Fold3-Val] Seg — Lesion IoU: 0.9598 | Lesion Dice: 0.9794
+2026-04-08 09:32:26 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4094    0.7647    0.5333        68
+    no_tumor     0.8760    0.6011    0.7129       188
+
+    accuracy                         0.6445       256
+   macro avg     0.6427    0.6829    0.6231       256
+weighted avg     0.7520    0.6445    0.6652       256
+
+2026-04-08 09:32:26 -   Epoch [8/30] LR: 2.00e-05/2.00e-04 | Loss: 1.3858 (seg=0.0953, cls=0.6453) | Train Acc: 0.7169 | Val F1: 0.6231 | 16.2s
+2026-04-08 09:32:47 - [Fold3-Val] Cls — Acc: 0.7383 | P(macro): 0.6512 | R(macro): 0.6200 | F1(macro): 0.6289
+2026-04-08 09:32:47 - [Fold3-Val] Seg — Lesion IoU: 0.9637 | Lesion Dice: 0.9815
+2026-04-08 09:32:47 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5102    0.3676    0.4274        68
+    no_tumor     0.7923    0.8723    0.8304       188
+
+    accuracy                         0.7383       256
+   macro avg     0.6512    0.6200    0.6289       256
+weighted avg     0.7173    0.7383    0.7233       256
+
+2026-04-08 09:32:47 -   Epoch [9/30] LR: 1.99e-05/1.99e-04 | Loss: 1.2997 (seg=0.0764, cls=0.6116) | Train Acc: 0.7500 | Val F1: 0.6289 | 17.9s
+2026-04-08 09:33:07 - [Fold3-Val] Cls — Acc: 0.7266 | P(macro): 0.6699 | R(macro): 0.6965 | F1(macro): 0.6773
+2026-04-08 09:33:07 - [Fold3-Val] Seg — Lesion IoU: 0.9639 | Lesion Dice: 0.9816
+2026-04-08 09:33:07 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4886    0.6324    0.5513        68
+    no_tumor     0.8512    0.7606    0.8034       188
+
+    accuracy                         0.7266       256
+   macro avg     0.6699    0.6965    0.6773       256
+weighted avg     0.7549    0.7266    0.7364       256
+
+2026-04-08 09:33:07 -   Epoch [10/30] LR: 1.96e-05/1.96e-04 | Loss: 1.2948 (seg=0.0650, cls=0.6149) | Train Acc: 0.7510 | Val F1: 0.6773 | 17.3s
+2026-04-08 09:33:27 - [Fold3-Val] Cls — Acc: 0.6367 | P(macro): 0.6622 | R(macro): 0.7057 | F1(macro): 0.6240
+2026-04-08 09:33:27 - [Fold3-Val] Seg — Lesion IoU: 0.9608 | Lesion Dice: 0.9800
+2026-04-08 09:33:27 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4113    0.8529    0.5550        68
+    no_tumor     0.9130    0.5585    0.6931       188
+
+    accuracy                         0.6367       256
+   macro avg     0.6622    0.7057    0.6240       256
+weighted avg     0.7798    0.6367    0.6564       256
+
+2026-04-08 09:33:27 -   Epoch [11/30] LR: 1.91e-05/1.91e-04 | Loss: 1.2616 (seg=0.0556, cls=0.6030) | Train Acc: 0.7769 | Val F1: 0.6240 | 16.4s
+2026-04-08 09:33:47 - [Fold3-Val] Cls — Acc: 0.7500 | P(macro): 0.6904 | R(macro): 0.7125 | F1(macro): 0.6983
+2026-04-08 09:33:47 - [Fold3-Val] Seg — Lesion IoU: 0.9583 | Lesion Dice: 0.9787
+2026-04-08 09:33:47 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5244    0.6324    0.5733        68
+    no_tumor     0.8563    0.7926    0.8232       188
+
+    accuracy                         0.7500       256
+   macro avg     0.6904    0.7125    0.6983       256
+weighted avg     0.7682    0.7500    0.7568       256
+
+2026-04-08 09:33:47 -   Epoch [12/30] LR: 1.84e-05/1.84e-04 | Loss: 1.1687 (seg=0.0476, cls=0.5605) | Train Acc: 0.7831 | Val F1: 0.6983 | 17.9s
+2026-04-08 09:33:48 -   *** Fold3 新最优 (Val F1: 0.6983, Epoch: 12) ***
+2026-04-08 09:34:09 - [Fold3-Val] Cls — Acc: 0.7188 | P(macro): 0.6812 | R(macro): 0.7240 | F1(macro): 0.6848
+2026-04-08 09:34:09 - [Fold3-Val] Seg — Lesion IoU: 0.9623 | Lesion Dice: 0.9807
+2026-04-08 09:34:09 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4808    0.7353    0.5814        68
+    no_tumor     0.8816    0.7128    0.7882       188
+
+    accuracy                         0.7188       256
+   macro avg     0.6812    0.7240    0.6848       256
+weighted avg     0.7751    0.7188    0.7333       256
+
+2026-04-08 09:34:09 -   Epoch [13/30] LR: 1.76e-05/1.76e-04 | Loss: 1.1825 (seg=0.0447, cls=0.5689) | Train Acc: 0.7955 | Val F1: 0.6848 | 17.9s
+2026-04-08 09:34:29 - [Fold3-Val] Cls — Acc: 0.7383 | P(macro): 0.6414 | R(macro): 0.5684 | F1(macro): 0.5670
+2026-04-08 09:34:29 - [Fold3-Val] Seg — Lesion IoU: 0.9701 | Lesion Dice: 0.9848
+2026-04-08 09:34:29 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5185    0.2059    0.2947        68
+    no_tumor     0.7642    0.9309    0.8393       188
+
+    accuracy                         0.7383       256
+   macro avg     0.6414    0.5684    0.5670       256
+weighted avg     0.6989    0.7383    0.6947       256
+
+2026-04-08 09:34:29 -   Epoch [14/30] LR: 1.66e-05/1.66e-04 | Loss: 1.1390 (seg=0.0377, cls=0.5506) | Train Acc: 0.7965 | Val F1: 0.5670 | 16.8s
+2026-04-08 09:34:48 - [Fold3-Val] Cls — Acc: 0.7070 | P(macro): 0.6704 | R(macro): 0.7114 | F1(macro): 0.6726
+2026-04-08 09:34:48 - [Fold3-Val] Seg — Lesion IoU: 0.9700 | Lesion Dice: 0.9847
+2026-04-08 09:34:48 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4667    0.7206    0.5665        68
+    no_tumor     0.8742    0.7021    0.7788       188
+
+    accuracy                         0.7070       256
+   macro avg     0.6704    0.7114    0.6726       256
+weighted avg     0.7659    0.7070    0.7224       256
+
+2026-04-08 09:34:48 -   Epoch [15/30] LR: 1.55e-05/1.55e-04 | Loss: 1.1050 (seg=0.0346, cls=0.5352) | Train Acc: 0.8099 | Val F1: 0.6726 | 16.8s
+2026-04-08 09:35:09 - [Fold3-Val] Cls — Acc: 0.7109 | P(macro): 0.6295 | R(macro): 0.6295 | F1(macro): 0.6295
+2026-04-08 09:35:09 - [Fold3-Val] Seg — Lesion IoU: 0.9692 | Lesion Dice: 0.9843
+2026-04-08 09:35:09 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4559    0.4559    0.4559        68
+    no_tumor     0.8032    0.8032    0.8032       188
+
+    accuracy                         0.7109       256
+   macro avg     0.6295    0.6295    0.6295       256
+weighted avg     0.7109    0.7109    0.7109       256
+
+2026-04-08 09:35:09 -   Epoch [16/30] LR: 1.42e-05/1.42e-04 | Loss: 1.1392 (seg=0.0313, cls=0.5540) | Train Acc: 0.8068 | Val F1: 0.6295 | 17.1s
+2026-04-08 09:35:29 - [Fold3-Val] Cls — Acc: 0.6484 | P(macro): 0.6243 | R(macro): 0.6574 | F1(macro): 0.6164
+2026-04-08 09:35:29 - [Fold3-Val] Seg — Lesion IoU: 0.9656 | Lesion Dice: 0.9825
+2026-04-08 09:35:29 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4035    0.6765    0.5055        68
+    no_tumor     0.8451    0.6383    0.7273       188
+
+    accuracy                         0.6484       256
+   macro avg     0.6243    0.6574    0.6164       256
+weighted avg     0.7278    0.6484    0.6684       256
+
+2026-04-08 09:35:29 -   Epoch [17/30] LR: 1.29e-05/1.29e-04 | Loss: 1.0535 (seg=0.0293, cls=0.5121) | Train Acc: 0.8409 | Val F1: 0.6164 | 16.5s
+2026-04-08 09:35:49 - [Fold3-Val] Cls — Acc: 0.7266 | P(macro): 0.6458 | R(macro): 0.6402 | F1(macro): 0.6427
+2026-04-08 09:35:49 - [Fold3-Val] Seg — Lesion IoU: 0.9747 | Lesion Dice: 0.9872
+2026-04-08 09:35:49 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4844    0.4559    0.4697        68
+    no_tumor     0.8073    0.8245    0.8158       188
+
+    accuracy                         0.7266       256
+   macro avg     0.6458    0.6402    0.6427       256
+weighted avg     0.7215    0.7266    0.7239       256
+
+2026-04-08 09:35:49 -   Epoch [18/30] LR: 1.15e-05/1.15e-04 | Loss: 1.0433 (seg=0.0275, cls=0.5079) | Train Acc: 0.8533 | Val F1: 0.6427 | 16.9s
+2026-04-08 09:36:08 - [Fold3-Val] Cls — Acc: 0.7500 | P(macro): 0.6720 | R(macro): 0.6467 | F1(macro): 0.6557
+2026-04-08 09:36:08 - [Fold3-Val] Seg — Lesion IoU: 0.9758 | Lesion Dice: 0.9877
+2026-04-08 09:36:08 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5370    0.4265    0.4754        68
+    no_tumor     0.8069    0.8670    0.8359       188
+
+    accuracy                         0.7500       256
+   macro avg     0.6720    0.6467    0.6557       256
+weighted avg     0.7352    0.7500    0.7401       256
+
+2026-04-08 09:36:08 -   Epoch [19/30] LR: 1.01e-05/1.01e-04 | Loss: 0.9841 (seg=0.0260, cls=0.4791) | Train Acc: 0.8791 | Val F1: 0.6557 | 16.2s
+2026-04-08 09:36:29 - [Fold3-Val] Cls — Acc: 0.7695 | P(macro): 0.7081 | R(macro): 0.6319 | F1(macro): 0.6466
+2026-04-08 09:36:29 - [Fold3-Val] Seg — Lesion IoU: 0.9769 | Lesion Dice: 0.9883
+2026-04-08 09:36:29 - [Fold3-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.6216    0.3382    0.4381        68
+    no_tumor     0.7945    0.9255    0.8550       188
+
+    accuracy                         0.7695       256
+   macro avg     0.7081    0.6319    0.6466       256
+weighted avg     0.7486    0.7695    0.7443       256
+
+2026-04-08 09:36:29 -   Epoch [20/30] LR: 8.69e-06/8.69e-05 | Loss: 0.9607 (seg=0.0245, cls=0.4681) | Train Acc: 0.8853 | Val F1: 0.6466 | 17.4s
+2026-04-08 09:36:29 -   Early stopping at epoch 20 (patience=8, best_epoch=12)
+2026-04-08 09:36:29 -   Fold3 完成: best_epoch=12, best_val_f1=0.6983
+2026-04-08 09:36:29 -   Fold3 权重已保存: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260408_task2_SwinV2Tiny_segcls_19/20260408_task2_SwinV2Tiny_segcls_19_fold2.pth
+2026-04-08 09:36:29 -   患者分组验证通过: train 870 patients, val 217 patients, overlap=0
+2026-04-08 09:36:29 - 
+============================================================
+2026-04-08 09:36:29 - Fold 4/5
+2026-04-08 09:36:29 - ============================================================
+2026-04-08 09:36:29 -   Train: 978 (benign=235, no_tumor=743)
+2026-04-08 09:36:29 -   Val:   251 (benign=74, no_tumor=177)
+2026-04-08 09:36:31 -   Fold类别权重: benign=2.0809, no_tumor=0.6581
+2026-04-08 09:36:51 - [Fold4-Val] Cls — Acc: 0.6016 | P(macro): 0.4826 | R(macro): 0.4855 | F1(macro): 0.4810
+2026-04-08 09:36:51 - [Fold4-Val] Seg — Lesion IoU: 0.8251 | Lesion Dice: 0.9039
+2026-04-08 09:36:51 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.2679    0.2027    0.2308        74
+    no_tumor     0.6974    0.7684    0.7312       177
+
+    accuracy                         0.6016       251
+   macro avg     0.4826    0.4855    0.4810       251
+weighted avg     0.5708    0.6016    0.5837       251
+
+2026-04-08 09:36:51 -   Epoch [1/30] LR: 2.50e-06/2.50e-05 | Loss: 2.0997 (seg=0.6515, cls=0.7241) | Train Acc: 0.4098 | Val F1: 0.4810 | 16.7s
+2026-04-08 09:36:51 -   *** Fold4 新最优 (Val F1: 0.4810, Epoch: 1) ***
+2026-04-08 09:37:11 - [Fold4-Val] Cls — Acc: 0.6813 | P(macro): 0.5976 | R(macro): 0.5813 | F1(macro): 0.5848
+2026-04-08 09:37:11 - [Fold4-Val] Seg — Lesion IoU: 0.9213 | Lesion Dice: 0.9590
+2026-04-08 09:37:11 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4464    0.3378    0.3846        74
+    no_tumor     0.7487    0.8249    0.7849       177
+
+    accuracy                         0.6813       251
+   macro avg     0.5976    0.5813    0.5848       251
+weighted avg     0.6596    0.6813    0.6669       251
+
+2026-04-08 09:37:11 -   Epoch [2/30] LR: 5.00e-06/5.00e-05 | Loss: 1.6905 (seg=0.2611, cls=0.7147) | Train Acc: 0.5943 | Val F1: 0.5848 | 17.4s
+2026-04-08 09:37:12 -   *** Fold4 新最优 (Val F1: 0.5848, Epoch: 2) ***
+2026-04-08 09:37:32 - [Fold4-Val] Cls — Acc: 0.7171 | P(macro): 0.6574 | R(macro): 0.5478 | F1(macro): 0.5235
+2026-04-08 09:37:32 - [Fold4-Val] Seg — Lesion IoU: 0.9407 | Lesion Dice: 0.9694
+2026-04-08 09:37:32 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5882    0.1351    0.2198        74
+    no_tumor     0.7265    0.9605    0.8273       177
+
+    accuracy                         0.7171       251
+   macro avg     0.6574    0.5478    0.5235       251
+weighted avg     0.6857    0.7171    0.6482       251
+
+2026-04-08 09:37:32 -   Epoch [3/30] LR: 7.50e-06/7.50e-05 | Loss: 1.5597 (seg=0.1759, cls=0.6919) | Train Acc: 0.6096 | Val F1: 0.5235 | 16.3s
+2026-04-08 09:37:52 - [Fold4-Val] Cls — Acc: 0.7092 | P(macro): 0.6318 | R(macro): 0.5933 | F1(macro): 0.5980
+2026-04-08 09:37:52 - [Fold4-Val] Seg — Lesion IoU: 0.9472 | Lesion Dice: 0.9729
+2026-04-08 09:37:52 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5111    0.3108    0.3866        74
+    no_tumor     0.7524    0.8757    0.8094       177
+
+    accuracy                         0.7092       251
+   macro avg     0.6318    0.5933    0.5980       251
+weighted avg     0.6813    0.7092    0.6847       251
+
+2026-04-08 09:37:52 -   Epoch [4/30] LR: 1.00e-05/1.00e-04 | Loss: 1.4839 (seg=0.1331, cls=0.6754) | Train Acc: 0.6650 | Val F1: 0.5980 | 16.9s
+2026-04-08 09:37:52 -   *** Fold4 新最优 (Val F1: 0.5980, Epoch: 4) ***
+2026-04-08 09:38:13 - [Fold4-Val] Cls — Acc: 0.6653 | P(macro): 0.5853 | R(macro): 0.5779 | F1(macro): 0.5803
+2026-04-08 09:38:13 - [Fold4-Val] Seg — Lesion IoU: 0.9577 | Lesion Dice: 0.9784
+2026-04-08 09:38:13 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4219    0.3649    0.3913        74
+    no_tumor     0.7487    0.7910    0.7692       177
+
+    accuracy                         0.6653       251
+   macro avg     0.5853    0.5779    0.5803       251
+weighted avg     0.6523    0.6653    0.6578       251
+
+2026-04-08 09:38:13 -   Epoch [5/30] LR: 1.25e-05/1.25e-04 | Loss: 1.4204 (seg=0.1065, cls=0.6569) | Train Acc: 0.7029 | Val F1: 0.5803 | 18.3s
+2026-04-08 09:38:34 - [Fold4-Val] Cls — Acc: 0.7092 | P(macro): 0.6349 | R(macro): 0.6051 | F1(macro): 0.6112
+2026-04-08 09:38:34 - [Fold4-Val] Seg — Lesion IoU: 0.9635 | Lesion Dice: 0.9814
+2026-04-08 09:38:34 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5098    0.3514    0.4160        74
+    no_tumor     0.7600    0.8588    0.8064       177
+
+    accuracy                         0.7092       251
+   macro avg     0.6349    0.6051    0.6112       251
+weighted avg     0.6862    0.7092    0.6913       251
+
+2026-04-08 09:38:34 -   Epoch [6/30] LR: 1.50e-05/1.50e-04 | Loss: 1.3543 (seg=0.0867, cls=0.6338) | Train Acc: 0.7244 | Val F1: 0.6112 | 18.3s
+2026-04-08 09:38:35 -   *** Fold4 新最优 (Val F1: 0.6112, Epoch: 6) ***
+2026-04-08 09:38:55 - [Fold4-Val] Cls — Acc: 0.7410 | P(macro): 0.6917 | R(macro): 0.6159 | F1(macro): 0.6241
+2026-04-08 09:38:55 - [Fold4-Val] Seg — Lesion IoU: 0.9685 | Lesion Dice: 0.9840
+2026-04-08 09:38:55 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.6216    0.3108    0.4144        74
+    no_tumor     0.7617    0.9209    0.8338       177
+
+    accuracy                         0.7410       251
+   macro avg     0.6917    0.6159    0.6241       251
+weighted avg     0.7204    0.7410    0.7101       251
+
+2026-04-08 09:38:55 -   Epoch [7/30] LR: 1.75e-05/1.75e-04 | Loss: 1.3621 (seg=0.0701, cls=0.6460) | Train Acc: 0.7428 | Val F1: 0.6241 | 17.0s
+2026-04-08 09:38:55 -   *** Fold4 新最优 (Val F1: 0.6241, Epoch: 7) ***
+2026-04-08 09:39:16 - [Fold4-Val] Cls — Acc: 0.6534 | P(macro): 0.6152 | R(macro): 0.6323 | F1(macro): 0.6163
+2026-04-08 09:39:16 - [Fold4-Val] Seg — Lesion IoU: 0.9627 | Lesion Dice: 0.9810
+2026-04-08 09:39:16 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4343    0.5811    0.4971        74
+    no_tumor     0.7961    0.6836    0.7356       177
+
+    accuracy                         0.6534       251
+   macro avg     0.6152    0.6323    0.6163       251
+weighted avg     0.6894    0.6534    0.6653       251
+
+2026-04-08 09:39:16 -   Epoch [8/30] LR: 2.00e-05/2.00e-04 | Loss: 1.3304 (seg=0.0587, cls=0.6358) | Train Acc: 0.7295 | Val F1: 0.6163 | 17.0s
+2026-04-08 09:39:37 - [Fold4-Val] Cls — Acc: 0.6614 | P(macro): 0.6013 | R(macro): 0.6065 | F1(macro): 0.6033
+2026-04-08 09:39:37 - [Fold4-Val] Seg — Lesion IoU: 0.9678 | Lesion Dice: 0.9836
+2026-04-08 09:39:37 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4321    0.4730    0.4516        74
+    no_tumor     0.7706    0.7401    0.7550       177
+
+    accuracy                         0.6614       251
+   macro avg     0.6013    0.6065    0.6033       251
+weighted avg     0.6708    0.6614    0.6656       251
+
+2026-04-08 09:39:37 -   Epoch [9/30] LR: 1.99e-05/1.99e-04 | Loss: 1.2555 (seg=0.0472, cls=0.6042) | Train Acc: 0.7469 | Val F1: 0.6033 | 17.2s
+2026-04-08 09:39:57 - [Fold4-Val] Cls — Acc: 0.6773 | P(macro): 0.6402 | R(macro): 0.6611 | F1(macro): 0.6428
+2026-04-08 09:39:57 - [Fold4-Val] Seg — Lesion IoU: 0.9614 | Lesion Dice: 0.9803
+2026-04-08 09:39:57 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4646    0.6216    0.5318        74
+    no_tumor     0.8158    0.7006    0.7538       177
+
+    accuracy                         0.6773       251
+   macro avg     0.6402    0.6611    0.6428       251
+weighted avg     0.7123    0.6773    0.6883       251
+
+2026-04-08 09:39:57 -   Epoch [10/30] LR: 1.96e-05/1.96e-04 | Loss: 1.2650 (seg=0.0398, cls=0.6126) | Train Acc: 0.7654 | Val F1: 0.6428 | 17.0s
+2026-04-08 09:39:57 -   *** Fold4 新最优 (Val F1: 0.6428, Epoch: 10) ***
+2026-04-08 09:40:17 - [Fold4-Val] Cls — Acc: 0.7211 | P(macro): 0.6520 | R(macro): 0.6057 | F1(macro): 0.6122
+2026-04-08 09:40:17 - [Fold4-Val] Seg — Lesion IoU: 0.9664 | Lesion Dice: 0.9829
+2026-04-08 09:40:17 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5455    0.3243    0.4068        74
+    no_tumor     0.7585    0.8870    0.8177       177
+
+    accuracy                         0.7211       251
+   macro avg     0.6520    0.6057    0.6122       251
+weighted avg     0.6957    0.7211    0.6966       251
+
+2026-04-08 09:40:17 -   Epoch [11/30] LR: 1.91e-05/1.91e-04 | Loss: 1.2452 (seg=0.0343, cls=0.6054) | Train Acc: 0.7551 | Val F1: 0.6122 | 17.3s
+2026-04-08 09:40:38 - [Fold4-Val] Cls — Acc: 0.7092 | P(macro): 0.6328 | R(macro): 0.5972 | F1(macro): 0.6025
+2026-04-08 09:40:38 - [Fold4-Val] Seg — Lesion IoU: 0.9752 | Lesion Dice: 0.9875
+2026-04-08 09:40:38 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5106    0.3243    0.3967        74
+    no_tumor     0.7549    0.8701    0.8084       177
+
+    accuracy                         0.7092       251
+   macro avg     0.6328    0.5972    0.6025       251
+weighted avg     0.6829    0.7092    0.6870       251
+
+2026-04-08 09:40:38 -   Epoch [12/30] LR: 1.84e-05/1.84e-04 | Loss: 1.1978 (seg=0.0297, cls=0.5841) | Train Acc: 0.7961 | Val F1: 0.6025 | 16.6s
+2026-04-08 09:40:58 - [Fold4-Val] Cls — Acc: 0.6175 | P(macro): 0.6119 | R(macro): 0.6344 | F1(macro): 0.5982
+2026-04-08 09:40:58 - [Fold4-Val] Seg — Lesion IoU: 0.9774 | Lesion Dice: 0.9886
+2026-04-08 09:40:58 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4098    0.6757    0.5102        74
+    no_tumor     0.8140    0.5932    0.6863       177
+
+    accuracy                         0.6175       251
+   macro avg     0.6119    0.6344    0.5982       251
+weighted avg     0.6948    0.6175    0.6344       251
+
+2026-04-08 09:40:58 -   Epoch [13/30] LR: 1.76e-05/1.76e-04 | Loss: 1.1943 (seg=0.0259, cls=0.5842) | Train Acc: 0.7992 | Val F1: 0.5982 | 16.9s
+2026-04-08 09:41:19 - [Fold4-Val] Cls — Acc: 0.7291 | P(macro): 0.6661 | R(macro): 0.6113 | F1(macro): 0.6188
+2026-04-08 09:41:19 - [Fold4-Val] Seg — Lesion IoU: 0.9566 | Lesion Dice: 0.9778
+2026-04-08 09:41:19 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5714    0.3243    0.4138        74
+    no_tumor     0.7608    0.8983    0.8238       177
+
+    accuracy                         0.7291       251
+   macro avg     0.6661    0.6113    0.6188       251
+weighted avg     0.7049    0.7291    0.7029       251
+
+2026-04-08 09:41:19 -   Epoch [14/30] LR: 1.66e-05/1.66e-04 | Loss: 1.1098 (seg=0.0234, cls=0.5432) | Train Acc: 0.8074 | Val F1: 0.6188 | 18.1s
+2026-04-08 09:41:40 - [Fold4-Val] Cls — Acc: 0.7291 | P(macro): 0.6684 | R(macro): 0.5995 | F1(macro): 0.6042
+2026-04-08 09:41:40 - [Fold4-Val] Seg — Lesion IoU: 0.9780 | Lesion Dice: 0.9889
+2026-04-08 09:41:40 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5833    0.2838    0.3818        74
+    no_tumor     0.7535    0.9153    0.8265       177
+
+    accuracy                         0.7291       251
+   macro avg     0.6684    0.5995    0.6042       251
+weighted avg     0.7033    0.7291    0.6954       251
+
+2026-04-08 09:41:40 -   Epoch [15/30] LR: 1.55e-05/1.55e-04 | Loss: 1.1321 (seg=0.0224, cls=0.5548) | Train Acc: 0.8186 | Val F1: 0.6042 | 18.1s
+2026-04-08 09:42:00 - [Fold4-Val] Cls — Acc: 0.6454 | P(macro): 0.6095 | R(macro): 0.6267 | F1(macro): 0.6096
+2026-04-08 09:42:00 - [Fold4-Val] Seg — Lesion IoU: 0.9736 | Lesion Dice: 0.9866
+2026-04-08 09:42:00 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4257    0.5811    0.4914        74
+    no_tumor     0.7933    0.6723    0.7278       177
+
+    accuracy                         0.6454       251
+   macro avg     0.6095    0.6267    0.6096       251
+weighted avg     0.6850    0.6454    0.6581       251
+
+2026-04-08 09:42:00 -   Epoch [16/30] LR: 1.42e-05/1.42e-04 | Loss: 1.0496 (seg=0.0206, cls=0.5145) | Train Acc: 0.8361 | Val F1: 0.6096 | 17.1s
+2026-04-08 09:42:20 - [Fold4-Val] Cls — Acc: 0.7251 | P(macro): 0.6617 | R(macro): 0.5888 | F1(macro): 0.5902
+2026-04-08 09:42:20 - [Fold4-Val] Seg — Lesion IoU: 0.9801 | Lesion Dice: 0.9899
+2026-04-08 09:42:20 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5758    0.2568    0.3551        74
+    no_tumor     0.7477    0.9209    0.8253       177
+
+    accuracy                         0.7251       251
+   macro avg     0.6617    0.5888    0.5902       251
+weighted avg     0.6970    0.7251    0.6867       251
+
+2026-04-08 09:42:20 -   Epoch [17/30] LR: 1.29e-05/1.29e-04 | Loss: 1.0536 (seg=0.0191, cls=0.5173) | Train Acc: 0.8381 | Val F1: 0.5902 | 17.1s
+2026-04-08 09:42:41 - [Fold4-Val] Cls — Acc: 0.6574 | P(macro): 0.5854 | R(macro): 0.5841 | F1(macro): 0.5847
+2026-04-08 09:42:41 - [Fold4-Val] Seg — Lesion IoU: 0.9821 | Lesion Dice: 0.9910
+2026-04-08 09:42:41 - [Fold4-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4167    0.4054    0.4110        74
+    no_tumor     0.7542    0.7627    0.7584       177
+
+    accuracy                         0.6574       251
+   macro avg     0.5854    0.5841    0.5847       251
+weighted avg     0.6547    0.6574    0.6560       251
+
+2026-04-08 09:42:41 -   Epoch [18/30] LR: 1.15e-05/1.15e-04 | Loss: 1.0068 (seg=0.0178, cls=0.4945) | Train Acc: 0.8463 | Val F1: 0.5847 | 17.4s
+2026-04-08 09:42:41 -   Early stopping at epoch 18 (patience=8, best_epoch=10)
+2026-04-08 09:42:41 -   Fold4 完成: best_epoch=10, best_val_f1=0.6428
+2026-04-08 09:42:41 -   Fold4 权重已保存: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260408_task2_SwinV2Tiny_segcls_19/20260408_task2_SwinV2Tiny_segcls_19_fold3.pth
+2026-04-08 09:42:41 -   患者分组验证通过: train 869 patients, val 218 patients, overlap=0
+2026-04-08 09:42:41 - 
+============================================================
+2026-04-08 09:42:41 - Fold 5/5
+2026-04-08 09:42:41 - ============================================================
+2026-04-08 09:42:41 -   Train: 977 (benign=239, no_tumor=738)
+2026-04-08 09:42:41 -   Val:   252 (benign=70, no_tumor=182)
+2026-04-08 09:42:44 -   Fold类别权重: benign=2.0439, no_tumor=0.6619
+2026-04-08 09:43:04 - [Fold5-Val] Cls — Acc: 0.7183 | P(macro): 0.6082 | R(macro): 0.5412 | F1(macro): 0.5239
+2026-04-08 09:43:04 - [Fold5-Val] Seg — Lesion IoU: 0.8514 | Lesion Dice: 0.9195
+2026-04-08 09:43:04 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4762    0.1429    0.2198        70
+    no_tumor     0.7403    0.9396    0.8281       182
+
+    accuracy                         0.7183       252
+   macro avg     0.6082    0.5412    0.5239       252
+weighted avg     0.6669    0.7183    0.6591       252
+
+2026-04-08 09:43:04 -   Epoch [1/30] LR: 2.50e-06/2.50e-05 | Loss: 2.1864 (seg=0.7408, cls=0.7228) | Train Acc: 0.6609 | Val F1: 0.5239 | 17.5s
+2026-04-08 09:43:04 -   *** Fold5 新最优 (Val F1: 0.5239, Epoch: 1) ***
+2026-04-08 09:43:24 - [Fold5-Val] Cls — Acc: 0.5754 | P(macro): 0.5772 | R(macro): 0.5962 | F1(macro): 0.5542
+2026-04-08 09:43:24 - [Fold5-Val] Seg — Lesion IoU: 0.8851 | Lesion Dice: 0.9389
+2026-04-08 09:43:24 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3543    0.6429    0.4569        70
+    no_tumor     0.8000    0.5495    0.6515       182
+
+    accuracy                         0.5754       252
+   macro avg     0.5772    0.5962    0.5542       252
+weighted avg     0.6762    0.5754    0.5974       252
+
+2026-04-08 09:43:24 -   Epoch [2/30] LR: 5.00e-06/5.00e-05 | Loss: 1.7851 (seg=0.3522, cls=0.7165) | Train Acc: 0.6434 | Val F1: 0.5542 | 16.9s
+2026-04-08 09:43:25 -   *** Fold5 新最优 (Val F1: 0.5542, Epoch: 2) ***
+2026-04-08 09:43:45 - [Fold5-Val] Cls — Acc: 0.7103 | P(macro): 0.6420 | R(macro): 0.6456 | F1(macro): 0.6436
+2026-04-08 09:43:45 - [Fold5-Val] Seg — Lesion IoU: 0.9242 | Lesion Dice: 0.9605
+2026-04-08 09:43:45 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4795    0.5000    0.4895        70
+    no_tumor     0.8045    0.7912    0.7978       182
+
+    accuracy                         0.7103       252
+   macro avg     0.6420    0.6456    0.6436       252
+weighted avg     0.7142    0.7103    0.7122       252
+
+2026-04-08 09:43:45 -   Epoch [3/30] LR: 7.50e-06/7.50e-05 | Loss: 1.6538 (seg=0.2551, cls=0.6994) | Train Acc: 0.5789 | Val F1: 0.6436 | 17.0s
+2026-04-08 09:43:46 -   *** Fold5 新最优 (Val F1: 0.6436, Epoch: 3) ***
+2026-04-08 09:44:07 - [Fold5-Val] Cls — Acc: 0.7460 | P(macro): 0.6759 | R(macro): 0.6352 | F1(macro): 0.6459
+2026-04-08 09:44:07 - [Fold5-Val] Seg — Lesion IoU: 0.9449 | Lesion Dice: 0.9716
+2026-04-08 09:44:07 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5625    0.3857    0.4576        70
+    no_tumor     0.7892    0.8846    0.8342       182
+
+    accuracy                         0.7460       252
+   macro avg     0.6759    0.6352    0.6459       252
+weighted avg     0.7262    0.7460    0.7296       252
+
+2026-04-08 09:44:07 -   Epoch [4/30] LR: 1.00e-05/1.00e-04 | Loss: 1.5630 (seg=0.2002, cls=0.6814) | Train Acc: 0.6568 | Val F1: 0.6459 | 17.4s
+2026-04-08 09:44:07 -   *** Fold5 新最优 (Val F1: 0.6459, Epoch: 4) ***
+2026-04-08 09:44:28 - [Fold5-Val] Cls — Acc: 0.7222 | P(macro): 0.6538 | R(macro): 0.6538 | F1(macro): 0.6538
+2026-04-08 09:44:28 - [Fold5-Val] Seg — Lesion IoU: 0.9583 | Lesion Dice: 0.9787
+2026-04-08 09:44:28 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5000    0.5000    0.5000        70
+    no_tumor     0.8077    0.8077    0.8077       182
+
+    accuracy                         0.7222       252
+   macro avg     0.6538    0.6538    0.6538       252
+weighted avg     0.7222    0.7222    0.7222       252
+
+2026-04-08 09:44:28 -   Epoch [5/30] LR: 1.25e-05/1.25e-04 | Loss: 1.4746 (seg=0.1622, cls=0.6562) | Train Acc: 0.6803 | Val F1: 0.6538 | 17.0s
+2026-04-08 09:44:28 -   *** Fold5 新最优 (Val F1: 0.6538, Epoch: 5) ***
+2026-04-08 09:44:47 - [Fold5-Val] Cls — Acc: 0.6032 | P(macro): 0.5795 | R(macro): 0.5978 | F1(macro): 0.5700
+2026-04-08 09:44:47 - [Fold5-Val] Seg — Lesion IoU: 0.9284 | Lesion Dice: 0.9628
+2026-04-08 09:44:47 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3661    0.5857    0.4505        70
+    no_tumor     0.7929    0.6099    0.6894       182
+
+    accuracy                         0.6032       252
+   macro avg     0.5795    0.5978    0.5700       252
+weighted avg     0.6743    0.6032    0.6231       252
+
+2026-04-08 09:44:47 -   Epoch [6/30] LR: 1.50e-05/1.50e-04 | Loss: 1.4618 (seg=0.1313, cls=0.6652) | Train Acc: 0.6834 | Val F1: 0.5700 | 16.1s
+2026-04-08 09:45:08 - [Fold5-Val] Cls — Acc: 0.7659 | P(macro): 0.7278 | R(macro): 0.6225 | F1(macro): 0.6347
+2026-04-08 09:45:08 - [Fold5-Val] Seg — Lesion IoU: 0.9603 | Lesion Dice: 0.9797
+2026-04-08 09:45:08 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.6774    0.3000    0.4158        70
+    no_tumor     0.7783    0.9451    0.8536       182
+
+    accuracy                         0.7659       252
+   macro avg     0.7278    0.6225    0.6347       252
+weighted avg     0.7503    0.7659    0.7320       252
+
+2026-04-08 09:45:08 -   Epoch [7/30] LR: 1.75e-05/1.75e-04 | Loss: 1.4160 (seg=0.1054, cls=0.6553) | Train Acc: 0.6547 | Val F1: 0.6347 | 17.3s
+2026-04-08 09:45:28 - [Fold5-Val] Cls — Acc: 0.7421 | P(macro): 0.6727 | R(macro): 0.6544 | F1(macro): 0.6614
+2026-04-08 09:45:28 - [Fold5-Val] Seg — Lesion IoU: 0.9677 | Lesion Dice: 0.9836
+2026-04-08 09:45:28 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5424    0.4571    0.4961        70
+    no_tumor     0.8031    0.8516    0.8267       182
+
+    accuracy                         0.7421       252
+   macro avg     0.6727    0.6544    0.6614       252
+weighted avg     0.7307    0.7421    0.7348       252
+
+2026-04-08 09:45:28 -   Epoch [8/30] LR: 2.00e-05/2.00e-04 | Loss: 1.3687 (seg=0.0763, cls=0.6462) | Train Acc: 0.7254 | Val F1: 0.6614 | 16.6s
+2026-04-08 09:45:28 -   *** Fold5 新最优 (Val F1: 0.6614, Epoch: 8) ***
+2026-04-08 09:45:49 - [Fold5-Val] Cls — Acc: 0.7619 | P(macro): 0.7025 | R(macro): 0.6989 | F1(macro): 0.7006
+2026-04-08 09:45:49 - [Fold5-Val] Seg — Lesion IoU: 0.9717 | Lesion Dice: 0.9857
+2026-04-08 09:45:49 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5735    0.5571    0.5652        70
+    no_tumor     0.8315    0.8407    0.8361       182
+
+    accuracy                         0.7619       252
+   macro avg     0.7025    0.6989    0.7006       252
+weighted avg     0.7599    0.7619    0.7608       252
+
+2026-04-08 09:45:49 -   Epoch [9/30] LR: 1.99e-05/1.99e-04 | Loss: 1.3040 (seg=0.0571, cls=0.6235) | Train Acc: 0.7418 | Val F1: 0.7006 | 17.9s
+2026-04-08 09:45:49 -   *** Fold5 新最优 (Val F1: 0.7006, Epoch: 9) ***
+2026-04-08 09:46:10 - [Fold5-Val] Cls — Acc: 0.6746 | P(macro): 0.6518 | R(macro): 0.6868 | F1(macro): 0.6474
+2026-04-08 09:46:10 - [Fold5-Val] Seg — Lesion IoU: 0.9738 | Lesion Dice: 0.9867
+2026-04-08 09:46:10 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4464    0.7143    0.5495        70
+    no_tumor     0.8571    0.6593    0.7453       182
+
+    accuracy                         0.6746       252
+   macro avg     0.6518    0.6868    0.6474       252
+weighted avg     0.7431    0.6746    0.6909       252
+
+2026-04-08 09:46:10 -   Epoch [10/30] LR: 1.96e-05/1.96e-04 | Loss: 1.2379 (seg=0.0444, cls=0.5968) | Train Acc: 0.7510 | Val F1: 0.6474 | 17.4s
+2026-04-08 09:46:29 - [Fold5-Val] Cls — Acc: 0.6865 | P(macro): 0.6403 | R(macro): 0.6643 | F1(macro): 0.6441
+2026-04-08 09:46:29 - [Fold5-Val] Seg — Lesion IoU: 0.9512 | Lesion Dice: 0.9750
+2026-04-08 09:46:29 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4526    0.6143    0.5212        70
+    no_tumor     0.8280    0.7143    0.7670       182
+
+    accuracy                         0.6865       252
+   macro avg     0.6403    0.6643    0.6441       252
+weighted avg     0.7237    0.6865    0.6987       252
+
+2026-04-08 09:46:29 -   Epoch [11/30] LR: 1.91e-05/1.91e-04 | Loss: 1.2245 (seg=0.0387, cls=0.5929) | Train Acc: 0.7561 | Val F1: 0.6441 | 16.7s
+2026-04-08 09:46:50 - [Fold5-Val] Cls — Acc: 0.6825 | P(macro): 0.6245 | R(macro): 0.6396 | F1(macro): 0.6286
+2026-04-08 09:46:50 - [Fold5-Val] Seg — Lesion IoU: 0.9540 | Lesion Dice: 0.9764
+2026-04-08 09:46:50 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4419    0.5429    0.4872        70
+    no_tumor     0.8072    0.7363    0.7701       182
+
+    accuracy                         0.6825       252
+   macro avg     0.6245    0.6396    0.6286       252
+weighted avg     0.7057    0.6825    0.6915       252
+
+2026-04-08 09:46:50 -   Epoch [12/30] LR: 1.84e-05/1.84e-04 | Loss: 1.2199 (seg=0.0358, cls=0.5921) | Train Acc: 0.7900 | Val F1: 0.6286 | 18.1s
+2026-04-08 09:47:11 - [Fold5-Val] Cls — Acc: 0.7738 | P(macro): 0.7522 | R(macro): 0.6280 | F1(macro): 0.6418
+2026-04-08 09:47:11 - [Fold5-Val] Seg — Lesion IoU: 0.9744 | Lesion Dice: 0.9870
+2026-04-08 09:47:11 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.7241    0.3000    0.4242        70
+    no_tumor     0.7803    0.9560    0.8593       182
+
+    accuracy                         0.7738       252
+   macro avg     0.7522    0.6280    0.6418       252
+weighted avg     0.7647    0.7738    0.7384       252
+
+2026-04-08 09:47:11 -   Epoch [13/30] LR: 1.76e-05/1.76e-04 | Loss: 1.1696 (seg=0.0300, cls=0.5698) | Train Acc: 0.7992 | Val F1: 0.6418 | 18.0s
+2026-04-08 09:47:31 - [Fold5-Val] Cls — Acc: 0.7341 | P(macro): 0.6740 | R(macro): 0.6841 | F1(macro): 0.6783
+2026-04-08 09:47:31 - [Fold5-Val] Seg — Lesion IoU: 0.9703 | Lesion Dice: 0.9849
+2026-04-08 09:47:31 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5195    0.5714    0.5442        70
+    no_tumor     0.8286    0.7967    0.8123       182
+
+    accuracy                         0.7341       252
+   macro avg     0.6740    0.6841    0.6783       252
+weighted avg     0.7427    0.7341    0.7379       252
+
+2026-04-08 09:47:31 -   Epoch [14/30] LR: 1.66e-05/1.66e-04 | Loss: 1.1362 (seg=0.0262, cls=0.5550) | Train Acc: 0.8043 | Val F1: 0.6783 | 16.5s
+2026-04-08 09:47:51 - [Fold5-Val] Cls — Acc: 0.6111 | P(macro): 0.6296 | R(macro): 0.6604 | F1(macro): 0.5977
+2026-04-08 09:47:51 - [Fold5-Val] Seg — Lesion IoU: 0.9683 | Lesion Dice: 0.9839
+2026-04-08 09:47:51 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3971    0.7714    0.5243        70
+    no_tumor     0.8621    0.5495    0.6711       182
+
+    accuracy                         0.6111       252
+   macro avg     0.6296    0.6604    0.5977       252
+weighted avg     0.7329    0.6111    0.6303       252
+
+2026-04-08 09:47:51 -   Epoch [15/30] LR: 1.55e-05/1.55e-04 | Loss: 1.0900 (seg=0.0250, cls=0.5325) | Train Acc: 0.8166 | Val F1: 0.5977 | 17.0s
+2026-04-08 09:48:10 - [Fold5-Val] Cls — Acc: 0.7421 | P(macro): 0.6746 | R(macro): 0.6632 | F1(macro): 0.6680
+2026-04-08 09:48:10 - [Fold5-Val] Seg — Lesion IoU: 0.9796 | Lesion Dice: 0.9897
+2026-04-08 09:48:10 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5397    0.4857    0.5113        70
+    no_tumor     0.8095    0.8407    0.8248       182
+
+    accuracy                         0.7421       252
+   macro avg     0.6746    0.6632    0.6680       252
+weighted avg     0.7346    0.7421    0.7377       252
+
+2026-04-08 09:48:10 -   Epoch [16/30] LR: 1.42e-05/1.42e-04 | Loss: 1.0709 (seg=0.0223, cls=0.5243) | Train Acc: 0.8330 | Val F1: 0.6680 | 16.5s
+2026-04-08 09:48:31 - [Fold5-Val] Cls — Acc: 0.7540 | P(macro): 0.6887 | R(macro): 0.6451 | F1(macro): 0.6570
+2026-04-08 09:48:31 - [Fold5-Val] Seg — Lesion IoU: 0.9806 | Lesion Dice: 0.9902
+2026-04-08 09:48:31 - [Fold5-Val] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5833    0.4000    0.4746        70
+    no_tumor     0.7941    0.8901    0.8394       182
+
+    accuracy                         0.7540       252
+   macro avg     0.6887    0.6451    0.6570       252
+weighted avg     0.7356    0.7540    0.7380       252
+
+2026-04-08 09:48:31 -   Epoch [17/30] LR: 1.29e-05/1.29e-04 | Loss: 1.0585 (seg=0.0207, cls=0.5189) | Train Acc: 0.8412 | Val F1: 0.6570 | 17.6s
+2026-04-08 09:48:31 -   Early stopping at epoch 17 (patience=8, best_epoch=9)
+2026-04-08 09:48:31 -   Fold5 完成: best_epoch=9, best_val_f1=0.7006
+2026-04-08 09:48:31 -   Fold5 权重已保存: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260408_task2_SwinV2Tiny_segcls_19/20260408_task2_SwinV2Tiny_segcls_19_fold4.pth
+2026-04-08 09:48:31 - 
+======================================================================
+2026-04-08 09:48:31 - 交叉验证汇总
+2026-04-08 09:48:31 - ======================================================================
+2026-04-08 09:48:31 -   Fold 1: Val F1 = 0.6623
+2026-04-08 09:48:31 -   Fold 2: Val F1 = 0.6819
+2026-04-08 09:48:31 -   Fold 3: Val F1 = 0.6983
+2026-04-08 09:48:31 -   Fold 4: Val F1 = 0.6428
+2026-04-08 09:48:31 -   Fold 5: Val F1 = 0.7006
+2026-04-08 09:48:31 -   平均 Val F1: 0.6772 ± 0.0220
+2026-04-08 09:48:31 - 
+最优单折: Fold 5 (Val F1: 0.7006)
+2026-04-08 09:48:31 - 
+======================================================================
+2026-04-08 09:48:31 - 测试集评估: 最优单折模型 (Fold 5)
+2026-04-08 09:48:31 - ======================================================================
+2026-04-08 09:48:40 - [Test (Best Single Fold)] Cls — Acc: 0.7036 | P(macro): 0.6154 | R(macro): 0.6260 | F1(macro): 0.6194
+2026-04-08 09:48:40 - [Test (Best Single Fold)] Seg — Lesion IoU: 0.9707 | Lesion Dice: 0.9851
+2026-04-08 09:48:40 - [Test (Best Single Fold)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4122    0.4729    0.4404       129
+    no_tumor     0.8187    0.7792    0.7984       394
+
+    accuracy                         0.7036       523
+   macro avg     0.6154    0.6260    0.6194       523
+weighted avg     0.7184    0.7036    0.7101       523
+
+2026-04-08 09:48:46 - 单折最优阈值: 0.545 (F1: 0.6489)
+2026-04-08 09:48:51 - [Test (Best Single Fold, 最优阈值)] Threshold: 0.545 | Acc: 0.7495 | P(macro): 0.6564 | R(macro): 0.6435 | F1(macro): 0.6489
+2026-04-08 09:48:51 - [Test (Best Single Fold, 最优阈值)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4912    0.4341    0.4609       129
+    no_tumor     0.8215    0.8528    0.8369       394
+
+    accuracy                         0.7495       523
+   macro avg     0.6564    0.6435    0.6489       523
+weighted avg     0.7400    0.7495    0.7441       523
+
+2026-04-08 09:48:51 - 
+======================================================================
+2026-04-08 09:48:51 - 测试集评估: 5折模型集成 (概率平均)
+2026-04-08 09:48:51 - ======================================================================
+2026-04-08 09:49:17 - --- 集成 (threshold=0.5) ---
+2026-04-08 09:49:17 - [Test (5-Fold Ensemble)] Threshold: 0.500 | Acc: 0.7285 | P(macro): 0.6311 | R(macro): 0.6269 | F1(macro): 0.6288
+2026-04-08 09:49:17 - [Test (5-Fold Ensemble)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4472    0.4264    0.4365       129
+    no_tumor     0.8150    0.8274    0.8212       394
+
+    accuracy                         0.7285       523
+   macro avg     0.6311    0.6269    0.6288       523
+weighted avg     0.7243    0.7285    0.7263       523
+
+2026-04-08 09:49:17 - 
+集成最优阈值: 0.505 (F1: 0.6300 vs 默认0.5 F1: 0.6288)
+2026-04-08 09:49:17 - 
+======================================================================
+2026-04-08 09:49:17 - 最终结果汇总
+2026-04-08 09:49:17 - ======================================================================
+2026-04-08 09:49:17 -   5折平均 Val F1:           0.6772 ± 0.0220
+2026-04-08 09:49:17 -   最优单折 Test F1:          0.6489 (threshold=0.545)
+2026-04-08 09:49:17 -   5折集成 Test F1:           0.6300 (threshold=0.505)
+2026-04-08 09:49:17 - ======================================================================
+2026-04-08 09:49:17 - 训练脚本已复制到: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260408_task2_SwinV2Tiny_segcls_19/20260408_task2_SwinV2Tiny_segcls_19.py
