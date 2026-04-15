@@ -8,6 +8,7 @@ dataset_all/
 0322dataset_vis/
 unet-valjustclass/
 0413dataset_task2/
+0414dataset/
 json_text/
 # ============================================================
 # 模型权重（体积大，用模型仓库如 HuggingFace Hub 管理）
