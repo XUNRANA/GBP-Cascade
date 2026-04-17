@@ -86,6 +86,11 @@ class Config:
     seed = 42
     use_amp = True
 
+    # 临床策略与校准分析
+    max_benign_miss_rate = 0.10          # 约束: benign漏检率 <= 10%
+    high_confidence_no_tumor_prob = 0.90  # 关注高置信息肉区间
+    calibration_bins = 10
+
     # 损失
     lambda_cls = 2.0
     seg_bg_weight = 1.0
