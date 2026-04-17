@@ -1,0 +1,309 @@
+2026-04-15 15:17:55 - ======================================================================
+2026-04-15 15:17:55 - 实验名称: 20260415_task2_SwinV2Tiny_segcls_18_3
+2026-04-15 15:17:55 - 模型: SwinV2-Tiny@256 + 4ch + BERT CrossAttn + BERT[CLS] + 10D ExtMeta + Gated Trimodal Fusion
+2026-04-15 15:17:55 - 修改: Exp#18_3: 三阶段benign-prior curriculum; 在benign漏检约束下优化no_tumor recall/precision综合效用
+2026-04-15 15:17:55 - 输入通道: 4
+2026-04-15 15:17:55 - 图像尺寸: 256
+2026-04-15 15:17:55 - 分割类别: 2
+2026-04-15 15:17:55 - 分类类别: ['benign', 'no_tumor']
+2026-04-15 15:17:55 - Batch Size: 8
+2026-04-15 15:17:55 - Backbone LR: 2e-05
+2026-04-15 15:17:55 - Head LR: 0.0002
+2026-04-15 15:17:55 - Weight Decay: 0.05
+2026-04-15 15:17:55 - Warmup Epochs: 10
+2026-04-15 15:17:55 - Lambda Cls: 2.0
+2026-04-15 15:17:55 - Label Smoothing: 0.1
+2026-04-15 15:17:55 - Stage1/2/3 benign采样占比: 0.72/0.62/0.55
+2026-04-15 15:17:55 - Stage1/2/3 benign损失权重: 1.40/1.22/1.08
+2026-04-15 15:17:55 - Benign漏检率约束: <= 5.00%
+2026-04-15 15:17:55 - 高置信no_tumor阈值: 0.90
+2026-04-15 15:17:55 - 校准分箱数: 10
+2026-04-15 15:17:55 - Seed: 42
+2026-04-15 15:17:55 - Epochs: 100
+2026-04-15 15:17:55 - Grad Clip: 1.0
+2026-04-15 15:17:55 - 设备: cuda
+2026-04-15 15:17:55 - ======================================================================
+2026-04-15 15:17:59 - 训练集: 1229 张 (benign=309, no_tumor=920)
+2026-04-15 15:17:59 - 测试集: 523 张 (benign=129, no_tumor=394)
+2026-04-15 15:18:08 - 模型参数量: 137,439,313 (含BERT)
+2026-04-15 15:18:08 - 可训练参数量: 35,171,665 (BERT冻结)
+2026-04-15 15:18:08 - 
+======================================================================
+2026-04-15 15:18:08 - 开始训练
+2026-04-15 15:18:08 - ======================================================================
+2026-04-15 15:18:33 - Epoch [1/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 2.00e-06/2.00e-05 | Loss: 1.8019 (seg=0.6919, cls=0.5550) | Cls Acc: 0.7198 | Seg IoU: 0.6586 | Seg Dice: 0.7351 | 25.1s
+2026-04-15 15:18:56 - Epoch [2/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 4.00e-06/4.00e-05 | Loss: 1.3854 (seg=0.2806, cls=0.5524) | Cls Acc: 0.7124 | Seg IoU: 0.9016 | Seg Dice: 0.9480 | 22.4s
+2026-04-15 15:19:18 - Epoch [3/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 6.00e-06/6.00e-05 | Loss: 1.1975 (seg=0.1988, cls=0.4994) | Cls Acc: 0.7500 | Seg IoU: 0.9321 | Seg Dice: 0.9647 | 22.0s
+2026-04-15 15:19:40 - Epoch [4/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 8.00e-06/8.00e-05 | Loss: 1.1276 (seg=0.1480, cls=0.4898) | Cls Acc: 0.7590 | Seg IoU: 0.9483 | Seg Dice: 0.9734 | 22.0s
+2026-04-15 15:20:01 - Epoch [5/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.00e-05/1.00e-04 | Loss: 1.0675 (seg=0.1137, cls=0.4769) | Cls Acc: 0.7729 | Seg IoU: 0.9600 | Seg Dice: 0.9796 | 21.6s
+2026-04-15 15:20:01 - --------------------------------------------------
+2026-04-15 15:20:05 - [Test] Cls — Acc: 0.5449 | P(macro): 0.6010 | R(macro): 0.6302 | F1(macro): 0.5343
+2026-04-15 15:20:05 - [Test] Seg — Lesion IoU: 0.9546 | Lesion Dice: 0.9767
+2026-04-15 15:20:05 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3270    0.7984    0.4640       129
+    no_tumor     0.8750    0.4619    0.6047       394
+
+    accuracy                         0.5449       523
+   macro avg     0.6010    0.6302    0.5343       523
+weighted avg     0.7398    0.5449    0.5700       523
+
+2026-04-15 15:20:10 - [Policy] threshold=0.173 | benign漏检率=4.65% | no_tumor召回=4.57% | no_tumor精度=75.00% | utility(R*P)=0.0343 | F1(macro)=0.2389
+2026-04-15 15:20:11 - *** 保存最优模型(临床策略) (Epoch=5, benign漏检=4.65%, no_tumor召回=4.57%, no_tumor精度=75.00%) ***
+2026-04-15 15:20:11 - --------------------------------------------------
+2026-04-15 15:20:33 - Epoch [6/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.20e-05/1.20e-04 | Loss: 1.0099 (seg=0.0848, cls=0.4626) | Cls Acc: 0.7843 | Seg IoU: 0.9599 | Seg Dice: 0.9795 | 22.1s
+2026-04-15 15:20:55 - Epoch [7/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.40e-05/1.40e-04 | Loss: 0.9568 (seg=0.0626, cls=0.4471) | Cls Acc: 0.8145 | Seg IoU: 0.9667 | Seg Dice: 0.9831 | 21.9s
+2026-04-15 15:21:17 - Epoch [8/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.60e-05/1.60e-04 | Loss: 0.9588 (seg=0.0477, cls=0.4556) | Cls Acc: 0.8121 | Seg IoU: 0.9717 | Seg Dice: 0.9856 | 22.0s
+2026-04-15 15:21:39 - Epoch [9/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.80e-05/1.80e-04 | Loss: 0.9152 (seg=0.0365, cls=0.4393) | Cls Acc: 0.8203 | Seg IoU: 0.9741 | Seg Dice: 0.9869 | 22.0s
+2026-04-15 15:22:02 - Epoch [10/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 2.00e-05/2.00e-04 | Loss: 0.8547 (seg=0.0283, cls=0.4132) | Cls Acc: 0.8382 | Seg IoU: 0.9738 | Seg Dice: 0.9867 | 22.2s
+2026-04-15 15:22:02 - --------------------------------------------------
+2026-04-15 15:22:05 - [Test] Cls — Acc: 0.5602 | P(macro): 0.6030 | R(macro): 0.6351 | F1(macro): 0.5465
+2026-04-15 15:22:05 - [Test] Seg — Lesion IoU: 0.9686 | Lesion Dice: 0.9840
+2026-04-15 15:22:05 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3333    0.7829    0.4676       129
+    no_tumor     0.8727    0.4873    0.6254       394
+
+    accuracy                         0.5602       523
+   macro avg     0.6030    0.6351    0.5465       523
+weighted avg     0.7397    0.5602    0.5865       523
+
+2026-04-15 15:22:10 - [Policy] threshold=0.104 | benign漏检率=4.65% | no_tumor召回=21.07% | no_tumor精度=93.26% | utility(R*P)=0.1965 | F1(macro)=0.3903
+2026-04-15 15:22:13 - *** 保存最优模型(临床策略) (Epoch=10, benign漏检=4.65%, no_tumor召回=21.07%, no_tumor精度=93.26%) ***
+2026-04-15 15:22:13 - --------------------------------------------------
+2026-04-15 15:22:36 - Epoch [11/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 2.00e-05/2.00e-04 | Loss: 0.8948 (seg=0.0227, cls=0.4360) | Cls Acc: 0.8137 | Seg IoU: 0.9788 | Seg Dice: 0.9893 | 22.8s
+2026-04-15 15:22:57 - Epoch [12/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 2.00e-05/2.00e-04 | Loss: 0.8444 (seg=0.0193, cls=0.4125) | Cls Acc: 0.8456 | Seg IoU: 0.9784 | Seg Dice: 0.9891 | 21.9s
+2026-04-15 15:23:19 - Epoch [13/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.99e-05/1.99e-04 | Loss: 0.8539 (seg=0.0166, cls=0.4187) | Cls Acc: 0.8382 | Seg IoU: 0.9799 | Seg Dice: 0.9898 | 21.2s
+2026-04-15 15:23:39 - Epoch [14/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.99e-05/1.99e-04 | Loss: 0.7640 (seg=0.0173, cls=0.3733) | Cls Acc: 0.8815 | Seg IoU: 0.9745 | Seg Dice: 0.9870 | 20.2s
+2026-04-15 15:24:00 - Epoch [15/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.98e-05/1.98e-04 | Loss: 0.7926 (seg=0.0137, cls=0.3894) | Cls Acc: 0.8636 | Seg IoU: 0.9802 | Seg Dice: 0.9900 | 20.9s
+2026-04-15 15:24:00 - --------------------------------------------------
+2026-04-15 15:24:03 - [Test] Cls — Acc: 0.6998 | P(macro): 0.6122 | R(macro): 0.6235 | F1(macro): 0.6163
+2026-04-15 15:24:03 - [Test] Seg — Lesion IoU: 0.9791 | Lesion Dice: 0.9895
+2026-04-15 15:24:03 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4067    0.4729    0.4373       129
+    no_tumor     0.8177    0.7741    0.7953       394
+
+    accuracy                         0.6998       523
+   macro avg     0.6122    0.6235    0.6163       523
+weighted avg     0.7163    0.6998    0.7070       523
+
+2026-04-15 15:24:08 - [Policy] threshold=0.043 | benign漏检率=4.65% | no_tumor召回=19.29% | no_tumor精度=92.68% | utility(R*P)=0.1788 | F1(macro)=0.3755
+2026-04-15 15:24:08 - --------------------------------------------------
+2026-04-15 15:24:28 - Epoch [16/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.98e-05/1.98e-04 | Loss: 0.7988 (seg=0.0123, cls=0.3933) | Cls Acc: 0.8619 | Seg IoU: 0.9820 | Seg Dice: 0.9909 | 20.5s
+2026-04-15 15:24:49 - Epoch [17/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.97e-05/1.97e-04 | Loss: 0.7421 (seg=0.0105, cls=0.3658) | Cls Acc: 0.8832 | Seg IoU: 0.9839 | Seg Dice: 0.9919 | 20.7s
+2026-04-15 15:25:09 - Epoch [18/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.96e-05/1.96e-04 | Loss: 0.6939 (seg=0.0093, cls=0.3423) | Cls Acc: 0.8995 | Seg IoU: 0.9854 | Seg Dice: 0.9926 | 20.4s
+2026-04-15 15:25:30 - Epoch [19/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.95e-05/1.95e-04 | Loss: 0.7388 (seg=0.0089, cls=0.3649) | Cls Acc: 0.8897 | Seg IoU: 0.9850 | Seg Dice: 0.9925 | 21.0s
+2026-04-15 15:25:51 - Epoch [20/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.94e-05/1.94e-04 | Loss: 0.6756 (seg=0.0086, cls=0.3335) | Cls Acc: 0.8995 | Seg IoU: 0.9853 | Seg Dice: 0.9926 | 21.0s
+2026-04-15 15:25:51 - --------------------------------------------------
+2026-04-15 15:25:54 - [Test] Cls — Acc: 0.5755 | P(macro): 0.6054 | R(macro): 0.6401 | F1(macro): 0.5584
+2026-04-15 15:25:54 - [Test] Seg — Lesion IoU: 0.9644 | Lesion Dice: 0.9819
+2026-04-15 15:25:54 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3402    0.7674    0.4714       129
+    no_tumor     0.8707    0.5127    0.6454       394
+
+    accuracy                         0.5755       523
+   macro avg     0.6054    0.6401    0.5584       523
+weighted avg     0.7398    0.5755    0.6025       523
+
+2026-04-15 15:25:59 - [Policy] threshold=0.071 | benign漏检率=4.65% | no_tumor召回=21.07% | no_tumor精度=93.26% | utility(R*P)=0.1965 | F1(macro)=0.3903
+2026-04-15 15:25:59 - --------------------------------------------------
+2026-04-15 15:26:20 - Epoch [21/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.93e-05/1.93e-04 | Loss: 0.6497 (seg=0.0103, cls=0.3197) | Cls Acc: 0.9118 | Seg IoU: 0.9813 | Seg Dice: 0.9905 | 20.9s
+2026-04-15 15:26:41 - Epoch [22/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.91e-05/1.91e-04 | Loss: 0.6865 (seg=0.0067, cls=0.3399) | Cls Acc: 0.9036 | Seg IoU: 0.9886 | Seg Dice: 0.9943 | 20.8s
+2026-04-15 15:27:01 - Epoch [23/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.90e-05/1.90e-04 | Loss: 0.6000 (seg=0.0058, cls=0.2971) | Cls Acc: 0.9314 | Seg IoU: 0.9898 | Seg Dice: 0.9949 | 20.5s
+2026-04-15 15:27:22 - Epoch [24/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.88e-05/1.88e-04 | Loss: 0.6050 (seg=0.0055, cls=0.2998) | Cls Acc: 0.9232 | Seg IoU: 0.9902 | Seg Dice: 0.9951 | 21.1s
+2026-04-15 15:27:43 - Epoch [25/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.87e-05/1.87e-04 | Loss: 0.5816 (seg=0.0046, cls=0.2885) | Cls Acc: 0.9395 | Seg IoU: 0.9918 | Seg Dice: 0.9959 | 20.5s
+2026-04-15 15:27:43 - --------------------------------------------------
+2026-04-15 15:27:46 - [Test] Cls — Acc: 0.6922 | P(macro): 0.5981 | R(macro): 0.6054 | F1(macro): 0.6010
+2026-04-15 15:27:46 - [Test] Seg — Lesion IoU: 0.9929 | Lesion Dice: 0.9964
+2026-04-15 15:27:46 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3889    0.4341    0.4103       129
+    no_tumor     0.8074    0.7766    0.7917       394
+
+    accuracy                         0.6922       523
+   macro avg     0.5981    0.6054    0.6010       523
+weighted avg     0.7042    0.6922    0.6976       523
+
+2026-04-15 15:27:51 - [Policy] threshold=0.053 | benign漏检率=4.65% | no_tumor召回=10.66% | no_tumor精度=87.50% | utility(R*P)=0.0933 | F1(macro)=0.2987
+2026-04-15 15:27:51 - --------------------------------------------------
+2026-04-15 15:28:12 - Epoch [26/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.85e-05/1.85e-04 | Loss: 0.6251 (seg=0.0040, cls=0.3106) | Cls Acc: 0.9175 | Seg IoU: 0.9928 | Seg Dice: 0.9964 | 20.8s
+2026-04-15 15:28:33 - Epoch [27/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.83e-05/1.83e-04 | Loss: 0.5632 (seg=0.0037, cls=0.2798) | Cls Acc: 0.9395 | Seg IoU: 0.9933 | Seg Dice: 0.9967 | 21.6s
+2026-04-15 15:28:55 - Epoch [28/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.81e-05/1.81e-04 | Loss: 0.5923 (seg=0.0031, cls=0.2946) | Cls Acc: 0.9355 | Seg IoU: 0.9946 | Seg Dice: 0.9973 | 22.3s
+2026-04-15 15:29:18 - Epoch [29/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.79e-05/1.79e-04 | Loss: 0.6069 (seg=0.0030, cls=0.3020) | Cls Acc: 0.9273 | Seg IoU: 0.9945 | Seg Dice: 0.9973 | 22.1s
+2026-04-15 15:29:40 - Epoch [30/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.77e-05/1.77e-04 | Loss: 0.5393 (seg=0.0026, cls=0.2684) | Cls Acc: 0.9502 | Seg IoU: 0.9953 | Seg Dice: 0.9977 | 22.0s
+2026-04-15 15:29:40 - --------------------------------------------------
+2026-04-15 15:29:43 - [Test] Cls — Acc: 0.5985 | P(macro): 0.5607 | R(macro): 0.5797 | F1(macro): 0.5491
+2026-04-15 15:29:43 - [Test] Seg — Lesion IoU: 0.9953 | Lesion Dice: 0.9977
+2026-04-15 15:29:43 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3167    0.5426    0.4000       129
+    no_tumor     0.8046    0.6168    0.6983       394
+
+    accuracy                         0.5985       523
+   macro avg     0.5607    0.5797    0.5491       523
+weighted avg     0.6843    0.5985    0.6247       523
+
+2026-04-15 15:29:48 - [Policy] threshold=0.059 | benign漏检率=4.65% | no_tumor召回=15.48% | no_tumor精度=91.04% | utility(R*P)=0.1410 | F1(macro)=0.3426
+2026-04-15 15:29:48 - --------------------------------------------------
+2026-04-15 15:30:10 - Epoch [31/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.75e-05/1.75e-04 | Loss: 0.5665 (seg=0.0022, cls=0.2822) | Cls Acc: 0.9444 | Seg IoU: 0.9961 | Seg Dice: 0.9980 | 22.4s
+2026-04-15 15:30:32 - Epoch [32/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.72e-05/1.72e-04 | Loss: 0.5849 (seg=0.0021, cls=0.2914) | Cls Acc: 0.9387 | Seg IoU: 0.9960 | Seg Dice: 0.9980 | 22.1s
+2026-04-15 15:30:55 - Epoch [33/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.70e-05/1.70e-04 | Loss: 0.5513 (seg=0.0020, cls=0.2746) | Cls Acc: 0.9461 | Seg IoU: 0.9963 | Seg Dice: 0.9982 | 22.1s
+2026-04-15 15:31:17 - Epoch [34/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.67e-05/1.67e-04 | Loss: 0.5406 (seg=0.0017, cls=0.2694) | Cls Acc: 0.9493 | Seg IoU: 0.9967 | Seg Dice: 0.9984 | 22.4s
+2026-04-15 15:31:40 - Epoch [35/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.65e-05/1.65e-04 | Loss: 0.5454 (seg=0.0018, cls=0.2718) | Cls Acc: 0.9469 | Seg IoU: 0.9964 | Seg Dice: 0.9982 | 22.8s
+2026-04-15 15:31:40 - --------------------------------------------------
+2026-04-15 15:31:43 - [Test] Cls — Acc: 0.6864 | P(macro): 0.6152 | R(macro): 0.6381 | F1(macro): 0.6198
+2026-04-15 15:31:43 - [Test] Seg — Lesion IoU: 0.9958 | Lesion Dice: 0.9979
+2026-04-15 15:31:43 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4000    0.5426    0.4605       129
+    no_tumor     0.8305    0.7335    0.7790       394
+
+    accuracy                         0.6864       523
+   macro avg     0.6152    0.6381    0.6198       523
+weighted avg     0.7243    0.6864    0.7004       523
+
+2026-04-15 15:31:48 - [Policy] threshold=0.046 | benign漏检率=3.10% | no_tumor召回=5.08% | no_tumor精度=83.33% | utility(R*P)=0.0423 | F1(macro)=0.2469
+2026-04-15 15:31:48 - --------------------------------------------------
+2026-04-15 15:32:11 - Epoch [36/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.62e-05/1.62e-04 | Loss: 0.5538 (seg=0.0015, cls=0.2762) | Cls Acc: 0.9453 | Seg IoU: 0.9972 | Seg Dice: 0.9986 | 22.6s
+2026-04-15 15:32:33 - Epoch [37/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.59e-05/1.59e-04 | Loss: 0.5079 (seg=0.0014, cls=0.2532) | Cls Acc: 0.9559 | Seg IoU: 0.9973 | Seg Dice: 0.9986 | 22.3s
+2026-04-15 15:32:56 - Epoch [38/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.56e-05/1.56e-04 | Loss: 0.5043 (seg=0.0014, cls=0.2515) | Cls Acc: 0.9600 | Seg IoU: 0.9973 | Seg Dice: 0.9987 | 22.6s
+2026-04-15 15:33:18 - Epoch [39/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.53e-05/1.53e-04 | Loss: 0.5412 (seg=0.0013, cls=0.2700) | Cls Acc: 0.9485 | Seg IoU: 0.9976 | Seg Dice: 0.9988 | 22.4s
+2026-04-15 15:33:41 - Epoch [40/100] stage1 (target_benign=0.72, w_benign=1.40) LR: 1.50e-05/1.50e-04 | Loss: 0.5162 (seg=0.0011, cls=0.2576) | Cls Acc: 0.9583 | Seg IoU: 0.9979 | Seg Dice: 0.9989 | 22.6s
+2026-04-15 15:33:41 - --------------------------------------------------
+2026-04-15 15:33:44 - [Test] Cls — Acc: 0.6520 | P(macro): 0.5800 | R(macro): 0.5970 | F1(macro): 0.5812
+2026-04-15 15:33:44 - [Test] Seg — Lesion IoU: 0.9971 | Lesion Dice: 0.9985
+2026-04-15 15:33:44 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3520    0.4884    0.4091       129
+    no_tumor     0.8081    0.7056    0.7534       394
+
+    accuracy                         0.6520       523
+   macro avg     0.5800    0.5970    0.5812       523
+weighted avg     0.6956    0.6520    0.6685       523
+
+2026-04-15 15:33:49 - [Policy] threshold=0.059 | benign漏检率=4.65% | no_tumor召回=13.20% | no_tumor精度=89.66% | utility(R*P)=0.1183 | F1(macro)=0.3221
+2026-04-15 15:33:49 - --------------------------------------------------
+2026-04-15 15:34:11 - Epoch [41/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.47e-05/1.47e-04 | Loss: 0.5622 (seg=0.0012, cls=0.2805) | Cls Acc: 0.9534 | Seg IoU: 0.9977 | Seg Dice: 0.9989 | 22.0s
+2026-04-15 15:34:33 - Epoch [42/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.44e-05/1.44e-04 | Loss: 0.5917 (seg=0.0011, cls=0.2953) | Cls Acc: 0.9436 | Seg IoU: 0.9978 | Seg Dice: 0.9989 | 22.2s
+2026-04-15 15:34:56 - Epoch [43/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.41e-05/1.41e-04 | Loss: 0.5756 (seg=0.0010, cls=0.2873) | Cls Acc: 0.9510 | Seg IoU: 0.9979 | Seg Dice: 0.9990 | 22.4s
+2026-04-15 15:35:18 - Epoch [44/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.38e-05/1.38e-04 | Loss: 0.5273 (seg=0.0010, cls=0.2631) | Cls Acc: 0.9624 | Seg IoU: 0.9980 | Seg Dice: 0.9990 | 22.3s
+2026-04-15 15:35:40 - Epoch [45/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.35e-05/1.35e-04 | Loss: 0.5355 (seg=0.0010, cls=0.2673) | Cls Acc: 0.9575 | Seg IoU: 0.9981 | Seg Dice: 0.9990 | 22.1s
+2026-04-15 15:35:40 - --------------------------------------------------
+2026-04-15 15:35:44 - [Test] Cls — Acc: 0.7285 | P(macro): 0.6286 | R(macro): 0.6217 | F1(macro): 0.6247
+2026-04-15 15:35:44 - [Test] Seg — Lesion IoU: 0.9975 | Lesion Dice: 0.9987
+2026-04-15 15:35:44 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4454    0.4109    0.4274       129
+    no_tumor     0.8119    0.8325    0.8221       394
+
+    accuracy                         0.7285       523
+   macro avg     0.6286    0.6217    0.6247       523
+weighted avg     0.7215    0.7285    0.7247       523
+
+2026-04-15 15:35:49 - [Policy] threshold=0.048 | benign漏检率=3.88% | no_tumor召回=3.55% | no_tumor精度=73.68% | utility(R*P)=0.0262 | F1(macro)=0.2298
+2026-04-15 15:35:49 - --------------------------------------------------
+2026-04-15 15:36:11 - Epoch [46/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.32e-05/1.32e-04 | Loss: 0.5631 (seg=0.0010, cls=0.2810) | Cls Acc: 0.9559 | Seg IoU: 0.9981 | Seg Dice: 0.9990 | 22.2s
+2026-04-15 15:36:33 - Epoch [47/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.28e-05/1.28e-04 | Loss: 0.5287 (seg=0.0009, cls=0.2639) | Cls Acc: 0.9657 | Seg IoU: 0.9981 | Seg Dice: 0.9991 | 21.7s
+2026-04-15 15:36:54 - Epoch [48/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.25e-05/1.25e-04 | Loss: 0.5277 (seg=0.0009, cls=0.2634) | Cls Acc: 0.9641 | Seg IoU: 0.9982 | Seg Dice: 0.9991 | 21.8s
+2026-04-15 15:37:16 - Epoch [49/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.22e-05/1.22e-04 | Loss: 0.5161 (seg=0.0009, cls=0.2576) | Cls Acc: 0.9681 | Seg IoU: 0.9983 | Seg Dice: 0.9991 | 22.1s
+2026-04-15 15:37:38 - Epoch [50/100] stage2 (target_benign=0.62, w_benign=1.22) LR: 1.18e-05/1.18e-04 | Loss: 0.5130 (seg=0.0008, cls=0.2561) | Cls Acc: 0.9681 | Seg IoU: 0.9984 | Seg Dice: 0.9992 | 21.9s
+2026-04-15 15:37:38 - --------------------------------------------------
+2026-04-15 15:37:42 - [Test] Cls — Acc: 0.7247 | P(macro): 0.6152 | R(macro): 0.6009 | F1(macro): 0.6060
+2026-04-15 15:37:42 - [Test] Seg — Lesion IoU: 0.9981 | Lesion Dice: 0.9991
+2026-04-15 15:37:42 - [Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4299    0.3566    0.3898       129
+    no_tumor     0.8005    0.8452    0.8222       394
+
+    accuracy                         0.7247       523
+   macro avg     0.6152    0.6009    0.6060       523
+weighted avg     0.7091    0.7247    0.7156       523
+
+2026-04-15 15:37:47 - [Policy] threshold=0.059 | benign漏检率=4.65% | no_tumor召回=3.30% | no_tumor精度=68.42% | utility(R*P)=0.0226 | F1(macro)=0.2258
+2026-04-15 15:37:47 - --------------------------------------------------
+2026-04-15 15:37:47 - 触发Early Stop: 连续8次评估无提升, best_epoch=10
+2026-04-15 15:37:47 - 
+======================================================================
+2026-04-15 15:37:47 - 训练完成! 最优模型(Epoch 10) | benign漏检=4.65% | no_tumor召回=21.07% | no_tumor精度=93.26%
+2026-04-15 15:37:47 - ======================================================================
+2026-04-15 15:37:47 - 
+加载最优权重进行最终测试...
+2026-04-15 15:37:47 - ======================================================================
+2026-04-15 15:37:47 - 最终测试结果 (threshold=0.5)
+2026-04-15 15:37:47 - ======================================================================
+2026-04-15 15:37:51 - [Final Test] Cls — Acc: 0.5602 | P(macro): 0.6030 | R(macro): 0.6351 | F1(macro): 0.5465
+2026-04-15 15:37:51 - [Final Test] Seg — Lesion IoU: 0.9686 | Lesion Dice: 0.9840
+2026-04-15 15:37:51 - [Final Test] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3333    0.7829    0.4676       129
+    no_tumor     0.8727    0.4873    0.6254       394
+
+    accuracy                         0.5602       523
+   macro avg     0.6030    0.6351    0.5465       523
+weighted avg     0.7397    0.5602    0.5865       523
+
+2026-04-15 15:37:51 - 
+======================================================================
+2026-04-15 15:37:51 - 阈值优化搜索 (宏F1)
+2026-04-15 15:37:51 - ======================================================================
+2026-04-15 15:37:54 - F1最优阈值: 0.730 (F1: 0.5943)
+2026-04-15 15:37:58 - [Final Test (最优F1阈值)] Threshold: 0.730 | Acc: 0.6291 | P(macro): 0.6099 | R(macro): 0.6469 | F1(macro): 0.5943
+2026-04-15 15:37:58 - [Final Test (最优F1阈值)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3651    0.6822    0.4757       129
+    no_tumor     0.8546    0.6117    0.7130       394
+
+    accuracy                         0.6291       523
+   macro avg     0.6099    0.6469    0.5943       523
+weighted avg     0.7339    0.6291    0.6545       523
+
+2026-04-15 15:37:58 - 
+======================================================================
+2026-04-15 15:37:58 - 临床约束阈值评估
+2026-04-15 15:37:58 - ======================================================================
+2026-04-15 15:38:03 - 临床阈值: 0.104 | benign漏检率=4.65% | benign召回=95.35% | no_tumor召回=21.07% | no_tumor精度=93.26% | no_tumor筛出率=17.02% | constraint_ok=True
+2026-04-15 15:38:06 - [Final Test (临床阈值, benign漏检<=5%)] Threshold: 0.104 | Acc: 0.3939 | P(macro): 0.6080 | R(macro): 0.5821 | F1(macro): 0.3903
+2026-04-15 15:38:06 - [Final Test (临床阈值, benign漏检<=5%)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.2834    0.9535    0.4369       129
+    no_tumor     0.9326    0.2107    0.3437       394
+
+    accuracy                         0.3939       523
+   macro avg     0.6080    0.5821    0.3903       523
+weighted avg     0.7725    0.3939    0.3667       523
+
+2026-04-15 15:38:06 - 测试集概率已保存: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260415_task2_SwinV2Tiny_segcls_18_3/20260415_task2_SwinV2Tiny_segcls_18_3_test_probs.csv
+2026-04-15 15:38:06 - 
+======================================================================
+2026-04-15 15:38:06 - no_tumor 置信度-准确率校准
+2026-04-15 15:38:06 - ======================================================================
+2026-04-15 15:38:06 - P(no_tumor)>=0.90: 86/523 (16.44%) | 真实no_tumor比例=94.19% (命中81例)
+2026-04-15 15:38:06 - 校准统计: ECE=0.3209 | Brier=0.3238 | 有效分箱=10/10
+2026-04-15 15:38:06 -   Bin[0.00,0.10) n=146 | conf=0.058 | acc=0.548
+2026-04-15 15:38:06 -   Bin[0.10,0.20) n= 71 | conf=0.143 | acc=0.789
+2026-04-15 15:38:06 -   Bin[0.20,0.30) n= 36 | conf=0.245 | acc=0.806
+2026-04-15 15:38:06 -   Bin[0.30,0.40) n= 22 | conf=0.340 | acc=0.818
+2026-04-15 15:38:06 -   Bin[0.40,0.50) n= 28 | conf=0.455 | acc=0.679
+2026-04-15 15:38:06 -   Bin[0.50,0.60) n= 27 | conf=0.555 | acc=0.704
+2026-04-15 15:38:06 -   Bin[0.60,0.70) n= 27 | conf=0.647 | acc=0.889
+2026-04-15 15:38:06 -   Bin[0.70,0.80) n= 31 | conf=0.746 | acc=0.806
+2026-04-15 15:38:06 -   Bin[0.80,0.90) n= 49 | conf=0.859 | acc=0.878
+2026-04-15 15:38:06 -   Bin[0.90,1.00) n= 86 | conf=0.940 | acc=0.942
+2026-04-15 15:38:06 - 校准分箱明细已保存: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260415_task2_SwinV2Tiny_segcls_18_3/20260415_task2_SwinV2Tiny_segcls_18_3_no_tumor_reliability.csv
+2026-04-15 15:38:08 - 校准曲线已保存: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260415_task2_SwinV2Tiny_segcls_18_3/20260415_task2_SwinV2Tiny_segcls_18_3_no_tumor_reliability.png
+2026-04-15 15:38:08 - 训练脚本已复制到: /data1/ouyangxinglong/GBP-Cascade/0408/logs/20260415_task2_SwinV2Tiny_segcls_18_3/20260415_task2_SwinV2Tiny_segcls_18_3.py
