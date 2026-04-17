@@ -1,0 +1,492 @@
+2026-04-17 08:45:40 - ======================================================================
+2026-04-17 08:45:40 - 实验名称: 20260417_task2_SwinV2Tiny_segcls_19_1
+2026-04-17 08:45:40 - 模型: SwinV2-Tiny@256 + 4ch + BERT CrossAttn + BERT[CLS] + 10D ExtMeta + Gated Trimodal Fusion
+2026-04-17 08:45:40 - 修改: Exp#19-1: 18-3 三阶段curriculum + pAUC SurrogateLoss(staged) + dev split 10% + 模型选择→dev pAUC@0.05 + 温标定
+2026-04-17 08:45:40 - Seed: 42 | Device: cuda | AMP: True
+2026-04-17 08:45:40 - Stage1/2/3 benign采样: 0.72/0.62/0.55
+2026-04-17 08:45:40 - Stage1/2/3 benign权重: 1.4/1.22/1.08
+2026-04-17 08:45:40 - pAUC coeff Stage1/2/3: 0.0/0.5/1.0
+2026-04-17 08:45:40 - Dev frac: 0.1 | split JSON: /data1/ouyangxinglong/GBP-Cascade/0417/logs/shared/dev_split.json
+2026-04-17 08:45:40 - ======================================================================
+2026-04-17 08:50:13 - 新建 dev split 并保存: /data1/ouyangxinglong/GBP-Cascade/0417/logs/shared/dev_split.json (train=1106, dev=123)
+2026-04-17 08:50:13 - 训练子集: 1106 张 (benign=278, no_tumor=828)
+2026-04-17 08:50:13 - Dev  子集: 123 张  (benign=31, no_tumor=92)
+2026-04-17 08:50:13 - 测试集:    523 张  (benign=129, no_tumor=394)
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4905.22it/s]
+[1mBertModel LOAD REPORT[0m from: bert-base-chinese
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-04-17 08:50:50 - 模型参数量: 137,439,313 | 可训练: 35,171,665 (BERT冻结)
+2026-04-17 08:50:50 - 
+======================================================================
+2026-04-17 08:50:50 - 开始训练（模型选择: dev pAUC@0.05）
+2026-04-17 08:50:50 - ======================================================================
+2026-04-17 08:51:11 - Epoch [1/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 2.00e-06/2.00e-05 | Loss: 1.8250 (seg=0.7294, cls=0.5478) | Acc: 0.7246 | Seg IoU: 0.6201 | 21.3s
+2026-04-17 08:51:29 - Epoch [2/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 4.00e-06/4.00e-05 | Loss: 1.3573 (seg=0.2894, cls=0.5339) | Acc: 0.7264 | Seg IoU: 0.8982 | 17.5s
+2026-04-17 08:51:47 - Epoch [3/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 6.00e-06/6.00e-05 | Loss: 1.2583 (seg=0.2125, cls=0.5229) | Acc: 0.7274 | Seg IoU: 0.9277 | 17.7s
+2026-04-17 08:52:04 - Epoch [4/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 8.00e-06/8.00e-05 | Loss: 1.1323 (seg=0.1614, cls=0.4855) | Acc: 0.7572 | Seg IoU: 0.9446 | 17.7s
+2026-04-17 08:52:23 - Epoch [5/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.00e-05/1.00e-04 | Loss: 1.0938 (seg=0.1254, cls=0.4842) | Acc: 0.7609 | Seg IoU: 0.9567 | 18.8s
+2026-04-17 08:52:23 - --------------------------------------------------
+2026-04-17 08:52:26 - [Dev] pAUC@0.05=0.5526 | no_tumor召回=34.78% | benign漏检=3.23%
+2026-04-17 08:52:30 - [Test(ref)] Cls — Acc: 0.3155 | P(macro): 0.5850 | R(macro): 0.5353 | F1(macro): 0.2969
+2026-04-17 08:52:30 - [Test(ref)] Seg — Lesion IoU: 0.9564 | Lesion Dice: 0.9777
+2026-04-17 08:52:30 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.2610    0.9690    0.4112       129
+    no_tumor     0.9091    0.1015    0.1826       394
+
+    accuracy                         0.3155       523
+   macro avg     0.5850    0.5353    0.2969       523
+weighted avg     0.7492    0.3155    0.2390       523
+
+2026-04-17 08:52:31 - *** 保存最优模型 (Epoch=5, dev_pAUC@0.05=0.5526) ***
+2026-04-17 08:52:31 - --------------------------------------------------
+2026-04-17 08:52:50 - Epoch [6/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.20e-05/1.20e-04 | Loss: 1.0516 (seg=0.1005, cls=0.4756) | Acc: 0.7772 | Seg IoU: 0.9613 | 18.9s
+2026-04-17 08:53:08 - Epoch [7/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.40e-05/1.40e-04 | Loss: 1.0289 (seg=0.0743, cls=0.4773) | Acc: 0.7745 | Seg IoU: 0.9644 | 17.7s
+2026-04-17 08:53:27 - Epoch [8/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.60e-05/1.60e-04 | Loss: 0.9450 (seg=0.0569, cls=0.4440) | Acc: 0.8007 | Seg IoU: 0.9693 | 18.6s
+2026-04-17 08:53:45 - Epoch [9/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.80e-05/1.80e-04 | Loss: 0.9113 (seg=0.0436, cls=0.4338) | Acc: 0.8288 | Seg IoU: 0.9699 | 18.1s
+2026-04-17 08:54:03 - Epoch [10/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 2.00e-05/2.00e-04 | Loss: 0.9061 (seg=0.0344, cls=0.4358) | Acc: 0.8134 | Seg IoU: 0.9741 | 18.0s
+2026-04-17 08:54:03 - --------------------------------------------------
+2026-04-17 08:54:05 - [Dev] pAUC@0.05=0.5174 | no_tumor召回=60.87% | benign漏检=3.23%
+2026-04-17 08:54:08 - [Test(ref)] Cls — Acc: 0.4723 | P(macro): 0.5668 | R(macro): 0.5794 | F1(macro): 0.4687
+2026-04-17 08:54:08 - [Test(ref)] Seg — Lesion IoU: 0.9660 | Lesion Dice: 0.9827
+2026-04-17 08:54:08 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.2906    0.7907    0.4250       129
+    no_tumor     0.8430    0.3680    0.5124       394
+
+    accuracy                         0.4723       523
+   macro avg     0.5668    0.5794    0.4687       523
+weighted avg     0.7068    0.4723    0.4908       523
+
+2026-04-17 08:54:08 - --------------------------------------------------
+2026-04-17 08:54:27 - Epoch [11/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 2.00e-05/2.00e-04 | Loss: 0.8774 (seg=0.0274, cls=0.4250) | Acc: 0.8306 | Seg IoU: 0.9767 | 19.1s
+2026-04-17 08:54:45 - Epoch [12/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 2.00e-05/2.00e-04 | Loss: 0.9203 (seg=0.0231, cls=0.4486) | Acc: 0.8225 | Seg IoU: 0.9772 | 17.9s
+2026-04-17 08:55:04 - Epoch [13/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.99e-05/1.99e-04 | Loss: 0.8252 (seg=0.0207, cls=0.4023) | Acc: 0.8496 | Seg IoU: 0.9769 | 18.3s
+2026-04-17 08:55:21 - Epoch [14/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.99e-05/1.99e-04 | Loss: 0.7618 (seg=0.0176, cls=0.3721) | Acc: 0.8741 | Seg IoU: 0.9794 | 17.8s
+2026-04-17 08:55:39 - Epoch [15/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.98e-05/1.98e-04 | Loss: 0.8024 (seg=0.0180, cls=0.3922) | Acc: 0.8641 | Seg IoU: 0.9745 | 18.0s
+2026-04-17 08:55:39 - --------------------------------------------------
+2026-04-17 08:55:43 - [Dev] pAUC@0.05=0.5483 | no_tumor召回=55.43% | benign漏检=3.23%
+2026-04-17 08:55:46 - [Test(ref)] Cls — Acc: 0.6539 | P(macro): 0.6150 | R(macro): 0.6504 | F1(macro): 0.6097
+2026-04-17 08:55:46 - [Test(ref)] Seg — Lesion IoU: 0.9715 | Lesion Dice: 0.9856
+2026-04-17 08:55:46 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3807    0.6434    0.4784       129
+    no_tumor     0.8492    0.6574    0.7411       394
+
+    accuracy                         0.6539       523
+   macro avg     0.6150    0.6504    0.6097       523
+weighted avg     0.7336    0.6539    0.6763       523
+
+2026-04-17 08:55:46 - --------------------------------------------------
+2026-04-17 08:56:04 - Epoch [16/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.98e-05/1.98e-04 | Loss: 0.8199 (seg=0.0148, cls=0.4026) | Acc: 0.8542 | Seg IoU: 0.9801 | 18.2s
+2026-04-17 08:56:23 - Epoch [17/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.97e-05/1.97e-04 | Loss: 0.7745 (seg=0.0133, cls=0.3806) | Acc: 0.8732 | Seg IoU: 0.9810 | 18.5s
+2026-04-17 08:56:41 - Epoch [18/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.96e-05/1.96e-04 | Loss: 0.7592 (seg=0.0115, cls=0.3738) | Acc: 0.8741 | Seg IoU: 0.9832 | 18.4s
+2026-04-17 08:56:59 - Epoch [19/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.95e-05/1.95e-04 | Loss: 0.6833 (seg=0.0097, cls=0.3368) | Acc: 0.8922 | Seg IoU: 0.9855 | 18.0s
+2026-04-17 08:57:18 - Epoch [20/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.94e-05/1.94e-04 | Loss: 0.7222 (seg=0.0105, cls=0.3558) | Acc: 0.8895 | Seg IoU: 0.9821 | 18.3s
+2026-04-17 08:57:18 - --------------------------------------------------
+2026-04-17 08:57:21 - [Dev] pAUC@0.05=0.5807 | no_tumor召回=46.74% | benign漏检=3.23%
+2026-04-17 08:57:24 - [Test(ref)] Cls — Acc: 0.6616 | P(macro): 0.6014 | R(macro): 0.6268 | F1(macro): 0.6022
+2026-04-17 08:57:24 - [Test(ref)] Seg — Lesion IoU: 0.9838 | Lesion Dice: 0.9918
+2026-04-17 08:57:24 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3750    0.5581    0.4486       129
+    no_tumor     0.8278    0.6954    0.7559       394
+
+    accuracy                         0.6616       523
+   macro avg     0.6014    0.6268    0.6022       523
+weighted avg     0.7161    0.6616    0.6801       523
+
+2026-04-17 08:57:29 - *** 保存最优模型 (Epoch=20, dev_pAUC@0.05=0.5807) ***
+2026-04-17 08:57:29 - --------------------------------------------------
+2026-04-17 08:57:47 - Epoch [21/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.93e-05/1.93e-04 | Loss: 0.6433 (seg=0.0108, cls=0.3162) | Acc: 0.9149 | Seg IoU: 0.9807 | 17.8s
+2026-04-17 08:58:06 - Epoch [22/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.91e-05/1.91e-04 | Loss: 0.6222 (seg=0.0078, cls=0.3072) | Acc: 0.9239 | Seg IoU: 0.9867 | 18.9s
+2026-04-17 08:58:24 - Epoch [23/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.90e-05/1.90e-04 | Loss: 0.6368 (seg=0.0062, cls=0.3153) | Acc: 0.9185 | Seg IoU: 0.9897 | 18.3s
+2026-04-17 08:58:42 - Epoch [24/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.88e-05/1.88e-04 | Loss: 0.6033 (seg=0.0060, cls=0.2986) | Acc: 0.9275 | Seg IoU: 0.9896 | 17.7s
+2026-04-17 08:59:00 - Epoch [25/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.87e-05/1.87e-04 | Loss: 0.6146 (seg=0.0054, cls=0.3046) | Acc: 0.9266 | Seg IoU: 0.9905 | 18.4s
+2026-04-17 08:59:00 - --------------------------------------------------
+2026-04-17 08:59:03 - [Dev] pAUC@0.05=0.6008 | no_tumor召回=48.91% | benign漏检=3.23%
+2026-04-17 08:59:07 - [Test(ref)] Cls — Acc: 0.6960 | P(macro): 0.6179 | R(macro): 0.6366 | F1(macro): 0.6231
+2026-04-17 08:59:07 - [Test(ref)] Seg — Lesion IoU: 0.9904 | Lesion Dice: 0.9952
+2026-04-17 08:59:07 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4085    0.5194    0.4573       129
+    no_tumor     0.8273    0.7538    0.7888       394
+
+    accuracy                         0.6960       523
+   macro avg     0.6179    0.6366    0.6231       523
+weighted avg     0.7240    0.6960    0.7071       523
+
+2026-04-17 08:59:11 - *** 保存最优模型 (Epoch=25, dev_pAUC@0.05=0.6008) ***
+2026-04-17 08:59:11 - --------------------------------------------------
+2026-04-17 08:59:29 - Epoch [26/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.85e-05/1.85e-04 | Loss: 0.6694 (seg=0.0049, cls=0.3323) | Acc: 0.9067 | Seg IoU: 0.9915 | 18.2s
+2026-04-17 08:59:47 - Epoch [27/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.83e-05/1.83e-04 | Loss: 0.5773 (seg=0.0042, cls=0.2865) | Acc: 0.9339 | Seg IoU: 0.9927 | 17.9s
+2026-04-17 09:00:05 - Epoch [28/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.81e-05/1.81e-04 | Loss: 0.6320 (seg=0.0040, cls=0.3140) | Acc: 0.9158 | Seg IoU: 0.9928 | 18.2s
+2026-04-17 09:00:23 - Epoch [29/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.79e-05/1.79e-04 | Loss: 0.5881 (seg=0.0034, cls=0.2924) | Acc: 0.9321 | Seg IoU: 0.9940 | 18.2s
+2026-04-17 09:00:42 - Epoch [30/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.77e-05/1.77e-04 | Loss: 0.5641 (seg=0.0033, cls=0.2804) | Acc: 0.9393 | Seg IoU: 0.9941 | 19.1s
+2026-04-17 09:00:42 - --------------------------------------------------
+2026-04-17 09:00:45 - [Dev] pAUC@0.05=0.6102 | no_tumor召回=21.74% | benign漏检=3.23%
+2026-04-17 09:00:48 - [Test(ref)] Cls — Acc: 0.7017 | P(macro): 0.6064 | R(macro): 0.6117 | F1(macro): 0.6087
+2026-04-17 09:00:48 - [Test(ref)] Seg — Lesion IoU: 0.9936 | Lesion Dice: 0.9968
+2026-04-17 09:00:48 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4029    0.4341    0.4179       129
+    no_tumor     0.8099    0.7893    0.7995       394
+
+    accuracy                         0.7017       523
+   macro avg     0.6064    0.6117    0.6087       523
+weighted avg     0.7095    0.7017    0.7054       523
+
+2026-04-17 09:00:52 - *** 保存最优模型 (Epoch=30, dev_pAUC@0.05=0.6102) ***
+2026-04-17 09:00:52 - --------------------------------------------------
+2026-04-17 09:01:10 - Epoch [31/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.75e-05/1.75e-04 | Loss: 0.5722 (seg=0.0031, cls=0.2845) | Acc: 0.9357 | Seg IoU: 0.9943 | 17.9s
+2026-04-17 09:01:28 - Epoch [32/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.72e-05/1.72e-04 | Loss: 0.5353 (seg=0.0024, cls=0.2664) | Acc: 0.9511 | Seg IoU: 0.9956 | 18.1s
+2026-04-17 09:01:46 - Epoch [33/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.70e-05/1.70e-04 | Loss: 0.5434 (seg=0.0022, cls=0.2706) | Acc: 0.9493 | Seg IoU: 0.9960 | 18.1s
+2026-04-17 09:02:05 - Epoch [34/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.67e-05/1.67e-04 | Loss: 0.5548 (seg=0.0022, cls=0.2763) | Acc: 0.9411 | Seg IoU: 0.9961 | 19.2s
+2026-04-17 09:02:23 - Epoch [35/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.65e-05/1.65e-04 | Loss: 0.5080 (seg=0.0020, cls=0.2530) | Acc: 0.9556 | Seg IoU: 0.9962 | 18.1s
+2026-04-17 09:02:23 - --------------------------------------------------
+2026-04-17 09:02:26 - [Dev] pAUC@0.05=0.5440 | no_tumor召回=8.70% | benign漏检=3.23%
+2026-04-17 09:02:29 - [Test(ref)] Cls — Acc: 0.7208 | P(macro): 0.6231 | R(macro): 0.6218 | F1(macro): 0.6224
+2026-04-17 09:02:29 - [Test(ref)] Seg — Lesion IoU: 0.9956 | Lesion Dice: 0.9978
+2026-04-17 09:02:29 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4331    0.4264    0.4297       129
+    no_tumor     0.8131    0.8173    0.8152       394
+
+    accuracy                         0.7208       523
+   macro avg     0.6231    0.6218    0.6224       523
+weighted avg     0.7194    0.7208    0.7201       523
+
+2026-04-17 09:02:29 - --------------------------------------------------
+2026-04-17 09:02:48 - Epoch [36/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.62e-05/1.62e-04 | Loss: 0.5232 (seg=0.0018, cls=0.2607) | Acc: 0.9502 | Seg IoU: 0.9966 | 18.9s
+2026-04-17 09:03:06 - Epoch [37/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.59e-05/1.59e-04 | Loss: 0.5167 (seg=0.0017, cls=0.2575) | Acc: 0.9529 | Seg IoU: 0.9968 | 18.1s
+2026-04-17 09:03:24 - Epoch [38/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.56e-05/1.56e-04 | Loss: 0.4801 (seg=0.0016, cls=0.2393) | Acc: 0.9647 | Seg IoU: 0.9970 | 18.0s
+2026-04-17 09:03:42 - Epoch [39/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.53e-05/1.53e-04 | Loss: 0.5338 (seg=0.0015, cls=0.2662) | Acc: 0.9511 | Seg IoU: 0.9972 | 17.8s
+2026-04-17 09:04:00 - Epoch [40/100] stage1 (ratio=0.72, w=1.40, pAUC_coeff=0.0) LR: 1.50e-05/1.50e-04 | Loss: 0.5392 (seg=0.0014, cls=0.2689) | Acc: 0.9511 | Seg IoU: 0.9973 | 17.9s
+2026-04-17 09:04:00 - --------------------------------------------------
+2026-04-17 09:04:03 - [Dev] pAUC@0.05=0.6267 | no_tumor召回=54.35% | benign漏检=3.23%
+2026-04-17 09:04:06 - [Test(ref)] Cls — Acc: 0.6539 | P(macro): 0.5761 | R(macro): 0.5904 | F1(macro): 0.5779
+2026-04-17 09:04:06 - [Test(ref)] Seg — Lesion IoU: 0.9971 | Lesion Dice: 0.9985
+2026-04-17 09:04:06 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3488    0.4651    0.3987       129
+    no_tumor     0.8034    0.7157    0.7570       394
+
+    accuracy                         0.6539       523
+   macro avg     0.5761    0.5904    0.5779       523
+weighted avg     0.6913    0.6539    0.6687       523
+
+2026-04-17 09:04:10 - *** 保存最优模型 (Epoch=40, dev_pAUC@0.05=0.6267) ***
+2026-04-17 09:04:10 - --------------------------------------------------
+2026-04-17 09:04:29 - Epoch [41/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.47e-05/1.47e-04 | Loss: 0.6125 (seg=0.0014, cls=0.3027) | Acc: 0.9429 | Seg IoU: 0.9972 | 18.3s
+2026-04-17 09:04:48 - Epoch [42/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.44e-05/1.44e-04 | Loss: 0.5830 (seg=0.0013, cls=0.2887) | Acc: 0.9529 | Seg IoU: 0.9975 | 19.0s
+2026-04-17 09:05:06 - Epoch [43/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.41e-05/1.41e-04 | Loss: 0.5284 (seg=0.0014, cls=0.2619) | Acc: 0.9665 | Seg IoU: 0.9973 | 18.4s
+2026-04-17 09:05:24 - Epoch [44/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.38e-05/1.38e-04 | Loss: 0.6089 (seg=0.0012, cls=0.3016) | Acc: 0.9447 | Seg IoU: 0.9976 | 18.1s
+2026-04-17 09:05:43 - Epoch [45/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.35e-05/1.35e-04 | Loss: 0.5760 (seg=0.0010, cls=0.2859) | Acc: 0.9529 | Seg IoU: 0.9979 | 18.8s
+2026-04-17 09:05:43 - --------------------------------------------------
+2026-04-17 09:05:45 - [Dev] pAUC@0.05=0.5649 | no_tumor召回=44.57% | benign漏检=3.23%
+2026-04-17 09:05:49 - [Test(ref)] Cls — Acc: 0.6864 | P(macro): 0.5934 | R(macro): 0.6016 | F1(macro): 0.5964
+2026-04-17 09:05:49 - [Test(ref)] Seg — Lesion IoU: 0.9964 | Lesion Dice: 0.9982
+2026-04-17 09:05:49 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.3810    0.4341    0.4058       129
+    no_tumor     0.8059    0.7690    0.7870       394
+
+    accuracy                         0.6864       523
+   macro avg     0.5934    0.6016    0.5964       523
+weighted avg     0.7010    0.6864    0.6930       523
+
+2026-04-17 09:05:49 - --------------------------------------------------
+2026-04-17 09:06:07 - Epoch [46/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.32e-05/1.32e-04 | Loss: 0.5449 (seg=0.0010, cls=0.2702) | Acc: 0.9592 | Seg IoU: 0.9980 | 18.1s
+2026-04-17 09:06:26 - Epoch [47/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.28e-05/1.28e-04 | Loss: 0.5000 (seg=0.0010, cls=0.2487) | Acc: 0.9692 | Seg IoU: 0.9980 | 19.0s
+2026-04-17 09:06:44 - Epoch [48/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.25e-05/1.25e-04 | Loss: 0.5047 (seg=0.0009, cls=0.2510) | Acc: 0.9674 | Seg IoU: 0.9982 | 18.3s
+2026-04-17 09:07:02 - Epoch [49/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.22e-05/1.22e-04 | Loss: 0.4954 (seg=0.0009, cls=0.2458) | Acc: 0.9719 | Seg IoU: 0.9982 | 18.0s
+2026-04-17 09:07:21 - Epoch [50/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.18e-05/1.18e-04 | Loss: 0.4979 (seg=0.0009, cls=0.2477) | Acc: 0.9692 | Seg IoU: 0.9981 | 18.8s
+2026-04-17 09:07:21 - --------------------------------------------------
+2026-04-17 09:07:23 - [Dev] pAUC@0.05=0.6231 | no_tumor召回=14.13% | benign漏检=3.23%
+2026-04-17 09:07:27 - [Test(ref)] Cls — Acc: 0.7361 | P(macro): 0.6362 | R(macro): 0.6241 | F1(macro): 0.6291
+2026-04-17 09:07:27 - [Test(ref)] Seg — Lesion IoU: 0.9981 | Lesion Dice: 0.9990
+2026-04-17 09:07:27 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4602    0.4031    0.4298       129
+    no_tumor     0.8122    0.8452    0.8284       394
+
+    accuracy                         0.7361       523
+   macro avg     0.6362    0.6241    0.6291       523
+weighted avg     0.7254    0.7361    0.7300       523
+
+2026-04-17 09:07:27 - --------------------------------------------------
+2026-04-17 09:07:45 - Epoch [51/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.15e-05/1.15e-04 | Loss: 0.5062 (seg=0.0009, cls=0.2515) | Acc: 0.9710 | Seg IoU: 0.9982 | 18.3s
+2026-04-17 09:08:04 - Epoch [52/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.11e-05/1.11e-04 | Loss: 0.5145 (seg=0.0008, cls=0.2556) | Acc: 0.9683 | Seg IoU: 0.9984 | 18.8s
+2026-04-17 09:08:22 - Epoch [53/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.08e-05/1.08e-04 | Loss: 0.5366 (seg=0.0007, cls=0.2660) | Acc: 0.9647 | Seg IoU: 0.9985 | 18.2s
+2026-04-17 09:08:40 - Epoch [54/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.04e-05/1.04e-04 | Loss: 0.5071 (seg=0.0008, cls=0.2517) | Acc: 0.9728 | Seg IoU: 0.9983 | 18.1s
+2026-04-17 09:08:59 - Epoch [55/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 1.01e-05/1.01e-04 | Loss: 0.4986 (seg=0.0007, cls=0.2476) | Acc: 0.9728 | Seg IoU: 0.9986 | 18.6s
+2026-04-17 09:08:59 - --------------------------------------------------
+2026-04-17 09:09:01 - [Dev] pAUC@0.05=0.6454 | no_tumor召回=21.74% | benign漏检=3.23%
+2026-04-17 09:09:05 - [Test(ref)] Cls — Acc: 0.7342 | P(macro): 0.6281 | R(macro): 0.6098 | F1(macro): 0.6162
+2026-04-17 09:09:05 - [Test(ref)] Seg — Lesion IoU: 0.9984 | Lesion Dice: 0.9992
+2026-04-17 09:09:05 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4519    0.3643    0.4034       129
+    no_tumor     0.8043    0.8553    0.8290       394
+
+    accuracy                         0.7342       523
+   macro avg     0.6281    0.6098    0.6162       523
+weighted avg     0.7174    0.7342    0.7241       523
+
+2026-04-17 09:09:09 - *** 保存最优模型 (Epoch=55, dev_pAUC@0.05=0.6454) ***
+2026-04-17 09:09:09 - --------------------------------------------------
+2026-04-17 09:09:27 - Epoch [56/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 9.75e-06/9.75e-05 | Loss: 0.4930 (seg=0.0007, cls=0.2452) | Acc: 0.9737 | Seg IoU: 0.9987 | 17.9s
+2026-04-17 09:09:45 - Epoch [57/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 9.41e-06/9.41e-05 | Loss: 0.4583 (seg=0.0007, cls=0.2284) | Acc: 0.9819 | Seg IoU: 0.9987 | 18.1s
+2026-04-17 09:10:03 - Epoch [58/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 9.07e-06/9.07e-05 | Loss: 0.4671 (seg=0.0007, cls=0.2323) | Acc: 0.9810 | Seg IoU: 0.9986 | 18.2s
+2026-04-17 09:10:22 - Epoch [59/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 8.72e-06/8.72e-05 | Loss: 0.4815 (seg=0.0006, cls=0.2394) | Acc: 0.9764 | Seg IoU: 0.9988 | 18.6s
+2026-04-17 09:10:40 - Epoch [60/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 8.38e-06/8.38e-05 | Loss: 0.5114 (seg=0.0006, cls=0.2539) | Acc: 0.9701 | Seg IoU: 0.9988 | 18.4s
+2026-04-17 09:10:40 - --------------------------------------------------
+2026-04-17 09:10:43 - [Dev] pAUC@0.05=0.6037 | no_tumor召回=28.26% | benign漏检=3.23%
+2026-04-17 09:10:46 - [Test(ref)] Cls — Acc: 0.7610 | P(macro): 0.6647 | R(macro): 0.6172 | F1(macro): 0.6289
+2026-04-17 09:10:46 - [Test(ref)] Seg — Lesion IoU: 0.9984 | Lesion Dice: 0.9992
+2026-04-17 09:10:46 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5244    0.3333    0.4076       129
+    no_tumor     0.8050    0.9010    0.8503       394
+
+    accuracy                         0.7610       523
+   macro avg     0.6647    0.6172    0.6289       523
+weighted avg     0.7358    0.7610    0.7411       523
+
+2026-04-17 09:10:46 - --------------------------------------------------
+2026-04-17 09:11:04 - Epoch [61/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 8.04e-06/8.04e-05 | Loss: 0.4503 (seg=0.0006, cls=0.2244) | Acc: 0.9837 | Seg IoU: 0.9989 | 18.3s
+2026-04-17 09:11:23 - Epoch [62/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 7.70e-06/7.70e-05 | Loss: 0.4833 (seg=0.0006, cls=0.2405) | Acc: 0.9764 | Seg IoU: 0.9988 | 18.7s
+2026-04-17 09:11:42 - Epoch [63/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 7.37e-06/7.37e-05 | Loss: 0.4787 (seg=0.0006, cls=0.2383) | Acc: 0.9774 | Seg IoU: 0.9989 | 18.8s
+2026-04-17 09:12:00 - Epoch [64/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 7.04e-06/7.04e-05 | Loss: 0.4487 (seg=0.0005, cls=0.2235) | Acc: 0.9837 | Seg IoU: 0.9989 | 18.0s
+2026-04-17 09:12:18 - Epoch [65/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 6.71e-06/6.71e-05 | Loss: 0.4597 (seg=0.0006, cls=0.2290) | Acc: 0.9819 | Seg IoU: 0.9989 | 18.1s
+2026-04-17 09:12:18 - --------------------------------------------------
+2026-04-17 09:12:20 - [Dev] pAUC@0.05=0.6497 | no_tumor召回=26.09% | benign漏检=0.00%
+2026-04-17 09:12:23 - [Test(ref)] Cls — Acc: 0.7400 | P(macro): 0.6408 | R(macro): 0.6267 | F1(macro): 0.6323
+2026-04-17 09:12:23 - [Test(ref)] Seg — Lesion IoU: 0.9986 | Lesion Dice: 0.9993
+2026-04-17 09:12:23 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4685    0.4031    0.4333       129
+    no_tumor     0.8131    0.8503    0.8313       394
+
+    accuracy                         0.7400       523
+   macro avg     0.6408    0.6267    0.6323       523
+weighted avg     0.7281    0.7400    0.7331       523
+
+2026-04-17 09:12:27 - *** 保存最优模型 (Epoch=65, dev_pAUC@0.05=0.6497) ***
+2026-04-17 09:12:27 - --------------------------------------------------
+2026-04-17 09:12:46 - Epoch [66/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 6.39e-06/6.39e-05 | Loss: 0.4551 (seg=0.0005, cls=0.2264) | Acc: 0.9828 | Seg IoU: 0.9990 | 18.4s
+2026-04-17 09:13:04 - Epoch [67/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 6.07e-06/6.07e-05 | Loss: 0.4248 (seg=0.0005, cls=0.2118) | Acc: 0.9900 | Seg IoU: 0.9990 | 17.9s
+2026-04-17 09:13:22 - Epoch [68/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 5.76e-06/5.76e-05 | Loss: 0.4488 (seg=0.0005, cls=0.2236) | Acc: 0.9846 | Seg IoU: 0.9989 | 18.1s
+2026-04-17 09:13:41 - Epoch [69/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 5.45e-06/5.45e-05 | Loss: 0.4354 (seg=0.0005, cls=0.2171) | Acc: 0.9882 | Seg IoU: 0.9989 | 18.9s
+2026-04-17 09:13:59 - Epoch [70/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 5.15e-06/5.15e-05 | Loss: 0.4368 (seg=0.0004, cls=0.2178) | Acc: 0.9882 | Seg IoU: 0.9991 | 17.9s
+2026-04-17 09:13:59 - --------------------------------------------------
+2026-04-17 09:14:01 - [Dev] pAUC@0.05=0.6533 | no_tumor召回=21.74% | benign漏检=3.23%
+2026-04-17 09:14:04 - [Test(ref)] Cls — Acc: 0.7610 | P(macro): 0.6621 | R(macro): 0.5937 | F1(macro): 0.6029
+2026-04-17 09:14:04 - [Test(ref)] Seg — Lesion IoU: 0.9987 | Lesion Dice: 0.9994
+2026-04-17 09:14:04 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.5312    0.2636    0.3523       129
+    no_tumor     0.7930    0.9239    0.8535       394
+
+    accuracy                         0.7610       523
+   macro avg     0.6621    0.5937    0.6029       523
+weighted avg     0.7285    0.7610    0.7299       523
+
+2026-04-17 09:14:08 - *** 保存最优模型 (Epoch=70, dev_pAUC@0.05=0.6533) ***
+2026-04-17 09:14:08 - --------------------------------------------------
+2026-04-17 09:14:27 - Epoch [71/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 4.85e-06/4.85e-05 | Loss: 0.4300 (seg=0.0004, cls=0.2144) | Acc: 0.9891 | Seg IoU: 0.9991 | 18.7s
+2026-04-17 09:14:45 - Epoch [72/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 4.56e-06/4.56e-05 | Loss: 0.4330 (seg=0.0005, cls=0.2160) | Acc: 0.9900 | Seg IoU: 0.9991 | 18.1s
+2026-04-17 09:15:04 - Epoch [73/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 4.28e-06/4.28e-05 | Loss: 0.4536 (seg=0.0004, cls=0.2254) | Acc: 0.9837 | Seg IoU: 0.9992 | 18.9s
+2026-04-17 09:15:22 - Epoch [74/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 4.00e-06/4.00e-05 | Loss: 0.4151 (seg=0.0005, cls=0.2072) | Acc: 0.9928 | Seg IoU: 0.9990 | 18.1s
+2026-04-17 09:15:40 - Epoch [75/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 3.74e-06/3.74e-05 | Loss: 0.4429 (seg=0.0004, cls=0.2206) | Acc: 0.9864 | Seg IoU: 0.9991 | 18.6s
+2026-04-17 09:15:40 - --------------------------------------------------
+2026-04-17 09:15:44 - [Dev] pAUC@0.05=0.5843 | no_tumor召回=6.52% | benign漏检=0.00%
+2026-04-17 09:15:47 - [Test(ref)] Cls — Acc: 0.7495 | P(macro): 0.6397 | R(macro): 0.5913 | F1(macro): 0.5996
+2026-04-17 09:15:47 - [Test(ref)] Seg — Lesion IoU: 0.9989 | Lesion Dice: 0.9995
+2026-04-17 09:15:47 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4865    0.2791    0.3547       129
+    no_tumor     0.7929    0.9036    0.8446       394
+
+    accuracy                         0.7495       523
+   macro avg     0.6397    0.5913    0.5996       523
+weighted avg     0.7173    0.7495    0.7238       523
+
+2026-04-17 09:15:47 - --------------------------------------------------
+2026-04-17 09:16:05 - Epoch [76/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 3.48e-06/3.48e-05 | Loss: 0.4303 (seg=0.0004, cls=0.2146) | Acc: 0.9891 | Seg IoU: 0.9991 | 17.8s
+2026-04-17 09:16:23 - Epoch [77/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 3.22e-06/3.22e-05 | Loss: 0.4090 (seg=0.0004, cls=0.2041) | Acc: 0.9946 | Seg IoU: 0.9992 | 18.1s
+2026-04-17 09:16:42 - Epoch [78/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 2.98e-06/2.98e-05 | Loss: 0.4283 (seg=0.0003, cls=0.2137) | Acc: 0.9891 | Seg IoU: 0.9993 | 18.6s
+2026-04-17 09:17:00 - Epoch [79/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 2.74e-06/2.74e-05 | Loss: 0.4588 (seg=0.0004, cls=0.2285) | Acc: 0.9828 | Seg IoU: 0.9993 | 18.5s
+2026-04-17 09:17:18 - Epoch [80/100] stage2 (ratio=0.62, w=1.22, pAUC_coeff=0.5) LR: 2.52e-06/2.52e-05 | Loss: 0.4172 (seg=0.0004, cls=0.2082) | Acc: 0.9909 | Seg IoU: 0.9992 | 17.9s
+2026-04-17 09:17:18 - --------------------------------------------------
+2026-04-17 09:17:20 - [Dev] pAUC@0.05=0.6814 | no_tumor召回=17.39% | benign漏检=3.23%
+2026-04-17 09:17:24 - [Test(ref)] Cls — Acc: 0.7476 | P(macro): 0.6371 | R(macro): 0.5926 | F1(macro): 0.6010
+2026-04-17 09:17:24 - [Test(ref)] Seg — Lesion IoU: 0.9990 | Lesion Dice: 0.9995
+2026-04-17 09:17:24 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4805    0.2868    0.3592       129
+    no_tumor     0.7937    0.8985    0.8429       394
+
+    accuracy                         0.7476       523
+   macro avg     0.6371    0.5926    0.6010       523
+weighted avg     0.7165    0.7476    0.7236       523
+
+2026-04-17 09:17:28 - *** 保存最优模型 (Epoch=80, dev_pAUC@0.05=0.6814) ***
+2026-04-17 09:17:28 - --------------------------------------------------
+2026-04-17 09:17:46 - Epoch [81/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 1.84e-06/2.07e-05 | Loss: 0.4780 (seg=0.0004, cls=0.2378) | Acc: 0.9810 | Seg IoU: 0.9992 | 18.3s
+2026-04-17 09:18:05 - Epoch [82/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 1.67e-06/1.88e-05 | Loss: 0.4351 (seg=0.0004, cls=0.2168) | Acc: 0.9909 | Seg IoU: 0.9992 | 18.8s
+2026-04-17 09:18:24 - Epoch [83/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 1.51e-06/1.70e-05 | Loss: 0.4529 (seg=0.0004, cls=0.2252) | Acc: 0.9873 | Seg IoU: 0.9993 | 18.8s
+2026-04-17 09:18:41 - Epoch [84/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 1.36e-06/1.53e-05 | Loss: 0.4393 (seg=0.0004, cls=0.2189) | Acc: 0.9909 | Seg IoU: 0.9992 | 17.9s
+2026-04-17 09:19:00 - Epoch [85/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 1.22e-06/1.37e-05 | Loss: 0.4480 (seg=0.0004, cls=0.2230) | Acc: 0.9873 | Seg IoU: 0.9992 | 18.9s
+2026-04-17 09:19:00 - --------------------------------------------------
+2026-04-17 09:19:03 - [Dev] pAUC@0.05=0.6735 | no_tumor召回=11.96% | benign漏检=0.00%
+2026-04-17 09:19:06 - [Test(ref)] Cls — Acc: 0.7457 | P(macro): 0.6276 | R(macro): 0.5757 | F1(macro): 0.5808
+2026-04-17 09:19:06 - [Test(ref)] Seg — Lesion IoU: 0.9990 | Lesion Dice: 0.9995
+2026-04-17 09:19:06 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4697    0.2403    0.3179       129
+    no_tumor     0.7856    0.9112    0.8437       394
+
+    accuracy                         0.7457       523
+   macro avg     0.6276    0.5757    0.5808       523
+weighted avg     0.7076    0.7457    0.7140       523
+
+2026-04-17 09:19:06 - --------------------------------------------------
+2026-04-17 09:19:25 - Epoch [86/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 1.09e-06/1.22e-05 | Loss: 0.4344 (seg=0.0003, cls=0.2166) | Acc: 0.9928 | Seg IoU: 0.9993 | 18.8s
+2026-04-17 09:19:43 - Epoch [87/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 9.62e-07/1.08e-05 | Loss: 0.4517 (seg=0.0003, cls=0.2250) | Acc: 0.9873 | Seg IoU: 0.9993 | 18.2s
+2026-04-17 09:20:01 - Epoch [88/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 8.45e-07/9.50e-06 | Loss: 0.4256 (seg=0.0003, cls=0.2121) | Acc: 0.9946 | Seg IoU: 0.9993 | 18.1s
+2026-04-17 09:20:19 - Epoch [89/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 7.37e-07/8.29e-06 | Loss: 0.4330 (seg=0.0004, cls=0.2159) | Acc: 0.9909 | Seg IoU: 0.9992 | 18.1s
+2026-04-17 09:20:38 - Epoch [90/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 6.38e-07/7.17e-06 | Loss: 0.4301 (seg=0.0003, cls=0.2145) | Acc: 0.9918 | Seg IoU: 0.9993 | 19.2s
+2026-04-17 09:20:38 - --------------------------------------------------
+2026-04-17 09:20:41 - [Dev] pAUC@0.05=0.6627 | no_tumor召回=23.91% | benign漏检=0.00%
+2026-04-17 09:20:44 - [Test(ref)] Cls — Acc: 0.7400 | P(macro): 0.6267 | R(macro): 0.5928 | F1(macro): 0.6005
+2026-04-17 09:20:44 - [Test(ref)] Seg — Lesion IoU: 0.9991 | Lesion Dice: 0.9995
+2026-04-17 09:20:44 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4588    0.3023    0.3645       129
+    no_tumor     0.7945    0.8832    0.8365       394
+
+    accuracy                         0.7400       523
+   macro avg     0.6267    0.5928    0.6005       523
+weighted avg     0.7117    0.7400    0.7201       523
+
+2026-04-17 09:20:44 - --------------------------------------------------
+2026-04-17 09:21:03 - Epoch [91/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 5.48e-07/6.16e-06 | Loss: 0.4253 (seg=0.0003, cls=0.2121) | Acc: 0.9928 | Seg IoU: 0.9993 | 18.7s
+2026-04-17 09:21:21 - Epoch [92/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 4.67e-07/5.25e-06 | Loss: 0.4229 (seg=0.0003, cls=0.2109) | Acc: 0.9937 | Seg IoU: 0.9993 | 18.1s
+2026-04-17 09:21:39 - Epoch [93/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 3.95e-07/4.45e-06 | Loss: 0.4614 (seg=0.0003, cls=0.2294) | Acc: 0.9837 | Seg IoU: 0.9994 | 18.2s
+2026-04-17 09:21:57 - Epoch [94/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 3.33e-07/3.75e-06 | Loss: 0.4390 (seg=0.0003, cls=0.2186) | Acc: 0.9909 | Seg IoU: 0.9993 | 18.1s
+2026-04-17 09:22:16 - Epoch [95/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 2.80e-07/3.15e-06 | Loss: 0.4422 (seg=0.0004, cls=0.2202) | Acc: 0.9891 | Seg IoU: 0.9993 | 19.1s
+2026-04-17 09:22:16 - --------------------------------------------------
+2026-04-17 09:22:18 - [Dev] pAUC@0.05=0.6346 | no_tumor召回=13.04% | benign漏检=0.00%
+2026-04-17 09:22:22 - [Test(ref)] Cls — Acc: 0.7495 | P(macro): 0.6388 | R(macro): 0.5887 | F1(macro): 0.5966
+2026-04-17 09:22:22 - [Test(ref)] Seg — Lesion IoU: 0.9991 | Lesion Dice: 0.9996
+2026-04-17 09:22:22 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4861    0.2713    0.3483       129
+    no_tumor     0.7916    0.9061    0.8450       394
+
+    accuracy                         0.7495       523
+   macro avg     0.6388    0.5887    0.5966       523
+weighted avg     0.7162    0.7495    0.7225       523
+
+2026-04-17 09:22:22 - --------------------------------------------------
+2026-04-17 09:22:41 - Epoch [96/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 2.37e-07/2.67e-06 | Loss: 0.4309 (seg=0.0003, cls=0.2147) | Acc: 0.9928 | Seg IoU: 0.9994 | 18.9s
+2026-04-17 09:22:58 - Epoch [97/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 2.03e-07/2.29e-06 | Loss: 0.4276 (seg=0.0004, cls=0.2133) | Acc: 0.9937 | Seg IoU: 0.9992 | 17.5s
+2026-04-17 09:23:16 - Epoch [98/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 1.79e-07/2.02e-06 | Loss: 0.4323 (seg=0.0003, cls=0.2156) | Acc: 0.9928 | Seg IoU: 0.9993 | 18.1s
+2026-04-17 09:23:34 - Epoch [99/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 1.65e-07/1.85e-06 | Loss: 0.4358 (seg=0.0003, cls=0.2171) | Acc: 0.9909 | Seg IoU: 0.9993 | 17.9s
+2026-04-17 09:23:52 - Epoch [100/100] stage3 (ratio=0.55, w=1.08, pAUC_coeff=1.0) LR: 1.60e-07/1.80e-06 | Loss: 0.4581 (seg=0.0003, cls=0.2281) | Acc: 0.9855 | Seg IoU: 0.9993 | 17.6s
+2026-04-17 09:23:52 - --------------------------------------------------
+2026-04-17 09:23:54 - [Dev] pAUC@0.05=0.5368 | no_tumor召回=23.91% | benign漏检=0.00%
+2026-04-17 09:23:57 - [Test(ref)] Cls — Acc: 0.7476 | P(macro): 0.6334 | R(macro): 0.5822 | F1(macro): 0.5888
+2026-04-17 09:23:57 - [Test(ref)] Seg — Lesion IoU: 0.9991 | Lesion Dice: 0.9996
+2026-04-17 09:23:57 - [Test(ref)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4783    0.2558    0.3333       129
+    no_tumor     0.7885    0.9086    0.8443       394
+
+    accuracy                         0.7476       523
+   macro avg     0.6334    0.5822    0.5888       523
+weighted avg     0.7120    0.7476    0.7183       523
+
+2026-04-17 09:23:57 - --------------------------------------------------
+2026-04-17 09:23:57 - 
+======================================================================
+2026-04-17 09:23:57 - 训练完成! 最优模型 Epoch=80, dev_pAUC@0.05=0.6814
+2026-04-17 09:23:57 - ======================================================================
+2026-04-17 09:23:58 - 
+[温标定] 在 dev 上拟合 T...
+2026-04-17 09:24:23 - [温标定] T = 1.7667
+2026-04-17 09:24:23 - Dev probs 已保存: /data1/ouyangxinglong/GBP-Cascade/0417/logs/20260417_task2_SwinV2Tiny_segcls_19_1/20260417_task2_SwinV2Tiny_segcls_19_1_dev_probs.csv
+2026-04-17 09:24:23 - 
+======================================================================
+2026-04-17 09:24:23 - 最终 Test 评估 (threshold=0.5, uncalibrated)
+2026-04-17 09:24:23 - ======================================================================
+2026-04-17 09:24:26 - [Final Test (uncal)] Cls — Acc: 0.7476 | P(macro): 0.6371 | R(macro): 0.5926 | F1(macro): 0.6010
+2026-04-17 09:24:26 - [Final Test (uncal)] Seg — Lesion IoU: 0.9990 | Lesion Dice: 0.9995
+2026-04-17 09:24:26 - [Final Test (uncal)] Classification Report:
+              precision    recall  f1-score   support
+
+      benign     0.4805    0.2868    0.3592       129
+    no_tumor     0.7937    0.8985    0.8429       394
+
+    accuracy                         0.7476       523
+   macro avg     0.6371    0.5926    0.6010       523
+weighted avg     0.7165    0.7476    0.7236       523
+
+2026-04-17 09:24:30 - Test uncal probs 已保存: /data1/ouyangxinglong/GBP-Cascade/0417/logs/20260417_task2_SwinV2Tiny_segcls_19_1/20260417_task2_SwinV2Tiny_segcls_19_1_test_probs_uncal.csv
+2026-04-17 09:24:33 - 
+============================================================
+2026-04-17 09:24:33 - [Dev (uncalibrated)] 临床阈值结果 (T=1.0000)
+2026-04-17 09:24:33 - ============================================================
+2026-04-17 09:24:33 -   miss_rate=0.rate=0.02: thr=0.055 | benign召回=100.00% | no_tumor命中=10/394 | no_tumor召回=10.87% | 约束满足=True
+2026-04-17 09:24:33 -   miss_rate=0.rate=0.05: thr=0.057 | benign召回=96.77% | no_tumor命中=37/394 | no_tumor召回=39.13% | 约束满足=True
+2026-04-17 09:24:33 -   miss_rate=0.rate=0.10: thr=0.057 | benign召回=96.77% | no_tumor命中=37/394 | no_tumor召回=39.13% | 约束满足=True
+2026-04-17 09:24:33 - 
+======================================================================
+2026-04-17 09:24:33 - 最终 Test 评估 (calibrated, T=1.7667)
+2026-04-17 09:24:33 - ======================================================================
+2026-04-17 09:24:36 - Test cal probs 已保存: /data1/ouyangxinglong/GBP-Cascade/0417/logs/20260417_task2_SwinV2Tiny_segcls_19_1/20260417_task2_SwinV2Tiny_segcls_19_1_test_probs_calibrated.csv
+2026-04-17 09:24:40 - 
+============================================================
+2026-04-17 09:24:40 - [Dev (calibrated) → 最终推荐阈值] 临床阈值结果 (T=1.7667)
+2026-04-17 09:24:40 - ============================================================
+2026-04-17 09:24:40 -   miss_rate=0.rate=0.02: thr=0.168 | benign召回=100.00% | no_tumor命中=17/394 | no_tumor召回=18.48% | 约束满足=True
+2026-04-17 09:24:40 -   miss_rate=0.rate=0.05: thr=0.169 | benign召回=96.77% | no_tumor命中=30/394 | no_tumor召回=31.52% | 约束满足=True
+2026-04-17 09:24:40 -   miss_rate=0.rate=0.10: thr=0.170 | benign召回=93.55% | no_tumor命中=43/394 | no_tumor召回=44.57% | 约束满足=True
+2026-04-17 09:24:40 - Thresholds JSON 已保存: /data1/ouyangxinglong/GBP-Cascade/0417/logs/20260417_task2_SwinV2Tiny_segcls_19_1/20260417_task2_SwinV2Tiny_segcls_19_1_thresholds.json
+2026-04-17 09:24:40 - [Reliability 未校准] ECE=0.1934 | Brier=0.2209
+2026-04-17 09:24:40 - [Reliability 校准(T=1.77)] ECE=0.0777 | Brier=0.1911
+2026-04-17 09:24:41 - 训练脚本已复制到: /data1/ouyangxinglong/GBP-Cascade/0417/logs/20260417_task2_SwinV2Tiny_segcls_19_1/20260417_task2_SwinV2Tiny_segcls_19_1.py
+2026-04-17 09:24:41 - 
+[Done] Exp#19-1 完成.

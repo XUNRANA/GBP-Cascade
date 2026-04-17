@@ -1,0 +1,24 @@
+{
+  "T": 1.6122663021087646,
+  "miss_0_02": {
+    "threshold": 0.1399999999999999,
+    "benign_recall": 1.0,
+    "no_tumor_hits": 25,
+    "no_tumor_recall": 0.2717391304347826,
+    "constraint_satisfied": true
+  },
+  "miss_0_05": {
+    "threshold": 0.1399999999999999,
+    "benign_recall": 1.0,
+    "no_tumor_hits": 25,
+    "no_tumor_recall": 0.2717391304347826,
+    "constraint_satisfied": true
+  },
+  "miss_0_10": {
+    "threshold": 0.14899999999999988,
+    "benign_recall": 0.9032258064516129,
+    "no_tumor_hits": 65,
+    "no_tumor_recall": 0.6739130434782609,
+    "constraint_satisfied": true
+  }
+}
