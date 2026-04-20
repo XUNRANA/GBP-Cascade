@@ -1,0 +1,23 @@
+{
+  "model_ckpt": "/data1/ouyangxinglong/GBP-Cascade/0414/logs/20260414_task3_SwinV2Tiny_segcls_3/20260414_task3_SwinV2Tiny_segcls_3_best.pth",
+  "device": "cpu",
+  "num_samples": 456,
+  "class_names": [
+    "malignant",
+    "benign",
+    "no_tumor"
+  ],
+  "intra_mean_l2_to_centroid": {
+    "malignant": 4.744101524353027,
+    "benign": 5.163471221923828,
+    "no_tumor": 4.705597877502441
+  },
+  "inter_centroid_l2": {
+    "malignant-benign": 8.756766319274902,
+    "malignant-no_tumor": 9.852055549621582,
+    "benign-no_tumor": 1.9156113862991333
+  },
+  "silhouette_score": 0.11499621719121933,
+  "tsne_png": "/data1/ouyangxinglong/GBP-Cascade/0414/logs/feature_analysis_best_softmax_segcls3/tsne_pre_classifier_feat.png",
+  "tsne_points_csv": "/data1/ouyangxinglong/GBP-Cascade/0414/logs/feature_analysis_best_softmax_segcls3/tsne_points.csv"
+}

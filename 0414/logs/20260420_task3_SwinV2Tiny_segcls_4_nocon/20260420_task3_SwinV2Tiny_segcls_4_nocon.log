@@ -1,0 +1,32 @@
+2026-04-20 07:17:43 - ======================================================================
+2026-04-20 07:17:43 - 实验名称: 20260420_task3_SwinV2Tiny_segcls_4_nocon
+2026-04-20 07:17:43 - 模型: SwinV2-Tiny@256 + 4ch + UNetSeg + SegGuidedAttn + 10D_Meta + FocalCostSensitive + OrdinalScore (No SupCon)
+2026-04-20 07:17:43 - 修改: Ablation: 关闭 SupCon 对比损失 (lambda_con=0), 其余保持与 segcls_4 一致 — Focal代价敏感损失 + 调整代价矩阵 + 采样2:3:3 + ordinal目标微调
+2026-04-20 07:17:43 - 图像尺寸: 256
+2026-04-20 07:17:43 - 分类类别: ['malignant', 'benign', 'no_tumor']
+2026-04-20 07:17:43 - Metadata: 10D → 64D MLP
+2026-04-20 07:17:43 - SupCon: proj_dim=128, temperature=0.1, lambda=0.0
+2026-04-20 07:17:43 - Focal: gamma=2.0
+2026-04-20 07:17:43 - Batch Size: 8 (2mal+3ben+3notumor)
+2026-04-20 07:17:43 - Backbone LR: 2e-05 | Head LR: 0.0002
+2026-04-20 07:17:43 - Epochs: 60 | Warmup: 5
+2026-04-20 07:17:43 - Lambda Cls: 2.0 | Lambda Ord: 0.5 | Lambda Con: 0.0
+2026-04-20 07:17:43 - 代价惩罚权重: 0.5
+2026-04-20 07:17:43 - Val 比例: 0.15
+2026-04-20 07:17:43 - 设备: cpu
+2026-04-20 07:17:43 - 代价矩阵 (Exp-D 调整后):
+2026-04-20 07:17:43 -   malignant:  [0.0, 1.0, 5.0]
+2026-04-20 07:17:43 -   benign:     [2.0, 0.0, 3.0]
+2026-04-20 07:17:43 -   no_tumor:   [1.5, 0.5, 0.0]
+2026-04-20 07:17:43 - Ordinal 目标: [1.0, 0.3499999940395355, 0.0]
+2026-04-20 07:17:43 - ======================================================================
+2026-04-20 07:17:46 - 训练集: 907 张 (malignant=210, benign=235, no_tumor=462)
+2026-04-20 07:17:46 - 验证集: 177 张 (malignant=62, benign=36, no_tumor=79)
+2026-04-20 07:17:46 - 测试集: 456 张 (malignant=114, benign=114, no_tumor=228)
+2026-04-20 07:17:46 - 训练集 metadata 缺失样本数: 577/907
+2026-04-20 07:17:47 - pretrained 加载失败, 使用随机初始化: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /timm/swinv2_tiny_window8_256.ms_in1k/resolve/main/model.safetensors (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fac1043bc20>: Failed to establish a new connection: [Errno 1] Operation not permitted')))"), '(Request ID: 972a3f69-c290-4d74-8c0d-2526ebb12ac1)')
+2026-04-20 07:17:48 - 模型参数量: 34,646,736
+2026-04-20 07:17:48 - 可训练参数量: 34,646,736
+2026-04-20 07:17:48 - ======================================================================
+2026-04-20 07:17:48 - 开始训练
+2026-04-20 07:17:48 - ======================================================================
