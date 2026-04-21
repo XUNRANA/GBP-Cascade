@@ -1,0 +1,5 @@
+各类指标:
+息肉: Precision 68.92% , Recall 75.88% , F1 72.23% , Support 228
+良性: Precision 39.56% , Recall 31.58% , F1 35.12% , Support 114
+Macro avg: Precision 54.24% , Recall 53.73% , F1 53.68% 
+Weighted avg: Precision 59.14% , Recall 61.11% , F1 59.86%

@@ -1,0 +1,237 @@
+{
+  "dataset_info": {
+    "n_total_original": 456,
+    "n_binary_eval": 342,
+    "n_benign": 114,
+    "n_no_tumor": 228
+  },
+  "default_threshold": {
+    "threshold": 0.5,
+    "accuracy": 0.7631578947368421,
+    "precision_macro": 0.7426564495530013,
+    "recall_macro": 0.6973684210526316,
+    "f1_macro": 0.7094856064181218,
+    "classification_report_dict": {
+      "benign": {
+        "precision": 0.7037037037037037,
+        "recall": 0.5,
+        "f1-score": 0.5846153846153846,
+        "support": 114.0
+      },
+      "no_tumor": {
+        "precision": 0.7816091954022989,
+        "recall": 0.8947368421052632,
+        "f1-score": 0.8343558282208589,
+        "support": 228.0
+      },
+      "accuracy": 0.7631578947368421,
+      "macro avg": {
+        "precision": 0.7426564495530013,
+        "recall": 0.6973684210526316,
+        "f1-score": 0.7094856064181218,
+        "support": 342.0
+      },
+      "weighted avg": {
+        "precision": 0.7556406981694338,
+        "recall": 0.7631578947368421,
+        "f1-score": 0.7511090136857008,
+        "support": 342.0
+      }
+    },
+    "classification_report_text": "              precision    recall  f1-score   support\n\n      benign     0.7037    0.5000    0.5846       114\n    no_tumor     0.7816    0.8947    0.8344       228\n\n    accuracy                         0.7632       342\n   macro avg     0.7427    0.6974    0.7095       342\nweighted avg     0.7556    0.7632    0.7511       342\n",
+    "confusion_matrix": [
+      [
+        57,
+        57
+      ],
+      [
+        24,
+        204
+      ]
+    ]
+  },
+  "best_f1_threshold": {
+    "threshold": 0.4700000000000003,
+    "accuracy": 0.7660818713450293,
+    "precision_macro": 0.7412698412698413,
+    "recall_macro": 0.7105263157894737,
+    "f1_macro": 0.7205882352941176,
+    "classification_report_dict": {
+      "benign": {
+        "precision": 0.6888888888888889,
+        "recall": 0.543859649122807,
+        "f1-score": 0.6078431372549019,
+        "support": 114.0
+      },
+      "no_tumor": {
+        "precision": 0.7936507936507936,
+        "recall": 0.8771929824561403,
+        "f1-score": 0.8333333333333334,
+        "support": 228.0
+      },
+      "accuracy": 0.7660818713450293,
+      "macro avg": {
+        "precision": 0.7412698412698413,
+        "recall": 0.7105263157894737,
+        "f1-score": 0.7205882352941176,
+        "support": 342.0
+      },
+      "weighted avg": {
+        "precision": 0.7587301587301587,
+        "recall": 0.7660818713450293,
+        "f1-score": 0.7581699346405227,
+        "support": 342.0
+      }
+    },
+    "classification_report_text": "              precision    recall  f1-score   support\n\n      benign     0.6889    0.5439    0.6078       114\n    no_tumor     0.7937    0.8772    0.8333       228\n\n    accuracy                         0.7661       342\n   macro avg     0.7413    0.7105    0.7206       342\nweighted avg     0.7587    0.7661    0.7582       342\n",
+    "confusion_matrix": [
+      [
+        62,
+        52
+      ],
+      [
+        28,
+        200
+      ]
+    ]
+  },
+  "best_f1_threshold_value": 0.4700000000000003,
+  "best_f1_score": 0.7205882352941176,
+  "policy_thresholds": {
+    "Policy(miss<=10%)": {
+      "policy": {
+        "threshold": 0.18399999999999986,
+        "benign_recall": 0.9035087719298246,
+        "benign_miss_rate": 0.09649122807017543,
+        "no_tumor_recall": 0.44298245614035087,
+        "no_tumor_precision": 0.9017857142857143,
+        "selected_no_tumor": 112,
+        "selected_no_tumor_rate": 0.32748538011695905,
+        "macro_f1": 0.5964774281805745,
+        "constraint_satisfied": true,
+        "max_benign_miss_rate": 0.1
+      },
+      "metrics": {
+        "threshold": 0.18399999999999986,
+        "accuracy": 0.5964912280701754,
+        "precision_macro": 0.674805900621118,
+        "recall_macro": 0.6732456140350878,
+        "f1_macro": 0.5964774281805745,
+        "classification_report_dict": {
+          "benign": {
+            "precision": 0.44782608695652176,
+            "recall": 0.9035087719298246,
+            "f1-score": 0.5988372093023255,
+            "support": 114.0
+          },
+          "no_tumor": {
+            "precision": 0.9017857142857143,
+            "recall": 0.44298245614035087,
+            "f1-score": 0.5941176470588235,
+            "support": 228.0
+          },
+          "accuracy": 0.5964912280701754,
+          "macro avg": {
+            "precision": 0.674805900621118,
+            "recall": 0.6732456140350878,
+            "f1-score": 0.5964774281805745,
+            "support": 342.0
+          },
+          "weighted avg": {
+            "precision": 0.7504658385093168,
+            "recall": 0.5964912280701754,
+            "f1-score": 0.5956908344733243,
+            "support": 342.0
+          }
+        },
+        "classification_report_text": "              precision    recall  f1-score   support\n\n      benign     0.4478    0.9035    0.5988       114\n    no_tumor     0.9018    0.4430    0.5941       228\n\n    accuracy                         0.5965       342\n   macro avg     0.6748    0.6732    0.5965       342\nweighted avg     0.7505    0.5965    0.5957       342\n",
+        "confusion_matrix": [
+          [
+            103,
+            11
+          ],
+          [
+            127,
+            101
+          ]
+        ]
+      }
+    },
+    "Policy(miss<=05%)": {
+      "policy": {
+        "threshold": 0.1439999999999999,
+        "benign_recall": 0.956140350877193,
+        "benign_miss_rate": 0.043859649122807015,
+        "no_tumor_recall": 0.10964912280701754,
+        "no_tumor_precision": 0.8333333333333334,
+        "selected_no_tumor": 30,
+        "selected_no_tumor_rate": 0.08771929824561403,
+        "macro_f1": 0.3527677694071405,
+        "constraint_satisfied": true,
+        "max_benign_miss_rate": 0.05
+      },
+      "metrics": {
+        "threshold": 0.1439999999999999,
+        "accuracy": 0.391812865497076,
+        "precision_macro": 0.5913461538461539,
+        "recall_macro": 0.5328947368421052,
+        "f1_macro": 0.3527677694071405,
+        "classification_report_dict": {
+          "benign": {
+            "precision": 0.34935897435897434,
+            "recall": 0.956140350877193,
+            "f1-score": 0.5117370892018779,
+            "support": 114.0
+          },
+          "no_tumor": {
+            "precision": 0.8333333333333334,
+            "recall": 0.10964912280701754,
+            "f1-score": 0.1937984496124031,
+            "support": 228.0
+          },
+          "accuracy": 0.391812865497076,
+          "macro avg": {
+            "precision": 0.5913461538461539,
+            "recall": 0.5328947368421052,
+            "f1-score": 0.3527677694071405,
+            "support": 342.0
+          },
+          "weighted avg": {
+            "precision": 0.672008547008547,
+            "recall": 0.391812865497076,
+            "f1-score": 0.29977799614222805,
+            "support": 342.0
+          }
+        },
+        "classification_report_text": "              precision    recall  f1-score   support\n\n      benign     0.3494    0.9561    0.5117       114\n    no_tumor     0.8333    0.1096    0.1938       228\n\n    accuracy                         0.3918       342\n   macro avg     0.5913    0.5329    0.3528       342\nweighted avg     0.6720    0.3918    0.2998       342\n",
+        "confusion_matrix": [
+          [
+            109,
+            5
+          ],
+          [
+            203,
+            25
+          ]
+        ]
+      }
+    }
+  },
+  "auc_info": {
+    "roc_auc_no_tumor": 0.7788742690058479,
+    "pr_auc_no_tumor": 0.8445444927352529
+  },
+  "high_confidence_no_tumor": {
+    "selected": 3,
+    "total": 342,
+    "coverage": 0.008771929824561403,
+    "precision": 1.0,
+    "true_positive": 3,
+    "positive_recall_in_selected": 0.013157894736842105,
+    "min_confidence": 0.9
+  },
+  "reliability": {
+    "ece": 0.04632244982391769,
+    "brier": 0.16908767528176963
+  }
+}
