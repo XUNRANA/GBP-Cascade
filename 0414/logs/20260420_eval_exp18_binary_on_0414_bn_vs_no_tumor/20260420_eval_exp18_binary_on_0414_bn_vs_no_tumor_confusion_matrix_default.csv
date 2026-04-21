@@ -1,0 +1,3 @@
+,pred_benign,pred_no_tumor
+true_benign,57,57
+true_no_tumor,24,204
