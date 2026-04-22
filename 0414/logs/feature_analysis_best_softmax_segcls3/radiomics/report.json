@@ -1,0 +1,212 @@
+{
+  "csv_source": "/data1/ouyangxinglong/GBP-Cascade/0414/logs/feature_analysis_best_softmax_segcls3/radiomics/features_test_gb_roi.csv",
+  "n_samples": 453,
+  "n_features_total": 102,
+  "n_features_used": 102,
+  "n_features_dropped_nan_or_const": 0,
+  "dropped_cols_sample": [],
+  "class_counts": {
+    "no_tumor": 227,
+    "malignant": 114,
+    "benign": 112
+  },
+  "pca": {
+    "pc1_var": 0.29655054501678607,
+    "pc2_var": 0.20271843576894027,
+    "pc80_index": 6,
+    "pc90_index": 10
+  },
+  "silhouette": {
+    "raw_standardized": 0.009376594038910523,
+    "pca2d": 0.0007527841086629596,
+    "tsne2d": -0.019629742950201035,
+    "umap2d": -0.014306214638054371
+  },
+  "kmeans3_ari": 0.16150670275287318,
+  "significance_q005": {
+    "anova": 85,
+    "mal_vs_ben": 67,
+    "mal_vs_no": 79,
+    "ben_vs_no": 41
+  },
+  "top10_by_anova": [
+    {
+      "feature": "original_ngtdm_Coarseness",
+      "f_stat": 57.45907679978573,
+      "p_anova": 5.971330776414729e-23,
+      "q_anova": 6.090757391943024e-21,
+      "cliff_delta_ben_no": -0.05624606670862178,
+      "q_ben_no": 0.5229140586273524
+    },
+    {
+      "feature": "original_glrlm_GrayLevelNonUniformity",
+      "f_stat": 52.76471075936782,
+      "p_anova": 2.5925435014793414e-21,
+      "q_anova": 1.322197185754464e-19,
+      "cliff_delta_ben_no": 0.07308055380742605,
+      "q_ben_no": 0.3776230439670605
+    },
+    {
+      "feature": "original_glrlm_RunEntropy",
+      "f_stat": 43.44814391812169,
+      "p_anova": 5.590817643350976e-18,
+      "q_anova": 1.900877998739332e-16,
+      "cliff_delta_ben_no": -0.18274071743234738,
+      "q_ben_no": 0.02262545381040756
+    },
+    {
+      "feature": "original_glszm_SizeZoneNonUniformity",
+      "f_stat": 42.43773929577817,
+      "p_anova": 1.3060529364330199e-17,
+      "q_anova": 3.3304349879042004e-16,
+      "cliff_delta_ben_no": 0.29145689112649464,
+      "q_ben_no": 0.0003842451579308839
+    },
+    {
+      "feature": "original_glcm_Imc1",
+      "f_stat": 41.527386858713136,
+      "p_anova": 2.8128869497376566e-17,
+      "q_anova": 5.738289377464819e-16,
+      "cliff_delta_ben_no": 0.2197923222152297,
+      "q_ben_no": 0.006355714259504784
+    },
+    {
+      "feature": "original_glszm_GrayLevelNonUniformity",
+      "f_stat": 40.46601406620818,
+      "p_anova": 6.903312755073428e-17,
+      "q_anova": 1.1735631683624828e-15,
+      "cliff_delta_ben_no": 0.216881686595343,
+      "q_ben_no": 0.006978436373435836
+    },
+    {
+      "feature": "original_glrlm_ShortRunEmphasis",
+      "f_stat": 40.08931980944071,
+      "p_anova": 9.501991743281538e-17,
+      "q_anova": 1.2115039472683961e-15,
+      "cliff_delta_ben_no": 0.22679358086847073,
+      "q_ben_no": 0.004977461601543712
+    },
+    {
+      "feature": "original_glrlm_RunLengthNonUniformity",
+      "f_stat": 40.243848270681305,
+      "p_anova": 8.334307628334052e-17,
+      "q_anova": 1.2115039472683961e-15,
+      "cliff_delta_ben_no": 0.1699181875393329,
+      "q_ben_no": 0.03101680450303778
+    },
+    {
+      "feature": "original_gldm_SmallDependenceEmphasis",
+      "f_stat": 37.02363384143196,
+      "p_anova": 1.3015530719520072e-15,
+      "q_anova": 1.3275841333910472e-14,
+      "cliff_delta_ben_no": 0.24292007551919445,
+      "q_ben_no": 0.002805003160565332
+    },
+    {
+      "feature": "original_glszm_ZonePercentage",
+      "f_stat": 37.12235830005249,
+      "p_anova": 1.1957808237082035e-15,
+      "q_anova": 1.3275841333910472e-14,
+      "cliff_delta_ben_no": 0.2544052863436123,
+      "q_ben_no": 0.0015762364385299027
+    }
+  ],
+  "top10_by_ben_vs_no": [
+    {
+      "feature": "original_glcm_DifferenceVariance",
+      "p_ben_no": 2.861628591775679e-06,
+      "q_ben_no": 0.00029188611636111924,
+      "cliff_delta_ben_no": 0.3125393329137823,
+      "mean_ben": 0.47567305349836364,
+      "mean_no": 0.36503505066524644
+    },
+    {
+      "feature": "original_glcm_Contrast",
+      "p_ben_no": 1.0303919954899346e-05,
+      "q_ben_no": 0.0003842451579308839,
+      "cliff_delta_ben_no": 0.2945248584015104,
+      "mean_ben": 0.6615106144216377,
+      "mean_no": 0.5091576281100699
+    },
+    {
+      "feature": "original_glcm_Correlation",
+      "p_ben_no": 2.260265634887552e-05,
+      "q_ben_no": 0.0003842451579308839,
+      "cliff_delta_ben_no": -0.282960981749528,
+      "mean_ben": 0.980566150906686,
+      "mean_no": 0.9847680471706293
+    },
+    {
+      "feature": "original_glszm_SizeZoneNonUniformityNormalized",
+      "p_ben_no": 1.992109421602421e-05,
+      "q_ben_no": 0.0003842451579308839,
+      "cliff_delta_ben_no": 0.28484896161107615,
+      "mean_ben": 0.13335390482274612,
+      "mean_no": 0.11005218447452068
+    },
+    {
+      "feature": "original_glszm_SmallAreaEmphasis",
+      "p_ben_no": 1.8304767923041687e-05,
+      "q_ben_no": 0.0003842451579308839,
+      "cliff_delta_ben_no": 0.2861076148521082,
+      "mean_ben": 0.34926516270520747,
+      "mean_no": 0.3049456421563924
+    },
+    {
+      "feature": "original_glszm_SizeZoneNonUniformity",
+      "p_ben_no": 1.2727144253317369e-05,
+      "q_ben_no": 0.0003842451579308839,
+      "cliff_delta_ben_no": 0.29145689112649464,
+      "mean_ben": 380.8137003535173,
+      "mean_no": 264.34691686001304
+    },
+    {
+      "feature": "original_glcm_MCC",
+      "p_ben_no": 6.253674617424205e-05,
+      "q_ben_no": 0.000911249729967527,
+      "cliff_delta_ben_no": -0.26730648206419133,
+      "mean_ben": 0.9845058149655194,
+      "mean_no": 0.9873315041500231
+    },
+    {
+      "feature": "original_glszm_LargeAreaHighGrayLevelEmphasis",
+      "p_ben_no": 8.088564407933671e-05,
+      "q_ben_no": 0.001031291962011543,
+      "cliff_delta_ben_no": -0.263215859030837,
+      "mean_ben": 4231700.456243782,
+      "mean_no": 8768284.478838129
+    },
+    {
+      "feature": "original_glszm_ZonePercentage",
+      "p_ben_no": 0.00013907968575263847,
+      "q_ben_no": 0.0015762364385299027,
+      "cliff_delta_ben_no": 0.2544052863436123,
+      "mean_ben": 0.03778233262865126,
+      "mean_no": 0.028178652901151468
+    },
+    {
+      "feature": "original_gldm_SmallDependenceEmphasis",
+      "p_ben_no": 0.00027500030985934626,
+      "q_ben_no": 0.002805003160565332,
+      "cliff_delta_ben_no": 0.24292007551919445,
+      "mean_ben": 0.05259470489162078,
+      "mean_no": 0.04489477342413763
+    }
+  ],
+  "roi_compare": {
+    "gb_sub": {
+      "name": "gallbladder ROI (ben+no)",
+      "sil_tsne": 0.012754063121974468,
+      "sil_raw": 0.021064804332898597,
+      "n": 339,
+      "d": 102
+    },
+    "lesion": {
+      "name": "lesion ROI (ben+no)",
+      "sil_tsne": 0.02790713496506214,
+      "sil_raw": 0.03964754633830647,
+      "n": 342,
+      "d": 102
+    }
+  }
+}

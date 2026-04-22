@@ -1,0 +1,55 @@
+{
+  "elapsed_sec": 250.61,
+  "n_total_test": 456,
+  "n_ok_gb": 453,
+  "n_ok_lesion": 342,
+  "n_feat_cols_gb": 102,
+  "n_feat_cols_lesion": 102,
+  "n_err_gb": 3,
+  "n_err_lesion": 0,
+  "class_counts_gb": {
+    "no_tumor": 227,
+    "malignant": 114,
+    "benign": 112
+  },
+  "class_counts_lesion": {
+    "no_tumor": 228,
+    "benign": 114
+  },
+  "errors_sample": {
+    "gb": [
+      {
+        "image_path": "benign/00565073_US_Image1_2.png",
+        "reason": "extractor_error:ValueError:No labels found in this mask (i.e. nothing is segmented)!"
+      },
+      {
+        "image_path": "benign/00671193_US_Image1_2.png",
+        "reason": "extractor_error:ValueError:No labels found in this mask (i.e. nothing is segmented)!"
+      },
+      {
+        "image_path": "no_tumor/00618812_US_Image5_2.png",
+        "reason": "extractor_error:ValueError:No labels found in this mask (i.e. nothing is segmented)!"
+      }
+    ],
+    "lesion": []
+  },
+  "extractor_settings": {
+    "binWidth": 25,
+    "force2D": true,
+    "force2Ddimension": 0,
+    "interpolator": "sitkBSpline",
+    "normalize": true,
+    "normalizeScale": 100,
+    "label": 1,
+    "minimumROIDimensions": 2
+  },
+  "feature_classes": [
+    "firstorder",
+    "shape2D",
+    "glcm",
+    "glrlm",
+    "glszm",
+    "gldm",
+    "ngtdm"
+  ]
+}
