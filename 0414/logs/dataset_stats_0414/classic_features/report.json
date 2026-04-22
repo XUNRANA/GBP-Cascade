@@ -1,0 +1,8 @@
+{
+  "n_samples": 2224,
+  "n_features": 45,
+  "sig_kruskal_q05": 40,
+  "sig_mal_vs_ben_q05": 35,
+  "sig_mal_vs_no_q05": 39,
+  "sig_ben_vs_no_q05": 15
+}

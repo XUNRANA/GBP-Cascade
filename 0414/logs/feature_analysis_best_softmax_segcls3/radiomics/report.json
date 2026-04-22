@@ -11,16 +11,16 @@
     "benign": 112
   },
   "pca": {
-    "pc1_var": 0.29655054501678607,
-    "pc2_var": 0.20271843576894027,
+    "pc1_var": 0.2965505450167862,
+    "pc2_var": 0.20271843576894022,
     "pc80_index": 6,
     "pc90_index": 10
   },
   "silhouette": {
-    "raw_standardized": 0.009376594038910523,
-    "pca2d": 0.0007527841086629596,
-    "tsne2d": -0.019629742950201035,
-    "umap2d": -0.014306214638054371
+    "raw_standardized": 0.00937659403891052,
+    "pca2d": 0.0007527841086629714,
+    "tsne2d": -0.017499340698122978,
+    "umap2d": -0.014622018672525883
   },
   "kmeans3_ari": 0.16150670275287318,
   "significance_q005": {
@@ -32,81 +32,81 @@
   "top10_by_anova": [
     {
       "feature": "original_ngtdm_Coarseness",
-      "f_stat": 57.45907679978573,
-      "p_anova": 5.971330776414729e-23,
-      "q_anova": 6.090757391943024e-21,
+      "f_stat": 57.45907679978571,
+      "p_anova": 5.971330776416044e-23,
+      "q_anova": 6.090757391944365e-21,
       "cliff_delta_ben_no": -0.05624606670862178,
       "q_ben_no": 0.5229140586273524
     },
     {
       "feature": "original_glrlm_GrayLevelNonUniformity",
-      "f_stat": 52.76471075936782,
-      "p_anova": 2.5925435014793414e-21,
-      "q_anova": 1.322197185754464e-19,
+      "f_stat": 52.764710759367844,
+      "p_anova": 2.5925435014798018e-21,
+      "q_anova": 1.3221971857546988e-19,
       "cliff_delta_ben_no": 0.07308055380742605,
       "q_ben_no": 0.3776230439670605
     },
     {
       "feature": "original_glrlm_RunEntropy",
-      "f_stat": 43.44814391812169,
-      "p_anova": 5.590817643350976e-18,
-      "q_anova": 1.900877998739332e-16,
+      "f_stat": 43.448143918121716,
+      "p_anova": 5.5908176433518895e-18,
+      "q_anova": 1.9008779987396426e-16,
       "cliff_delta_ben_no": -0.18274071743234738,
       "q_ben_no": 0.02262545381040756
     },
     {
       "feature": "original_glszm_SizeZoneNonUniformity",
-      "f_stat": 42.43773929577817,
-      "p_anova": 1.3060529364330199e-17,
-      "q_anova": 3.3304349879042004e-16,
+      "f_stat": 42.43773929577818,
+      "p_anova": 1.3060529364333168e-17,
+      "q_anova": 3.330434987904958e-16,
       "cliff_delta_ben_no": 0.29145689112649464,
       "q_ben_no": 0.0003842451579308839
     },
     {
       "feature": "original_glcm_Imc1",
-      "f_stat": 41.527386858713136,
-      "p_anova": 2.8128869497376566e-17,
-      "q_anova": 5.738289377464819e-16,
+      "f_stat": 41.52738685871313,
+      "p_anova": 2.8128869497381164e-17,
+      "q_anova": 5.738289377465757e-16,
       "cliff_delta_ben_no": 0.2197923222152297,
       "q_ben_no": 0.006355714259504784
     },
     {
       "feature": "original_glszm_GrayLevelNonUniformity",
       "f_stat": 40.46601406620818,
-      "p_anova": 6.903312755073428e-17,
-      "q_anova": 1.1735631683624828e-15,
+      "p_anova": 6.903312755074852e-17,
+      "q_anova": 1.1735631683627248e-15,
       "cliff_delta_ben_no": 0.216881686595343,
       "q_ben_no": 0.006978436373435836
     },
     {
-      "feature": "original_glrlm_ShortRunEmphasis",
-      "f_stat": 40.08931980944071,
-      "p_anova": 9.501991743281538e-17,
-      "q_anova": 1.2115039472683961e-15,
-      "cliff_delta_ben_no": 0.22679358086847073,
-      "q_ben_no": 0.004977461601543712
-    },
-    {
       "feature": "original_glrlm_RunLengthNonUniformity",
       "f_stat": 40.243848270681305,
-      "p_anova": 8.334307628334052e-17,
-      "q_anova": 1.2115039472683961e-15,
+      "p_anova": 8.334307628335414e-17,
+      "q_anova": 1.2115039472686026e-15,
       "cliff_delta_ben_no": 0.1699181875393329,
       "q_ben_no": 0.03101680450303778
     },
     {
+      "feature": "original_glrlm_ShortRunEmphasis",
+      "f_stat": 40.08931980944072,
+      "p_anova": 9.501991743283158e-17,
+      "q_anova": 1.2115039472686026e-15,
+      "cliff_delta_ben_no": 0.22679358086847073,
+      "q_ben_no": 0.004977461601543712
+    },
+    {
       "feature": "original_gldm_SmallDependenceEmphasis",
       "f_stat": 37.02363384143196,
-      "p_anova": 1.3015530719520072e-15,
-      "q_anova": 1.3275841333910472e-14,
+      "p_anova": 1.3015530719522937e-15,
+      "q_anova": 1.3275841333913396e-14,
       "cliff_delta_ben_no": 0.24292007551919445,
       "q_ben_no": 0.002805003160565332
     },
     {
       "feature": "original_glszm_ZonePercentage",
-      "f_stat": 37.12235830005249,
-      "p_anova": 1.1957808237082035e-15,
-      "q_anova": 1.3275841333910472e-14,
+      "f_stat": 37.1223583000525,
+      "p_anova": 1.1957808237084498e-15,
+      "q_anova": 1.3275841333913396e-14,
       "cliff_delta_ben_no": 0.2544052863436123,
       "q_ben_no": 0.0015762364385299027
     }
@@ -121,14 +121,6 @@
       "mean_no": 0.36503505066524644
     },
     {
-      "feature": "original_glcm_Contrast",
-      "p_ben_no": 1.0303919954899346e-05,
-      "q_ben_no": 0.0003842451579308839,
-      "cliff_delta_ben_no": 0.2945248584015104,
-      "mean_ben": 0.6615106144216377,
-      "mean_no": 0.5091576281100699
-    },
-    {
       "feature": "original_glcm_Correlation",
       "p_ben_no": 2.260265634887552e-05,
       "q_ben_no": 0.0003842451579308839,
@@ -137,12 +129,20 @@
       "mean_no": 0.9847680471706293
     },
     {
-      "feature": "original_glszm_SizeZoneNonUniformityNormalized",
-      "p_ben_no": 1.992109421602421e-05,
+      "feature": "original_glcm_Contrast",
+      "p_ben_no": 1.0303919954899346e-05,
       "q_ben_no": 0.0003842451579308839,
-      "cliff_delta_ben_no": 0.28484896161107615,
-      "mean_ben": 0.13335390482274612,
-      "mean_no": 0.11005218447452068
+      "cliff_delta_ben_no": 0.2945248584015104,
+      "mean_ben": 0.6615106144216377,
+      "mean_no": 0.5091576281100699
+    },
+    {
+      "feature": "original_glszm_SizeZoneNonUniformity",
+      "p_ben_no": 1.2727144253317369e-05,
+      "q_ben_no": 0.0003842451579308839,
+      "cliff_delta_ben_no": 0.29145689112649464,
+      "mean_ben": 380.8137003535173,
+      "mean_no": 264.34691686001304
     },
     {
       "feature": "original_glszm_SmallAreaEmphasis",
@@ -153,12 +153,12 @@
       "mean_no": 0.3049456421563924
     },
     {
-      "feature": "original_glszm_SizeZoneNonUniformity",
-      "p_ben_no": 1.2727144253317369e-05,
+      "feature": "original_glszm_SizeZoneNonUniformityNormalized",
+      "p_ben_no": 1.992109421602421e-05,
       "q_ben_no": 0.0003842451579308839,
-      "cliff_delta_ben_no": 0.29145689112649464,
-      "mean_ben": 380.8137003535173,
-      "mean_no": 264.34691686001304
+      "cliff_delta_ben_no": 0.28484896161107615,
+      "mean_ben": 0.13335390482274612,
+      "mean_no": 0.11005218447452068
     },
     {
       "feature": "original_glcm_MCC",
@@ -195,15 +195,15 @@
   ],
   "roi_compare": {
     "gb_sub": {
-      "name": "gallbladder ROI (ben+no)",
-      "sil_tsne": 0.012754063121974468,
-      "sil_raw": 0.021064804332898597,
+      "name": "胆囊 ROI（良性+无肿瘤）",
+      "sil_tsne": 0.016739703714847565,
+      "sil_raw": 0.02106480433289859,
       "n": 339,
       "d": 102
     },
     "lesion": {
-      "name": "lesion ROI (ben+no)",
-      "sil_tsne": 0.02790713496506214,
+      "name": "病灶 ROI（良性+无肿瘤）",
+      "sil_tsne": 0.02063310518860817,
       "sil_raw": 0.03964754633830647,
       "n": 342,
       "d": 102
