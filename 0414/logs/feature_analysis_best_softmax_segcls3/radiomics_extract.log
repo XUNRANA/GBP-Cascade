@@ -1,0 +1,64 @@
+[50/456] elapsed=19.0s  ok_gb=50  ok_lesion=0  err_gb=0  err_le=0
+[100/456] elapsed=38.9s  ok_gb=100  ok_lesion=0  err_gb=0  err_le=0
+[150/456] elapsed=65.2s  ok_gb=149  ok_lesion=36  err_gb=1  err_le=0
+[200/456] elapsed=91.1s  ok_gb=198  ok_lesion=86  err_gb=2  err_le=0
+[250/456] elapsed=122.4s  ok_gb=248  ok_lesion=136  err_gb=2  err_le=0
+[300/456] elapsed=154.2s  ok_gb=298  ok_lesion=186  err_gb=2  err_le=0
+[350/456] elapsed=185.0s  ok_gb=348  ok_lesion=236  err_gb=2  err_le=0
+[400/456] elapsed=216.0s  ok_gb=397  ok_lesion=286  err_gb=3  err_le=0
+[450/456] elapsed=246.8s  ok_gb=447  ok_lesion=336  err_gb=3  err_le=0
+{
+  "elapsed_sec": 250.61,
+  "n_total_test": 456,
+  "n_ok_gb": 453,
+  "n_ok_lesion": 342,
+  "n_feat_cols_gb": 102,
+  "n_feat_cols_lesion": 102,
+  "n_err_gb": 3,
+  "n_err_lesion": 0,
+  "class_counts_gb": {
+    "no_tumor": 227,
+    "malignant": 114,
+    "benign": 112
+  },
+  "class_counts_lesion": {
+    "no_tumor": 228,
+    "benign": 114
+  },
+  "errors_sample": {
+    "gb": [
+      {
+        "image_path": "benign/00565073_US_Image1_2.png",
+        "reason": "extractor_error:ValueError:No labels found in this mask (i.e. nothing is segmented)!"
+      },
+      {
+        "image_path": "benign/00671193_US_Image1_2.png",
+        "reason": "extractor_error:ValueError:No labels found in this mask (i.e. nothing is segmented)!"
+      },
+      {
+        "image_path": "no_tumor/00618812_US_Image5_2.png",
+        "reason": "extractor_error:ValueError:No labels found in this mask (i.e. nothing is segmented)!"
+      }
+    ],
+    "lesion": []
+  },
+  "extractor_settings": {
+    "binWidth": 25,
+    "force2D": true,
+    "force2Ddimension": 0,
+    "interpolator": "sitkBSpline",
+    "normalize": true,
+    "normalizeScale": 100,
+    "label": 1,
+    "minimumROIDimensions": 2
+  },
+  "feature_classes": [
+    "firstorder",
+    "shape2D",
+    "glcm",
+    "glrlm",
+    "glszm",
+    "gldm",
+    "ngtdm"
+  ]
+}
