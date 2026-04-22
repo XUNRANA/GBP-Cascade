@@ -28,10 +28,12 @@ import math
 import warnings
 from pathlib import Path
 
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+from matplotlib import font_manager
 from scipy import stats
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
@@ -47,10 +49,76 @@ RAD_DIR = ROOT / "logs/feature_analysis_best_softmax_segcls3/radiomics"
 GB_CSV = RAD_DIR / "features_test_gb_roi.csv"
 LESION_CSV = RAD_DIR / "features_test_lesion_roi.csv"
 
-CLASS_NAMES = ["malignant", "benign", "no_tumor"]
+CLASS_NAMES = ["恶性", "良性", "无肿瘤"]
 CLASS_COLORS = {0: "#d73027", 1: "#4575b4", 2: "#1a9850"}
 META_COLS = {"image_path", "true_class", "true_class_name",
              "pred_class", "ordinal_score"}
+
+FEATURE_FAMILY_ZH = {
+    "firstorder": "一阶统计",
+    "shape2D": "二维形状",
+    "glcm": "灰度共生矩阵",
+    "glrlm": "灰度游程矩阵",
+    "glszm": "灰度区域矩阵",
+    "gldm": "灰度依赖矩阵",
+    "ngtdm": "邻域灰度差矩阵",
+}
+
+FEATURE_METRIC_ZH = {
+    "Coarseness": "粗糙度",
+    "Complexity": "复杂度",
+    "Contrast": "对比度",
+    "Correlation": "相关性",
+    "DifferenceAverage": "差值均值",
+    "DifferenceEntropy": "差值熵",
+    "DifferenceVariance": "差值方差",
+    "GrayLevelNonUniformity": "灰度非均匀性",
+    "GrayLevelNonUniformityNormalized": "灰度非均匀性(归一化)",
+    "Id": "逆差矩",
+    "Idm": "逆差矩(改进)",
+    "Imc1": "信息相关性1",
+    "Imc2": "信息相关性2",
+    "LargeAreaEmphasis": "大区域强调",
+    "LargeAreaHighGrayLevelEmphasis": "大区域高灰度强调",
+    "LargeDependenceEmphasis": "大依赖强调",
+    "LongRunHighGrayLevelEmphasis": "长游程高灰度强调",
+    "MCC": "最大相关系数",
+    "RunEntropy": "游程熵",
+    "RunLengthNonUniformity": "游程长度非均匀性",
+    "RunLengthNonUniformityNormalized": "游程长度非均匀性(归一化)",
+    "RunPercentage": "游程百分比",
+    "ShortRunEmphasis": "短游程强调",
+    "SizeZoneNonUniformity": "区域大小非均匀性",
+    "SizeZoneNonUniformityNormalized": "区域大小非均匀性(归一化)",
+    "SmallAreaEmphasis": "小区域强调",
+    "SmallDependenceEmphasis": "小依赖强调",
+    "ZonePercentage": "区域百分比",
+    "InverseVariance": "逆方差",
+    "10Percentile": "10百分位",
+}
+
+
+# ─────────────────────────────────────────────────────────────
+def configure_chinese_plotting():
+    """Enable Chinese labels in matplotlib figures with best-effort font fallback."""
+    candidates = [
+        "Noto Sans CJK SC",
+        "Noto Sans CJK JP",
+        "Noto Sans CJK TC",
+        "Source Han Sans SC",
+        "WenQuanYi Micro Hei",
+        "Microsoft YaHei",
+        "PingFang SC",
+        "SimHei",
+        "Arial Unicode MS",
+    ]
+    available = {f.name for f in font_manager.fontManager.ttflist}
+    chosen = next((name for name in candidates if name in available), None)
+    if chosen:
+        mpl.rcParams["font.sans-serif"] = [chosen, "DejaVu Sans"]
+    else:
+        mpl.rcParams["font.sans-serif"] = ["DejaVu Sans"]
+    mpl.rcParams["axes.unicode_minus"] = False
 
 
 # ─────────────────────────────────────────────────────────────
@@ -82,11 +150,11 @@ def plot_pca_scree(X_std, out_path):
     idx90 = int(np.searchsorted(cum, 0.90) + 1)
     fig, ax = plt.subplots(figsize=(7.5, 4.5), dpi=140)
     ax.plot(range(1, len(cum) + 1), cum, marker="o", ms=3)
-    ax.axhline(0.80, color="orange", ls="--", lw=1, label=f"80% @ PC{idx80}")
-    ax.axhline(0.90, color="red", ls="--", lw=1, label=f"90% @ PC{idx90}")
-    ax.set_xlabel("Principal component")
-    ax.set_ylabel("Cumulative explained variance")
-    ax.set_title(f"PCA Scree (n_feat={X_std.shape[1]}, n={X_std.shape[0]})")
+    ax.axhline(0.80, color="orange", ls="--", lw=1, label=f"80% @ 第{idx80}主成分")
+    ax.axhline(0.90, color="red", ls="--", lw=1, label=f"90% @ 第{idx90}主成分")
+    ax.set_xlabel("主成分序号")
+    ax.set_ylabel("累计解释方差")
+    ax.set_title(f"PCA 碎石图 (特征数={X_std.shape[1]}, 样本数={X_std.shape[0]})")
     ax.legend()
     ax.grid(alpha=0.3)
     fig.tight_layout()
@@ -105,7 +173,7 @@ def scatter_by_class(emb2d, y, class_names, title, out_path, sil):
             label=f"{class_names[int(c)]} (n={int(idx.sum())})",
             edgecolors="white", linewidths=0.5,
         )
-    ax.set_title(f"{title}\nsilhouette={sil:.3f}")
+    ax.set_title(f"{title}\n轮廓系数={sil:.3f}")
     ax.legend()
     ax.grid(alpha=0.2)
     fig.tight_layout()
@@ -117,11 +185,16 @@ def run_pca_2d(X_std, y, class_names, out_path):
     pca = PCA(n_components=2, random_state=42).fit(X_std)
     Z = pca.transform(X_std)
     sil = float(silhouette_score(Z, y, metric="euclidean"))
-    scatter_by_class(Z, y, class_names,
-                     f"Radiomics PCA 2D   (expl. var = "
-                     f"{pca.explained_variance_ratio_[0]*100:.1f}% / "
-                     f"{pca.explained_variance_ratio_[1]*100:.1f}%)",
-                     out_path, sil)
+    scatter_by_class(
+        Z,
+        y,
+        class_names,
+        f"Radiomics PCA 二维投影   (解释方差 = "
+        f"{pca.explained_variance_ratio_[0]*100:.1f}% / "
+        f"{pca.explained_variance_ratio_[1]*100:.1f}%)",
+        out_path,
+        sil,
+    )
     return sil, pca.explained_variance_ratio_.tolist()
 
 
@@ -132,21 +205,72 @@ def run_tsne_2d(X_std, y, class_names, out_path):
               init="pca", random_state=42)
     Z = ts.fit_transform(X_std)
     sil = float(silhouette_score(Z, y, metric="euclidean"))
-    scatter_by_class(Z, y, class_names,
-                     f"Radiomics t-SNE 2D  (perplexity={perp})",
-                     out_path, sil)
+    scatter_by_class(
+        Z,
+        y,
+        class_names,
+        f"Radiomics t-SNE 二维投影  (困惑度={perp})",
+        out_path,
+        sil,
+    )
     return sil, Z
 
 
 def run_umap_2d(X_std, y, class_names, out_path):
-    import umap
+    def save_umap_error_fig(message: str):
+        fig, ax = plt.subplots(figsize=(7.5, 6.5), dpi=140)
+        ax.axis("off")
+        ax.text(0.5, 0.5, message, ha="center", va="center", fontsize=14)
+        fig.tight_layout()
+        fig.savefig(out_path)
+        plt.close(fig)
+
+    try:
+        import umap
+    except ModuleNotFoundError:
+        save_umap_error_fig("未检测到 umap-learn，无法生成 UMAP 图")
+        return float("nan"), None
+    except RuntimeError as exc:
+        if "no locator available" not in str(exc):
+            save_umap_error_fig(f"UMAP 导入失败：{type(exc).__name__}")
+            return float("nan"), None
+        # Work around numba cache issues in some sandboxed Python envs.
+        import importlib
+        import sys
+        import numba
+
+        def disable_cache(deco):
+            def wrapped(*args, **kwargs):
+                kwargs.pop("cache", None)
+                return deco(*args, **kwargs)
+            return wrapped
+
+        numba.njit = disable_cache(numba.njit)
+        numba.jit = disable_cache(numba.jit)
+        numba.vectorize = disable_cache(numba.vectorize)
+        sys.modules.pop("umap", None)
+        sys.modules.pop("pynndescent", None)
+        try:
+            umap = importlib.import_module("umap")
+        except Exception as exc2:
+            save_umap_error_fig(f"UMAP 导入失败：{type(exc2).__name__}")
+            return float("nan"), None
+    except Exception as exc:
+        save_umap_error_fig(f"UMAP 导入失败：{type(exc).__name__}")
+        return float("nan"), None
+
     um = umap.UMAP(n_components=2, n_neighbors=15, min_dist=0.1,
                    random_state=42)
     Z = um.fit_transform(X_std)
     sil = float(silhouette_score(Z, y, metric="euclidean"))
-    scatter_by_class(Z, y, class_names,
-                     "Radiomics UMAP 2D  (n_neighbors=15, min_dist=0.1)",
-                     out_path, sil)
+    scatter_by_class(
+        Z,
+        y,
+        class_names,
+        "Radiomics UMAP 二维投影  (邻居数=15, 最小距离=0.1)",
+        out_path,
+        sil,
+    )
     return sil, Z
 
 
@@ -237,24 +361,34 @@ def per_feature_stats(df, X, feat_cols):
 # ─────────────────────────────────────────────────────────────
 # Phase 2.5 — biomarker 可视化
 # ─────────────────────────────────────────────────────────────
-def short_feat(name, max_len=28):
+def pretty_feat_zh(name: str) -> str:
     s = name.replace("original_", "")
+    if "_" not in s:
+        return s
+    family, metric = s.split("_", 1)
+    fam_zh = FEATURE_FAMILY_ZH.get(family, family)
+    met_zh = FEATURE_METRIC_ZH.get(metric, metric)
+    return f"{fam_zh}-{met_zh}"
+
+
+def short_feat(name, max_len=28):
+    s = pretty_feat_zh(name)
     return s if len(s) <= max_len else s[:max_len - 1] + "…"
 
 
 def plot_volcano(stats_df, out_path):
     pairs = [
-        ("mal_ben", "malignant vs benign"),
-        ("mal_no",  "malignant vs no_tumor"),
-        ("ben_no",  "benign vs no_tumor"),
+        ("mal_ben", "恶性 vs 良性"),
+        ("mal_no",  "恶性 vs 无肿瘤"),
+        ("ben_no",  "良性 vs 无肿瘤"),
     ]
     fig, axes = plt.subplots(1, 3, figsize=(18, 5.5), dpi=140)
     for ax, (key, ttl) in zip(axes, pairs):
         x = stats_df[f"cliff_delta_{key}"].values
         y = -np.log10(np.clip(stats_df[f"q_{key}"].values, 1e-300, 1.0))
         sig = stats_df[f"q_{key}"].values < 0.05
-        ax.scatter(x[~sig], y[~sig], s=18, c="lightgray", alpha=0.6, label="ns")
-        ax.scatter(x[sig], y[sig], s=22, c="crimson", alpha=0.85, label="q<0.05")
+        ax.scatter(x[~sig], y[~sig], s=18, c="lightgray", alpha=0.6, label="不显著")
+        ax.scatter(x[sig], y[sig], s=22, c="crimson", alpha=0.85, label="显著 (q<0.05)")
         ax.axhline(-math.log10(0.05), ls="--", color="gray", lw=0.8)
         ax.axvline(0, ls="--", color="gray", lw=0.8)
         # label top-10 by |delta| among sig
@@ -265,11 +399,11 @@ def plot_volcano(stats_df, out_path):
                         (r[f"cliff_delta_{key}"], -math.log10(max(r[f"q_{key}"], 1e-300))),
                         fontsize=7, alpha=0.85)
         ax.set_title(ttl)
-        ax.set_xlabel("Cliff's delta")
-        ax.set_ylabel("-log10(q)")
+        ax.set_xlabel("效应量 Cliff's δ")
+        ax.set_ylabel("-log10(q值)")
         ax.legend(loc="upper right", fontsize=8)
         ax.grid(alpha=0.25)
-    fig.suptitle("Volcano — Radiomics biomarkers (FDR-BH per pair)", y=1.02)
+    fig.suptitle("火山图：影像组学生物标志物（两两比较，FDR-BH）", y=1.02)
     fig.tight_layout()
     fig.savefig(out_path, bbox_inches="tight")
     plt.close(fig)
@@ -286,7 +420,7 @@ def plot_top10_box(stats_df, df, X, feat_cols, out_path, key="q_anova"):
             continue
         vals = X[:, col_to_idx[feat]]
         data_by_class = [vals[y == c] for c in (0, 1, 2)]
-        parts = ax.boxplot(data_by_class, labels=["mal", "ben", "no"],
+        parts = ax.boxplot(data_by_class, tick_labels=["恶性", "良性", "无肿瘤"],
                            patch_artist=True, showfliers=False, widths=0.55)
         for patch, c in zip(parts["boxes"], [0, 1, 2]):
             patch.set_facecolor(CLASS_COLORS[c])
@@ -299,7 +433,7 @@ def plot_top10_box(stats_df, df, X, feat_cols, out_path, key="q_anova"):
         ax.set_title(short_feat(feat, 34), fontsize=9)
         ax.set_xlabel(f"q_anova={row['q_anova']:.2e}", fontsize=8)
         ax.grid(axis="y", alpha=0.25)
-    fig.suptitle(f"Top-10 Biomarker Boxplots (by {key})", y=1.01)
+    fig.suptitle(f"前10个生物标志物箱线图（按 {key} 排序）", y=1.01)
     fig.tight_layout()
     fig.savefig(out_path, bbox_inches="tight")
     plt.close(fig)
@@ -324,12 +458,14 @@ def plot_top5_violin_bvn(stats_df, df, X, feat_cols, out_path):
         ax.scatter(np.ones(len(no)) + (np.random.RandomState(2).rand(len(no)) - 0.5) * 0.25,
                    no, s=8, c="white", edgecolors=CLASS_COLORS[2], alpha=0.7)
         ax.set_xticks([0, 1])
-        ax.set_xticklabels(["benign", "no_tumor"])
+        ax.set_xticklabels(["良性", "无肿瘤"])
         ax.set_title(short_feat(feat, 34), fontsize=9)
-        ax.set_xlabel(f"q={row['q_ben_no']:.2e}  δ={row['cliff_delta_ben_no']:.2f}",
-                      fontsize=8)
+        ax.set_xlabel(
+            f"q={row['q_ben_no']:.2e}  δ={row['cliff_delta_ben_no']:.2f}",
+            fontsize=8,
+        )
         ax.grid(axis="y", alpha=0.25)
-    fig.suptitle("Top-5 benign vs no_tumor biomarkers (violin + jitter)", y=1.03)
+    fig.suptitle("良性 vs 无肿瘤：前5个生物标志物（小提琴图 + 抖动点）", y=1.03)
     fig.tight_layout()
     fig.savefig(out_path, bbox_inches="tight")
     plt.close(fig)
@@ -346,8 +482,8 @@ def plot_top20_corr(stats_df, df, X, feat_cols, out_path):
     short_names = [short_feat(f, 26) for f in top20]
     sns.heatmap(corr, xticklabels=short_names, yticklabels=short_names,
                 cmap="coolwarm", center=0, vmin=-1, vmax=1,
-                annot=False, ax=ax, cbar_kws={"label": "Pearson r"})
-    ax.set_title("Top-20 Biomarker Pearson Correlation")
+                annot=False, ax=ax, cbar_kws={"label": "皮尔逊相关系数 r"})
+    ax.set_title("前20个生物标志物相关性热图")
     plt.setp(ax.get_xticklabels(), rotation=45, ha="right", fontsize=8)
     plt.setp(ax.get_yticklabels(), fontsize=8)
     fig.tight_layout()
@@ -378,7 +514,7 @@ def plot_class_radar(stats_df, df, X, feat_cols, out_path):
         ax.fill(theta, vals, color=CLASS_COLORS[c], alpha=0.12)
     ax.set_xticks(theta[:-1])
     ax.set_xticklabels([short_feat(f, 20) for f in top6], fontsize=8)
-    ax.set_title("Top-6 Biomarker Radar (z-score means)", y=1.08)
+    ax.set_title("前6个生物标志物雷达图（z-score 类均值）", y=1.08)
     ax.legend(loc="upper right", bbox_to_anchor=(1.25, 1.1))
     fig.tight_layout()
     fig.savefig(out_path, bbox_inches="tight")
@@ -412,8 +548,8 @@ def roi_compare(out_path):
         return dict(name=name, Z=Z, y=y, sil_tsne=sil_tsne,
                     sil_raw=sil_raw, n=n, d=X.shape[1])
 
-    r_gb = eval_roi(X_gb_sub, df_gb_sub, "gallbladder ROI (ben+no)")
-    r_le = eval_roi(X_le, df_le, "lesion ROI (ben+no)")
+    r_gb = eval_roi(X_gb_sub, df_gb_sub, "胆囊 ROI（良性+无肿瘤）")
+    r_le = eval_roi(X_le, df_le, "病灶 ROI（良性+无肿瘤）")
 
     fig, axes = plt.subplots(1, 2, figsize=(15, 6.5), dpi=140)
     for ax, r in zip(axes, [r_gb, r_le]):
@@ -427,8 +563,7 @@ def roi_compare(out_path):
                      f"sil(t-SNE)={r['sil_tsne']:.3f}  sil(raw)={r['sil_raw']:.3f}")
         ax.legend()
         ax.grid(alpha=0.2)
-    fig.suptitle("Phase 2.6 — gallbladder ROI vs lesion ROI  (benign vs no_tumor)",
-                 y=1.02)
+    fig.suptitle("Phase 2.6：胆囊 ROI vs 病灶 ROI（良性 vs 无肿瘤）", y=1.02)
     fig.tight_layout()
     fig.savefig(out_path, bbox_inches="tight")
     plt.close(fig)
@@ -439,6 +574,7 @@ def roi_compare(out_path):
 
 # ─────────────────────────────────────────────────────────────
 def main():
+    configure_chinese_plotting()
     RAD_DIR.mkdir(parents=True, exist_ok=True)
 
     df, X, feat_cols, bad_cols = load_features(GB_CSV)
