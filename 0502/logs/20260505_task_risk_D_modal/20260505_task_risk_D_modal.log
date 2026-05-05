@@ -1,0 +1,198 @@
+2026-05-05 11:08:11 - ========================================================================
+2026-05-05 11:08:11 - 实验: 20260505_task_risk_D_modal  (实验 D — 模态平衡)
+2026-05-05 11:08:11 - 模型: SwinV2-Tiny@256 + 4ch + Trimodal + 1D Risk Head (modal-dropout, gate-entropy, text-mlm-aug, meta-noise)
+2026-05-05 11:08:11 - Modal dropout p: 0.15 (text/meta 各自)
+2026-05-05 11:08:11 - Lambda gate: 0.05 (- λ * H(gates))
+2026-05-05 11:08:11 - Text MLM prob: 0.15 | Meta noise sigma: 0.05
+2026-05-05 11:08:11 - 设备: cuda
+2026-05-05 11:08:11 - ========================================================================
+2026-05-05 11:08:11 - 初始化完成,开始构建数据流水线 ...
+2026-05-05 11:08:11 - [1/4] 切分 train/val ...
+2026-05-05 11:08:12 - [1/4] train=690 val=123 (0.4s)
+2026-05-05 11:08:12 - [2/4] 装载 text_dict ...
+2026-05-05 11:08:12 - [2/4] 共 1953 条
+2026-05-05 11:08:12 - [3/4] 构造 train_dataset ...
+2026-05-05 11:08:12 - [3/4] train_dataset OK (0.6s)
+2026-05-05 11:08:14 - [3/4] eval datasets OK
+2026-05-05 11:08:14 - Train: 690 张 (malignant=232, benign=227, no_tumor=231)
+2026-05-05 11:08:14 - Val: 123 张 (malignant=39, benign=44, no_tumor=40)
+2026-05-05 11:08:14 - Test-111: 342 张 (malignant=114, benign=114, no_tumor=114)
+2026-05-05 11:08:14 - Test-112: 456 张 (malignant=114, benign=114, no_tumor=228)
+2026-05-05 11:08:14 - [4/4] DataLoaders OK | train_batches=115
+2026-05-05 11:08:14 - BERT mask_token_id = 103
+2026-05-05 11:08:14 - 构建 ModalDropout 模型 ...
+2026-05-05 11:08:22 - 模型构建完成 (7.6s)
+2026-05-05 11:08:22 - 模型参数量: 137,406,416 (可训练 35,138,768)
+2026-05-05 11:08:22 - ========================================================================
+2026-05-05 11:08:22 - 开始训练
+2026-05-05 11:08:22 - ========================================================================
+2026-05-05 11:08:40 - Epoch [1/60] LR: 4.00e-06/4.00e-05 | Loss: 1.5781 (seg=0.6214 ord=0.5056) | Dice: 0.7688 | Gate img/text/meta: 0.560/0.424/0.529 (H=1.089) | 18s
+2026-05-05 11:08:55 - Epoch [2/60] LR: 8.00e-06/8.00e-05 | Loss: 1.0449 (seg=0.2586 ord=0.4201) | Dice: 0.9474 | Gate img/text/meta: 0.530/0.367/0.572 (H=1.077) | 15s
+2026-05-05 11:08:57 - [Val] ROC-AUC: 0.9728 | profile=primary t_low=0.270 t_high=0.500 low_p=0.5294 high_recall=0.9744 M→低=0 med_share=0.252
+2026-05-05 11:08:58 - *** 保存最优 (Val AUC: 0.9728, Epoch: 2) ***
+2026-05-05 11:09:13 - Epoch [3/60] LR: 1.20e-05/1.20e-04 | Loss: 0.9083 (seg=0.1730 ord=0.3936) | Dice: 0.9637 | Gate img/text/meta: 0.447/0.308/0.623 (H=1.036) | 15s
+2026-05-05 11:09:27 - Epoch [4/60] LR: 1.60e-05/1.60e-04 | Loss: 0.8279 (seg=0.1007 ord=0.3895) | Dice: 0.9771 | Gate img/text/meta: 0.448/0.336/0.594 (H=1.038) | 15s
+2026-05-05 11:09:28 - [Val] ROC-AUC: 0.9976 | profile=primary t_low=0.270 t_high=0.500 low_p=0.7059 high_recall=1.0000 M→低=0 med_share=0.350
+2026-05-05 11:09:32 - *** 保存最优 (Val AUC: 0.9976, Epoch: 4) ***
+2026-05-05 11:09:47 - Epoch [5/60] LR: 2.00e-05/2.00e-04 | Loss: 0.7552 (seg=0.0580 ord=0.3750) | Dice: 0.9813 | Gate img/text/meta: 0.499/0.369/0.572 (H=1.053) | 15s
+2026-05-05 11:10:01 - Epoch [6/60] LR: 2.00e-05/2.00e-04 | Loss: 0.7187 (seg=0.0378 ord=0.3665) | Dice: 0.9851 | Gate img/text/meta: 0.502/0.404/0.629 (H=1.042) | 15s
+2026-05-05 11:10:03 - [Val] ROC-AUC: 0.9976 | profile=primary t_low=0.270 t_high=0.500 low_p=0.6571 high_recall=1.0000 M→低=0 med_share=0.350
+2026-05-05 11:10:18 - Epoch [7/60] LR: 1.99e-05/1.99e-04 | Loss: 0.6825 (seg=0.0276 ord=0.3539) | Dice: 0.9873 | Gate img/text/meta: 0.515/0.470/0.609 (H=1.056) | 16s
+2026-05-05 11:10:33 - Epoch [8/60] LR: 1.99e-05/1.99e-04 | Loss: 0.6734 (seg=0.0224 ord=0.3519) | Dice: 0.9877 | Gate img/text/meta: 0.531/0.496/0.616 (H=1.057) | 15s
+2026-05-05 11:10:34 - [Val] ROC-AUC: 0.9545 | profile=relax_recall t_low=0.070 t_high=0.500 low_p=1.0000 high_recall=0.9487 M→低=0 med_share=0.447
+2026-05-05 11:10:50 - Epoch [9/60] LR: 1.97e-05/1.97e-04 | Loss: 0.6641 (seg=0.0187 ord=0.3489) | Dice: 0.9890 | Gate img/text/meta: 0.557/0.483/0.607 (H=1.049) | 16s
+2026-05-05 11:11:05 - Epoch [10/60] LR: 1.96e-05/1.96e-04 | Loss: 0.6553 (seg=0.0166 ord=0.3456) | Dice: 0.9892 | Gate img/text/meta: 0.578/0.525/0.626 (H=1.051) | 15s
+2026-05-05 11:11:06 - [Val] ROC-AUC: 0.9817 | profile=primary t_low=0.290 t_high=0.500 low_p=0.6897 high_recall=0.9744 M→低=1 med_share=0.309
+2026-05-05 11:11:22 - Epoch [11/60] LR: 1.94e-05/1.94e-04 | Loss: 0.6314 (seg=0.0151 ord=0.3344) | Dice: 0.9892 | Gate img/text/meta: 0.613/0.532/0.651 (H=1.052) | 16s
+2026-05-05 11:11:37 - Epoch [12/60] LR: 1.92e-05/1.92e-04 | Loss: 0.6448 (seg=0.0130 ord=0.3424) | Dice: 0.9903 | Gate img/text/meta: 0.636/0.559/0.654 (H=1.059) | 15s
+2026-05-05 11:11:39 - [Val] ROC-AUC: 0.9652 | profile=relax_safety t_low=0.050 t_high=0.500 low_p=0.7143 high_recall=0.9231 M→低=0 med_share=0.463
+2026-05-05 11:11:54 - Epoch [13/60] LR: 1.90e-05/1.90e-04 | Loss: 0.6159 (seg=0.0121 ord=0.3283) | Dice: 0.9903 | Gate img/text/meta: 0.614/0.589/0.658 (H=1.058) | 16s
+2026-05-05 11:12:10 - Epoch [14/60] LR: 1.87e-05/1.87e-04 | Loss: 0.5944 (seg=0.0105 ord=0.3185) | Dice: 0.9916 | Gate img/text/meta: 0.653/0.539/0.680 (H=1.064) | 15s
+2026-05-05 11:12:11 - [Val] ROC-AUC: 0.9054 | profile=unconstrained t_low=0.090 t_high=0.500 low_p=0.6667 high_recall=0.8462 M→低=3 med_share=0.488
+2026-05-05 11:12:27 - Epoch [15/60] LR: 1.84e-05/1.84e-04 | Loss: 0.5882 (seg=0.0096 ord=0.3160) | Dice: 0.9923 | Gate img/text/meta: 0.645/0.567/0.674 (H=1.067) | 16s
+2026-05-05 11:12:42 - Epoch [16/60] LR: 1.81e-05/1.81e-04 | Loss: 0.5747 (seg=0.0089 ord=0.3096) | Dice: 0.9923 | Gate img/text/meta: 0.675/0.567/0.670 (H=1.069) | 15s
+2026-05-05 11:12:43 - [Val] ROC-AUC: 0.9750 | profile=relax_recall t_low=0.050 t_high=0.500 low_p=0.6000 high_recall=0.9487 M→低=0 med_share=0.366
+2026-05-05 11:12:59 - Epoch [17/60] LR: 1.78e-05/1.78e-04 | Loss: 0.5652 (seg=0.0082 ord=0.3053) | Dice: 0.9929 | Gate img/text/meta: 0.691/0.584/0.668 (H=1.074) | 16s
+2026-05-05 11:13:13 - Epoch [18/60] LR: 1.74e-05/1.74e-04 | Loss: 0.5678 (seg=0.0072 ord=0.3069) | Dice: 0.9938 | Gate img/text/meta: 0.684/0.568/0.663 (H=1.066) | 14s
+2026-05-05 11:13:15 - [Val] ROC-AUC: 0.9774 | profile=primary t_low=0.050 t_high=0.500 low_p=0.6667 high_recall=0.9744 M→低=1 med_share=0.285
+2026-05-05 11:13:31 - Epoch [19/60] LR: 1.70e-05/1.70e-04 | Loss: 0.5559 (seg=0.0065 ord=0.3013) | Dice: 0.9943 | Gate img/text/meta: 0.678/0.613/0.643 (H=1.064) | 16s
+2026-05-05 11:13:46 - Epoch [20/60] LR: 1.66e-05/1.66e-04 | Loss: 0.5626 (seg=0.0066 ord=0.3048) | Dice: 0.9940 | Gate img/text/meta: 0.715/0.606/0.680 (H=1.069) | 15s
+2026-05-05 11:13:47 - [Val] ROC-AUC: 0.9817 | profile=primary t_low=0.210 t_high=0.500 low_p=0.6364 high_recall=0.9744 M→低=0 med_share=0.341
+2026-05-05 11:14:03 - Epoch [21/60] LR: 1.61e-05/1.61e-04 | Loss: 0.5471 (seg=0.0058 ord=0.2974) | Dice: 0.9949 | Gate img/text/meta: 0.715/0.627/0.688 (H=1.070) | 16s
+2026-05-05 11:14:17 - Epoch [22/60] LR: 1.57e-05/1.57e-04 | Loss: 0.5480 (seg=0.0052 ord=0.2983) | Dice: 0.9954 | Gate img/text/meta: 0.726/0.646/0.688 (H=1.075) | 15s
+2026-05-05 11:14:19 - [Val] ROC-AUC: 0.9817 | profile=primary t_low=0.090 t_high=0.500 low_p=0.6389 high_recall=0.9744 M→低=1 med_share=0.333
+2026-05-05 11:14:34 - Epoch [23/60] LR: 1.52e-05/1.52e-04 | Loss: 0.5376 (seg=0.0044 ord=0.2935) | Dice: 0.9962 | Gate img/text/meta: 0.736/0.655/0.700 (H=1.074) | 15s
+2026-05-05 11:14:50 - Epoch [24/60] LR: 1.47e-05/1.47e-04 | Loss: 0.5282 (seg=0.0040 ord=0.2890) | Dice: 0.9965 | Gate img/text/meta: 0.734/0.664/0.705 (H=1.075) | 15s
+2026-05-05 11:14:51 - [Val] ROC-AUC: 0.9792 | profile=primary t_low=0.290 t_high=0.500 low_p=0.5714 high_recall=0.9744 M→低=1 med_share=0.098
+2026-05-05 11:15:06 - Epoch [25/60] LR: 1.42e-05/1.42e-04 | Loss: 0.5162 (seg=0.0037 ord=0.2830) | Dice: 0.9966 | Gate img/text/meta: 0.732/0.666/0.688 (H=1.071) | 16s
+2026-05-05 11:15:21 - Epoch [26/60] LR: 1.37e-05/1.37e-04 | Loss: 0.5252 (seg=0.0034 ord=0.2877) | Dice: 0.9970 | Gate img/text/meta: 0.720/0.653/0.692 (H=1.071) | 15s
+2026-05-05 11:15:23 - [Val] ROC-AUC: 0.9768 | profile=primary t_low=0.370 t_high=0.500 low_p=0.5952 high_recall=0.9744 M→低=1 med_share=0.260
+2026-05-05 11:15:39 - Epoch [27/60] LR: 1.32e-05/1.32e-04 | Loss: 0.5305 (seg=0.0034 ord=0.2903) | Dice: 0.9969 | Gate img/text/meta: 0.723/0.661/0.724 (H=1.071) | 16s
+2026-05-05 11:15:54 - Epoch [28/60] LR: 1.26e-05/1.26e-04 | Loss: 0.5166 (seg=0.0027 ord=0.2837) | Dice: 0.9975 | Gate img/text/meta: 0.743/0.685/0.723 (H=1.073) | 15s
+2026-05-05 11:15:55 - [Val] ROC-AUC: 0.9222 | profile=unconstrained t_low=0.070 t_high=0.500 low_p=0.6538 high_recall=0.8974 M→低=2 med_share=0.439
+2026-05-05 11:16:10 - Epoch [29/60] LR: 1.21e-05/1.21e-04 | Loss: 0.5063 (seg=0.0025 ord=0.2788) | Dice: 0.9977 | Gate img/text/meta: 0.745/0.699/0.721 (H=1.075) | 15s
+2026-05-05 11:16:26 - Epoch [30/60] LR: 1.15e-05/1.15e-04 | Loss: 0.4948 (seg=0.0024 ord=0.2731) | Dice: 0.9978 | Gate img/text/meta: 0.744/0.671/0.711 (H=1.075) | 15s
+2026-05-05 11:16:27 - [Val] ROC-AUC: 0.9481 | profile=relax_safety t_low=0.090 t_high=0.500 low_p=0.6562 high_recall=0.9231 M→低=2 med_share=0.252
+2026-05-05 11:16:43 - Epoch [31/60] LR: 1.09e-05/1.09e-04 | Loss: 0.5007 (seg=0.0021 ord=0.2762) | Dice: 0.9981 | Gate img/text/meta: 0.747/0.689/0.711 (H=1.074) | 16s
+2026-05-05 11:16:58 - Epoch [32/60] LR: 1.04e-05/1.04e-04 | Loss: 0.5091 (seg=0.0020 ord=0.2805) | Dice: 0.9981 | Gate img/text/meta: 0.753/0.702/0.709 (H=1.078) | 15s
+2026-05-05 11:16:59 - [Val] ROC-AUC: 0.9576 | profile=relax_safety t_low=0.250 t_high=0.500 low_p=0.5870 high_recall=0.9487 M→低=2 med_share=0.195
+2026-05-05 11:17:15 - Epoch [33/60] LR: 9.82e-06/9.82e-05 | Loss: 0.4957 (seg=0.0018 ord=0.2739) | Dice: 0.9984 | Gate img/text/meta: 0.751/0.700/0.724 (H=1.077) | 16s
+2026-05-05 11:17:30 - Epoch [34/60] LR: 9.25e-06/9.25e-05 | Loss: 0.5111 (seg=0.0017 ord=0.2816) | Dice: 0.9985 | Gate img/text/meta: 0.753/0.717/0.716 (H=1.078) | 15s
+2026-05-05 11:17:32 - [Val] ROC-AUC: 0.9661 | profile=relax_recall t_low=0.050 t_high=0.500 low_p=0.5789 high_recall=0.9487 M→低=1 med_share=0.333
+2026-05-05 11:17:47 - Epoch [35/60] LR: 8.69e-06/8.69e-05 | Loss: 0.5012 (seg=0.0016 ord=0.2768) | Dice: 0.9985 | Gate img/text/meta: 0.765/0.724/0.739 (H=1.081) | 16s
+2026-05-05 11:18:03 - Epoch [36/60] LR: 8.13e-06/8.13e-05 | Loss: 0.4944 (seg=0.0015 ord=0.2735) | Dice: 0.9986 | Gate img/text/meta: 0.759/0.714/0.735 (H=1.082) | 16s
+2026-05-05 11:18:05 - [Val] ROC-AUC: 0.9585 | profile=relax_safety t_low=0.250 t_high=0.500 low_p=0.5909 high_recall=0.9487 M→低=2 med_share=0.187
+2026-05-05 11:18:21 - Epoch [37/60] LR: 7.58e-06/7.58e-05 | Loss: 0.4846 (seg=0.0015 ord=0.2685) | Dice: 0.9986 | Gate img/text/meta: 0.756/0.719/0.735 (H=1.080) | 16s
+2026-05-05 11:18:37 - Epoch [38/60] LR: 7.04e-06/7.04e-05 | Loss: 0.4907 (seg=0.0014 ord=0.2717) | Dice: 0.9987 | Gate img/text/meta: 0.757/0.729/0.737 (H=1.082) | 16s
+2026-05-05 11:18:39 - [Val] ROC-AUC: 0.9396 | profile=unconstrained t_low=0.070 t_high=0.500 low_p=0.6364 high_recall=0.8974 M→低=2 med_share=0.398
+2026-05-05 11:18:56 - Epoch [39/60] LR: 6.51e-06/6.51e-05 | Loss: 0.4787 (seg=0.0014 ord=0.2657) | Dice: 0.9987 | Gate img/text/meta: 0.768/0.747/0.740 (H=1.084) | 16s
+2026-05-05 11:19:12 - Epoch [40/60] LR: 5.99e-06/5.99e-05 | Loss: 0.4837 (seg=0.0013 ord=0.2683) | Dice: 0.9988 | Gate img/text/meta: 0.773/0.743/0.729 (H=1.084) | 16s
+2026-05-05 11:19:13 - [Val] ROC-AUC: 0.9475 | profile=relax_safety t_low=0.090 t_high=0.500 low_p=0.6250 high_recall=0.9231 M→低=2 med_share=0.309
+2026-05-05 11:19:29 - Epoch [41/60] LR: 5.48e-06/5.48e-05 | Loss: 0.4867 (seg=0.0013 ord=0.2698) | Dice: 0.9988 | Gate img/text/meta: 0.764/0.744/0.734 (H=1.083) | 16s
+2026-05-05 11:19:45 - Epoch [42/60] LR: 4.99e-06/4.99e-05 | Loss: 0.4937 (seg=0.0012 ord=0.2734) | Dice: 0.9989 | Gate img/text/meta: 0.765/0.746/0.731 (H=1.084) | 16s
+2026-05-05 11:19:47 - [Val] ROC-AUC: 0.9618 | profile=relax_safety t_low=0.110 t_high=0.500 low_p=0.6154 high_recall=0.9487 M→低=2 med_share=0.268
+2026-05-05 11:20:02 - Epoch [43/60] LR: 4.51e-06/4.51e-05 | Loss: 0.4802 (seg=0.0012 ord=0.2666) | Dice: 0.9988 | Gate img/text/meta: 0.769/0.753/0.736 (H=1.084) | 15s
+2026-05-05 11:20:16 - Epoch [44/60] LR: 4.05e-06/4.05e-05 | Loss: 0.4842 (seg=0.0011 ord=0.2686) | Dice: 0.9990 | Gate img/text/meta: 0.770/0.742/0.744 (H=1.084) | 14s
+2026-05-05 11:20:17 - [Val] ROC-AUC: 0.9594 | profile=relax_safety t_low=0.170 t_high=0.500 low_p=0.6053 high_recall=0.9487 M→低=2 med_share=0.260
+2026-05-05 11:20:32 - Epoch [45/60] LR: 3.62e-06/3.62e-05 | Loss: 0.4862 (seg=0.0012 ord=0.2696) | Dice: 0.9989 | Gate img/text/meta: 0.767/0.754/0.738 (H=1.083) | 15s
+2026-05-05 11:20:48 - Epoch [46/60] LR: 3.20e-06/3.20e-05 | Loss: 0.4918 (seg=0.0011 ord=0.2725) | Dice: 0.9989 | Gate img/text/meta: 0.769/0.748/0.748 (H=1.085) | 16s
+2026-05-05 11:20:50 - [Val] ROC-AUC: 0.9600 | profile=relax_safety t_low=0.370 t_high=0.500 low_p=0.5870 high_recall=0.9487 M→低=2 med_share=0.146
+2026-05-05 11:21:07 - Epoch [47/60] LR: 2.81e-06/2.81e-05 | Loss: 0.4801 (seg=0.0011 ord=0.2666) | Dice: 0.9990 | Gate img/text/meta: 0.768/0.752/0.743 (H=1.085) | 16s
+2026-05-05 11:21:22 - Epoch [48/60] LR: 2.44e-06/2.44e-05 | Loss: 0.4813 (seg=0.0011 ord=0.2672) | Dice: 0.9990 | Gate img/text/meta: 0.775/0.758/0.745 (H=1.085) | 15s
+2026-05-05 11:21:24 - [Val] ROC-AUC: 0.9475 | profile=relax_safety t_low=0.290 t_high=0.500 low_p=0.6000 high_recall=0.9231 M→低=2 med_share=0.309
+2026-05-05 11:21:39 - Epoch [49/60] LR: 2.09e-06/2.09e-05 | Loss: 0.4803 (seg=0.0010 ord=0.2668) | Dice: 0.9990 | Gate img/text/meta: 0.774/0.761/0.745 (H=1.086) | 15s
+2026-05-05 11:21:55 - Epoch [50/60] LR: 1.77e-06/1.77e-05 | Loss: 0.4924 (seg=0.0010 ord=0.2729) | Dice: 0.9990 | Gate img/text/meta: 0.775/0.761/0.747 (H=1.086) | 15s
+2026-05-05 11:21:56 - [Val] ROC-AUC: 0.9527 | profile=relax_safety t_low=0.250 t_high=0.500 low_p=0.6111 high_recall=0.9487 M→低=2 med_share=0.301
+2026-05-05 11:22:11 - Epoch [51/60] LR: 1.48e-06/1.48e-05 | Loss: 0.4799 (seg=0.0009 ord=0.2666) | Dice: 0.9991 | Gate img/text/meta: 0.775/0.758/0.752 (H=1.087) | 15s
+2026-05-05 11:22:26 - Epoch [52/60] LR: 1.22e-06/1.22e-05 | Loss: 0.4837 (seg=0.0010 ord=0.2685) | Dice: 0.9991 | Gate img/text/meta: 0.769/0.756/0.746 (H=1.087) | 15s
+2026-05-05 11:22:27 - [Val] ROC-AUC: 0.9472 | profile=relax_safety t_low=0.050 t_high=0.500 low_p=0.5758 high_recall=0.9231 M→低=2 med_share=0.244
+2026-05-05 11:22:42 - Epoch [53/60] LR: 9.81e-07/9.81e-06 | Loss: 0.4890 (seg=0.0009 ord=0.2712) | Dice: 0.9992 | Gate img/text/meta: 0.780/0.766/0.755 (H=1.087) | 15s
+2026-05-05 11:22:57 - Epoch [54/60] LR: 7.76e-07/7.76e-06 | Loss: 0.4809 (seg=0.0009 ord=0.2672) | Dice: 0.9991 | Gate img/text/meta: 0.774/0.752/0.752 (H=1.087) | 15s
+2026-05-05 11:22:58 - [Val] ROC-AUC: 0.9444 | profile=relax_safety t_low=0.050 t_high=0.500 low_p=0.5938 high_recall=0.9231 M→低=2 med_share=0.293
+2026-05-05 11:23:13 - Epoch [55/60] LR: 6.01e-07/6.01e-06 | Loss: 0.4826 (seg=0.0009 ord=0.2680) | Dice: 0.9991 | Gate img/text/meta: 0.781/0.763/0.758 (H=1.088) | 15s
+2026-05-05 11:23:28 - Epoch [56/60] LR: 4.57e-07/4.57e-06 | Loss: 0.4821 (seg=0.0009 ord=0.2678) | Dice: 0.9991 | Gate img/text/meta: 0.777/0.759/0.757 (H=1.087) | 15s
+2026-05-05 11:23:30 - [Val] ROC-AUC: 0.9444 | profile=relax_safety t_low=0.090 t_high=0.500 low_p=0.5938 high_recall=0.9231 M→低=2 med_share=0.333
+2026-05-05 11:23:45 - Epoch [57/60] LR: 3.45e-07/3.45e-06 | Loss: 0.4798 (seg=0.0009 ord=0.2666) | Dice: 0.9991 | Gate img/text/meta: 0.776/0.760/0.752 (H=1.086) | 15s
+2026-05-05 11:24:00 - Epoch [58/60] LR: 2.65e-07/2.65e-06 | Loss: 0.4762 (seg=0.0009 ord=0.2649) | Dice: 0.9992 | Gate img/text/meta: 0.774/0.753/0.754 (H=1.088) | 15s
+2026-05-05 11:24:01 - [Val] ROC-AUC: 0.9435 | profile=relax_safety t_low=0.090 t_high=0.500 low_p=0.5938 high_recall=0.9231 M→低=2 med_share=0.358
+2026-05-05 11:24:16 - Epoch [59/60] LR: 2.16e-07/2.16e-06 | Loss: 0.4742 (seg=0.0009 ord=0.2639) | Dice: 0.9992 | Gate img/text/meta: 0.774/0.761/0.745 (H=1.088) | 15s
+2026-05-05 11:24:31 - Epoch [60/60] LR: 2.00e-07/2.00e-06 | Loss: 0.4754 (seg=0.0009 ord=0.2644) | Dice: 0.9991 | Gate img/text/meta: 0.775/0.759/0.750 (H=1.087) | 14s
+2026-05-05 11:24:32 - [Val] ROC-AUC: 0.9429 | profile=relax_safety t_low=0.270 t_high=0.500 low_p=0.5814 high_recall=0.9231 M→低=2 med_share=0.301
+2026-05-05 11:24:32 - ========================================================================
+2026-05-05 11:24:32 - 训练完成。Best Epoch: 4, Best Val AUC: 0.9976
+2026-05-05 11:24:32 - ========================================================================
+2026-05-05 11:24:34 - ========================================================================
+2026-05-05 11:24:34 - 在 val 上做约束阈值搜索: profile=primary
+2026-05-05 11:24:34 -   → t_low=0.270, t_high=0.500
+2026-05-05 11:24:34 -   val: {'t_low': 0.27, 't_high': 0.5, 'mal_to_low': 0, 'high_recall': 1.0, 'high_precision': 0.8478260869565217, 'medium_share': 0.34959349593495936, 'low_precision': 0.7058823529411765, 'n_high_pred': 46, 'n_med_pred': 43, 'n_low_pred': 34}
+2026-05-05 11:24:34 - ========================================================================
+2026-05-05 11:24:34 - 阈值已保存: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_D_modal/thresholds.json
+2026-05-05 11:24:37 - ========================================================================
+2026-05-05 11:24:37 - [Test-111 (val-thr)] 风险分层评估 (t_low=0.270, t_high=0.500)
+2026-05-05 11:24:37 - ========================================================================
+2026-05-05 11:24:37 - [Test-111 (val-thr)] 3-band 混淆矩阵 (行=真实, 列=预测档)：
+2026-05-05 11:24:37 -                band_high  band_med   band_low
+2026-05-05 11:24:37 -   malignant           114         0          0
+2026-05-05 11:24:37 -   benign               16        61         37
+2026-05-05 11:24:37 -   no_tumor              6        38         70
+2026-05-05 11:24:37 - [Test-111 (val-thr)] 二值安全口径 (高风险 vs 非高风险)：
+2026-05-05 11:24:37 -                pred_high  pred_other
+2026-05-05 11:24:37 -   is_malignant       114          0
+2026-05-05 11:24:37 -   not_mal             22        206
+2026-05-05 11:24:37 - [Test-111 (val-thr)] 关键安全指标：
+2026-05-05 11:24:37 -   M → 低风险 漏诊 (硬底线 ≤ 1)：0
+2026-05-05 11:24:37 -   高风险召回 (硬底线 ≥ 0.95) ：1.0000
+2026-05-05 11:24:37 -   高风险精确率              ：0.8382
+2026-05-05 11:24:37 -   中风险占比 (约束 ≤ 0.35)  ：0.2895
+2026-05-05 11:24:37 -   二值 ROC-AUC (恶性 vs 其他)：1.0000
+2026-05-05 11:24:37 - [Test-111 (val-thr)] 每档统计：
+2026-05-05 11:24:37 -   band_high   | n_pred= 136 | share=0.398 | P(vs malignant)=0.8382 | R(vs malignant)=1.0000
+2026-05-05 11:24:37 -   band_medium | n_pred=  99 | share=0.289 | P(vs benign)=0.6162 | R(vs benign)=0.5351
+2026-05-05 11:24:37 -   band_low    | n_pred= 107 | share=0.313 | P(vs no_tumor)=0.6542 | R(vs no_tumor)=0.6140
+2026-05-05 11:24:37 - [Test-111 (val-thr)] 风险分数分布：
+2026-05-05 11:24:37 -   malignant  n= 114 mean=0.9966 std=0.0045 [0.9733, 0.9996]
+2026-05-05 11:24:37 -   benign     n= 114 mean=0.3409 std=0.1377 [0.0851, 0.7901]
+2026-05-05 11:24:37 -   no_tumor   n= 114 mean=0.2516 std=0.1381 [0.0581, 0.8094]
+2026-05-05 11:24:37 - [Test-111 (val-thr)] 校准 (Brier=0.0725)；分箱样本数: [16, 44, 69, 48, 29, 17, 2, 2, 1, 114]
+2026-05-05 11:24:37 - ========================================================================
+2026-05-05 11:24:37 - [Test-111] 诊断 — 直接在该集上搜阈值: profile=primary t_low=0.250 t_high=0.500 low_p=0.6700
+2026-05-05 11:24:37 - 评估已保存: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_D_modal/eval_111.json
+2026-05-05 11:24:40 - ========================================================================
+2026-05-05 11:24:40 - [Test-112 (val-thr)] 风险分层评估 (t_low=0.270, t_high=0.500)
+2026-05-05 11:24:40 - ========================================================================
+2026-05-05 11:24:40 - [Test-112 (val-thr)] 3-band 混淆矩阵 (行=真实, 列=预测档)：
+2026-05-05 11:24:40 -                band_high  band_med   band_low
+2026-05-05 11:24:40 -   malignant           114         0          0
+2026-05-05 11:24:40 -   benign               16        61         37
+2026-05-05 11:24:40 -   no_tumor             14        76        138
+2026-05-05 11:24:40 - [Test-112 (val-thr)] 二值安全口径 (高风险 vs 非高风险)：
+2026-05-05 11:24:40 -                pred_high  pred_other
+2026-05-05 11:24:40 -   is_malignant       114          0
+2026-05-05 11:24:40 -   not_mal             30        312
+2026-05-05 11:24:40 - [Test-112 (val-thr)] 关键安全指标：
+2026-05-05 11:24:40 -   M → 低风险 漏诊 (硬底线 ≤ 1)：0
+2026-05-05 11:24:40 -   高风险召回 (硬底线 ≥ 0.95) ：1.0000
+2026-05-05 11:24:40 -   高风险精确率              ：0.7917
+2026-05-05 11:24:40 -   中风险占比 (约束 ≤ 0.35)  ：0.3004
+2026-05-05 11:24:40 -   二值 ROC-AUC (恶性 vs 其他)：1.0000
+2026-05-05 11:24:40 - [Test-112 (val-thr)] 每档统计：
+2026-05-05 11:24:40 -   band_high   | n_pred= 144 | share=0.316 | P(vs malignant)=0.7917 | R(vs malignant)=1.0000
+2026-05-05 11:24:40 -   band_medium | n_pred= 137 | share=0.300 | P(vs benign)=0.4453 | R(vs benign)=0.5351
+2026-05-05 11:24:40 -   band_low    | n_pred= 175 | share=0.384 | P(vs no_tumor)=0.7886 | R(vs no_tumor)=0.6053
+2026-05-05 11:24:40 - [Test-112 (val-thr)] 风险分数分布：
+2026-05-05 11:24:40 -   malignant  n= 114 mean=0.9966 std=0.0045 [0.9733, 0.9996]
+2026-05-05 11:24:40 -   benign     n= 114 mean=0.3409 std=0.1377 [0.0851, 0.7901]
+2026-05-05 11:24:40 -   no_tumor   n= 228 mean=0.2635 std=0.1449 [0.0581, 0.9289]
+2026-05-05 11:24:40 - [Test-112 (val-thr)] 校准 (Brier=0.0790)；分箱样本数: [20, 84, 97, 71, 40, 21, 3, 3, 2, 115]
+2026-05-05 11:24:40 - ========================================================================
+2026-05-05 11:24:40 - [Test-112] 诊断 — 直接在该集上搜阈值: profile=primary t_low=0.250 t_high=0.500 low_p=0.7975
+2026-05-05 11:24:40 - 评估已保存: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_D_modal/eval_112.json
+2026-05-05 11:24:41 - 混淆矩阵图: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_D_modal/confusion_matrices.png
+2026-05-05 11:24:41 - ========================================================================
+2026-05-05 11:24:41 - 全部完成。
+2026-05-05 11:24:41 -   best weight    : /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_D_modal/20260505_task_risk_D_modal_best.pth
+2026-05-05 11:24:41 -   thresholds.json: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_D_modal/thresholds.json
+2026-05-05 11:24:41 -   eval_111.json  : /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_D_modal/eval_111.json
+2026-05-05 11:24:41 -   eval_112.json  : /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_D_modal/eval_112.json
+2026-05-05 11:24:41 -   混淆矩阵图     : /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_D_modal/confusion_matrices.png
+2026-05-05 11:24:41 - ========================================================================

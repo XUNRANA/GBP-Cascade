@@ -1,0 +1,183 @@
+2026-05-05 11:00:18 - ========================================================================
+2026-05-05 11:00:18 - 实验: 20260505_task_risk_C_twostage  (实验 C — 双阶段决策)
+2026-05-05 11:00:18 - 模型: SwinV2-Tiny@256 + 4ch + Trimodal + 1D Risk Head + Stage2 BCE Head (two-stage cascade)
+2026-05-05 11:00:18 - Lambda Ord=2.0 | Lambda Stage2=1.0
+2026-05-05 11:00:18 - Epochs: 60
+2026-05-05 11:00:18 - 设备: cuda
+2026-05-05 11:00:18 - ========================================================================
+2026-05-05 11:00:18 - 初始化完成,开始构建数据流水线 ...
+2026-05-05 11:00:18 - [1/4] 切分 train/val ...
+2026-05-05 11:00:18 - [1/4] train=690 val=123 (0.4s)
+2026-05-05 11:00:18 - [2/4] 装载 text_dict ...
+2026-05-05 11:00:18 - [2/4] 共 1953 条
+2026-05-05 11:00:18 - [3/4] 构造 train_dataset ...
+2026-05-05 11:00:19 - [3/4] train_dataset OK (0.6s)
+2026-05-05 11:00:21 - [3/4] eval datasets OK
+2026-05-05 11:00:21 - Train: 690 张 (malignant=232, benign=227, no_tumor=231)
+2026-05-05 11:00:21 - Val: 123 张 (malignant=39, benign=44, no_tumor=40)
+2026-05-05 11:00:21 - Test-111: 342 张 (malignant=114, benign=114, no_tumor=114)
+2026-05-05 11:00:21 - Test-112: 456 张 (malignant=114, benign=114, no_tumor=228)
+2026-05-05 11:00:21 - [4/4] DataLoaders OK | train_batches=115
+2026-05-05 11:00:21 - 构建 TwoStage 模型 ...
+2026-05-05 11:00:40 - 模型构建完成 (19.8s)
+2026-05-05 11:00:40 - 模型参数量: 137,439,441 (可训练 35,171,793)
+2026-05-05 11:00:40 - ========================================================================
+2026-05-05 11:00:40 - 开始训练
+2026-05-05 11:00:40 - ========================================================================
+2026-05-05 11:00:59 - Epoch [1/60] LR: 4.00e-06/4.00e-05 | Loss: 2.2740 (seg=0.6184 ord=0.4917 stage2=0.6722) | Dice: 0.7700 | 19s
+2026-05-05 11:01:15 - Epoch [2/60] LR: 8.00e-06/8.00e-05 | Loss: 1.7421 (seg=0.2609 ord=0.4211 stage2=0.6389) | Dice: 0.9451 | 15s
+2026-05-05 11:01:16 - [Val] stage1 AUC: 0.9533 | stage2 b/n AUC: 0.7227 | profile=primary t_high=0.400 t_med=0.460 low_p=1.0000 high_recall=1.0000 M→低=0
+2026-05-05 11:01:18 - *** 保存最优 (Val stage1 AUC: 0.9533, Epoch: 2) ***
+2026-05-05 11:01:34 - Epoch [3/60] LR: 1.20e-05/1.20e-04 | Loss: 1.5688 (seg=0.1826 ord=0.4070 stage2=0.5723) | Dice: 0.9602 | 16s
+2026-05-05 11:01:49 - Epoch [4/60] LR: 1.60e-05/1.60e-04 | Loss: 1.4178 (seg=0.1181 ord=0.3821 stage2=0.5354) | Dice: 0.9723 | 15s
+2026-05-05 11:01:51 - [Val] stage1 AUC: 0.9823 | stage2 b/n AUC: 0.7034 | profile=primary t_high=0.400 t_med=0.560 low_p=0.7500 high_recall=0.9744 M→低=1
+2026-05-05 11:01:55 - *** 保存最优 (Val stage1 AUC: 0.9823, Epoch: 4) ***
+2026-05-05 11:02:10 - Epoch [5/60] LR: 2.00e-05/2.00e-04 | Loss: 1.3116 (seg=0.0844 ord=0.3728 stage2=0.4815) | Dice: 0.9739 | 15s
+2026-05-05 11:02:25 - Epoch [6/60] LR: 2.00e-05/2.00e-04 | Loss: 1.3044 (seg=0.0632 ord=0.3796 stage2=0.4820) | Dice: 0.9780 | 15s
+2026-05-05 11:02:27 - [Val] stage1 AUC: 0.9933 | stage2 b/n AUC: 0.7034 | profile=primary t_high=0.400 t_med=0.160 low_p=0.8750 high_recall=1.0000 M→低=0
+2026-05-05 11:02:31 - *** 保存最优 (Val stage1 AUC: 0.9933, Epoch: 6) ***
+2026-05-05 11:02:46 - Epoch [7/60] LR: 1.99e-05/1.99e-04 | Loss: 1.2471 (seg=0.0495 ord=0.3684 stage2=0.4608) | Dice: 0.9787 | 15s
+2026-05-05 11:03:01 - Epoch [8/60] LR: 1.99e-05/1.99e-04 | Loss: 1.1453 (seg=0.0398 ord=0.3499 stage2=0.4055) | Dice: 0.9812 | 15s
+2026-05-05 11:03:03 - [Val] stage1 AUC: 0.9759 | stage2 b/n AUC: 0.6778 | profile=primary t_high=0.400 t_med=0.140 low_p=0.7857 high_recall=0.9744 M→低=1
+2026-05-05 11:03:19 - Epoch [9/60] LR: 1.97e-05/1.97e-04 | Loss: 1.1040 (seg=0.0339 ord=0.3484 stage2=0.3734) | Dice: 0.9831 | 16s
+2026-05-05 11:03:34 - Epoch [10/60] LR: 1.96e-05/1.96e-04 | Loss: 1.0251 (seg=0.0290 ord=0.3365 stage2=0.3231) | Dice: 0.9833 | 15s
+2026-05-05 11:03:35 - [Val] stage1 AUC: 0.9942 | stage2 b/n AUC: 0.6648 | profile=primary t_high=0.400 t_med=0.500 low_p=0.8095 high_recall=1.0000 M→低=0
+2026-05-05 11:03:39 - *** 保存最优 (Val stage1 AUC: 0.9942, Epoch: 10) ***
+2026-05-05 11:03:54 - Epoch [11/60] LR: 1.94e-05/1.94e-04 | Loss: 1.0462 (seg=0.0257 ord=0.3388 stage2=0.3430) | Dice: 0.9835 | 15s
+2026-05-05 11:04:10 - Epoch [12/60] LR: 1.92e-05/1.92e-04 | Loss: 1.0798 (seg=0.0215 ord=0.3377 stage2=0.3829) | Dice: 0.9852 | 16s
+2026-05-05 11:04:11 - [Val] stage1 AUC: 0.9841 | stage2 b/n AUC: 0.6631 | profile=primary t_high=0.400 t_med=0.140 low_p=0.8333 high_recall=0.9744 M→低=1
+2026-05-05 11:04:27 - Epoch [13/60] LR: 1.90e-05/1.90e-04 | Loss: 1.1254 (seg=0.0191 ord=0.3432 stage2=0.4199) | Dice: 0.9863 | 16s
+2026-05-05 11:04:42 - Epoch [14/60] LR: 1.87e-05/1.87e-04 | Loss: 1.0729 (seg=0.0176 ord=0.3418 stage2=0.3718) | Dice: 0.9863 | 15s
+2026-05-05 11:04:43 - [Val] stage1 AUC: 0.8806 | stage2 b/n AUC: 0.6557 | profile=unconstrained t_high=0.400 t_med=0.300 low_p=0.5926 high_recall=0.8205 M→低=4
+2026-05-05 11:04:59 - Epoch [15/60] LR: 1.84e-05/1.84e-04 | Loss: 0.9347 (seg=0.0155 ord=0.3157 stage2=0.2878) | Dice: 0.9870 | 16s
+2026-05-05 11:05:14 - Epoch [16/60] LR: 1.81e-05/1.81e-04 | Loss: 0.9548 (seg=0.0151 ord=0.3215 stage2=0.2967) | Dice: 0.9865 | 15s
+2026-05-05 11:05:15 - [Val] stage1 AUC: 0.9838 | stage2 b/n AUC: 0.5523 | profile=primary t_high=0.400 t_med=0.540 low_p=0.6400 high_recall=0.9744 M→低=1
+2026-05-05 11:05:31 - Epoch [17/60] LR: 1.78e-05/1.78e-04 | Loss: 0.9095 (seg=0.0119 ord=0.3070 stage2=0.2834) | Dice: 0.9896 | 16s
+2026-05-05 11:05:46 - Epoch [18/60] LR: 1.74e-05/1.74e-04 | Loss: 0.9239 (seg=0.0108 ord=0.3116 stage2=0.2899) | Dice: 0.9905 | 15s
+2026-05-05 11:05:48 - [Val] stage1 AUC: 0.9759 | stage2 b/n AUC: 0.6273 | profile=primary t_high=0.400 t_med=0.100 low_p=0.7059 high_recall=0.9744 M→低=1
+2026-05-05 11:06:04 - Epoch [19/60] LR: 1.70e-05/1.70e-04 | Loss: 0.7981 (seg=0.0093 ord=0.2972 stage2=0.1943) | Dice: 0.9913 | 16s
+2026-05-05 11:06:19 - Epoch [20/60] LR: 1.66e-05/1.66e-04 | Loss: 0.9926 (seg=0.0094 ord=0.3280 stage2=0.3272) | Dice: 0.9908 | 16s
+2026-05-05 11:06:21 - [Val] stage1 AUC: 0.8800 | stage2 b/n AUC: 0.7068 | profile=unconstrained t_high=0.400 t_med=0.140 low_p=0.5758 high_recall=0.8718 M→低=5
+2026-05-05 11:06:36 - Epoch [21/60] LR: 1.61e-05/1.61e-04 | Loss: 0.7956 (seg=0.0082 ord=0.2932 stage2=0.2011) | Dice: 0.9920 | 16s
+2026-05-05 11:06:52 - Epoch [22/60] LR: 1.57e-05/1.57e-04 | Loss: 1.0244 (seg=0.0068 ord=0.3304 stage2=0.3569) | Dice: 0.9934 | 16s
+2026-05-05 11:06:53 - [Val] stage1 AUC: 0.9686 | stage2 b/n AUC: 0.6750 | profile=primary t_high=0.400 t_med=0.100 low_p=0.6452 high_recall=0.9744 M→低=1
+2026-05-05 11:07:09 - Epoch [23/60] LR: 1.52e-05/1.52e-04 | Loss: 0.7910 (seg=0.0059 ord=0.2939 stage2=0.1972) | Dice: 0.9943 | 16s
+2026-05-05 11:07:25 - Epoch [24/60] LR: 1.47e-05/1.47e-04 | Loss: 0.8450 (seg=0.0057 ord=0.2983 stage2=0.2427) | Dice: 0.9944 | 16s
+2026-05-05 11:07:27 - [Val] stage1 AUC: 0.9548 | stage2 b/n AUC: 0.6193 | profile=relax_safety t_high=0.400 t_med=0.140 low_p=0.5676 high_recall=0.9487 M→低=2
+2026-05-05 11:07:43 - Epoch [25/60] LR: 1.42e-05/1.42e-04 | Loss: 0.7524 (seg=0.0048 ord=0.2848 stage2=0.1780) | Dice: 0.9953 | 16s
+2026-05-05 11:07:58 - Epoch [26/60] LR: 1.37e-05/1.37e-04 | Loss: 0.8809 (seg=0.0042 ord=0.3156 stage2=0.2455) | Dice: 0.9958 | 15s
+2026-05-05 11:07:59 - [Val] stage1 AUC: 0.9621 | stage2 b/n AUC: 0.6026 | profile=primary t_high=0.400 t_med=0.100 low_p=0.8000 high_recall=0.9744 M→低=1
+2026-05-05 11:08:15 - Epoch [27/60] LR: 1.32e-05/1.32e-04 | Loss: 0.7486 (seg=0.0038 ord=0.2909 stage2=0.1630) | Dice: 0.9963 | 16s
+2026-05-05 11:08:31 - Epoch [28/60] LR: 1.26e-05/1.26e-04 | Loss: 0.7864 (seg=0.0032 ord=0.2909 stage2=0.2014) | Dice: 0.9969 | 16s
+2026-05-05 11:08:33 - [Val] stage1 AUC: 0.9615 | stage2 b/n AUC: 0.6222 | profile=primary t_high=0.400 t_med=0.340 low_p=0.6071 high_recall=0.9744 M→低=1
+2026-05-05 11:08:48 - Epoch [29/60] LR: 1.21e-05/1.21e-04 | Loss: 0.7010 (seg=0.0031 ord=0.2813 stage2=0.1353) | Dice: 0.9969 | 16s
+2026-05-05 11:09:03 - Epoch [30/60] LR: 1.15e-05/1.15e-04 | Loss: 0.7679 (seg=0.0025 ord=0.2897 stage2=0.1860) | Dice: 0.9976 | 15s
+2026-05-05 11:09:05 - [Val] stage1 AUC: 0.9478 | stage2 b/n AUC: 0.6065 | profile=relax_safety t_high=0.400 t_med=0.100 low_p=0.6400 high_recall=0.9487 M→低=2
+2026-05-05 11:09:20 - Epoch [31/60] LR: 1.09e-05/1.09e-04 | Loss: 0.7267 (seg=0.0024 ord=0.2848 stage2=0.1547) | Dice: 0.9977 | 15s
+2026-05-05 11:09:35 - Epoch [32/60] LR: 1.04e-05/1.04e-04 | Loss: 0.6738 (seg=0.0023 ord=0.2830 stage2=0.1055) | Dice: 0.9978 | 15s
+2026-05-05 11:09:37 - [Val] stage1 AUC: 0.8739 | stage2 b/n AUC: 0.6477 | profile=unconstrained t_high=0.400 t_med=0.100 low_p=0.5116 high_recall=0.8205 M→低=7
+2026-05-05 11:09:52 - Epoch [33/60] LR: 9.82e-06/9.82e-05 | Loss: 0.6612 (seg=0.0020 ord=0.2751 stage2=0.1090) | Dice: 0.9981 | 15s
+2026-05-05 11:10:09 - Epoch [34/60] LR: 9.25e-06/9.25e-05 | Loss: 0.6790 (seg=0.0019 ord=0.2797 stage2=0.1177) | Dice: 0.9982 | 16s
+2026-05-05 11:10:10 - [Val] stage1 AUC: 0.9484 | stage2 b/n AUC: 0.6386 | profile=relax_recall t_high=0.400 t_med=0.100 low_p=0.6154 high_recall=0.9487 M→低=1
+2026-05-05 11:10:26 - Epoch [35/60] LR: 8.69e-06/8.69e-05 | Loss: 0.6794 (seg=0.0018 ord=0.2805 stage2=0.1165) | Dice: 0.9982 | 16s
+2026-05-05 11:10:41 - Epoch [36/60] LR: 8.13e-06/8.13e-05 | Loss: 0.6416 (seg=0.0017 ord=0.2771 stage2=0.0856) | Dice: 0.9983 | 15s
+2026-05-05 11:10:42 - [Val] stage1 AUC: 0.9454 | stage2 b/n AUC: 0.6080 | profile=relax_recall t_high=0.400 t_med=0.100 low_p=0.6087 high_recall=0.9487 M→低=1
+2026-05-05 11:10:58 - Epoch [37/60] LR: 7.58e-06/7.58e-05 | Loss: 0.5526 (seg=0.0016 ord=0.2643 stage2=0.0223) | Dice: 0.9985 | 16s
+2026-05-05 11:11:13 - Epoch [38/60] LR: 7.04e-06/7.04e-05 | Loss: 0.6614 (seg=0.0014 ord=0.2772 stage2=0.1055) | Dice: 0.9986 | 15s
+2026-05-05 11:11:14 - [Val] stage1 AUC: 0.9481 | stage2 b/n AUC: 0.6210 | profile=relax_recall t_high=0.400 t_med=0.600 low_p=0.6786 high_recall=0.9487 M→低=1
+2026-05-05 11:11:30 - Epoch [39/60] LR: 6.51e-06/6.51e-05 | Loss: 0.6698 (seg=0.0014 ord=0.2728 stage2=0.1227) | Dice: 0.9986 | 16s
+2026-05-05 11:11:45 - Epoch [40/60] LR: 5.99e-06/5.99e-05 | Loss: 0.6005 (seg=0.0013 ord=0.2693 stage2=0.0606) | Dice: 0.9988 | 15s
+2026-05-05 11:11:46 - [Val] stage1 AUC: 0.9380 | stage2 b/n AUC: 0.6244 | profile=relax_recall t_high=0.400 t_med=0.100 low_p=0.6552 high_recall=0.9487 M→低=1
+2026-05-05 11:12:02 - Epoch [41/60] LR: 5.48e-06/5.48e-05 | Loss: 0.6041 (seg=0.0013 ord=0.2726 stage2=0.0576) | Dice: 0.9988 | 16s
+2026-05-05 11:12:17 - Epoch [42/60] LR: 4.99e-06/4.99e-05 | Loss: 0.5820 (seg=0.0013 ord=0.2661 stage2=0.0485) | Dice: 0.9988 | 15s
+2026-05-05 11:12:18 - [Val] stage1 AUC: 0.9490 | stage2 b/n AUC: 0.5989 | profile=relax_recall t_high=0.400 t_med=0.100 low_p=0.6190 high_recall=0.9487 M→低=1
+2026-05-05 11:12:33 - Epoch [43/60] LR: 4.51e-06/4.51e-05 | Loss: 0.5846 (seg=0.0012 ord=0.2698 stage2=0.0438) | Dice: 0.9988 | 16s
+2026-05-05 11:12:49 - Epoch [44/60] LR: 4.05e-06/4.05e-05 | Loss: 0.6341 (seg=0.0011 ord=0.2751 stage2=0.0827) | Dice: 0.9989 | 15s
+2026-05-05 11:12:50 - [Val] stage1 AUC: 0.8929 | stage2 b/n AUC: 0.6040 | profile=unconstrained t_high=0.400 t_med=0.440 low_p=0.5263 high_recall=0.8974 M→低=3
+2026-05-05 11:13:05 - Epoch [45/60] LR: 3.62e-06/3.62e-05 | Loss: 0.6258 (seg=0.0012 ord=0.2788 stage2=0.0670) | Dice: 0.9988 | 15s
+2026-05-05 11:13:21 - Epoch [46/60] LR: 3.20e-06/3.20e-05 | Loss: 0.5825 (seg=0.0011 ord=0.2746 stage2=0.0322) | Dice: 0.9989 | 16s
+2026-05-05 11:13:22 - [Val] stage1 AUC: 0.9316 | stage2 b/n AUC: 0.5705 | profile=relax_recall t_high=0.400 t_med=0.100 low_p=0.6316 high_recall=0.9487 M→低=1
+2026-05-05 11:13:38 - Epoch [47/60] LR: 2.81e-06/2.81e-05 | Loss: 0.6074 (seg=0.0011 ord=0.2663 stage2=0.0737) | Dice: 0.9989 | 15s
+2026-05-05 11:13:53 - Epoch [48/60] LR: 2.44e-06/2.44e-05 | Loss: 0.5653 (seg=0.0011 ord=0.2666 stage2=0.0310) | Dice: 0.9989 | 16s
+2026-05-05 11:13:54 - [Val] stage1 AUC: 0.9161 | stage2 b/n AUC: 0.5955 | profile=relax_safety t_high=0.400 t_med=0.100 low_p=0.5484 high_recall=0.9231 M→低=2
+2026-05-05 11:14:10 - Epoch [49/60] LR: 2.09e-06/2.09e-05 | Loss: 0.5619 (seg=0.0010 ord=0.2630 stage2=0.0349) | Dice: 0.9990 | 16s
+2026-05-05 11:14:25 - Epoch [50/60] LR: 1.77e-06/1.77e-05 | Loss: 0.5975 (seg=0.0009 ord=0.2695 stage2=0.0577) | Dice: 0.9991 | 15s
+2026-05-05 11:14:27 - [Val] stage1 AUC: 0.9298 | stage2 b/n AUC: 0.5994 | profile=relax_safety t_high=0.400 t_med=0.120 low_p=0.5667 high_recall=0.9231 M→低=2
+2026-05-05 11:14:42 - Epoch [51/60] LR: 1.48e-06/1.48e-05 | Loss: 0.5939 (seg=0.0010 ord=0.2662 stage2=0.0605) | Dice: 0.9991 | 15s
+2026-05-05 11:14:57 - Epoch [52/60] LR: 1.22e-06/1.22e-05 | Loss: 0.5634 (seg=0.0010 ord=0.2636 stage2=0.0353) | Dice: 0.9991 | 15s
+2026-05-05 11:14:58 - [Val] stage1 AUC: 0.9341 | stage2 b/n AUC: 0.5909 | profile=relax_safety t_high=0.400 t_med=0.100 low_p=0.6000 high_recall=0.9487 M→低=2
+2026-05-05 11:15:14 - Epoch [53/60] LR: 9.81e-07/9.81e-06 | Loss: 0.5413 (seg=0.0009 ord=0.2624 stage2=0.0155) | Dice: 0.9991 | 15s
+2026-05-05 11:15:28 - Epoch [54/60] LR: 7.76e-07/7.76e-06 | Loss: 0.5658 (seg=0.0009 ord=0.2647 stage2=0.0354) | Dice: 0.9991 | 15s
+2026-05-05 11:15:30 - [Val] stage1 AUC: 0.9316 | stage2 b/n AUC: 0.5983 | profile=relax_safety t_high=0.400 t_med=0.100 low_p=0.5625 high_recall=0.9231 M→低=2
+2026-05-05 11:15:46 - Epoch [55/60] LR: 6.01e-07/6.01e-06 | Loss: 0.5538 (seg=0.0009 ord=0.2625 stage2=0.0279) | Dice: 0.9991 | 15s
+2026-05-05 11:16:02 - Epoch [56/60] LR: 4.57e-07/4.57e-06 | Loss: 0.5995 (seg=0.0010 ord=0.2700 stage2=0.0585) | Dice: 0.9990 | 16s
+2026-05-05 11:16:03 - [Val] stage1 AUC: 0.9310 | stage2 b/n AUC: 0.5997 | profile=relax_safety t_high=0.400 t_med=0.100 low_p=0.5455 high_recall=0.9231 M→低=2
+2026-05-05 11:16:19 - Epoch [57/60] LR: 3.45e-07/3.45e-06 | Loss: 0.5465 (seg=0.0009 ord=0.2643 stage2=0.0170) | Dice: 0.9991 | 16s
+2026-05-05 11:16:34 - Epoch [58/60] LR: 2.65e-07/2.65e-06 | Loss: 0.5844 (seg=0.0009 ord=0.2665 stage2=0.0505) | Dice: 0.9991 | 15s
+2026-05-05 11:16:35 - [Val] stage1 AUC: 0.9319 | stage2 b/n AUC: 0.6062 | profile=relax_safety t_high=0.400 t_med=0.100 low_p=0.5667 high_recall=0.9231 M→低=2
+2026-05-05 11:16:51 - Epoch [59/60] LR: 2.16e-07/2.16e-06 | Loss: 0.5878 (seg=0.0009 ord=0.2693 stage2=0.0483) | Dice: 0.9991 | 16s
+2026-05-05 11:17:06 - Epoch [60/60] LR: 2.00e-07/2.00e-06 | Loss: 0.5824 (seg=0.0009 ord=0.2685 stage2=0.0446) | Dice: 0.9991 | 15s
+2026-05-05 11:17:07 - [Val] stage1 AUC: 0.9319 | stage2 b/n AUC: 0.6068 | profile=relax_safety t_high=0.400 t_med=0.100 low_p=0.5667 high_recall=0.9231 M→低=2
+2026-05-05 11:17:07 - ========================================================================
+2026-05-05 11:17:07 - 训练完成。Best Epoch: 10, Best Val stage1 AUC: 0.9942
+2026-05-05 11:17:07 - ========================================================================
+2026-05-05 11:17:09 - ========================================================================
+2026-05-05 11:17:09 - Val 双阶段阈值搜索: profile=primary
+2026-05-05 11:17:09 -   → t_high=0.400, t_med=0.500
+2026-05-05 11:17:09 -   val stage1 AUC: 0.9942 | stage2 b/n AUC: 0.6648
+2026-05-05 11:17:09 -   val: {'t_high': 0.4, 't_med': 0.5000000000000001, 'mal_to_low': 0, 'high_recall': 1.0, 'high_precision': 0.5064935064935064, 'medium_share': 0.2032520325203252, 'low_precision': 0.8095238095238095, 'n_high_pred': 77, 'n_med_pred': 25, 'n_low_pred': 21}
+2026-05-05 11:17:09 - ========================================================================
+2026-05-05 11:17:09 - 阈值已保存: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_C_twostage/thresholds.json
+2026-05-05 11:17:12 - ========================================================================
+2026-05-05 11:17:12 - [Test-111 (val-thr)] 双阶段风险分层评估 (t_high=0.400, t_med=0.500)
+2026-05-05 11:17:12 - ========================================================================
+2026-05-05 11:17:12 - [Test-111 (val-thr)] 3-band 混淆矩阵 (行=真实, 列=预测档):
+2026-05-05 11:17:12 -                band_high  band_med   band_low
+2026-05-05 11:17:12 -   malignant           114         0          0
+2026-05-05 11:17:12 -   benign               58        25         31
+2026-05-05 11:17:12 -   no_tumor             31        25         58
+2026-05-05 11:17:12 - [Test-111 (val-thr)] 关键指标:
+2026-05-05 11:17:12 -   M → 低风险 漏诊: 0
+2026-05-05 11:17:12 -   高风险召回    : 1.0000
+2026-05-05 11:17:12 -   高风险精确率  : 0.5616
+2026-05-05 11:17:12 -   中风险占比    : 0.1462
+2026-05-05 11:17:12 -   二值 ROC-AUC  : 0.9998
+2026-05-05 11:17:12 -   Stage2 b/n AUC: 0.6794
+2026-05-05 11:17:12 - [Test-111 (val-thr)] 每档统计:
+2026-05-05 11:17:12 -   band_high   | n_pred= 203 | share=0.594 | P(vs malignant)=0.5616 | R(vs malignant)=1.0000
+2026-05-05 11:17:12 -   band_medium | n_pred=  50 | share=0.146 | P(vs benign)=0.5000 | R(vs benign)=0.2193
+2026-05-05 11:17:12 -   band_low    | n_pred=  89 | share=0.260 | P(vs no_tumor)=0.6517 | R(vs no_tumor)=0.5088
+2026-05-05 11:17:12 - ========================================================================
+2026-05-05 11:17:12 - [Test-111] 诊断 — 直接在该集上搜阈值: profile=primary t_high=0.400 t_med=0.120 low_p=0.7246
+2026-05-05 11:17:12 - 评估已保存: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_C_twostage/eval_111.json
+2026-05-05 11:17:16 - ========================================================================
+2026-05-05 11:17:16 - [Test-112 (val-thr)] 双阶段风险分层评估 (t_high=0.400, t_med=0.500)
+2026-05-05 11:17:16 - ========================================================================
+2026-05-05 11:17:16 - [Test-112 (val-thr)] 3-band 混淆矩阵 (行=真实, 列=预测档):
+2026-05-05 11:17:16 -                band_high  band_med   band_low
+2026-05-05 11:17:16 -   malignant           114         0          0
+2026-05-05 11:17:16 -   benign               58        25         31
+2026-05-05 11:17:16 -   no_tumor             58        57        113
+2026-05-05 11:17:16 - [Test-112 (val-thr)] 关键指标:
+2026-05-05 11:17:16 -   M → 低风险 漏诊: 0
+2026-05-05 11:17:16 -   高风险召回    : 1.0000
+2026-05-05 11:17:16 -   高风险精确率  : 0.4957
+2026-05-05 11:17:16 -   中风险占比    : 0.1798
+2026-05-05 11:17:16 -   二值 ROC-AUC  : 0.9992
+2026-05-05 11:17:16 -   Stage2 b/n AUC: 0.6674
+2026-05-05 11:17:16 - [Test-112 (val-thr)] 每档统计:
+2026-05-05 11:17:16 -   band_high   | n_pred= 230 | share=0.504 | P(vs malignant)=0.4957 | R(vs malignant)=1.0000
+2026-05-05 11:17:16 -   band_medium | n_pred=  82 | share=0.180 | P(vs benign)=0.3049 | R(vs benign)=0.2193
+2026-05-05 11:17:16 -   band_low    | n_pred= 144 | share=0.316 | P(vs no_tumor)=0.7847 | R(vs no_tumor)=0.4956
+2026-05-05 11:17:16 - ========================================================================
+2026-05-05 11:17:16 - [Test-112] 诊断 — 直接在该集上搜阈值: profile=primary t_high=0.400 t_med=0.140 low_p=0.8257
+2026-05-05 11:17:16 - 评估已保存: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_C_twostage/eval_112.json
+2026-05-05 11:17:16 - 混淆矩阵图: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_C_twostage/confusion_matrices.png
+2026-05-05 11:17:16 - ========================================================================
+2026-05-05 11:17:16 - 全部完成。
+2026-05-05 11:17:16 -   best weight    : /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_C_twostage/20260505_task_risk_C_twostage_best.pth
+2026-05-05 11:17:16 -   thresholds.json: /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_C_twostage/thresholds.json
+2026-05-05 11:17:16 -   eval_111.json  : /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_C_twostage/eval_111.json
+2026-05-05 11:17:16 -   eval_112.json  : /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_C_twostage/eval_112.json
+2026-05-05 11:17:16 -   混淆矩阵图     : /data1/ouyangxinglong/GBP-Cascade/0502/logs/20260505_task_risk_C_twostage/confusion_matrices.png
+2026-05-05 11:17:16 - ========================================================================
