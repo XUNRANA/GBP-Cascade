@@ -1,0 +1,84 @@
+nohup: ignoring input
+2026-05-10 16:12:32 - ========================================================================
+2026-05-10 16:12:32 - 实验: 20260510_task_risk_F_triple_head  (实验 B — 非对称 target + 早停 + 温度校准)
+2026-05-10 16:12:32 - 模型: SwinV2-Tiny@256 + 4ch + Trimodal + 3 Independent Heads (high/med/low BCE, argmax decision + tau_safe fallback, no temp scaling)
+2026-05-10 16:12:32 - Ordinal targets: [1.0, 0.3499999940395355, 0.0]  (asymmetric)
+2026-05-10 16:12:32 - Epochs: 25 | Patience: 5
+2026-05-10 16:12:32 - 设备: cuda
+2026-05-10 16:12:32 - ========================================================================
+2026-05-10 16:12:32 - 初始化完成,开始构建数据流水线 ...
+2026-05-10 16:12:32 - [1/4] 切分 train/val ...
+2026-05-10 16:12:32 - [1/4] train=690 val=123 (0.2s)
+2026-05-10 16:12:32 - [2/4] 装载 text_dict ...
+2026-05-10 16:12:32 - [2/4] 共 1953 条
+2026-05-10 16:12:32 - [3/4] 构造 train_dataset ...
+2026-05-10 16:12:33 - [3/4] train_dataset OK (0.6s)
+2026-05-10 16:12:35 - [3/4] eval datasets OK
+2026-05-10 16:12:35 - Train: 690 张 (malignant=232, benign=227, no_tumor=231)
+2026-05-10 16:12:35 - Val: 123 张 (malignant=39, benign=44, no_tumor=40)
+2026-05-10 16:12:35 - Test-111: 342 张 (malignant=114, benign=114, no_tumor=114)
+2026-05-10 16:12:35 - Test-112: 456 张 (malignant=114, benign=114, no_tumor=228)
+2026-05-10 16:12:35 - [4/4] DataLoaders OK | train_batches=115
+2026-05-10 16:12:35 - 构建模型 (BERT + SwinV2-Tiny + Trimodal + Triple-Head, 离线加载) ...
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 2463.52it/s]
+[1mBertModel LOAD REPORT[0m from: bert-base-chinese
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-05-10 16:12:54 - 模型构建完成 (19.3s)
+2026-05-10 16:12:54 - 模型参数量: 137,505,491 (可训练 35,237,843)
+2026-05-10 16:12:54 - ========================================================================
+2026-05-10 16:12:54 - 开始训练 (含早停)
+2026-05-10 16:12:54 - ========================================================================
+2026-05-10 16:13:12 - Epoch [1/25] LR: 6.67e-06/6.67e-05 | Loss: 1.8060 (seg=0.4978 h=0.2795 m=0.5306 l=0.4981) | Dice: 0.8413 | 18s
+2026-05-10 16:13:28 - Epoch [2/25] LR: 1.33e-05/1.33e-04 | Loss: 1.1169 (seg=0.2224 h=0.0516 m=0.4151 l=0.4278) | Dice: 0.9488 | 15s
+2026-05-10 16:13:30 - [Val] ROC-AUC(p_high): 1.0000 | argmax_acc: 0.6992 (p_high mean=0.314, p_med mean=0.445, p_low mean=0.253)
+2026-05-10 16:13:31 - *** 保存最优 (Val AUC: 1.0000, Epoch: 2) ***
+2026-05-10 16:13:46 - Epoch [3/25] LR: 2.00e-05/2.00e-04 | Loss: 0.9308 (seg=0.1453 h=0.0257 m=0.3730 l=0.3868) | Dice: 0.9609 | 15s
+2026-05-10 16:14:02 - Epoch [4/25] LR: 1.99e-05/1.99e-04 | Loss: 0.7402 (seg=0.0936 h=0.0159 m=0.3095 l=0.3212) | Dice: 0.9737 | 15s
+2026-05-10 16:14:03 - [Val] ROC-AUC(p_high): 1.0000 | argmax_acc: 0.7236 (p_high mean=0.346, p_med mean=0.340, p_low mean=0.262)
+2026-05-10 16:14:19 - Epoch [5/25] LR: 1.96e-05/1.96e-04 | Loss: 0.6295 (seg=0.0711 h=0.0047 m=0.2721 l=0.2816) | Dice: 0.9790 | 15s
+2026-05-10 16:14:34 - Epoch [6/25] LR: 1.91e-05/1.91e-04 | Loss: 0.6377 (seg=0.0580 h=0.0079 m=0.2850 l=0.2868) | Dice: 0.9819 | 15s
+2026-05-10 16:14:35 - [Val] ROC-AUC(p_high): 1.0000 | argmax_acc: 0.7317 (p_high mean=0.355, p_med mean=0.409, p_low mean=0.162)
+2026-05-10 16:14:51 - Epoch [7/25] LR: 1.84e-05/1.84e-04 | Loss: 0.5711 (seg=0.0494 h=0.0123 m=0.2541 l=0.2553) | Dice: 0.9811 | 16s
+2026-05-10 16:15:08 - Epoch [8/25] LR: 1.76e-05/1.76e-04 | Loss: 0.5322 (seg=0.0420 h=0.0040 m=0.2395 l=0.2467) | Dice: 0.9813 | 16s
+2026-05-10 16:15:09 - [Val] ROC-AUC(p_high): 0.9997 | argmax_acc: 0.7236 (p_high mean=0.272, p_med mean=0.316, p_low mean=0.429)
+2026-05-10 16:15:24 - Epoch [9/25] LR: 1.66e-05/1.66e-04 | Loss: 0.5028 (seg=0.0374 h=0.0035 m=0.2324 l=0.2294) | Dice: 0.9801 | 16s
+2026-05-10 16:15:39 - Epoch [10/25] LR: 1.55e-05/1.55e-04 | Loss: 0.5351 (seg=0.0316 h=0.0245 m=0.2403 l=0.2388) | Dice: 0.9833 | 15s
+2026-05-10 16:15:40 - [Val] ROC-AUC(p_high): 0.9997 | argmax_acc: 0.7317 (p_high mean=0.334, p_med mean=0.438, p_low mean=0.205)
+2026-05-10 16:15:56 - Epoch [11/25] LR: 1.42e-05/1.42e-04 | Loss: 0.4129 (seg=0.0268 h=0.0049 m=0.1859 l=0.1952) | Dice: 0.9839 | 15s
+2026-05-10 16:16:10 - Epoch [12/25] LR: 1.29e-05/1.29e-04 | Loss: 0.5266 (seg=0.0246 h=0.0039 m=0.2482 l=0.2499) | Dice: 0.9833 | 15s
+2026-05-10 16:16:12 - [Val] ROC-AUC(p_high): 0.9988 | argmax_acc: 0.7317 (p_high mean=0.298, p_med mean=0.510, p_low mean=0.190)
+2026-05-10 16:16:12 - ⏹ Early stopping triggered at epoch 12 (best epoch=2, best AUC=1.0000)
+2026-05-10 16:16:12 - ========================================================================
+2026-05-10 16:16:12 - 训练完成。Best Epoch: 2, Best Val AUC: 1.0000
+2026-05-10 16:16:12 - ========================================================================
+2026-05-10 16:16:12 - F: 跳过温度校准,直接用 raw sigmoid。
+2026-05-10 16:16:13 - 采用 F tau_safe (F_strict): 0.440
+2026-05-10 16:16:13 -   → high_p=0.9512 low_p_nt=0.7273 ben_to_low=0.068 nt_to_high=0.025 obj=0.8392
+2026-05-10 16:16:13 - ========================================================================
+2026-05-10 16:16:13 - 阈值已保存: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_F_triple_head/thresholds.json
+2026-05-10 16:16:17 - [Test-111] safety: {'mal_to_low': 0, 'high_recall': 0.9912280701754386, 'high_precision': 1.0, 'medium_share': 0.5526315789473685, 'binary_roc_auc': 0.9999230532471529}
+2026-05-10 16:16:17 - [Test-111] 诊断 self-search: tau_safe=0.500 obj=0.8125 ben_to_low=0.132
+2026-05-10 16:16:17 - 评估已保存: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_F_triple_head/eval_111.json
+2026-05-10 16:16:20 - [Test-112] safety: {'mal_to_low': 0, 'high_recall': 0.9912280701754386, 'high_precision': 0.9912280701754386, 'medium_share': 0.6140350877192983, 'binary_roc_auc': 0.9998717554119216}
+2026-05-10 16:16:20 - [Test-112] 诊断 self-search: tau_safe=0.500 obj=0.8746 ben_to_low=0.132
+2026-05-10 16:16:20 - 评估已保存: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_F_triple_head/eval_112.json
+2026-05-10 16:16:21 - 混淆矩阵图: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_F_triple_head/confusion_matrices.png
+2026-05-10 16:16:21 - ========================================================================
+2026-05-10 16:16:21 - 全部完成。
+2026-05-10 16:16:21 -   best weight    : /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_F_triple_head/20260510_task_risk_F_triple_head_best.pth
+2026-05-10 16:16:21 -   thresholds.json: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_F_triple_head/thresholds.json
+2026-05-10 16:16:21 -   eval_111.json  : /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_F_triple_head/eval_111.json
+2026-05-10 16:16:21 -   eval_112.json  : /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_F_triple_head/eval_112.json
+2026-05-10 16:16:21 -   混淆矩阵图     : /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_F_triple_head/confusion_matrices.png
+2026-05-10 16:16:21 - ========================================================================

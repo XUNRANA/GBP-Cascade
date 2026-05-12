@@ -1,0 +1,46 @@
+{
+  "selection_set": "val",
+  "best_epoch": 6,
+  "best_val_auc": 1.0,
+  "temperature": 0.4137331247329712,
+  "ordinal_targets": [
+    1.0,
+    0.3499999940395355,
+    0.0
+  ],
+  "lambda_rank": 0.3,
+  "margin": 0.2,
+  "brier_before_calib": 0.0631572892521844,
+  "brier_after_calib": 0.041269578100460065,
+  "t_low": 0.05,
+  "t_high": 0.5,
+  "chosen_method": "baseline_fallback",
+  "g_strict_result": {
+    "t_low": 0.05,
+    "t_high": 0.7800000000000002,
+    "mal_to_low": 0,
+    "high_recall": 1.0,
+    "high_precision": 0.9512195121951219,
+    "low_precision_nt": 0.5789473684210527,
+    "ben_to_low_share": 0.36363636363636365,
+    "nt_to_high_share": 0.025,
+    "n_high_pred": 41,
+    "n_low_pred": 38,
+    "n_med_pred": 44,
+    "objective": 0.7650834403080873,
+    "fallback_used": "no_soft_floor"
+  },
+  "baseline_search_metrics": {
+    "t_low": 0.05,
+    "t_high": 0.5,
+    "mal_to_low": 0,
+    "high_recall": 1.0,
+    "high_precision": 0.8863636363636364,
+    "medium_share": 0.3333333333333333,
+    "low_precision": 0.5789473684210527,
+    "n_high_pred": 44,
+    "n_med_pred": 41,
+    "n_low_pred": 38
+  },
+  "baseline_search_profile": "primary"
+}

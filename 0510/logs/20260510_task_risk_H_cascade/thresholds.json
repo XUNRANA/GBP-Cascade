@@ -1,0 +1,28 @@
+{
+  "selection_set": "val",
+  "best_epoch": 6,
+  "best_val_auc": 0.9225903614457831,
+  "T_tumor": 2.286531925201416,
+  "T_mal": 1.011910080909729,
+  "lambda_mal": 1.0,
+  "tau1": 0.16000000000000003,
+  "tau2": 0.5000000000000002,
+  "chosen_method": "H_strict",
+  "h_search_result": {
+    "mal_to_low": 0,
+    "high_recall": 1.0,
+    "high_precision": 0.9285714285714286,
+    "low_precision_nt": 1.0,
+    "ben_to_low_share": 0.0,
+    "nt_to_high_share": 0.05,
+    "nt_to_low_share": 0.075,
+    "n_high_pred": 42,
+    "n_med_pred": 78,
+    "n_low_pred": 3,
+    "tau1": 0.16000000000000003,
+    "tau2": 0.5000000000000002,
+    "tumor_recall": 1.0,
+    "objective": 0.9642857142857143,
+    "fallback_used": null
+  }
+}

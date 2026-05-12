@@ -1,0 +1,93 @@
+2026-05-10 16:53:54 - ========================================================================
+2026-05-10 16:53:54 - 实验: 20260510_task_risk_I_bh_fusion  (实验 B — 非对称 target + 早停 + 温度校准)
+2026-05-10 16:53:54 - 模型: SwinV2-Tiny@256 + 4ch + Trimodal + 3-Heads (risk ordinal 1.0/0.35/0.0 + tumor BCE + mal BCE-weighted, triple temp scaling, cascade decision)
+2026-05-10 16:53:54 - Ordinal targets: [1.0, 0.3499999940395355, 0.0]  (asymmetric)
+2026-05-10 16:53:54 - Epochs: 25 | Patience: 5
+2026-05-10 16:53:54 - 设备: cuda
+2026-05-10 16:53:54 - ========================================================================
+2026-05-10 16:53:54 - 初始化完成,开始构建数据流水线 ...
+2026-05-10 16:53:54 - [1/4] 切分 train/val ...
+2026-05-10 16:53:55 - [1/4] train=690 val=123 (0.5s)
+2026-05-10 16:53:55 - [2/4] 装载 text_dict ...
+2026-05-10 16:53:55 - [2/4] 共 1953 条
+2026-05-10 16:53:55 - [3/4] 构造 train_dataset ...
+2026-05-10 16:53:56 - [3/4] train_dataset OK (0.6s)
+2026-05-10 16:53:57 - [3/4] eval datasets OK
+2026-05-10 16:53:57 - Train: 690 张 (malignant=232, benign=227, no_tumor=231)
+2026-05-10 16:53:57 - Val: 123 张 (malignant=39, benign=44, no_tumor=40)
+2026-05-10 16:53:57 - Test-111: 342 张 (malignant=114, benign=114, no_tumor=114)
+2026-05-10 16:53:57 - Test-112: 456 张 (malignant=114, benign=114, no_tumor=228)
+2026-05-10 16:53:57 - [4/4] DataLoaders OK | train_batches=115
+2026-05-10 16:53:57 - 构建模型 (BERT + SwinV2-Tiny + Trimodal + BH-Fusion, 离线加载) ...
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 4199.73it/s]
+[1mBertModel LOAD REPORT[0m from: bert-base-chinese
+Key                                        | Status     |  | 
+-------------------------------------------+------------+--+-
+cls.seq_relationship.bias                  | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.weight | UNEXPECTED |  | 
+cls.predictions.transform.dense.bias       | UNEXPECTED |  | 
+cls.predictions.transform.dense.weight     | UNEXPECTED |  | 
+cls.predictions.bias                       | UNEXPECTED |  | 
+cls.predictions.transform.LayerNorm.bias   | UNEXPECTED |  | 
+cls.seq_relationship.weight                | UNEXPECTED |  | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+2026-05-10 16:54:05 - 模型构建完成 (7.9s)
+2026-05-10 16:54:05 - 模型参数量: 137,472,466 (可训练 35,204,818)
+2026-05-10 16:54:05 - ========================================================================
+2026-05-10 16:54:05 - 开始训练 (含早停)
+2026-05-10 16:54:05 - ========================================================================
+2026-05-10 16:54:24 - Epoch [1/25] LR: 6.67e-06/6.67e-05 | Loss: 2.2591 (seg=0.5105 ord=0.4326 tumor=0.5177 mal=0.3658) | Dice: 0.8255 | 19s
+2026-05-10 16:54:40 - Epoch [2/25] LR: 1.33e-05/1.33e-04 | Loss: 1.4417 (seg=0.2175 ord=0.3649 tumor=0.4244 mal=0.0700) | Dice: 0.9478 | 16s
+2026-05-10 16:54:41 - [Val] risk_AUC: 0.9881 | tumor_AUC: 0.8154 | mal_AUC(on tumor): 0.9994
+2026-05-10 16:54:43 - *** 保存最优 (Val AUC: 0.9881, Epoch: 2) ***
+2026-05-10 16:54:58 - Epoch [3/25] LR: 2.00e-05/2.00e-04 | Loss: 1.1886 (seg=0.1208 ord=0.3358 tumor=0.3714 mal=0.0248) | Dice: 0.9681 | 15s
+2026-05-10 16:55:13 - Epoch [4/25] LR: 1.99e-05/1.99e-04 | Loss: 1.0421 (seg=0.0692 ord=0.3186 tumor=0.3293 mal=0.0064) | Dice: 0.9767 | 15s
+2026-05-10 16:55:15 - [Val] risk_AUC: 0.9493 | tumor_AUC: 0.8096 | mal_AUC(on tumor): 1.0000
+2026-05-10 16:55:31 - Epoch [5/25] LR: 1.96e-05/1.96e-04 | Loss: 0.9821 (seg=0.0471 ord=0.3132 tumor=0.3023 mal=0.0063) | Dice: 0.9822 | 16s
+2026-05-10 16:55:47 - Epoch [6/25] LR: 1.91e-05/1.91e-04 | Loss: 0.9384 (seg=0.0376 ord=0.3098 tumor=0.2789 mal=0.0023) | Dice: 0.9836 | 16s
+2026-05-10 16:55:49 - [Val] risk_AUC: 1.0000 | tumor_AUC: 0.8361 | mal_AUC(on tumor): 1.0000
+2026-05-10 16:55:52 - *** 保存最优 (Val AUC: 1.0000, Epoch: 6) ***
+2026-05-10 16:56:08 - Epoch [7/25] LR: 1.84e-05/1.84e-04 | Loss: 0.9132 (seg=0.0313 ord=0.3031 tumor=0.2714 mal=0.0044) | Dice: 0.9844 | 15s
+2026-05-10 16:56:24 - Epoch [8/25] LR: 1.76e-05/1.76e-04 | Loss: 0.8648 (seg=0.0256 ord=0.2991 tumor=0.2402 mal=0.0008) | Dice: 0.9859 | 16s
+2026-05-10 16:56:25 - [Val] risk_AUC: 0.9570 | tumor_AUC: 0.7708 | mal_AUC(on tumor): 1.0000
+2026-05-10 16:56:42 - Epoch [9/25] LR: 1.66e-05/1.66e-04 | Loss: 0.8596 (seg=0.0236 ord=0.2986 tumor=0.2373 mal=0.0014) | Dice: 0.9861 | 16s
+2026-05-10 16:56:58 - Epoch [10/25] LR: 1.55e-05/1.55e-04 | Loss: 0.8711 (seg=0.0223 ord=0.2983 tumor=0.2492 mal=0.0030) | Dice: 0.9851 | 16s
+2026-05-10 16:56:59 - [Val] risk_AUC: 0.9973 | tumor_AUC: 0.8000 | mal_AUC(on tumor): 1.0000
+2026-05-10 16:57:15 - Epoch [11/25] LR: 1.42e-05/1.42e-04 | Loss: 0.8069 (seg=0.0187 ord=0.2900 tumor=0.2076 mal=0.0006) | Dice: 0.9878 | 16s
+2026-05-10 16:57:32 - Epoch [12/25] LR: 1.29e-05/1.29e-04 | Loss: 0.7934 (seg=0.0161 ord=0.2857 tumor=0.2049 mal=0.0008) | Dice: 0.9896 | 17s
+2026-05-10 16:57:33 - [Val] risk_AUC: 0.9771 | tumor_AUC: 0.7750 | mal_AUC(on tumor): 1.0000
+2026-05-10 16:57:49 - Epoch [13/25] LR: 1.15e-05/1.15e-04 | Loss: 0.8293 (seg=0.0150 ord=0.2905 tumor=0.2328 mal=0.0006) | Dice: 0.9895 | 16s
+2026-05-10 16:58:05 - Epoch [14/25] LR: 1.01e-05/1.01e-04 | Loss: 0.7144 (seg=0.0137 ord=0.2769 tumor=0.1465 mal=0.0003) | Dice: 0.9898 | 16s
+2026-05-10 16:58:07 - [Val] risk_AUC: 0.9524 | tumor_AUC: 0.7870 | mal_AUC(on tumor): 1.0000
+2026-05-10 16:58:23 - Epoch [15/25] LR: 8.69e-06/8.69e-05 | Loss: 0.7273 (seg=0.0127 ord=0.2753 tumor=0.1526 mal=0.0113) | Dice: 0.9904 | 16s
+2026-05-10 16:58:40 - Epoch [16/25] LR: 7.31e-06/7.31e-05 | Loss: 0.7105 (seg=0.0116 ord=0.2729 tumor=0.1512 mal=0.0020) | Dice: 0.9912 | 16s
+2026-05-10 16:58:41 - [Val] risk_AUC: 0.9612 | tumor_AUC: 0.7825 | mal_AUC(on tumor): 0.9994
+2026-05-10 16:58:41 - ⏹ Early stopping triggered at epoch 16 (best epoch=6, best AUC=1.0000)
+2026-05-10 16:58:41 - ========================================================================
+2026-05-10 16:58:41 - 训练完成。Best Epoch: 6, Best Val AUC: 1.0000
+2026-05-10 16:58:41 - ========================================================================
+2026-05-10 16:58:47 - ========================================================================
+2026-05-10 16:58:47 - [Temperature Scaling] T_risk = 0.5078 T_tumor = 2.2900 T_mal = 0.3175
+2026-05-10 16:58:47 -   val Brier(risk): raw=0.0564 calib=0.0461
+2026-05-10 16:58:47 - ========================================================================
+2026-05-10 16:58:47 - 采用 I cascade 阈值 (I_strict): tau1=0.120 tau2=0.300
+2026-05-10 16:58:47 -   → tumor_recall=1.0000 high_p=1.0000 low_p_nt=1.0000 ben_to_low=0.000 nt_to_high=0.000 obj=1.0000
+2026-05-10 16:58:47 - ========================================================================
+2026-05-10 16:58:47 - 阈值已保存: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_I_bh_fusion/thresholds.json
+2026-05-10 16:58:50 - [Test-111] safety: {'mal_to_low': 0, 'high_recall': 0.9298245614035088, 'high_precision': 0.9906542056074766, 'medium_share': 0.6666666666666666, 'binary_roc_auc': 0.9991920590951061}
+2026-05-10 16:58:50 - [Test-111] Brier(risk): raw=0.0426 calib=0.0290
+2026-05-10 16:58:50 - 评估已保存: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_I_bh_fusion/eval_111.json
+2026-05-10 16:58:53 - [Test-112] safety: {'mal_to_low': 0, 'high_recall': 0.9298245614035088, 'high_precision': 0.9814814814814815, 'medium_share': 0.743421052631579, 'binary_roc_auc': 0.9989227454601416}
+2026-05-10 16:58:53 - [Test-112] Brier(risk): raw=0.0428 calib=0.0293
+2026-05-10 16:58:53 - 评估已保存: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_I_bh_fusion/eval_112.json
+2026-05-10 16:58:54 - 混淆矩阵图: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_I_bh_fusion/confusion_matrices.png
+2026-05-10 16:58:54 - ========================================================================
+2026-05-10 16:58:54 - 全部完成。
+2026-05-10 16:58:54 -   best weight    : /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_I_bh_fusion/20260510_task_risk_I_bh_fusion_best.pth
+2026-05-10 16:58:54 -   thresholds.json: /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_I_bh_fusion/thresholds.json
+2026-05-10 16:58:54 -   eval_111.json  : /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_I_bh_fusion/eval_111.json
+2026-05-10 16:58:54 -   eval_112.json  : /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_I_bh_fusion/eval_112.json
+2026-05-10 16:58:54 -   混淆矩阵图     : /data1/ouyangxinglong/GBP-Cascade/0510/logs/20260510_task_risk_I_bh_fusion/confusion_matrices.png
+2026-05-10 16:58:54 - ========================================================================

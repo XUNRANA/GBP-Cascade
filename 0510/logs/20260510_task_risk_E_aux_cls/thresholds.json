@@ -1,0 +1,39 @@
+{
+  "selection_set": "val",
+  "best_epoch": 6,
+  "best_val_auc": 0.9984737484737485,
+  "temperature": 0.6155283451080322,
+  "ordinal_targets": [
+    1.0,
+    0.3499999940395355,
+    0.0
+  ],
+  "lambda_cls": 0.5,
+  "brier_before_calib": 0.05867237571079654,
+  "brier_after_calib": 0.05048842805717611,
+  "t_low": 0.05,
+  "t_high": 0.5,
+  "tau_nt": 0.7,
+  "tau_mal": 0.3,
+  "tau_ben": 0.3,
+  "chosen_method": "E_soft_relaxed_0.10",
+  "e_search_result": {
+    "mal_to_low": 0,
+    "high_recall": 1.0,
+    "high_precision": 1.0,
+    "low_precision_nt": 0.8260869565217391,
+    "ben_to_low_share": 0.09090909090909091,
+    "nt_to_high_share": 0.0,
+    "nt_to_low_share": 0.475,
+    "n_high_pred": 39,
+    "n_med_pred": 61,
+    "n_low_pred": 23,
+    "t_low": 0.05,
+    "t_high": 0.5,
+    "tau_nt": 0.7,
+    "tau_mal": 0.3,
+    "tau_ben": 0.3,
+    "objective": 0.9130434782608696,
+    "fallback_used": "soft_relaxed_0.10"
+  }
+}

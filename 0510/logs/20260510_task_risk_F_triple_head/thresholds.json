@@ -1,0 +1,23 @@
+{
+  "selection_set": "val",
+  "best_epoch": 2,
+  "best_val_auc": 1.0,
+  "no_temperature_scaling": true,
+  "tau_safe": 0.44000000000000006,
+  "chosen_method": "F_strict",
+  "f_search_result": {
+    "mal_to_low": 0,
+    "high_recall": 1.0,
+    "high_precision": 0.9512195121951219,
+    "low_precision_nt": 0.7272727272727273,
+    "ben_to_low_share": 0.06818181818181818,
+    "nt_to_high_share": 0.025,
+    "nt_to_low_share": 0.2,
+    "n_high_pred": 41,
+    "n_med_pred": 71,
+    "n_low_pred": 11,
+    "tau_safe": 0.44000000000000006,
+    "objective": 0.8392461197339246,
+    "fallback_used": null
+  }
+}
