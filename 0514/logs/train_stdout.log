@@ -1,0 +1,168 @@
+2026-05-13 16:53:51 - ========================================================================
+2026-05-13 16:53:51 - 实验名称: 20260514_task_risk_SwinV2Tiny_ordinal_trimodal_1
+2026-05-13 16:53:51 - 模型: SwinV2-Tiny@256 + 4ch + Seg-Guided + BERT CrossAttn + BERT[CLS] + 10D ExtMeta + Gated Trimodal Fusion + 1D Risk Head (sigmoid) [0514dataset]
+2026-05-13 16:53:51 - 数据集: /data1/ouyangxinglong/GBP-Cascade/0514dataset_flat
+2026-05-13 16:53:51 - 图像尺寸: 256, 4ch (RGB+gallbladder mask)
+2026-05-13 16:53:51 - 风险目标: [1.0, 0.5, 0.0] (malignant=1.0, benign=0.5, no_tumor=0.0)
+2026-05-13 16:53:51 - 约束 profile: max_mal_to_low=1, min_high_recall=0.95, max_medium_share=0.35
+2026-05-13 16:53:51 - Batch sampler: {0: 3, 1: 3, 2: 2} = batch_size 8
+2026-05-13 16:53:51 - Backbone LR: 2e-05 | Head LR: 0.0002
+2026-05-13 16:53:51 - Lambda Ord: 2.0 | Seg lesion weight: 5.0
+2026-05-13 16:53:51 - Epochs: 60 | Warmup: 5 | Eval interval: 2
+2026-05-13 16:53:51 - 设备: cuda
+2026-05-13 16:53:51 - ========================================================================
+2026-05-13 16:53:51 - [1/4] 切分 train/val (patient-level 15%) ...
+2026-05-13 16:53:52 - [1/4] 完成: train=2311 val=424 (0.3s)
+2026-05-13 16:53:52 - [2/4] 装载 text_dict ...
+2026-05-13 16:53:52 - [2/4] 完成: 1791 条 (0.1s)
+2026-05-13 16:53:52 - [3/4] 构造 train / val / test Dataset ...
+2026-05-13 16:53:53 -   train OK (1.0s)
+2026-05-13 16:53:54 -   Train: 2311 张 (malignant=242, benign=459, no_tumor=1610)
+2026-05-13 16:53:54 -   Val: 424 张 (malignant=62, benign=65, no_tumor=297)
+2026-05-13 16:53:54 -   Test: 1167 张 (malignant=104, benign=158, no_tumor=905)
+2026-05-13 16:53:54 - [4/4] 构建 BalancedBatchSampler + DataLoader ...
+2026-05-13 16:53:54 - DataLoaders OK | train=805 val=53 test=146 batches
+2026-05-13 16:53:54 - 构建模型 (BERT + SwinV2-Tiny 三模态融合, 离线加载) ...
+2026-05-13 16:53:55 - 模型构建完成 (1.2s)
+2026-05-13 16:53:55 - 模型参数量: 137,406,416 (可训练 35,138,768)
+2026-05-13 16:53:55 - ========================================================================
+2026-05-13 16:53:55 - 开始训练
+2026-05-13 16:53:55 - ========================================================================
+2026-05-13 16:56:02 - Epoch [1/60] LR: 4.00e-06/4.00e-05 | Loss: 1.3128 (seg=0.4263 ord=0.4433) | Dice: 0.7547 | 126s
+2026-05-13 16:58:07 - Epoch [2/60] LR: 8.00e-06/8.00e-05 | Loss: 0.8523 (seg=0.0974 ord=0.3774) | Dice: 0.9564 | 125s
+2026-05-13 16:58:13 - [Val] ROC-AUC(mal vs others): 0.9986 | profile=primary t_low=0.210 t_high=0.500 low_p=0.9177 high_recall=0.9839 M→低=0 med_share=0.297 | Seg Dice: 0.9567
+2026-05-13 16:58:15 - *** 保存最优模型 (Val AUC: 0.9986, Epoch: 2) ***
+2026-05-13 17:00:19 - Epoch [3/60] LR: 1.20e-05/1.20e-04 | Loss: 0.7644 (seg=0.0264 ord=0.3690) | Dice: 0.9723 | 124s
+2026-05-13 17:02:24 - Epoch [4/60] LR: 1.60e-05/1.60e-04 | Loss: 0.7341 (seg=0.0161 ord=0.3590) | Dice: 0.9784 | 125s
+2026-05-13 17:02:30 - [Val] ROC-AUC(mal vs others): 0.9981 | profile=primary t_low=0.130 t_high=0.500 low_p=0.9303 high_recall=0.9839 M→低=0 med_share=0.340 | Seg Dice: 0.9559
+2026-05-13 17:04:36 - Epoch [5/60] LR: 2.00e-05/2.00e-04 | Loss: 0.7256 (seg=0.0128 ord=0.3564) | Dice: 0.9812 | 126s
+2026-05-13 17:06:43 - Epoch [6/60] LR: 2.00e-05/2.00e-04 | Loss: 0.7056 (seg=0.0099 ord=0.3478) | Dice: 0.9850 | 127s
+2026-05-13 17:06:49 - [Val] ROC-AUC(mal vs others): 0.9979 | profile=primary t_low=0.230 t_high=0.500 low_p=0.9067 high_recall=0.9839 M→低=0 med_share=0.335 | Seg Dice: 0.9776
+2026-05-13 17:08:55 - Epoch [7/60] LR: 1.99e-05/1.99e-04 | Loss: 0.6850 (seg=0.0085 ord=0.3382) | Dice: 0.9870 | 126s
+2026-05-13 17:11:01 - Epoch [8/60] LR: 1.99e-05/1.99e-04 | Loss: 0.6663 (seg=0.0067 ord=0.3298) | Dice: 0.9896 | 126s
+2026-05-13 17:11:07 - [Val] ROC-AUC(mal vs others): 0.9965 | profile=primary t_low=0.050 t_high=0.500 low_p=0.9156 high_recall=0.9839 M→低=0 med_share=0.222 | Seg Dice: 0.9839
+2026-05-13 17:13:13 - Epoch [9/60] LR: 1.97e-05/1.97e-04 | Loss: 0.6549 (seg=0.0058 ord=0.3245) | Dice: 0.9909 | 126s
+2026-05-13 17:15:20 - Epoch [10/60] LR: 1.96e-05/1.96e-04 | Loss: 0.6367 (seg=0.0050 ord=0.3159) | Dice: 0.9923 | 126s
+2026-05-13 17:15:26 - [Val] ROC-AUC(mal vs others): 0.9846 | profile=relax_safety t_low=0.110 t_high=0.500 low_p=0.8767 high_recall=0.9355 M→低=2 med_share=0.175 | Seg Dice: 0.9900
+2026-05-13 17:17:31 - Epoch [11/60] LR: 1.94e-05/1.94e-04 | Loss: 0.6259 (seg=0.0042 ord=0.3108) | Dice: 0.9933 | 125s
+2026-05-13 17:19:37 - Epoch [12/60] LR: 1.92e-05/1.92e-04 | Loss: 0.6279 (seg=0.0034 ord=0.3122) | Dice: 0.9946 | 126s
+2026-05-13 17:19:44 - [Val] ROC-AUC(mal vs others): 0.9964 | profile=primary t_low=0.050 t_high=0.500 low_p=0.8826 high_recall=0.9839 M→低=0 med_share=0.156 | Seg Dice: 0.9919
+2026-05-13 17:21:50 - Epoch [13/60] LR: 1.90e-05/1.90e-04 | Loss: 0.6293 (seg=0.0029 ord=0.3132) | Dice: 0.9954 | 126s
+2026-05-13 17:23:55 - Epoch [14/60] LR: 1.87e-05/1.87e-04 | Loss: 0.5945 (seg=0.0024 ord=0.2961) | Dice: 0.9962 | 126s
+2026-05-13 17:24:02 - [Val] ROC-AUC(mal vs others): 0.9933 | profile=primary t_low=0.050 t_high=0.500 low_p=0.8794 high_recall=0.9839 M→低=1 med_share=0.106 | Seg Dice: 0.9949
+2026-05-13 17:26:08 - Epoch [15/60] LR: 1.84e-05/1.84e-04 | Loss: 0.5984 (seg=0.0022 ord=0.2981) | Dice: 0.9966 | 126s
+2026-05-13 17:28:13 - Epoch [16/60] LR: 1.81e-05/1.81e-04 | Loss: 0.5914 (seg=0.0019 ord=0.2947) | Dice: 0.9970 | 126s
+2026-05-13 17:28:19 - [Val] ROC-AUC(mal vs others): 0.9938 | profile=primary t_low=0.050 t_high=0.500 low_p=0.9061 high_recall=0.9839 M→低=1 med_share=0.274 | Seg Dice: 0.9960
+2026-05-13 17:30:26 - Epoch [17/60] LR: 1.78e-05/1.78e-04 | Loss: 0.6044 (seg=0.0016 ord=0.3014) | Dice: 0.9974 | 127s
+2026-05-13 17:32:33 - Epoch [18/60] LR: 1.74e-05/1.74e-04 | Loss: 0.5860 (seg=0.0014 ord=0.2923) | Dice: 0.9978 | 127s
+2026-05-13 17:32:39 - [Val] ROC-AUC(mal vs others): 0.9832 | profile=unconstrained t_low=0.050 t_high=0.500 low_p=0.8762 high_recall=0.9032 M→低=4 med_share=0.144 | Seg Dice: 0.9968
+2026-05-13 17:34:44 - Epoch [19/60] LR: 1.70e-05/1.70e-04 | Loss: 0.5842 (seg=0.0013 ord=0.2915) | Dice: 0.9979 | 126s
+2026-05-13 17:36:50 - Epoch [20/60] LR: 1.66e-05/1.66e-04 | Loss: 0.5776 (seg=0.0011 ord=0.2882) | Dice: 0.9983 | 126s
+2026-05-13 17:36:57 - [Val] ROC-AUC(mal vs others): 0.9874 | profile=relax_safety t_low=0.050 t_high=0.500 low_p=0.8824 high_recall=0.9516 M→低=2 med_share=0.179 | Seg Dice: 0.9973
+2026-05-13 17:39:03 - Epoch [21/60] LR: 1.61e-05/1.61e-04 | Loss: 0.5781 (seg=0.0010 ord=0.2885) | Dice: 0.9984 | 126s
+2026-05-13 17:41:09 - Epoch [22/60] LR: 1.57e-05/1.57e-04 | Loss: 0.5604 (seg=0.0009 ord=0.2798) | Dice: 0.9986 | 126s
+2026-05-13 17:41:15 - [Val] ROC-AUC(mal vs others): 0.9947 | profile=primary t_low=0.430 t_high=0.500 low_p=0.8737 high_recall=0.9839 M→低=1 med_share=0.045 | Seg Dice: 0.9977
+2026-05-13 17:43:21 - Epoch [23/60] LR: 1.52e-05/1.52e-04 | Loss: 0.5707 (seg=0.0008 ord=0.2849) | Dice: 0.9987 | 126s
+2026-05-13 17:45:27 - Epoch [24/60] LR: 1.47e-05/1.47e-04 | Loss: 0.5668 (seg=0.0007 ord=0.2830) | Dice: 0.9989 | 126s
+2026-05-13 17:45:33 - [Val] ROC-AUC(mal vs others): 0.9963 | profile=primary t_low=0.090 t_high=0.500 low_p=0.9080 high_recall=0.9839 M→低=0 med_share=0.134 | Seg Dice: 0.9980
+2026-05-13 17:47:39 - Epoch [25/60] LR: 1.42e-05/1.42e-04 | Loss: 0.5578 (seg=0.0007 ord=0.2786) | Dice: 0.9990 | 126s
+2026-05-13 17:49:45 - Epoch [26/60] LR: 1.37e-05/1.37e-04 | Loss: 0.5596 (seg=0.0006 ord=0.2795) | Dice: 0.9991 | 127s
+2026-05-13 17:49:52 - [Val] ROC-AUC(mal vs others): 0.9618 | profile=unconstrained t_low=0.050 t_high=0.500 low_p=0.8615 high_recall=0.8548 M→低=9 med_share=0.087 | Seg Dice: 0.9988
+2026-05-13 17:51:58 - Epoch [27/60] LR: 1.32e-05/1.32e-04 | Loss: 0.5534 (seg=0.0005 ord=0.2764) | Dice: 0.9991 | 126s
+2026-05-13 17:54:04 - Epoch [28/60] LR: 1.26e-05/1.26e-04 | Loss: 0.5522 (seg=0.0004 ord=0.2759) | Dice: 0.9993 | 126s
+2026-05-13 17:54:10 - [Val] ROC-AUC(mal vs others): 0.9740 | profile=unconstrained t_low=0.050 t_high=0.500 low_p=0.8371 high_recall=0.8548 M→低=7 med_share=0.125 | Seg Dice: 0.9989
+2026-05-13 17:56:17 - Epoch [29/60] LR: 1.21e-05/1.21e-04 | Loss: 0.5514 (seg=0.0004 ord=0.2755) | Dice: 0.9993 | 127s
+2026-05-13 17:58:24 - Epoch [30/60] LR: 1.15e-05/1.15e-04 | Loss: 0.5453 (seg=0.0004 ord=0.2725) | Dice: 0.9994 | 127s
+2026-05-13 17:58:30 - [Val] ROC-AUC(mal vs others): 0.9853 | profile=relax_safety t_low=0.070 t_high=0.500 low_p=0.8721 high_recall=0.9355 M→低=2 med_share=0.139 | Seg Dice: 0.9985
+2026-05-13 18:00:37 - Epoch [31/60] LR: 1.09e-05/1.09e-04 | Loss: 0.5519 (seg=0.0004 ord=0.2757) | Dice: 0.9994 | 126s
+2026-05-13 18:02:43 - Epoch [32/60] LR: 1.04e-05/1.04e-04 | Loss: 0.5468 (seg=0.0003 ord=0.2732) | Dice: 0.9995 | 126s
+2026-05-13 18:02:49 - [Val] ROC-AUC(mal vs others): 0.9796 | profile=unconstrained t_low=0.050 t_high=0.500 low_p=0.8520 high_recall=0.9032 M→低=5 med_share=0.113 | Seg Dice: 0.9991
+2026-05-13 18:04:56 - Epoch [33/60] LR: 9.82e-06/9.82e-05 | Loss: 0.5459 (seg=0.0003 ord=0.2728) | Dice: 0.9995 | 127s
+2026-05-13 18:07:02 - Epoch [34/60] LR: 9.25e-06/9.25e-05 | Loss: 0.5382 (seg=0.0003 ord=0.2690) | Dice: 0.9996 | 126s
+2026-05-13 18:07:08 - [Val] ROC-AUC(mal vs others): 0.9886 | profile=relax_safety t_low=0.050 t_high=0.500 low_p=0.8767 high_recall=0.9355 M→低=2 med_share=0.073 | Seg Dice: 0.9992
+2026-05-13 18:09:14 - Epoch [35/60] LR: 8.69e-06/8.69e-05 | Loss: 0.5421 (seg=0.0003 ord=0.2709) | Dice: 0.9996 | 126s
+2026-05-13 18:11:21 - Epoch [36/60] LR: 8.13e-06/8.13e-05 | Loss: 0.5395 (seg=0.0002 ord=0.2696) | Dice: 0.9996 | 127s
+2026-05-13 18:11:27 - [Val] ROC-AUC(mal vs others): 0.9356 | profile=unconstrained t_low=0.110 t_high=0.500 low_p=0.8403 high_recall=0.7742 M→低=13 med_share=0.092 | Seg Dice: 0.9994
+2026-05-13 18:13:34 - Epoch [37/60] LR: 7.58e-06/7.58e-05 | Loss: 0.5407 (seg=0.0003 ord=0.2702) | Dice: 0.9996 | 127s
+2026-05-13 18:15:41 - Epoch [38/60] LR: 7.04e-06/7.04e-05 | Loss: 0.5404 (seg=0.0002 ord=0.2701) | Dice: 0.9997 | 128s
+2026-05-13 18:15:48 - [Val] ROC-AUC(mal vs others): 0.9701 | profile=unconstrained t_low=0.270 t_high=0.500 low_p=0.8627 high_recall=0.9032 M→低=6 med_share=0.144 | Seg Dice: 0.9994
+2026-05-13 18:17:55 - Epoch [39/60] LR: 6.51e-06/6.51e-05 | Loss: 0.5339 (seg=0.0002 ord=0.2669) | Dice: 0.9997 | 127s
+2026-05-13 18:20:02 - Epoch [40/60] LR: 5.99e-06/5.99e-05 | Loss: 0.5337 (seg=0.0002 ord=0.2668) | Dice: 0.9997 | 127s
+2026-05-13 18:20:08 - [Val] ROC-AUC(mal vs others): 0.9904 | profile=relax_safety t_low=0.050 t_high=0.500 low_p=0.8696 high_recall=0.9677 M→低=2 med_share=0.113 | Seg Dice: 0.9995
+2026-05-13 18:22:14 - Epoch [41/60] LR: 5.48e-06/5.48e-05 | Loss: 0.5358 (seg=0.0002 ord=0.2678) | Dice: 0.9997 | 125s
+2026-05-13 18:24:19 - Epoch [42/60] LR: 4.99e-06/4.99e-05 | Loss: 0.5352 (seg=0.0002 ord=0.2675) | Dice: 0.9998 | 125s
+2026-05-13 18:24:25 - [Val] ROC-AUC(mal vs others): 0.9931 | profile=primary t_low=0.070 t_high=0.500 low_p=0.8737 high_recall=0.9839 M→低=1 med_share=0.106 | Seg Dice: 0.9996
+2026-05-13 18:26:31 - Epoch [43/60] LR: 4.51e-06/4.51e-05 | Loss: 0.5333 (seg=0.0002 ord=0.2666) | Dice: 0.9998 | 126s
+2026-05-13 18:28:38 - Epoch [44/60] LR: 4.05e-06/4.05e-05 | Loss: 0.5312 (seg=0.0001 ord=0.2656) | Dice: 0.9998 | 127s
+2026-05-13 18:28:44 - [Val] ROC-AUC(mal vs others): 0.9856 | profile=relax_safety t_low=0.050 t_high=0.500 low_p=0.8675 high_recall=0.9355 M→低=2 med_share=0.149 | Seg Dice: 0.9997
+2026-05-13 18:30:50 - Epoch [45/60] LR: 3.62e-06/3.62e-05 | Loss: 0.5292 (seg=0.0001 ord=0.2645) | Dice: 0.9998 | 126s
+2026-05-13 18:32:58 - Epoch [46/60] LR: 3.20e-06/3.20e-05 | Loss: 0.5289 (seg=0.0001 ord=0.2644) | Dice: 0.9998 | 128s
+2026-05-13 18:33:04 - [Val] ROC-AUC(mal vs others): 0.9927 | profile=primary t_low=0.050 t_high=0.500 low_p=0.8721 high_recall=0.9839 M→低=1 med_share=0.101 | Seg Dice: 0.9997
+2026-05-13 18:35:12 - Epoch [47/60] LR: 2.81e-06/2.81e-05 | Loss: 0.5303 (seg=0.0001 ord=0.2651) | Dice: 0.9998 | 127s
+2026-05-13 18:37:19 - Epoch [48/60] LR: 2.44e-06/2.44e-05 | Loss: 0.5274 (seg=0.0001 ord=0.2636) | Dice: 0.9998 | 127s
+2026-05-13 18:37:25 - [Val] ROC-AUC(mal vs others): 0.9713 | profile=unconstrained t_low=0.070 t_high=0.500 low_p=0.8508 high_recall=0.8710 M→低=6 med_share=0.130 | Seg Dice: 0.9996
+2026-05-13 18:39:32 - Epoch [49/60] LR: 2.09e-06/2.09e-05 | Loss: 0.5263 (seg=0.0001 ord=0.2631) | Dice: 0.9998 | 127s
+2026-05-13 18:41:39 - Epoch [50/60] LR: 1.77e-06/1.77e-05 | Loss: 0.5289 (seg=0.0001 ord=0.2644) | Dice: 0.9999 | 127s
+2026-05-13 18:41:45 - [Val] ROC-AUC(mal vs others): 0.9810 | profile=unconstrained t_low=0.050 t_high=0.500 low_p=0.8567 high_recall=0.9194 M→低=5 med_share=0.104 | Seg Dice: 0.9997
+2026-05-13 18:43:51 - Epoch [51/60] LR: 1.48e-06/1.48e-05 | Loss: 0.5265 (seg=0.0001 ord=0.2632) | Dice: 0.9999 | 126s
+2026-05-13 18:45:58 - Epoch [52/60] LR: 1.22e-06/1.22e-05 | Loss: 0.5281 (seg=0.0001 ord=0.2640) | Dice: 0.9999 | 127s
+2026-05-13 18:46:04 - [Val] ROC-AUC(mal vs others): 0.9723 | profile=unconstrained t_low=0.130 t_high=0.500 low_p=0.8508 high_recall=0.8871 M→低=5 med_share=0.083 | Seg Dice: 0.9998
+2026-05-13 18:48:12 - Epoch [53/60] LR: 9.81e-07/9.81e-06 | Loss: 0.5277 (seg=0.0001 ord=0.2638) | Dice: 0.9999 | 127s
+2026-05-13 18:50:19 - Epoch [54/60] LR: 7.76e-07/7.76e-06 | Loss: 0.5283 (seg=0.0001 ord=0.2641) | Dice: 0.9999 | 127s
+2026-05-13 18:50:25 - [Val] ROC-AUC(mal vs others): 0.9722 | profile=unconstrained t_low=0.050 t_high=0.500 low_p=0.8562 high_recall=0.8871 M→低=5 med_share=0.149 | Seg Dice: 0.9997
+2026-05-13 18:52:31 - Epoch [55/60] LR: 6.01e-07/6.01e-06 | Loss: 0.5253 (seg=0.0001 ord=0.2626) | Dice: 0.9999 | 126s
+2026-05-13 18:54:37 - Epoch [56/60] LR: 4.57e-07/4.57e-06 | Loss: 0.5238 (seg=0.0001 ord=0.2619) | Dice: 0.9999 | 126s
+2026-05-13 18:54:43 - [Val] ROC-AUC(mal vs others): 0.9744 | profile=unconstrained t_low=0.390 t_high=0.500 low_p=0.8500 high_recall=0.9032 M→低=6 med_share=0.080 | Seg Dice: 0.9998
+2026-05-13 18:56:48 - Epoch [57/60] LR: 3.45e-07/3.45e-06 | Loss: 0.5243 (seg=0.0001 ord=0.2621) | Dice: 0.9999 | 125s
+2026-05-13 18:58:55 - Epoch [58/60] LR: 2.65e-07/2.65e-06 | Loss: 0.5268 (seg=0.0001 ord=0.2634) | Dice: 0.9999 | 127s
+2026-05-13 18:59:01 - [Val] ROC-AUC(mal vs others): 0.9734 | profile=unconstrained t_low=0.050 t_high=0.500 low_p=0.8530 high_recall=0.9032 M→低=6 med_share=0.120 | Seg Dice: 0.9998
+2026-05-13 19:01:07 - Epoch [59/60] LR: 2.16e-07/2.16e-06 | Loss: 0.5232 (seg=0.0001 ord=0.2615) | Dice: 0.9999 | 126s
+2026-05-13 19:03:13 - Epoch [60/60] LR: 2.00e-07/2.00e-06 | Loss: 0.5257 (seg=0.0001 ord=0.2628) | Dice: 0.9999 | 126s
+2026-05-13 19:03:19 - [Val] ROC-AUC(mal vs others): 0.9735 | profile=unconstrained t_low=0.050 t_high=0.500 low_p=0.8530 high_recall=0.9032 M→低=6 med_share=0.097 | Seg Dice: 0.9998
+2026-05-13 19:03:19 - ========================================================================
+2026-05-13 19:03:19 - 训练完成。最优 Epoch: 2, Best Val AUC: 0.9986
+2026-05-13 19:03:19 - ========================================================================
+2026-05-13 19:03:26 - ========================================================================
+2026-05-13 19:03:26 - 在 val 上约束阈值搜索: profile_used=primary
+2026-05-13 19:03:26 -   → 选定阈值: t_low=0.210, t_high=0.500
+2026-05-13 19:03:26 -   val 指标: {'t_low': 0.21000000000000002, 't_high': 0.5, 'mal_to_low': 0, 'high_recall': 0.9838709677419355, 'high_precision': 0.9104477611940298, 'medium_share': 0.2971698113207547, 'low_precision': 0.9177489177489178, 'n_high_pred': 67, 'n_med_pred': 126, 'n_low_pred': 231}
+2026-05-13 19:03:26 - ========================================================================
+2026-05-13 19:03:26 - 阈值已保存: /data1/ouyangxinglong/GBP-Cascade/0514/logs/20260514_task_risk_SwinV2Tiny_ordinal_trimodal_1/thresholds.json
+2026-05-13 19:03:42 - ========================================================================
+2026-05-13 19:03:42 - [Test-0514 (val-thr)] 风险分层评估 (t_low=0.210, t_high=0.500)
+2026-05-13 19:03:42 - ========================================================================
+2026-05-13 19:03:42 - [Test-0514 (val-thr)] 3-band 混淆矩阵 (行=真实, 列=预测档)：
+2026-05-13 19:03:42 -                band_high  band_med   band_low
+2026-05-13 19:03:42 -   malignant           103         1          0
+2026-05-13 19:03:42 -   benign                4        87         67
+2026-05-13 19:03:42 -   no_tumor              3       215        687
+2026-05-13 19:03:42 - [Test-0514 (val-thr)] 二值安全口径 (高风险 vs 非高风险)：
+2026-05-13 19:03:42 -                pred_high  pred_other
+2026-05-13 19:03:42 -   is_malignant       103          1
+2026-05-13 19:03:42 -   not_mal              7       1056
+2026-05-13 19:03:42 - [Test-0514 (val-thr)] 关键安全指标：
+2026-05-13 19:03:42 -   M → 低风险 漏诊 (硬底线 ≤ 1)：0
+2026-05-13 19:03:42 -   高风险召回 (硬底线 ≥ 0.95) ：0.9904
+2026-05-13 19:03:42 -   高风险精确率              ：0.9364
+2026-05-13 19:03:42 -   中风险占比 (约束 ≤ 0.35)  ：0.2596
+2026-05-13 19:03:42 -   二值 ROC-AUC (恶性 vs 其他)：0.9999
+2026-05-13 19:03:42 - [Test-0514 (val-thr)] 每档统计：
+2026-05-13 19:03:42 -   band_high   | n_pred= 110 | share=0.094 | P(vs malignant)=0.9364 | R(vs malignant)=0.9904
+2026-05-13 19:03:42 -   band_medium | n_pred= 303 | share=0.260 | P(vs benign)=0.2871 | R(vs benign)=0.5506
+2026-05-13 19:03:42 -   band_low    | n_pred= 754 | share=0.646 | P(vs no_tumor)=0.9111 | R(vs no_tumor)=0.7591
+2026-05-13 19:03:42 - [Test-0514 (val-thr)] 风险分数分布：
+2026-05-13 19:03:42 -   malignant  n= 104 mean=0.9791 std=0.0629 [0.4833, 0.9998]
+2026-05-13 19:03:42 -   benign     n= 158 mean=0.2488 std=0.1388 [0.0222, 0.7229]
+2026-05-13 19:03:42 -   no_tumor   n= 905 mean=0.1424 std=0.1021 [0.0079, 0.6408]
+2026-05-13 19:03:42 - [Test-0514 (val-thr)] 校准 (Brier=0.0352)；分箱样本数: [434, 294, 186, 112, 31, 5, 1, 1, 8, 95]
+2026-05-13 19:03:42 - ========================================================================
+2026-05-13 19:03:42 - [Test] 诊断 — 若直接在该集上搜阈值: profile=primary t_low=0.190 t_high=0.500 low_p=0.9215
+2026-05-13 19:03:42 - 评估结果已保存: /data1/ouyangxinglong/GBP-Cascade/0514/logs/20260514_task_risk_SwinV2Tiny_ordinal_trimodal_1/eval_test.json
+2026-05-13 19:03:43 - 混淆矩阵图: /data1/ouyangxinglong/GBP-Cascade/0514/logs/20260514_task_risk_SwinV2Tiny_ordinal_trimodal_1/confusion_matrix.png
+2026-05-13 19:03:43 - ========================================================================
+2026-05-13 19:03:43 - 全部完成。关键产出:
+2026-05-13 19:03:43 -   best weight    : /data1/ouyangxinglong/GBP-Cascade/0514/logs/20260514_task_risk_SwinV2Tiny_ordinal_trimodal_1/20260514_task_risk_SwinV2Tiny_ordinal_trimodal_1_best.pth
+2026-05-13 19:03:43 -   thresholds.json: /data1/ouyangxinglong/GBP-Cascade/0514/logs/20260514_task_risk_SwinV2Tiny_ordinal_trimodal_1/thresholds.json
+2026-05-13 19:03:43 -   eval_test.json : /data1/ouyangxinglong/GBP-Cascade/0514/logs/20260514_task_risk_SwinV2Tiny_ordinal_trimodal_1/eval_test.json
+2026-05-13 19:03:43 -   混淆矩阵图     : /data1/ouyangxinglong/GBP-Cascade/0514/logs/20260514_task_risk_SwinV2Tiny_ordinal_trimodal_1/confusion_matrix.png
+2026-05-13 19:03:43 - ========================================================================

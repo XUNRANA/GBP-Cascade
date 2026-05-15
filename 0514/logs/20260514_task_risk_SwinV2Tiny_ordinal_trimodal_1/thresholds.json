@@ -1,0 +1,142 @@
+{
+  "selection_set": "val",
+  "best_epoch": 2,
+  "best_val_auc": 0.9985742291926573,
+  "t_low": 0.21000000000000002,
+  "t_high": 0.5,
+  "profile_used": "primary",
+  "val_metrics": {
+    "t_low": 0.21000000000000002,
+    "t_high": 0.5,
+    "mal_to_low": 0,
+    "high_recall": 0.9838709677419355,
+    "high_precision": 0.9104477611940298,
+    "medium_share": 0.2971698113207547,
+    "low_precision": 0.9177489177489178,
+    "n_high_pred": 67,
+    "n_med_pred": 126,
+    "n_low_pred": 231
+  },
+  "all_candidates_top10": [
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.5,
+      "mal_to_low": 0,
+      "high_recall": 0.9838709677419355,
+      "high_precision": 0.9104477611940298,
+      "medium_share": 0.2971698113207547,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 67,
+      "n_med_pred": 126,
+      "n_low_pred": 231
+    },
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.52,
+      "mal_to_low": 0,
+      "high_recall": 0.9838709677419355,
+      "high_precision": 0.9242424242424242,
+      "medium_share": 0.29952830188679247,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 66,
+      "n_med_pred": 127,
+      "n_low_pred": 231
+    },
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.54,
+      "mal_to_low": 0,
+      "high_recall": 0.9838709677419355,
+      "high_precision": 0.9384615384615385,
+      "medium_share": 0.3018867924528302,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 65,
+      "n_med_pred": 128,
+      "n_low_pred": 231
+    },
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.56,
+      "mal_to_low": 0,
+      "high_recall": 0.9838709677419355,
+      "high_precision": 0.953125,
+      "medium_share": 0.30424528301886794,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 64,
+      "n_med_pred": 129,
+      "n_low_pred": 231
+    },
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.5800000000000001,
+      "mal_to_low": 0,
+      "high_recall": 0.9838709677419355,
+      "high_precision": 0.953125,
+      "medium_share": 0.30424528301886794,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 64,
+      "n_med_pred": 129,
+      "n_low_pred": 231
+    },
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.6000000000000001,
+      "mal_to_low": 0,
+      "high_recall": 0.9838709677419355,
+      "high_precision": 0.953125,
+      "medium_share": 0.30424528301886794,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 64,
+      "n_med_pred": 129,
+      "n_low_pred": 231
+    },
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.6200000000000001,
+      "mal_to_low": 0,
+      "high_recall": 0.9838709677419355,
+      "high_precision": 0.9838709677419355,
+      "medium_share": 0.3089622641509434,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 62,
+      "n_med_pred": 131,
+      "n_low_pred": 231
+    },
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.6400000000000001,
+      "mal_to_low": 0,
+      "high_recall": 0.9838709677419355,
+      "high_precision": 0.9838709677419355,
+      "medium_share": 0.3089622641509434,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 62,
+      "n_med_pred": 131,
+      "n_low_pred": 231
+    },
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.6600000000000001,
+      "mal_to_low": 0,
+      "high_recall": 0.967741935483871,
+      "high_precision": 0.9836065573770492,
+      "medium_share": 0.3113207547169811,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 61,
+      "n_med_pred": 132,
+      "n_low_pred": 231
+    },
+    {
+      "t_low": 0.21000000000000002,
+      "t_high": 0.6800000000000002,
+      "mal_to_low": 0,
+      "high_recall": 0.967741935483871,
+      "high_precision": 0.9836065573770492,
+      "medium_share": 0.3113207547169811,
+      "low_precision": 0.9177489177489178,
+      "n_high_pred": 61,
+      "n_med_pred": 132,
+      "n_low_pred": 231
+    }
+  ]
+}

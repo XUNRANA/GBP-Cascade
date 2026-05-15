@@ -1,0 +1,1566 @@
+{
+  "meta": {
+    "selection": "select on val, report on test",
+    "constraints": "mal_to_low==0 and high_recall>=0.95 on val",
+    "scheme_defs": {
+      "A90": "high_p>=0.90 and low_p>=0.90",
+      "A95": "high_p>=0.95 and low_p>=0.95",
+      "B90": "high_p>=0.90 only",
+      "B95": "high_p>=0.95 only"
+    },
+    "test_class_total": {
+      "mal": 104,
+      "ben": 158,
+      "nt": 905
+    }
+  },
+  "experiments": {
+    "S1": {
+      "schemes": {
+        "A90": {
+          "selected_on_val": {
+            "t_low": 0.205,
+            "t_high": 0.93,
+            "high_precision": 0.9104477611940298,
+            "low_precision": 0.9012345679012346,
+            "med_precision": 0.3157894736842105,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 67,
+            "n_med": 114,
+            "n_low": 243,
+            "high_share": 0.1580188679245283,
+            "medium_share": 0.2688679245283019,
+            "low_share": 0.5731132075471698,
+            "base": 0.7311320754716981,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                5,
+                36,
+                24
+              ],
+              [
+                1,
+                77,
+                219
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.205,
+            "t_high": 0.93,
+            "high_precision": 0.944954128440367,
+            "low_precision": 0.9094540612516645,
+            "med_precision": 0.28664495114006516,
+            "high_recall": 0.9903846153846154,
+            "mal_to_low": 0,
+            "n_high": 109,
+            "n_med": 307,
+            "n_low": 751,
+            "high_share": 0.0934018851756641,
+            "medium_share": 0.26306769494430166,
+            "low_share": 0.6435304198800342,
+            "base": 0.7369323050556984,
+            "confusion_3band": [
+              [
+                103,
+                1,
+                0
+              ],
+              [
+                2,
+                88,
+                68
+              ],
+              [
+                4,
+                218,
+                683
+              ]
+            ]
+          }
+        },
+        "A95": null,
+        "B90": {
+          "selected_on_val": {
+            "t_low": 0.45,
+            "t_high": 0.93,
+            "high_precision": 0.9104477611940298,
+            "low_precision": 0.8668730650154799,
+            "med_precision": 0.5,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 67,
+            "n_med": 34,
+            "n_low": 323,
+            "high_share": 0.1580188679245283,
+            "medium_share": 0.08018867924528301,
+            "low_share": 0.7617924528301887,
+            "base": 0.9198113207547169,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                5,
+                17,
+                43
+              ],
+              [
+                1,
+                16,
+                280
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.45,
+            "t_high": 0.93,
+            "high_precision": 0.944954128440367,
+            "low_precision": 0.8767967145790554,
+            "med_precision": 0.42857142857142855,
+            "high_recall": 0.9903846153846154,
+            "mal_to_low": 0,
+            "n_high": 109,
+            "n_med": 84,
+            "n_low": 974,
+            "high_share": 0.0934018851756641,
+            "medium_share": 0.07197943444730077,
+            "low_share": 0.8346186803770351,
+            "base": 0.9280205655526992,
+            "confusion_3band": [
+              [
+                103,
+                1,
+                0
+              ],
+              [
+                2,
+                36,
+                120
+              ],
+              [
+                4,
+                47,
+                854
+              ]
+            ]
+          }
+        },
+        "B95": null
+      },
+      "safety_upper_bounds": {
+        "max_high_precision": 0.9384615384615385,
+        "max_high_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.96
+        },
+        "max_low_precision": 1.0,
+        "max_low_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.5
+        }
+      }
+    },
+    "S2": {
+      "schemes": {
+        "A90": {
+          "selected_on_val": {
+            "t_low": 0.255,
+            "t_high": 0.5,
+            "high_precision": 0.9104477611940298,
+            "low_precision": 0.9021739130434783,
+            "med_precision": 0.41975308641975306,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 67,
+            "n_med": 81,
+            "n_low": 276,
+            "high_share": 0.1580188679245283,
+            "medium_share": 0.19103773584905662,
+            "low_share": 0.6509433962264151,
+            "base": 0.8089622641509434,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                4,
+                34,
+                27
+              ],
+              [
+                2,
+                46,
+                249
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.255,
+            "t_high": 0.5,
+            "high_precision": 0.9363636363636364,
+            "low_precision": 0.9023809523809524,
+            "med_precision": 0.3317972350230415,
+            "high_recall": 0.9903846153846154,
+            "mal_to_low": 0,
+            "n_high": 110,
+            "n_med": 217,
+            "n_low": 840,
+            "high_share": 0.09425878320479864,
+            "medium_share": 0.18594687232219365,
+            "low_share": 0.7197943444730077,
+            "base": 0.8140531276778064,
+            "confusion_3band": [
+              [
+                103,
+                1,
+                0
+              ],
+              [
+                4,
+                72,
+                82
+              ],
+              [
+                3,
+                144,
+                758
+              ]
+            ]
+          }
+        },
+        "A95": {
+          "selected_on_val": {
+            "t_low": 0.015,
+            "t_high": 0.56,
+            "high_precision": 0.953125,
+            "low_precision": 1.0,
+            "med_precision": 0.1839080459770115,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 64,
+            "n_med": 348,
+            "n_low": 12,
+            "high_share": 0.1509433962264151,
+            "medium_share": 0.8207547169811321,
+            "low_share": 0.02830188679245283,
+            "base": 0.1792452830188679,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                1,
+                64,
+                0
+              ],
+              [
+                2,
+                283,
+                12
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.015,
+            "t_high": 0.56,
+            "high_precision": 0.9809523809523809,
+            "low_precision": 1.0,
+            "med_precision": 0.1503831417624521,
+            "high_recall": 0.9903846153846154,
+            "mal_to_low": 0,
+            "n_high": 105,
+            "n_med": 1044,
+            "n_low": 18,
+            "high_share": 0.08997429305912596,
+            "medium_share": 0.8946015424164524,
+            "low_share": 0.015424164524421594,
+            "base": 0.10539845758354756,
+            "confusion_3band": [
+              [
+                103,
+                1,
+                0
+              ],
+              [
+                1,
+                157,
+                0
+              ],
+              [
+                1,
+                886,
+                18
+              ]
+            ]
+          }
+        },
+        "B90": {
+          "selected_on_val": {
+            "t_low": 0.38,
+            "t_high": 0.5,
+            "high_precision": 0.9104477611940298,
+            "low_precision": 0.8731117824773413,
+            "med_precision": 0.7307692307692307,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 67,
+            "n_med": 26,
+            "n_low": 331,
+            "high_share": 0.1580188679245283,
+            "medium_share": 0.06132075471698113,
+            "low_share": 0.7806603773584906,
+            "base": 0.9386792452830188,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                4,
+                19,
+                42
+              ],
+              [
+                2,
+                6,
+                289
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.38,
+            "t_high": 0.5,
+            "high_precision": 0.9363636363636364,
+            "low_precision": 0.8758620689655172,
+            "med_precision": 0.6666666666666666,
+            "high_recall": 0.9903846153846154,
+            "mal_to_low": 0,
+            "n_high": 110,
+            "n_med": 42,
+            "n_low": 1015,
+            "high_share": 0.09425878320479864,
+            "medium_share": 0.03598971722365039,
+            "low_share": 0.869751499571551,
+            "base": 0.9640102827763496,
+            "confusion_3band": [
+              [
+                103,
+                1,
+                0
+              ],
+              [
+                4,
+                28,
+                126
+              ],
+              [
+                3,
+                13,
+                889
+              ]
+            ]
+          }
+        },
+        "B95": {
+          "selected_on_val": {
+            "t_low": 0.38,
+            "t_high": 0.56,
+            "high_precision": 0.953125,
+            "low_precision": 0.8731117824773413,
+            "med_precision": 0.7586206896551724,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 64,
+            "n_med": 29,
+            "n_low": 331,
+            "high_share": 0.1509433962264151,
+            "medium_share": 0.06839622641509434,
+            "low_share": 0.7806603773584906,
+            "base": 0.9316037735849056,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                1,
+                22,
+                42
+              ],
+              [
+                2,
+                6,
+                289
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.38,
+            "t_high": 0.56,
+            "high_precision": 0.9809523809523809,
+            "low_precision": 0.8758620689655172,
+            "med_precision": 0.6595744680851063,
+            "high_recall": 0.9903846153846154,
+            "mal_to_low": 0,
+            "n_high": 105,
+            "n_med": 47,
+            "n_low": 1015,
+            "high_share": 0.08997429305912596,
+            "medium_share": 0.04027420736932305,
+            "low_share": 0.869751499571551,
+            "base": 0.9597257926306769,
+            "confusion_3band": [
+              [
+                103,
+                1,
+                0
+              ],
+              [
+                1,
+                31,
+                126
+              ],
+              [
+                1,
+                15,
+                889
+              ]
+            ]
+          }
+        }
+      },
+      "safety_upper_bounds": {
+        "max_high_precision": 1.0,
+        "max_high_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.91
+        },
+        "max_low_precision": 1.0,
+        "max_low_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.5
+        }
+      }
+    },
+    "S3": {
+      "schemes": {
+        "A90": {
+          "selected_on_val": {
+            "t_low": 0.05,
+            "t_high": 0.78,
+            "high_precision": 0.9090909090909091,
+            "low_precision": 0.9060150375939849,
+            "med_precision": 0.40217391304347827,
+            "high_recall": 0.967741935483871,
+            "mal_to_low": 0,
+            "n_high": 66,
+            "n_med": 92,
+            "n_low": 266,
+            "high_share": 0.15566037735849056,
+            "medium_share": 0.2169811320754717,
+            "low_share": 0.6273584905660378,
+            "base": 0.7830188679245284,
+            "confusion_3band": [
+              [
+                60,
+                2,
+                0
+              ],
+              [
+                3,
+                37,
+                25
+              ],
+              [
+                3,
+                53,
+                241
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.05,
+            "t_high": 0.78,
+            "high_precision": 0.9801980198019802,
+            "low_precision": 0.9178082191780822,
+            "med_precision": 0.34220532319391633,
+            "high_recall": 0.9519230769230769,
+            "mal_to_low": 0,
+            "n_high": 101,
+            "n_med": 263,
+            "n_low": 803,
+            "high_share": 0.08654670094258783,
+            "medium_share": 0.22536418166238217,
+            "low_share": 0.68808911739503,
+            "base": 0.7746358183376179,
+            "confusion_3band": [
+              [
+                99,
+                5,
+                0
+              ],
+              [
+                2,
+                90,
+                66
+              ],
+              [
+                0,
+                168,
+                737
+              ]
+            ]
+          }
+        },
+        "A95": null,
+        "B90": {
+          "selected_on_val": {
+            "t_low": 0.16,
+            "t_high": 0.78,
+            "high_precision": 0.9090909090909091,
+            "low_precision": 0.8765822784810127,
+            "med_precision": 0.5476190476190477,
+            "high_recall": 0.967741935483871,
+            "mal_to_low": 0,
+            "n_high": 66,
+            "n_med": 42,
+            "n_low": 316,
+            "high_share": 0.15566037735849056,
+            "medium_share": 0.09905660377358491,
+            "low_share": 0.7452830188679245,
+            "base": 0.9009433962264151,
+            "confusion_3band": [
+              [
+                60,
+                2,
+                0
+              ],
+              [
+                3,
+                23,
+                39
+              ],
+              [
+                3,
+                17,
+                277
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.16,
+            "t_high": 0.78,
+            "high_precision": 0.9801980198019802,
+            "low_precision": 0.9011943539630836,
+            "med_precision": 0.4482758620689655,
+            "high_recall": 0.9519230769230769,
+            "mal_to_low": 0,
+            "n_high": 101,
+            "n_med": 145,
+            "n_low": 921,
+            "high_share": 0.08654670094258783,
+            "medium_share": 0.12425021422450729,
+            "low_share": 0.7892030848329049,
+            "base": 0.8757497857754927,
+            "confusion_3band": [
+              [
+                99,
+                5,
+                0
+              ],
+              [
+                2,
+                65,
+                91
+              ],
+              [
+                0,
+                75,
+                830
+              ]
+            ]
+          }
+        },
+        "B95": null
+      },
+      "safety_upper_bounds": {
+        "max_high_precision": 0.9375,
+        "max_high_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.79
+        },
+        "max_low_precision": 0.928,
+        "max_low_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.5
+        }
+      }
+    },
+    "S4": {
+      "schemes": {
+        "A90": {
+          "selected_on_val": {
+            "t_low": 0.14,
+            "t_high": 0.9,
+            "high_precision": 0.9242424242424242,
+            "low_precision": 0.9021739130434783,
+            "med_precision": 0.4268292682926829,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 66,
+            "n_med": 82,
+            "n_low": 276,
+            "high_share": 0.15566037735849056,
+            "medium_share": 0.19339622641509435,
+            "low_share": 0.6509433962264151,
+            "base": 0.8066037735849056,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                3,
+                35,
+                27
+              ],
+              [
+                2,
+                46,
+                249
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.14,
+            "t_high": 0.9,
+            "high_precision": 0.9896907216494846,
+            "low_precision": 0.9174757281553398,
+            "med_precision": 0.3617886178861789,
+            "high_recall": 0.9230769230769231,
+            "mal_to_low": 0,
+            "n_high": 97,
+            "n_med": 246,
+            "n_low": 824,
+            "high_share": 0.0831191088260497,
+            "medium_share": 0.21079691516709512,
+            "low_share": 0.7060839760068551,
+            "base": 0.7892030848329049,
+            "confusion_3band": [
+              [
+                96,
+                8,
+                0
+              ],
+              [
+                1,
+                89,
+                68
+              ],
+              [
+                0,
+                149,
+                756
+              ]
+            ]
+          }
+        },
+        "A95": null,
+        "B90": {
+          "selected_on_val": {
+            "t_low": 0.3,
+            "t_high": 0.9,
+            "high_precision": 0.9242424242424242,
+            "low_precision": 0.8675078864353313,
+            "med_precision": 0.4878048780487805,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 66,
+            "n_med": 41,
+            "n_low": 317,
+            "high_share": 0.15566037735849056,
+            "medium_share": 0.09669811320754718,
+            "low_share": 0.7476415094339622,
+            "base": 0.9033018867924528,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                3,
+                20,
+                42
+              ],
+              [
+                2,
+                20,
+                275
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.3,
+            "t_high": 0.9,
+            "high_precision": 0.9896907216494846,
+            "low_precision": 0.8955866523143164,
+            "med_precision": 0.425531914893617,
+            "high_recall": 0.9230769230769231,
+            "mal_to_low": 0,
+            "n_high": 97,
+            "n_med": 141,
+            "n_low": 929,
+            "high_share": 0.0831191088260497,
+            "medium_share": 0.12082262210796915,
+            "low_share": 0.7960582690659811,
+            "base": 0.8791773778920309,
+            "confusion_3band": [
+              [
+                96,
+                8,
+                0
+              ],
+              [
+                1,
+                60,
+                97
+              ],
+              [
+                0,
+                73,
+                832
+              ]
+            ]
+          }
+        },
+        "B95": {
+          "selected_on_val": {
+            "t_low": 0.3,
+            "t_high": 0.94,
+            "high_precision": 0.953125,
+            "low_precision": 0.8675078864353313,
+            "med_precision": 0.5116279069767442,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 64,
+            "n_med": 43,
+            "n_low": 317,
+            "high_share": 0.1509433962264151,
+            "medium_share": 0.10141509433962265,
+            "low_share": 0.7476415094339622,
+            "base": 0.8985849056603774,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                1,
+                22,
+                42
+              ],
+              [
+                2,
+                20,
+                275
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.3,
+            "t_high": 0.94,
+            "high_precision": 0.9896907216494846,
+            "low_precision": 0.8955866523143164,
+            "med_precision": 0.425531914893617,
+            "high_recall": 0.9230769230769231,
+            "mal_to_low": 0,
+            "n_high": 97,
+            "n_med": 141,
+            "n_low": 929,
+            "high_share": 0.0831191088260497,
+            "medium_share": 0.12082262210796915,
+            "low_share": 0.7960582690659811,
+            "base": 0.8791773778920309,
+            "confusion_3band": [
+              [
+                96,
+                8,
+                0
+              ],
+              [
+                1,
+                60,
+                97
+              ],
+              [
+                0,
+                73,
+                832
+              ]
+            ]
+          }
+        }
+      },
+      "safety_upper_bounds": {
+        "max_high_precision": 0.9836065573770492,
+        "max_high_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.97
+        },
+        "max_low_precision": 0.9345794392523364,
+        "max_low_precision_at": {
+          "t_low": 0.015,
+          "t_high": 0.5
+        }
+      }
+    },
+    "D1": {
+      "schemes": {
+        "A90": {
+          "selected_on_val": {
+            "t_low": 0.1,
+            "t_high": 0.56,
+            "high_precision": 0.9242424242424242,
+            "low_precision": 0.9,
+            "med_precision": 0.24157303370786518,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 66,
+            "n_med": 178,
+            "n_low": 180,
+            "high_share": 0.15566037735849056,
+            "medium_share": 0.419811320754717,
+            "low_share": 0.42452830188679247,
+            "base": 0.5801886792452831,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                4,
+                43,
+                18
+              ],
+              [
+                1,
+                134,
+                162
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.1,
+            "t_high": 0.56,
+            "high_precision": 0.8793103448275862,
+            "low_precision": 0.9362101313320825,
+            "med_precision": 0.2277992277992278,
+            "high_recall": 0.9807692307692307,
+            "mal_to_low": 0,
+            "n_high": 116,
+            "n_med": 518,
+            "n_low": 533,
+            "high_share": 0.09940017137960583,
+            "medium_share": 0.4438731790916881,
+            "low_share": 0.45672664952870606,
+            "base": 0.5561268209083119,
+            "confusion_3band": [
+              [
+                102,
+                2,
+                0
+              ],
+              [
+                6,
+                118,
+                34
+              ],
+              [
+                8,
+                398,
+                499
+              ]
+            ]
+          }
+        },
+        "A95": {
+          "selected_on_val": {
+            "t_low": 0.045,
+            "t_high": 0.57,
+            "high_precision": 0.953125,
+            "low_precision": 0.9532710280373832,
+            "med_precision": 0.22529644268774704,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 64,
+            "n_med": 253,
+            "n_low": 107,
+            "high_share": 0.1509433962264151,
+            "medium_share": 0.5966981132075472,
+            "low_share": 0.25235849056603776,
+            "base": 0.4033018867924528,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                3,
+                57,
+                5
+              ],
+              [
+                0,
+                195,
+                102
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.045,
+            "t_high": 0.57,
+            "high_precision": 0.9026548672566371,
+            "low_precision": 0.925,
+            "med_precision": 0.18155619596541786,
+            "high_recall": 0.9807692307692307,
+            "mal_to_low": 0,
+            "n_high": 113,
+            "n_med": 694,
+            "n_low": 360,
+            "high_share": 0.09682947729220223,
+            "medium_share": 0.5946872322193659,
+            "low_share": 0.30848329048843187,
+            "base": 0.40531276778063413,
+            "confusion_3band": [
+              [
+                102,
+                2,
+                0
+              ],
+              [
+                5,
+                126,
+                27
+              ],
+              [
+                6,
+                566,
+                333
+              ]
+            ]
+          }
+        },
+        "B90": {
+          "selected_on_val": {
+            "t_low": 0.28,
+            "t_high": 0.56,
+            "high_precision": 0.9242424242424242,
+            "low_precision": 0.8865979381443299,
+            "med_precision": 0.417910447761194,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 66,
+            "n_med": 67,
+            "n_low": 291,
+            "high_share": 0.15566037735849056,
+            "medium_share": 0.1580188679245283,
+            "low_share": 0.6863207547169812,
+            "base": 0.8419811320754716,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                4,
+                28,
+                33
+              ],
+              [
+                1,
+                38,
+                258
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.28,
+            "t_high": 0.56,
+            "high_precision": 0.8793103448275862,
+            "low_precision": 0.9024676850763808,
+            "med_precision": 0.345,
+            "high_recall": 0.9807692307692307,
+            "mal_to_low": 0,
+            "n_high": 116,
+            "n_med": 200,
+            "n_low": 851,
+            "high_share": 0.09940017137960583,
+            "medium_share": 0.1713796058269066,
+            "low_share": 0.7292202227934875,
+            "base": 0.8286203941730934,
+            "confusion_3band": [
+              [
+                102,
+                2,
+                0
+              ],
+              [
+                6,
+                69,
+                83
+              ],
+              [
+                8,
+                129,
+                768
+              ]
+            ]
+          }
+        },
+        "B95": {
+          "selected_on_val": {
+            "t_low": 0.28,
+            "t_high": 0.57,
+            "high_precision": 0.953125,
+            "low_precision": 0.8865979381443299,
+            "med_precision": 0.42028985507246375,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 64,
+            "n_med": 69,
+            "n_low": 291,
+            "high_share": 0.1509433962264151,
+            "medium_share": 0.16273584905660377,
+            "low_share": 0.6863207547169812,
+            "base": 0.8372641509433962,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                3,
+                29,
+                33
+              ],
+              [
+                0,
+                39,
+                258
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.28,
+            "t_high": 0.57,
+            "high_precision": 0.9026548672566371,
+            "low_precision": 0.9024676850763808,
+            "med_precision": 0.3448275862068966,
+            "high_recall": 0.9807692307692307,
+            "mal_to_low": 0,
+            "n_high": 113,
+            "n_med": 203,
+            "n_low": 851,
+            "high_share": 0.09682947729220223,
+            "medium_share": 0.17395029991431019,
+            "low_share": 0.7292202227934875,
+            "base": 0.8260497000856898,
+            "confusion_3band": [
+              [
+                102,
+                2,
+                0
+              ],
+              [
+                5,
+                70,
+                83
+              ],
+              [
+                6,
+                131,
+                768
+              ]
+            ]
+          }
+        }
+      },
+      "safety_upper_bounds": {
+        "max_high_precision": 1.0,
+        "max_high_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.73
+        },
+        "max_low_precision": 0.9642857142857143,
+        "max_low_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.5
+        }
+      }
+    },
+    "D2": {
+      "schemes": {
+        "A90": null,
+        "A95": null,
+        "B90": {
+          "selected_on_val": {
+            "t_low": 0.38,
+            "t_high": 0.65,
+            "high_precision": 0.9104477611940298,
+            "low_precision": 0.8580246913580247,
+            "med_precision": 0.48484848484848486,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 67,
+            "n_med": 33,
+            "n_low": 324,
+            "high_share": 0.1580188679245283,
+            "medium_share": 0.07783018867924528,
+            "low_share": 0.7641509433962265,
+            "base": 0.9221698113207547,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                3,
+                16,
+                46
+              ],
+              [
+                3,
+                16,
+                278
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.38,
+            "t_high": 0.65,
+            "high_precision": 0.9363636363636364,
+            "low_precision": 0.8760162601626016,
+            "med_precision": 0.4520547945205479,
+            "high_recall": 0.9903846153846154,
+            "mal_to_low": 0,
+            "n_high": 110,
+            "n_med": 73,
+            "n_low": 984,
+            "high_share": 0.09425878320479864,
+            "medium_share": 0.06255355612682091,
+            "low_share": 0.8431876606683805,
+            "base": 0.9374464438731791,
+            "confusion_3band": [
+              [
+                103,
+                1,
+                0
+              ],
+              [
+                3,
+                33,
+                122
+              ],
+              [
+                4,
+                39,
+                862
+              ]
+            ]
+          }
+        },
+        "B95": {
+          "selected_on_val": {
+            "t_low": 0.38,
+            "t_high": 0.77,
+            "high_precision": 0.953125,
+            "low_precision": 0.8580246913580247,
+            "med_precision": 0.4722222222222222,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 64,
+            "n_med": 36,
+            "n_low": 324,
+            "high_share": 0.1509433962264151,
+            "medium_share": 0.08490566037735849,
+            "low_share": 0.7641509433962265,
+            "base": 0.9150943396226415,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                2,
+                17,
+                46
+              ],
+              [
+                1,
+                18,
+                278
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.38,
+            "t_high": 0.77,
+            "high_precision": 0.98989898989899,
+            "low_precision": 0.8760162601626016,
+            "med_precision": 0.42857142857142855,
+            "high_recall": 0.9423076923076923,
+            "mal_to_low": 0,
+            "n_high": 99,
+            "n_med": 84,
+            "n_low": 984,
+            "high_share": 0.08483290488431877,
+            "medium_share": 0.07197943444730077,
+            "low_share": 0.8431876606683805,
+            "base": 0.9280205655526992,
+            "confusion_3band": [
+              [
+                98,
+                6,
+                0
+              ],
+              [
+                0,
+                36,
+                122
+              ],
+              [
+                1,
+                42,
+                862
+              ]
+            ]
+          }
+        }
+      },
+      "safety_upper_bounds": {
+        "max_high_precision": 1.0,
+        "max_high_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.89
+        },
+        "max_low_precision": 0.8970588235294118,
+        "max_low_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.5
+        }
+      }
+    },
+    "D3": {
+      "schemes": {
+        "A90": {
+          "selected_on_val": {
+            "t_low": 0.165,
+            "t_high": 0.76,
+            "high_precision": 0.9242424242424242,
+            "low_precision": 0.9054726368159204,
+            "med_precision": 0.27388535031847133,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 66,
+            "n_med": 157,
+            "n_low": 201,
+            "high_share": 0.15566037735849056,
+            "medium_share": 0.37028301886792453,
+            "low_share": 0.4740566037735849,
+            "base": 0.6297169811320755,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                3,
+                43,
+                19
+              ],
+              [
+                2,
+                113,
+                182
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.165,
+            "t_high": 0.76,
+            "high_precision": 0.9537037037037037,
+            "low_precision": 0.9205607476635514,
+            "med_precision": 0.24940047961630696,
+            "high_recall": 0.9903846153846154,
+            "mal_to_low": 0,
+            "n_high": 108,
+            "n_med": 417,
+            "n_low": 642,
+            "high_share": 0.09254498714652956,
+            "medium_share": 0.35732647814910024,
+            "low_share": 0.5501285347043702,
+            "base": 0.6426735218508998,
+            "confusion_3band": [
+              [
+                103,
+                1,
+                0
+              ],
+              [
+                3,
+                104,
+                51
+              ],
+              [
+                2,
+                312,
+                591
+              ]
+            ]
+          }
+        },
+        "A95": {
+          "selected_on_val": {
+            "t_low": 0.05,
+            "t_high": 0.83,
+            "high_precision": 0.9682539682539683,
+            "low_precision": 0.9518072289156626,
+            "med_precision": 0.21223021582733814,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 63,
+            "n_med": 278,
+            "n_low": 83,
+            "high_share": 0.14858490566037735,
+            "medium_share": 0.6556603773584906,
+            "low_share": 0.1957547169811321,
+            "base": 0.3443396226415094,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                2,
+                59,
+                4
+              ],
+              [
+                0,
+                218,
+                79
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.05,
+            "t_high": 0.83,
+            "high_precision": 0.9696969696969697,
+            "low_precision": 0.9163987138263665,
+            "med_precision": 0.17173051519154559,
+            "high_recall": 0.9230769230769231,
+            "mal_to_low": 0,
+            "n_high": 99,
+            "n_med": 757,
+            "n_low": 311,
+            "high_share": 0.08483290488431877,
+            "medium_share": 0.6486718080548415,
+            "low_share": 0.26649528706083975,
+            "base": 0.3513281919451585,
+            "confusion_3band": [
+              [
+                96,
+                8,
+                0
+              ],
+              [
+                2,
+                130,
+                26
+              ],
+              [
+                1,
+                619,
+                285
+              ]
+            ]
+          }
+        },
+        "B90": {
+          "selected_on_val": {
+            "t_low": 0.41,
+            "t_high": 0.76,
+            "high_precision": 0.9242424242424242,
+            "low_precision": 0.8660130718954249,
+            "med_precision": 0.40384615384615385,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 66,
+            "n_med": 52,
+            "n_low": 306,
+            "high_share": 0.15566037735849056,
+            "medium_share": 0.12264150943396226,
+            "low_share": 0.7216981132075472,
+            "base": 0.8773584905660378,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                3,
+                21,
+                41
+              ],
+              [
+                2,
+                30,
+                265
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.41,
+            "t_high": 0.76,
+            "high_precision": 0.9537037037037037,
+            "low_precision": 0.8964013086150491,
+            "med_precision": 0.4225352112676056,
+            "high_recall": 0.9903846153846154,
+            "mal_to_low": 0,
+            "n_high": 108,
+            "n_med": 142,
+            "n_low": 917,
+            "high_share": 0.09254498714652956,
+            "medium_share": 0.12167952013710369,
+            "low_share": 0.7857754927163667,
+            "base": 0.8783204798628963,
+            "confusion_3band": [
+              [
+                103,
+                1,
+                0
+              ],
+              [
+                3,
+                60,
+                95
+              ],
+              [
+                2,
+                81,
+                822
+              ]
+            ]
+          }
+        },
+        "B95": {
+          "selected_on_val": {
+            "t_low": 0.41,
+            "t_high": 0.83,
+            "high_precision": 0.9682539682539683,
+            "low_precision": 0.8660130718954249,
+            "med_precision": 0.4,
+            "high_recall": 0.9838709677419355,
+            "mal_to_low": 0,
+            "n_high": 63,
+            "n_med": 55,
+            "n_low": 306,
+            "high_share": 0.14858490566037735,
+            "medium_share": 0.12971698113207547,
+            "low_share": 0.7216981132075472,
+            "base": 0.8702830188679245,
+            "confusion_3band": [
+              [
+                61,
+                1,
+                0
+              ],
+              [
+                2,
+                22,
+                41
+              ],
+              [
+                0,
+                32,
+                265
+              ]
+            ]
+          },
+          "test": {
+            "t_low": 0.41,
+            "t_high": 0.83,
+            "high_precision": 0.9696969696969697,
+            "low_precision": 0.8964013086150491,
+            "med_precision": 0.40397350993377484,
+            "high_recall": 0.9230769230769231,
+            "mal_to_low": 0,
+            "n_high": 99,
+            "n_med": 151,
+            "n_low": 917,
+            "high_share": 0.08483290488431877,
+            "medium_share": 0.1293916023993145,
+            "low_share": 0.7857754927163667,
+            "base": 0.8706083976006855,
+            "confusion_3band": [
+              [
+                96,
+                8,
+                0
+              ],
+              [
+                2,
+                61,
+                95
+              ],
+              [
+                1,
+                82,
+                822
+              ]
+            ]
+          }
+        }
+      },
+      "safety_upper_bounds": {
+        "max_high_precision": 1.0,
+        "max_high_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.89
+        },
+        "max_low_precision": 1.0,
+        "max_low_precision_at": {
+          "t_low": 0.005,
+          "t_high": 0.5
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,101 @@
+============ Wave 1: S1/S3/S4/D3 在 4 GPU 并行 ============
+等待 Wave 1 完成 (PIDs: [18:54:22] GPU 0 → S1_1_1_1 1972491 [18:54:22] GPU 1 → S3_1_2_6 1972496 [18:54:22] GPU 2 → S4_natural 1972501 [18:54:22] GPU 3 → D3_1_1.9_3 1972504) ...
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `[18:54:22]': not a pid or valid job spec
+PID [18:54:22] 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `GPU': not a pid or valid job spec
+PID GPU 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: pid 0 is not a child of this shell
+PID 0 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `→': not a pid or valid job spec
+PID → 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `S1_1_1_1': not a pid or valid job spec
+PID S1_1_1_1 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: pid 1972491 is not a child of this shell
+PID 1972491 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `[18:54:22]': not a pid or valid job spec
+PID [18:54:22] 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `GPU': not a pid or valid job spec
+PID GPU 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: pid 1 is not a child of this shell
+PID 1 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `→': not a pid or valid job spec
+PID → 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `S3_1_2_6': not a pid or valid job spec
+PID S3_1_2_6 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: pid 1972496 is not a child of this shell
+PID 1972496 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `[18:54:22]': not a pid or valid job spec
+PID [18:54:22] 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `GPU': not a pid or valid job spec
+PID GPU 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: pid 2 is not a child of this shell
+PID 2 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `→': not a pid or valid job spec
+PID → 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `S4_natural': not a pid or valid job spec
+PID S4_natural 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: pid 1972501 is not a child of this shell
+PID 1972501 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `[18:54:22]': not a pid or valid job spec
+PID [18:54:22] 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `GPU': not a pid or valid job spec
+PID GPU 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: pid 3 is not a child of this shell
+PID 3 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `→': not a pid or valid job spec
+PID → 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: `D3_1_1.9_3': not a pid or valid job spec
+PID D3_1_1.9_3 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 45: wait: pid 1972504 is not a child of this shell
+PID 1972504 失败
+[18:54:22] Wave 1 完成
+============ Wave 2: D1/D2 在 GPU 0/1 并行 ============
+等待 Wave 2 完成 (PIDs: [18:54:22] GPU 0 → D1_1_1_1 1972509 [18:54:22] GPU 1 → D2_1_1_2 1972513) ...
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: `[18:54:22]': not a pid or valid job spec
+PID [18:54:22] 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: `GPU': not a pid or valid job spec
+PID GPU 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: pid 0 is not a child of this shell
+PID 0 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: `→': not a pid or valid job spec
+PID → 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: `D1_1_1_1': not a pid or valid job spec
+PID D1_1_1_1 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: pid 1972509 is not a child of this shell
+PID 1972509 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: `[18:54:22]': not a pid or valid job spec
+PID [18:54:22] 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: `GPU': not a pid or valid job spec
+PID GPU 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: pid 1 is not a child of this shell
+PID 1 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: `→': not a pid or valid job spec
+PID → 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: `D2_1_1_2': not a pid or valid job spec
+PID D2_1_1_2 失败
+/data1/ouyangxinglong/GBP-Cascade/0514/scripts/ratio_ablation/run_parallel.sh: line 57: wait: pid 1972513 is not a child of this shell
+PID 1972513 失败
+[18:54:22] Wave 2 完成
+============ 汇总结果 ============
+======================================================================
+Aggregating ratio ablation results
+======================================================================
+
+label          group    ratio        found  high_p   low_p    mal→low  high_R  
+--------------------------------------------------------------------------------
+S1_1_1_1       Sampler  1:1:1        False  —        —        —        —       
+S2_3_3_2       Sampler  3:3:2        True   0.9364   0.9111   0        0.9904  
+S3_1_2_6       Sampler  1:2:6        False  —        —        —        —       
+S4_natural     Sampler  1:1.9:6.65   False  —        —        —        —       
+D1_1_1_1       Dataset  1:1:1        False  —        —        —        —       
+D2_1_1_2       Dataset  1:1:2        False  —        —        —        —       
+D3_1_1.9_3     Dataset  1:1.9:3      False  —        —        —        —       
+
+  CSV: /data1/ouyangxinglong/GBP-Cascade/0514/logs/ratio_ablation/_summary/results_table.csv
+  ⚠ 有效实验少于 2 个，跳过画图
+  Markdown: /data1/ouyangxinglong/GBP-Cascade/0514/logs/ratio_ablation/_summary/ratio_ablation_summary.md
+
+✅ 完成
+
+✅ 全部完成。查看产物:
+  /data1/ouyangxinglong/GBP-Cascade/0514/logs/ratio_ablation/_summary/

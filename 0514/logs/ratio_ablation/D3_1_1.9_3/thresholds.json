@@ -1,0 +1,19 @@
+{
+  "best_epoch": 10,
+  "best_val_auc": 0.9975049010871502,
+  "t_low": 0.15000000000000002,
+  "t_high": 0.5,
+  "profile_used": "primary",
+  "val_metrics": {
+    "t_low": 0.15000000000000002,
+    "t_high": 0.5,
+    "mal_to_low": 0,
+    "high_recall": 0.9838709677419355,
+    "high_precision": 0.6354166666666666,
+    "medium_share": 0.330188679245283,
+    "low_precision": 0.9202127659574468,
+    "n_high_pred": 96,
+    "n_med_pred": 140,
+    "n_low_pred": 188
+  }
+}
